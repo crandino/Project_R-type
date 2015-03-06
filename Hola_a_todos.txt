@@ -5,5 +5,9 @@ Si (Roger Olasz).
 Para nada (Jordi Nunes)
 
 
+<<<<<<< HEAD
 
 Roger
+=======
+Este es mi espacio??? JN
+>>>>>>> origin/master
