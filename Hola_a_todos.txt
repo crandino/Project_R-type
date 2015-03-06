@@ -3,4 +3,15 @@ Lo veis, camaradas?
 Si (Roger Olasz).
 
 Para nada (Jordi Nunes)
+<<<<<<< HEAD
 Tiene que quedar redonditos...
+=======
+
+
+<<<<<<< HEAD
+
+Roger
+=======
+Este es mi espacio??? JN
+>>>>>>> origin/master
+>>>>>>> cdb21d177ba777b7f5fe1724887dadd2f41d9c70
