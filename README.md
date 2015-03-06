@@ -1,4 +1,4 @@
 # Project_R-type
 
 
-READ ME PLEASE, BITCH.
+READ ME, BITCH.
