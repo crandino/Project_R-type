@@ -13,6 +13,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="DList.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="ModuleDummy.h" />
+    <ClInclude Include="Utilities.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2109D7D5-C16C-4A31-AEB4-B6ADCDA24E42}</ProjectGuid>
     <RootNamespace>Project_Rtype</RootNamespace>
