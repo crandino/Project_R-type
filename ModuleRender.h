@@ -2,7 +2,6 @@
 
 #include "Module.h"
 #include "ModuleWindow.h"
-#include "Utilities.h"
 #include "SDL2-2.0.3\include\SDL.h"
 
 class ModuleRender : public Module
