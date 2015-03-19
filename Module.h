@@ -6,6 +6,6 @@ class Module
 public:
 
 	virtual bool init() { return true; }
-	virtual int update() { return UPDATE_STOP; }
+	virtual update_status update() { return UPDATE_CONTINUE; }
 	virtual bool cleanUp() { return true; }
 };

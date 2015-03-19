@@ -1,6 +1,5 @@
 #pragma once
 #include "Module.h"
-#include "Globals.h"
 #include "Utilities.h"
 
 class ModuleDummy : public Module

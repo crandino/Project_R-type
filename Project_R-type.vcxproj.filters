@@ -38,5 +38,11 @@
     <ClInclude Include="ModuleDummy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
