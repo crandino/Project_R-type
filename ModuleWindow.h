@@ -3,6 +3,8 @@
 #include "Module.h"
 #include "SDL2-2.0.3/include/SDL.h"
 
+class Application;
+
 class ModuleWindow : public Module
 {
 
@@ -16,7 +18,7 @@ public:
 public:
 
 
-	ModuleWindow()
+	ModuleWindow(Application* app) : Module(app)
 	{
 		window = NULL;
 		screen_surface = NULL;

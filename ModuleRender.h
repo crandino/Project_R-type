@@ -1,19 +1,16 @@
 #pragma once
 
 #include "Module.h"
-#include "ModuleWindow.h"
 #include "SDL2-2.0.3\include\SDL.h"
 
 class ModuleRender : public Module
 {
 
-private:
+public:
 
 	SDL_Renderer* renderer;
 
-public:
-
-	ModuleRender()
+	ModuleRender(Application *app) : Module(app)
 	{
 		renderer = NULL;
 	}
@@ -26,7 +23,7 @@ public:
 		bool ret = true;
 		Uint32 flags = SDL_RENDERER_ACCELERATED;
 
-		renderer = SDL_CreateRenderer( window, -1, flags);
+		renderer = SDL_CreateRenderer(app->window->window, -1, flags);
 
 		if (renderer == NULL)
 		{
