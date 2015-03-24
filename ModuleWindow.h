@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Module.h"
-#include "SDL2-2.0.3/include/SDL.h"
-
-class Application;
+#include "Application.h"
+#include "SDL2-2.0.3\include\SDL.h"
 
 class ModuleWindow : public Module
 {

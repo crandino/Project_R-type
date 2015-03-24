@@ -15,14 +15,13 @@ private:
 
 public:
 
-	ModuleWindow* window;
-	ModuleRender* renderer;
+	ModuleWindow *window;
+	ModuleRender *renderer;
 	/*ModuleTextures* textures;
 	ModuleInput* input;*/
 
 	Application();
 	~Application();
-	
 
 	bool init();
 	update_status update();

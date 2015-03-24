@@ -24,6 +24,9 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities.h">
