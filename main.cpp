@@ -4,6 +4,7 @@
 
 #include "Utilities.h"
 #include "Application.h"
+#include "Globals.h"
 
 // pragma is an exclusive extension of Visual Studio,
 // so it only works on here. 

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdio.h>
 #include "DList.h"
 #include "Module.h"
@@ -14,8 +15,8 @@ private:
 
 public:
 
-	ModuleRender* renderer;
 	ModuleWindow* window;
+	ModuleRender* renderer;
 	/*ModuleTextures* textures;
 	ModuleInput* input;*/
 
@@ -24,6 +25,6 @@ public:
 	
 
 	bool init();
-	int update();
+	update_status update();
 	bool cleanUp(); 
 };

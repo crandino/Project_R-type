@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Application.h"
 
 Application::Application()
@@ -38,7 +39,7 @@ bool Application::init()
 	return ret;
 }
 
-int Application::update() {
+update_status Application::update() {
 
 	update_status ret = UPDATE_CONTINUE;
 	doubleNode<Module*> *item = list_modules.getFirst();
