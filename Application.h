@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
 #include "DList.h"
+#include "Globals.h"
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
@@ -15,8 +15,9 @@ private:
 
 public:
 
-	ModuleWindow *window;
-	ModuleRender *renderer;
+	ModuleWindow* window;
+	ModuleRender* renderer;
+
 	/*ModuleTextures* textures;
 	ModuleInput* input;*/
 

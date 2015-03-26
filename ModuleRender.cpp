@@ -1,14 +1,15 @@
-#pragma once
-
+#include "Utilities.h"
+#include "Application.h"
 #include "ModuleRender.h"
-#include "SDL2-2.0.3\include\SDL.h"
 
 ModuleRender::ModuleRender(Application *app) : Module(app)
 {
 	renderer = NULL;
 }
 
-ModuleRender::~ModuleRender() {}
+ModuleRender::~ModuleRender()
+{
+}
 
 bool ModuleRender::init()
 {
@@ -25,6 +26,15 @@ bool ModuleRender::init()
 	}
 
 	return ret;
+}
+
+update_status ModuleRender::update()
+{
+	SDL_RenderClear(renderer);
+
+	// TODO: crear un PreUpdate Update PostUpdate
+	SDL_RenderPresent(renderer);
+	return UPDATE_CONTINUE;
 }
 
 bool ModuleRender::cleanUp()

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include "SDL2-2.0.3\include\SDL.h"
 
 #include "Utilities.h"

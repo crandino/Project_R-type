@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Module.h"
-#include "Application.h"
-#include "SDL2-2.0.3\include\SDL.h"
+#include "Globals.h"
 
 class ModuleRender : public Module
 {
@@ -13,5 +12,6 @@ public:
 	~ModuleRender();
 
 	bool init();
+	update_status update();
 	bool cleanUp();
 };

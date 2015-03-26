@@ -1,7 +1,7 @@
 #pragma once 
 
-#include "Globals.h"
-#include "Utilities.h"
+//#include "Globals.h"
+//#include "Utilities.h"
 
 class Application;
 

@@ -1,5 +1,5 @@
-#pragma once
-
+//#include "Globals.h"
+#include "Utilities.h"
 #include "Application.h"
 #include "ModuleWindow.h"
 

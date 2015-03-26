@@ -2,7 +2,6 @@
 #define __UTILITIES_H__
 
 #include <Windows.h>
-#include <stdlib.h>
 #include <stdio.h>
 
 #define MIN(a,b) (a<b ? a : b)

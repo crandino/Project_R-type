@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Application.h"
 
 Application::Application()
@@ -66,7 +65,7 @@ bool Application::cleanUp() {
 	return ret;
 }
 
-void Application::addModule(Module *_mod)
+void Application::addModule(Module *module)
 {
-	list_modules.add(_mod);
+	list_modules.add(module);
 }
