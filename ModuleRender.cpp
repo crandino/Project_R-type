@@ -1,6 +1,10 @@
+#include <Windows.h>
+#include <stdio.h>
 #include "Utilities.h"
 #include "Application.h"
 #include "ModuleRender.h"
+#include "ModuleWindow.h"
+#include "SDL2-2.0.3\include\SDL.h"
 
 ModuleRender::ModuleRender(Application *app) : Module(app)
 {

@@ -1,5 +1,7 @@
 #pragma once
 #include "Application.h"
+#include "ModuleRender.h"
+#include "ModuleWindow.h"
 
 Application::Application()
 {
