@@ -1,5 +1,4 @@
-#include <Windows.h>
-#include <stdio.h>
+#include "Utilities.h"
 
 void log(const char file[], int line, const char* format, ...)
 {

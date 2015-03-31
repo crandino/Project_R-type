@@ -4,10 +4,8 @@
 #include "DList.h"
 #include "Globals.h"
 #include "Module.h"
-
-class ModuleWindow;
-class ModuleRender;
-class ModuleTextures;
+#include "ModuleWindow.h"
+#include "ModuleRender.h"
 
 class Application
 {

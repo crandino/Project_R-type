@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
 
+
 Application::Application()
 {
 	window = new ModuleWindow(this);

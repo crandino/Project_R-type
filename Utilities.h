@@ -1,6 +1,9 @@
 #ifndef __UTILITIES_H__
 #define __UTILITIES_H__
 
+#include <Windows.h>
+#include <stdio.h>
+
 #define MIN(a,b) (a<b ? a : b)
 #define MAX(a,b) (a>b ? a : b)
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__)
@@ -14,5 +17,4 @@ void swap(TYPE1 &a, TYPE1 &b) {
 	a = b;
 	b = tmp;
 }
-
 #endif

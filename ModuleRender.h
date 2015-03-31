@@ -4,8 +4,6 @@
 #include "Module.h"
 #include "Globals.h"
 
-struct SDL_Renderer;
-
 class ModuleRender : public Module
 {
 public:
