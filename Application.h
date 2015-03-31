@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
 
 #include "DList.h"
 #include "Globals.h"
@@ -6,6 +7,7 @@
 
 class ModuleWindow;
 class ModuleRender;
+class ModuleTextures;
 
 class Application
 {
@@ -18,9 +20,8 @@ public:
 
 	ModuleWindow* window;
 	ModuleRender* renderer;
-
-	/*ModuleTextures* textures;
-	ModuleInput* input;*/
+	ModuleTextures* textures;
+	/*ModuleInput* input;*/
 
 	Application();
 	~Application();
@@ -29,3 +30,5 @@ public:
 	update_status update();
 	bool cleanUp(); 
 };
+
+#endif __APPLICATION_H__

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GLOBALS_H__
+#define __GLOBALS_H__
 
 // Window properties
 #define SCREEN_WIDTH 860
@@ -11,3 +12,5 @@ enum update_status
 	UPDATE_STOP,
 	UPDATE_ERROR
 };
+
+#endif __GLOBALS_H__

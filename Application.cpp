@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+#include "ModuleTextures.h"
 
 Application::Application()
 {
@@ -11,10 +12,10 @@ Application::Application()
 	renderer = new ModuleRender(this);
 	addModule(renderer);
 
-	/*textures = new ModuleTextures(this);
+	textures = new ModuleTextures(this);
 	addModule(textures);
 
-	input = new ModuleInput(this);
+	/*input = new ModuleInput(this);
 	addModule(input);*/
 }
 
@@ -22,8 +23,8 @@ Application::~Application()
 {
 	delete window;
 	delete renderer;
-	/*delete textures;
-	delete input;*/
+	delete textures;
+	/*delete input;*/
 }
 
 bool Application::init()
