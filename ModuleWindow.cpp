@@ -1,4 +1,5 @@
-//#include "Globals.h"
+#include <Windows.h>
+#include <stdio.h>
 #include "Utilities.h"
 #include "Application.h"
 #include "ModuleWindow.h"

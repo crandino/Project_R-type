@@ -1,5 +1,7 @@
-#ifndef __MODULE_H__
-#define __MODULE_H__
+#pragma once 
+
+//#include "Globals.h"
+//#include "Utilities.h"
 
 class Application;
 
@@ -15,5 +17,3 @@ public:
 	virtual update_status update() { return UPDATE_CONTINUE; }
 	virtual bool cleanUp() { return true; }
 };
-
-#endif __MODULE_H__

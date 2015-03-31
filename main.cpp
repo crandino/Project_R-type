@@ -1,9 +1,12 @@
+#include <Windows.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include "SDL2-2.0.3\include\SDL.h"
 
 #include "Utilities.h"
 #include "Application.h"
 #include "Globals.h"
+
+#include "SDL2-2.0.3\include\SDL.h"
 
 // pragma is an exclusive extension of Visual Studio,
 // so it only works on here. 

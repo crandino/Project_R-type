@@ -1,8 +1,9 @@
-#ifndef __MODULERENDER_H__
-#define __MODULERENDER_H__
+#pragma once
 
 #include "Module.h"
 #include "Globals.h"
+
+struct SDL_Renderer;
 
 class ModuleRender : public Module
 {
@@ -15,9 +16,4 @@ public:
 	bool init();
 	update_status update();
 	bool cleanUp();
-
-	// Put a graphic over another is called Blit.
-	bool blit(SDL_Texture* texture, int x, int y, SDL_Rect* section);
 };
-
-#endif __MODULERENDER_H__

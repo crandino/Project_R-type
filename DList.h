@@ -1,6 +1,8 @@
 #ifndef __DLIST_H__
 #define __DLIST_H__
 
+#define NULL 0
+
 template <class TYPE>
 struct doubleNode {
 	TYPE data;
