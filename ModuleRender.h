@@ -1,14 +1,23 @@
-#pragma once
-
+//=================================
+// include guard
+#ifndef __MODULERENDER_H__
+#define __MODULERENDER_H__
+//=================================
+// forward declared dependencies
+//class Application;
+//=================================
+// included dependencies
 #include "Module.h"
-#include "Globals.h"
-
-struct SDL_Renderer;
+#include "SDL\include\SDL.h"
+//=================================
+// the actual class
 
 class ModuleRender : public Module
 {
 public:
-	SDL_Renderer* renderer;
+
+	SDL_Renderer *renderer;
+	SDL_Rect camera;
 
 	ModuleRender(Application*);
 	~ModuleRender();
@@ -16,4 +25,9 @@ public:
 	bool init();
 	update_status update();
 	bool cleanUp();
+
+	bool blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, float speed = 1.0f);
+	
 };
+
+#endif // !__MODULERENDER_H__

@@ -1,0 +1,29 @@
+Code Style for R-TYPE project
+
+Authors:
+Carlos Randino
+Daniel Triviño
+Jordi Nunes
+Roger Olasz
+
+Variables: snake_case
+
+Classes: PascalCase
+
+Methods: camelCase
+
+Each header file must include the following lines in order to separate each included file.
+//=================================
+// include guard
+#ifndef __EXAMPLE_H__
+#define __EXAMPLE_H__
+//=================================
+// forward declared dependencies
+//class Foo;
+//=================================
+// included dependencies
+#include "Bar.h"
+//=================================
+// the actual class
+
+#endif // !__EXAMPLE_H__

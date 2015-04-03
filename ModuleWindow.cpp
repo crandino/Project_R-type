@@ -1,70 +1,88 @@
-#include <Windows.h>
-#include <stdio.h>
-#include "Utilities.h"
-#include "Application.h"
+//=================================
+// forward declared dependencies
+//=================================
+// included dependencies
 #include "ModuleWindow.h"
+//=================================
+// the actual code
 
-ModuleWindow::ModuleWindow(Application* app) : Module(app)
+ModuleWindow::ModuleWindow(Application *app) : Module(app)
 {
 	window = NULL;
 	screen_surface = NULL;
 }
 
-ModuleWindow::~ModuleWindow() {}
+ModuleWindow::~ModuleWindow()
+{
+}
 
 bool ModuleWindow::init()
 {
-	LOG("Init SDL window & surface");
+	LOG("Init SDL Window & surface");
 	bool ret = true;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		LOG("SDL_VIDEO could not initialize!SDL_Error: &s", SDL_GetError());
+		LOG("SDL_VIDEO could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 	else
 	{
-		// Create window
-		int width = SCREEN_WIDTH;
-		int height = SCREEN_HEIGHT;
+		//Create Window
+		int width = SCREEN_WIDTH * SCREEN_SIZE;
+		int height = SCREEN_HEIGHT * SCREEN_SIZE;
 		Uint32 flags = SDL_WINDOW_SHOWN;
 
-		if (FULLSCREEN == true)
+		if (WIN_FULLSCREEN == true)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN;
 		}
 
-		// TODO: SDL_WINDOW_BORDERLESS, SDL_WINDOW_RESIZABLE,  SDL_WINDOW_FULLSCREEN_DESKTOP
+		if (WIN_RESIZABLE == true)
+		{
+			flags |= SDL_WINDOW_RESIZABLE;
+		}
+		
+		if (WIN_BORDERLESS == true)
+		{
+			flags |= SDL_WINDOW_BORDERLESS;
+		}
 
-		window = SDL_CreateWindow("",
-			SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED,
-			width, height, flags);
+		if (WIN_FULLSCREEN_DESKTOP == true)
+		{
+			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		}
+
+		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if (window == NULL)
 		{
-			LOG("Window could not be created! SDL_ERROR: &s", SDL_GetError());
+			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 			ret = false;
 		}
 		else
 		{
-			// With successful creation, we obtaion window surface.
+			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
 
 	return ret;
-}
 
+}
+	
+// Called before quitting
 bool ModuleWindow::cleanUp()
 {
-	LOG("Destroying SDL window & surface. Quitting all SDL systems");
+	LOG("Destroying SDL window and quitting all SDL systems");
 
-	// Destroy window
+	//Destroy window
 	if (window != NULL)
+	{
 		SDL_DestroyWindow(window);
+	}
 
-	// Quit SDL Subsystems
+	//Quit SDL subsystems
 	SDL_Quit();
 	return true;
 }

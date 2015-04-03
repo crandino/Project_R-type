@@ -1,11 +1,20 @@
-#pragma once
-
-#include "DList.h"
-#include "Globals.h"
-#include "Module.h"
-
+//=================================
+// include guard
+#ifndef __APPLICATION_H__
+#define __APPLICATION_H__
+//=================================
+// forward declared dependencies
+class Module;
 class ModuleWindow;
 class ModuleRender;
+class ModuleTextures;
+class ModuleInput;
+//=================================
+// included dependencies
+#include "DList.h"
+#include "Globals.h"
+//=================================
+// the actual class
 
 class Application
 {
@@ -15,17 +24,18 @@ private:
 	void addModule(Module*);
 
 public:
-
-	ModuleWindow* window;
-	ModuleRender* renderer;
-
-	/*ModuleTextures* textures;
-	ModuleInput* input;*/
+	
+	ModuleWindow *window;
+	ModuleRender *renderer;
+	ModuleTextures *textures;
+	ModuleInput *input;
 
 	Application();
 	~Application();
 
 	bool init();
 	update_status update();
-	bool cleanUp(); 
+	bool cleanUp();
 };
+
+#endif // !__APPLICATION_H__
