@@ -22,7 +22,7 @@ public:
 	//The surface contained by the window
 	SDL_Surface *screen_surface;
 
-	ModuleWindow(Application*);
+	ModuleWindow(Application *app, bool start_enabled = true);
 	virtual ~ModuleWindow();
 
 	bool init();

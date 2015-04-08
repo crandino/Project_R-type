@@ -13,12 +13,35 @@ class Application;
 
 class Module
 {
+private:
+	bool enabled;
+
 public:
 
 	Application *app;
 
-	Module(Application *parent) : app(parent)
+	Module(Application *parent, bool start_enabled = true) : app(parent), enabled(start_enabled)
 	{	}
+
+	bool isEnabled() const { return enabled; }
+	
+	void enable()
+	{
+		if (enabled == false)
+		{
+			enabled = true;
+			start();
+		}
+	}
+
+	void disable()
+	{
+		if (enabled == true)
+		{
+			enabled = false;
+			cleanUp();
+		}
+	}
 
 	virtual bool init() { return true; }
 	virtual bool start() { return true; }

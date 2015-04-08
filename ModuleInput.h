@@ -17,7 +17,7 @@ public:
 
 	const Uint8 *keyboard;
 
-	ModuleInput(Application*);
+	ModuleInput(Application *app, bool start_enabled = true);
 	~ModuleInput();
 
 	bool init();

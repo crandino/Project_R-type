@@ -19,7 +19,7 @@ public:
 	SDL_Renderer *renderer;
 	SDL_Rect camera;
 
-	ModuleRender(Application*);
+	ModuleRender(Application *app, bool start_enabled = true);
 	~ModuleRender();
 
 	bool init();
