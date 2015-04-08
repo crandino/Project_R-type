@@ -80,6 +80,27 @@ public:
 		return NULL;
 	}
 
+	/**
+	* Find by index (by Ricard)
+	*/
+	bool at(unsigned int index, TYPE& data) const
+	{
+		bool ret = false;
+		unsigned int i = 0;
+		doubleNode<TYPE>*   p_data = start;
+
+		for (unsigned int i = 0; i < index && p_data != NULL; ++i)
+			p_data = p_data->next;
+
+		if (p_data != NULL)
+		{
+			ret = true;
+			data = p_data->data;
+		}
+
+		return ret;
+	}
+
 	bool del(doubleNode<TYPE>* _node)
 	{
 		if (start != NULL && _node != NULL)

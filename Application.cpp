@@ -7,6 +7,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 //=================================
 // the actual class
 
@@ -23,6 +24,9 @@ Application::Application()
 
 	input = new ModuleInput(this);
 	addModule(input);
+
+	audio = new ModuleAudio(this);
+	addModule(audio);
 }
 
 Application::~Application()
@@ -31,6 +35,7 @@ Application::~Application()
 	delete renderer;
 	delete textures;
 	delete input;
+	delete audio;
 }
 
 bool Application::init()

@@ -9,6 +9,7 @@ class ModuleWindow;
 class ModuleRender;
 class ModuleTextures;
 class ModuleInput;
+class ModuleAudio;
 //=================================
 // included dependencies
 #include "DList.h"
@@ -29,6 +30,7 @@ public:
 	ModuleRender *renderer;
 	ModuleTextures *textures;
 	ModuleInput *input;
+	ModuleAudio *audio;
 
 	Application();
 	~Application();
