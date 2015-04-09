@@ -14,24 +14,25 @@ Module(app, start_enabled)
 	graphics = NULL;
 
 	position.x = 100;
-	position.y = 100;
+	position.y = 300;
 
 	// idle animation (there is no animation here!)
-	idle.frames.pushBack({ 167, 3, 31, 13 });
+	//idle.frames.pushBack({ 167, 3, 31, 13 });
 
 	// upwards animation
+	upward.frames.pushBack({ 167, 3, 31, 13 });
 	upward.frames.pushBack({ 200, 3, 32, 13 });
 	upward.frames.pushBack({ 233, 4, 32, 14 });
-	upward.speed = 0.01f;
+	upward.speed = 0.1f;
 	upward.loop = false;
 
 	// downwards animation
+	downward.frames.pushBack({ 167, 3, 31, 13 });
 	downward.frames.pushBack({ 134, 3, 32, 13 });
 	downward.frames.pushBack({ 101, 4, 32, 14 });
-	downward.speed = 0.01f;
+	downward.speed = 0.1f;
 	downward.loop = false;
 }
-
 
 ModulePlayer::~ModulePlayer()
 { }
@@ -59,18 +60,18 @@ update_status ModulePlayer::update()
 {
 	Animation *current_animation = &idle;
 	// debug camera movement
-	int speed = 3;
+	int speed = 1;
 
 	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
-		position.y -= speed;
 		current_animation = &upward;
+		position.y -= speed;
 	}
 	
 	if (app->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 	{
-		position.y += speed;
 		current_animation = &downward;
+		position.y += speed;
 	}
 	
 	if (app->input->keyboard[SDL_SCANCODE_LEFT] == 1)
