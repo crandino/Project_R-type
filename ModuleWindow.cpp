@@ -21,6 +21,7 @@ bool ModuleWindow::init()
 	LOG("Init SDL Window & surface");
 	bool ret = true;
 
+	// SDL_INIT_VIDEO is a flag to initialize video subsystem
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		LOG("SDL_VIDEO could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -62,7 +63,8 @@ bool ModuleWindow::init()
 		}
 		else
 		{
-			//Get window surface
+			// Get window surface. If we want to resize the window, 
+			// this function must be called again.
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
@@ -82,7 +84,10 @@ bool ModuleWindow::cleanUp()
 		SDL_DestroyWindow(window);
 	}
 
-	//Quit SDL subsystems
+	// Quit recommended fucntion for subsystem's initialization
+	// SDL_Init(SDL_INIT_VIDEO)
+	SDL_VideoQuit();
+	// Quit SDL subsystems	
 	SDL_Quit();
 	return true;
 }

@@ -23,7 +23,9 @@ public:
 	~ModuleRender();
 
 	bool init();
+	update_status preUpdate();
 	update_status update();
+	update_status postUpdate();
 	bool cleanUp();
 
 	bool blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, float speed = 1.0f);

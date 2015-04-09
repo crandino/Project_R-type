@@ -2,9 +2,10 @@
 // forward declared dependencies
 //=================================
 // included dependencies
-#include "ModuleRender.h"
-#include "ModuleWindow.h"
 #include "Application.h"
+#include "ModuleWindow.h"
+#include "ModuleRender.h"
+#include "ModuleInput.h"
 //=================================
 // the actual code
 ModuleRender::ModuleRender(Application *app, bool start_enabled) : Module(app, start_enabled)
@@ -42,11 +43,33 @@ bool ModuleRender::init()
 	return ret;
 }
 
+update_status ModuleRender::preUpdate()
+{
+	// this function clears the current
+	// rendering target with the drawing color
+	// (black by default or SDL_SetRenderDrawColor
+	// to specify one).
+	SDL_RenderClear(renderer);
+	return UPDATE_CONTINUE;
+}
+
 update_status ModuleRender::update()
 {
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);
+	int speed = 3;
 
+	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
+		app->renderer->camera.y += speed;
+
+	return UPDATE_CONTINUE;
+}
+
+update_status ModuleRender::postUpdate()
+{
+	/*This function updates the screen with any
+	rendering performed since the previous call.
+	As such, you compose your entire scene and "present"
+	the composed backbuffer to the screen as a complete picture.*/
+	SDL_RenderPresent(renderer);
 	return UPDATE_CONTINUE;
 }
 
