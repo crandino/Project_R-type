@@ -57,11 +57,14 @@ update_status ModuleRender::update()
 {
 	int speed = 3;
 
-	// TODO: Change this part to use the pad arrows instead 
-	// and add the three remaining options.
-
-	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
+	if (app->input->keyboard[SDL_SCANCODE_KP_8] == 1)
 		app->renderer->camera.y += speed;
+	if (app->input->keyboard[SDL_SCANCODE_KP_2] == 1)
+		app->renderer->camera.y -= speed;
+	if (app->input->keyboard[SDL_SCANCODE_KP_4] == 1)
+		app->renderer->camera.x += speed;
+	if (app->input->keyboard[SDL_SCANCODE_KP_6] == 1)
+		app->renderer->camera.x -= speed;
 
 	return UPDATE_CONTINUE;
 }
