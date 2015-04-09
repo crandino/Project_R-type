@@ -118,14 +118,14 @@ public:
 		printf("%s: %d\n\n", "Allocated memory", allocated_memory);
 	}
 	
-	data& operator[] (unsigned int index)
+	TYPE& operator[] (unsigned int index)
 	{
 		// For p[1] = 15;
 		assert (index < num_elements);
 		return data[index];
 	}
 		
-	const data& operator[] (unsigned int index) const
+	const TYPE& operator[] (unsigned int index) const
 	{
 		// For printf("%d", p[1]);
 		assert (index < num_elements);

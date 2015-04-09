@@ -10,6 +10,7 @@ class ModuleRender;
 class ModuleTextures;
 class ModuleInput;
 class ModuleAudio;
+class ModulePlayer;
 class ModuleFadeToBlack;
 //=================================
 // included dependencies
@@ -32,6 +33,7 @@ public:
 	ModuleTextures *textures;
 	ModuleInput *input;
 	ModuleAudio *audio;
+	ModulePlayer *player;
 	ModuleFadeToBlack *fade;
 
 	Application();

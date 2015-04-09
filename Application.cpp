@@ -8,6 +8,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 //=================================
 // the actual class
@@ -19,6 +20,7 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this);
+	player = new ModulePlayer(this, true);
 	fade = new ModuleFadeToBlack(this);
 
 	addModule(window);
@@ -26,6 +28,7 @@ Application::Application()
 	addModule(textures);
 	addModule(input);
 	addModule(audio);
+	addModule(player);
 	addModule(fade);
 }
 
@@ -36,6 +39,7 @@ Application::~Application()
 	delete textures;
 	delete input;
 	delete audio;
+	delete player;
 	delete fade;
 }
 
