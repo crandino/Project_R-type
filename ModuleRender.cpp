@@ -57,6 +57,9 @@ update_status ModuleRender::update()
 {
 	int speed = 3;
 
+	// TODO: Change this part to use the pad arrows instead 
+	// and add the three remaining options.
+
 	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
 		app->renderer->camera.y += speed;
 
@@ -98,11 +101,15 @@ bool ModuleRender::blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, f
 		rect.h = section->h;
 	}
 	else
+	{
+		//This function queries the attributes of a texture.
 		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+	}
 
 	rect.w *= SCREEN_SIZE;
 	rect.h *= SCREEN_SIZE;
 
+	// It copies a portion of the texture to the current rendering target.
 	if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());

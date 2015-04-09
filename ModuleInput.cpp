@@ -31,8 +31,16 @@ bool ModuleInput::init()
 
 update_status ModuleInput::preUpdate()
 {
+	//SDL_PumpEvents() gathers all the pending input
+	//information from devices and places it in the 
+	//event queue.Without calls to SDL_PumpEvents()
+	//no events would ever be placed on the queue.
 	SDL_PumpEvents();
 
+	//Returns a pointer to an array of key states.A value
+	//of 1 means that the key is pressed and a value of 0 
+	//means that it is not.Indexes into this array are 
+	//obtained by using SDL_Scancode values.
 	keyboard = SDL_GetKeyboardState(NULL);
 
 	if (keyboard[SDL_SCANCODE_ESCAPE] == 1)

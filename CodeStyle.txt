@@ -6,13 +6,14 @@ Daniel Triviño
 Jordi Nunes
 Roger Olasz
 
+**************Format******************
 Variables: snake_case
-
 Classes: PascalCase
-
 Methods: camelCase
 
-Each header file must include the following lines in order to separate each included file.
+**************Headers*****************
+Each header file must include the following lines 
+in order to separate each included file.
 //=================================
 // include guard
 #ifndef __EXAMPLE_H__
@@ -25,7 +26,8 @@ Each header file must include the following lines in order to separate each incl
 #include "Bar.h"
 //=================================
 // the actual class
-
 #endif // !__EXAMPLE_H__
 
+
+***************Classes*******************
 In classes, the properties go first and then the methods.

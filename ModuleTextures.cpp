@@ -24,7 +24,8 @@ bool ModuleTextures::init()
 	LOG("Init Image Library");
 	bool ret = true;
 
-	// load support for the PNG image format
+	// load support for the PNG image format. JPG and TIF 
+	// can be also loaded.
 	int flags = IMG_INIT_PNG;
 	int init = IMG_Init(flags);
 
@@ -58,8 +59,9 @@ bool ModuleTextures::cleanUp()
 SDL_Texture* const ModuleTextures::load(const char *path)
 {
 	SDL_Texture *texture = NULL;
+	// Load file for use as an image in a new surface
 	SDL_Surface *surface = IMG_Load(path);
-
+	
 	if (surface == NULL)
 	{
 		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
@@ -81,4 +83,21 @@ SDL_Texture* const ModuleTextures::load(const char *path)
 	}
 
 	return texture;
+}
+
+// Free texture from memory
+void ModuleTextures::unload(SDL_Texture *texture)
+{
+	doubleNode<SDL_Texture*>* item = textures.getFirst();
+
+	while (item != NULL)
+	{
+		if (item->data == texture)
+		{
+			SDL_DestroyTexture(item->data);
+			textures.del(item);
+			break;
+		}
+		item = item->next;
+	}
 }

@@ -84,9 +84,6 @@ bool ModuleWindow::cleanUp()
 		SDL_DestroyWindow(window);
 	}
 
-	// Quit recommended fucntion for subsystem's initialization
-	// SDL_Init(SDL_INIT_VIDEO)
-	SDL_VideoQuit();
 	// Quit SDL subsystems	
 	SDL_Quit();
 	return true;
