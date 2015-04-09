@@ -27,3 +27,5 @@ Each header file must include the following lines in order to separate each incl
 // the actual class
 
 #endif // !__EXAMPLE_H__
+
+In classes, the properties go first and then the methods.

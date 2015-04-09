@@ -8,6 +8,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "SDL\include\SDL.h"
 //=================================
 // the actual class
 

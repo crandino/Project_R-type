@@ -8,25 +8,25 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModuleFadeToBlack.h"
 //=================================
 // the actual class
 
 Application::Application()
 {
 	window = new ModuleWindow(this);
-	addModule(window);
-
 	renderer = new ModuleRender(this);
-	addModule(renderer);
-
 	textures = new ModuleTextures(this);
-	addModule(textures);
-
 	input = new ModuleInput(this);
-	addModule(input);
-
 	audio = new ModuleAudio(this);
+	fade = new ModuleFadeToBlack(this);
+
+	addModule(window);
+	addModule(renderer);
+	addModule(textures);
+	addModule(input);
 	addModule(audio);
+	addModule(fade);
 }
 
 Application::~Application()
@@ -36,6 +36,7 @@ Application::~Application()
 	delete textures;
 	delete input;
 	delete audio;
+	delete fade;
 }
 
 bool Application::init()
