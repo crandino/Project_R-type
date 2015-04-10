@@ -15,10 +15,14 @@
 class ModulePlayer : public Module
 {
 public:
+
 	SDL_Texture *graphics;
+	Animation *current_animation;
 	Animation idle;
-	Animation downward;
-	Animation upward;
+	Animation idle_to_upward;
+	Animation upward_to_idle;
+	Animation idle_to_downward;
+	Animation downward_to_idle;
 	Point2d<int> position;
 
 	ModulePlayer(Application *app, bool start_enabled = true);

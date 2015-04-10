@@ -10,9 +10,9 @@
 
 // Game Configuration
 #define TITLE "R-TYPE"
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
-#define SCREEN_SIZE 1
+#define SCREEN_WIDTH 384
+#define SCREEN_HEIGHT 256
+#define SCREEN_SIZE 3
 #define WIN_FULLSCREEN false
 #define WIN_RESIZABLE false
 #define WIN_BORDERLESS false

@@ -12,26 +12,37 @@ ModulePlayer::ModulePlayer(Application *app, bool start_enabled) :
 Module(app, start_enabled)
 {
 	graphics = NULL;
+	current_animation = &idle;
 
-	position.x = 100;
-	position.y = 300;
+	position.x = 50;
+	position.y = 200;
 
-	// idle animation (there is no animation here!)
-	//idle.frames.pushBack({ 167, 3, 31, 13 });
+	// idle animation (there is no animation here, just the ship)
+	idle.frames.pushBack({ 167, 3, 31, 13 });
 
-	// upwards animation
-	upward.frames.pushBack({ 167, 3, 31, 13 });
-	upward.frames.pushBack({ 200, 3, 32, 13 });
-	upward.frames.pushBack({ 233, 4, 32, 14 });
-	upward.speed = 0.1f;
-	upward.loop = false;
+	// from idle to upwards animation
+	idle_to_upward.frames.pushBack({ 200, 3, 32, 13 });
+	idle_to_upward.frames.pushBack({ 233, 4, 32, 14 });
+	idle_to_upward.speed = 0.1f;
+	idle_to_upward.loop = false;
 
-	// downwards animation
-	downward.frames.pushBack({ 167, 3, 31, 13 });
-	downward.frames.pushBack({ 134, 3, 32, 13 });
-	downward.frames.pushBack({ 101, 4, 32, 14 });
-	downward.speed = 0.1f;
-	downward.loop = false;
+	// from upwards to idle animation
+	upward_to_idle.frames.pushBack({ 233, 4, 32, 14 });
+	upward_to_idle.frames.pushBack({ 200, 3, 32, 13 });
+	upward_to_idle.speed = 0.1f;
+	upward_to_idle.loop = false;
+
+	// from idle to downwards animation
+	idle_to_downward.frames.pushBack({ 134, 3, 32, 13 });
+	idle_to_downward.frames.pushBack({ 101, 4, 32, 14 });
+	idle_to_downward.speed = 0.1f;
+	idle_to_downward.loop = false;
+
+	// from downwards to idle animation
+	downward_to_idle.frames.pushBack({ 101, 4, 32, 14 });
+	downward_to_idle.frames.pushBack({ 134, 3, 32, 13 });
+	downward_to_idle.speed = 0.1f;
+	downward_to_idle.loop = false;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -58,20 +69,29 @@ bool ModulePlayer::cleanUp()
 
 update_status ModulePlayer::update()
 {
-	Animation *current_animation = &idle;
 	// debug camera movement
 	int speed = 1;
 
 	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
 	{
-		current_animation = &upward;
 		position.y -= speed;
+
+		if (current_animation != &idle_to_upward)
+		{
+			idle_to_upward.reset();
+			current_animation = &idle_to_upward;
+		}
 	}
 	
 	if (app->input->keyboard[SDL_SCANCODE_DOWN] == 1)
 	{
-		current_animation = &downward;
 		position.y += speed;
+
+		if (current_animation != &idle_to_downward)
+		{
+			idle_to_downward.reset();
+			current_animation = &idle_to_downward;
+		}
 	}
 	
 	if (app->input->keyboard[SDL_SCANCODE_LEFT] == 1)
@@ -80,10 +100,24 @@ update_status ModulePlayer::update()
 	if (app->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 		position.x += speed;
 
-	//Draw everything
-	SDL_Rect r = current_animation->getCurrentFrame();
+	if (app->input->keyboard[SDL_SCANCODE_UP] == 0 && app->input->keyboard[SDL_SCANCODE_DOWN] == 0)
+	{
+		if (current_animation == &idle_to_upward)
+			current_animation = &upward_to_idle;
 
-	app->renderer->blit(graphics, position.x, position.y - r.h , &r);
+		if (current_animation == &idle_to_downward)
+			current_animation = &downward_to_idle;
+
+		if (upward_to_idle.finished() || downward_to_idle.finished())
+		{
+			upward_to_idle.reset();
+			downward_to_idle.reset();
+			current_animation = &idle;
+		}
+	}			
+
+	//Draw everything
+	app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
 
 	return UPDATE_CONTINUE;
 }
