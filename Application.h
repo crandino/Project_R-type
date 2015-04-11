@@ -12,6 +12,7 @@ class ModuleInput;
 class ModuleAudio;
 class ModuleSceneSpace;
 class ModulePlayer;
+class ModuleParticles;
 class ModuleFadeToBlack;
 //=================================
 // included dependencies
@@ -36,6 +37,7 @@ public:
 	ModuleAudio *audio;
 	ModuleSceneSpace *scene;
 	ModulePlayer *player;
+	ModuleParticles *particles;
 	ModuleFadeToBlack *fade;
 
 	Application();

@@ -63,7 +63,7 @@ public:
 
 	void setZero()
 	{
-		x = y = 0.0f;
+		x = y = 0;
 	}
 
 	TYPE distanceTo(const Point2d &p) const

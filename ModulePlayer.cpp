@@ -114,7 +114,15 @@ update_status ModulePlayer::update()
 			downward_to_idle.reset();
 			current_animation = &idle;
 		}
-	}			
+	}	
+
+	/*if (app->input->keyboard_down[SDL_SCANCODE_CTRL] == 1)
+	{
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
+		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 500);
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
+		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
+	}*/
 
 	//Draw everything
 	app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));

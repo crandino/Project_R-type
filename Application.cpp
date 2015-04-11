@@ -10,6 +10,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneSpace.h"
 #include "ModulePlayer.h"
+#include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
 //=================================
 // the actual class
@@ -23,6 +24,7 @@ Application::Application()
 	audio = new ModuleAudio(this);
 	scene = new ModuleSceneSpace(this, true);
 	player = new ModulePlayer(this, true);
+	particles = new ModuleParticles(this, true);
 	fade = new ModuleFadeToBlack(this);
 
 	addModule(window);
@@ -35,6 +37,7 @@ Application::Application()
 
 	addModule(player);
 
+	addModule(particles);
 	addModule(fade);
 }
 
@@ -47,6 +50,7 @@ Application::~Application()
 	delete audio;
 	delete scene;
 	delete player;
+	delete particles;
 	delete fade;
 }
 
