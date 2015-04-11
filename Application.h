@@ -10,6 +10,7 @@ class ModuleRender;
 class ModuleTextures;
 class ModuleInput;
 class ModuleAudio;
+class ModuleSceneSpace;
 class ModulePlayer;
 class ModuleFadeToBlack;
 //=================================
@@ -33,6 +34,7 @@ public:
 	ModuleTextures *textures;
 	ModuleInput *input;
 	ModuleAudio *audio;
+	ModuleSceneSpace *scene;
 	ModulePlayer *player;
 	ModuleFadeToBlack *fade;
 

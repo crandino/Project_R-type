@@ -1,0 +1,59 @@
+//=================================
+// forward declared dependencies
+//=================================
+// included dependencies
+#include "Application.h"
+#include "ModuleSceneSpace.h"
+#include "ModuleTextures.h"
+#include "ModulePlayer.h"
+#include "ModuleRender.h"
+//=================================
+// the actual code
+
+ModuleSceneSpace::ModuleSceneSpace(Application *app, bool start_enabled) : Module(app, start_enabled)
+{
+	boundary_level = NULL;
+	//stars = NULL;
+}
+
+ModuleSceneSpace::~ModuleSceneSpace()
+{ }
+
+// Load assets
+bool ModuleSceneSpace::start()
+{
+	LOG("Loading space scene");
+
+	boundary_level = app->textures->load("Sprites/boundary_level.png");
+
+	app->player->enable();
+	//app->audio->playMusic("Audio/loQUEsea.ogg, 1.0f");
+
+	return true;
+}
+
+// Unload assets
+bool ModuleSceneSpace::cleanUp()
+{
+	LOG("Unloading space scene");
+
+	app->textures->unload(boundary_level);
+	app->player->disable();
+
+	return true;
+}
+
+// Update: draw background
+update_status ModuleSceneSpace::update()
+{
+	// Move camera forward
+	int scroll_speed = 1; // It is not used.
+
+	app->player->position.x += 1;
+	app->renderer->camera.x -= 3;
+
+	// Draw everything
+	app->renderer->blit(boundary_level, 0, 0, NULL);
+
+	return UPDATE_CONTINUE;
+}

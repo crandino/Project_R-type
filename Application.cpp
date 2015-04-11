@@ -8,6 +8,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneSpace.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 //=================================
@@ -20,6 +21,7 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this);
+	scene = new ModuleSceneSpace(this, true);
 	player = new ModulePlayer(this, true);
 	fade = new ModuleFadeToBlack(this);
 
@@ -28,7 +30,11 @@ Application::Application()
 	addModule(textures);
 	addModule(input);
 	addModule(audio);
+
+	addModule(scene);
+
 	addModule(player);
+
 	addModule(fade);
 }
 
@@ -39,6 +45,7 @@ Application::~Application()
 	delete textures;
 	delete input;
 	delete audio;
+	delete scene;
 	delete player;
 	delete fade;
 }
