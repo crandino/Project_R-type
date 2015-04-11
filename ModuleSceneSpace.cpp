@@ -7,6 +7,7 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
+#include "ModuleAudio.h"
 //=================================
 // the actual code
 
@@ -27,7 +28,7 @@ bool ModuleSceneSpace::start()
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
 	app->player->enable();
-	//app->audio->playMusic("Audio/loQUEsea.ogg, 1.0f");
+	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	return true;
 }
