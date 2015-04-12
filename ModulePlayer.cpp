@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModuleParticles.h"
 //=================================
 // the actual code
 
@@ -116,13 +117,10 @@ update_status ModulePlayer::update()
 		}
 	}	
 
-	/*if (app->input->keyboard_down[SDL_SCANCODE_CTRL] == 1)
+	if (app->input->keyboard_down[SDL_SCANCODE_LCTRL] == 1)
 	{
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
-		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 500);
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
-		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
-	}*/
+		app->particles->addParticle(app->particles->shot, position.x, position.y + 25);
+	}
 
 	//Draw everything
 	app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
