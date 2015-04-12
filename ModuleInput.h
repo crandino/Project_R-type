@@ -16,6 +16,10 @@ class ModuleInput : public Module
 public:
 
 	const Uint8 *keyboard;
+	Uint8 *keyboard_down;
+	// I don't know its functionality ...yet.
+	int mouse_x;
+	int mouse_y;
 
 	ModuleInput(Application *app, bool start_enabled = true);
 	~ModuleInput();

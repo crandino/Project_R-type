@@ -1,12 +1,16 @@
 //=================================
 // included dependencies
 #include "ModuleInput.h"
+// macros
+#define MAX_KEYS 300
 //=================================
 // the actual code
 
 ModuleInput::ModuleInput(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
 	keyboard = NULL;
+	keyboard_down = new Uint8[MAX_KEYS];
+	memset(keyboard_down, 0, sizeof(Uint8) * MAX_KEYS);
 }
 
 // Destructor
@@ -43,8 +47,25 @@ update_status ModuleInput::preUpdate()
 	//obtained by using SDL_Scancode values.
 	keyboard = SDL_GetKeyboardState(NULL);
 
+	for (int i = 0; i < MAX_KEYS; ++i)
+	{
+		if (keyboard[i] == 1)
+		{
+			if (keyboard_down[i] == 0)
+				keyboard_down[i] = 1;
+			else
+				keyboard_down[i] = 2;
+		}
+		else
+			keyboard_down[i] = 0;
+	}
+
 	if (keyboard[SDL_SCANCODE_ESCAPE] == 1)
 		return UPDATE_STOP;
+
+	SDL_GetMouseState(&mouse_x, &mouse_y);
+	mouse_x /= SCREEN_SIZE;
+	mouse_y /= SCREEN_SIZE;
 
 	return UPDATE_CONTINUE;
 }

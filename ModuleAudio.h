@@ -12,6 +12,7 @@
 //=================================
 // macros
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
+//=================================
 // the actual class
 
 class ModuleAudio : public Module
