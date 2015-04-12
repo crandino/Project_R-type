@@ -51,7 +51,7 @@ update_status ModuleSceneSpace::update()
 	int scroll_speed = 1; // It is not used.
 
 	app->player->position.x += 1;
-	app->renderer->camera.x -= 3;
+	app->renderer->camera.x -= 2;
 
 	// Draw everything
 	app->renderer->blit(boundary_level, 0, 0, NULL);
