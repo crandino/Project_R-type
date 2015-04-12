@@ -44,7 +44,11 @@ public:
 		reallocate(_new_memory_size);
 	}
 
-	~DynArray<TYPE>() { if (data != NULL) delete[] data; }
+	~DynArray<TYPE>()
+	{
+		if (data != NULL)
+			delete[] data;
+	}
 
 	void pushBack(TYPE new_value)
 	{

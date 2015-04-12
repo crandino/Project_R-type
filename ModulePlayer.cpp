@@ -16,7 +16,7 @@ Module(app, start_enabled)
 	current_animation = &idle;
 
 	position.x = 50;
-	position.y = 200;
+	position.y = 100;
 
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -119,7 +119,9 @@ update_status ModulePlayer::update()
 
 	if (app->input->keyboard_down[SDL_SCANCODE_LCTRL] == 1)
 	{
-		app->particles->addParticle(app->particles->shot, position.x, position.y + 25);
+		app->particles->addParticle(app->particles->shot, 
+									position.x + 22,
+									position.y + 3);
 	}
 
 	//Draw everything

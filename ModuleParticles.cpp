@@ -29,6 +29,10 @@ bool ModuleParticles::start()
 	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
 	shot.anim.loop = false;
 	shot.anim.speed = 0.3f;
+	// CRZ attempts
+	shot.speed.x = 5;
+	shot.speed.y = 0;
+	shot.life = 1500;
 
 	return true;
 }
@@ -81,6 +85,9 @@ void ModuleParticles::addParticle(const Particle &particle, int x, int y, Uint32
 
 	active.add(p);
 }
+
+// -------------------------------------------------------
+// -------------------------------------------------------
 
 Particle::Particle() : fx(0), born(0), life(0), fx_played(false)
 {

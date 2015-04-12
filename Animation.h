@@ -51,11 +51,6 @@ public:
 		loops = 0; // CRZ
 		current_frame = 0;
 	}
-
-	void invertSpeed()
-	{
-		speed *= -1.0f;
-	}
 };
 
 

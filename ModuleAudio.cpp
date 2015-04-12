@@ -39,6 +39,7 @@ bool ModuleAudio::init()
 	}
 
 	// Initialize SDL_mixer
+	// int Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize)
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 	{
 		LOG("SDL_mixer could not initialize! SDL_Mixer Error: %s", Mix_GetError());
@@ -76,11 +77,15 @@ bool ModuleAudio::playMusic(const char *path, float fade_time)
 {
 	bool ret = true;
 
+	// We stop or fade out any music playing at the time of execution of
+	// playMusic.
 	if (music != NULL)
 	{
 		if (fade_time > 0.0f)
+			// Milliseconds of time that the fade-out effect should take
 			Mix_FadeOutMusic((int)(fade_time * 1000.0f));
 		else
+			// Stop playback of music.
 			Mix_HaltMusic();
 		
 		// this call blocks until fade out is done
@@ -106,6 +111,7 @@ bool ModuleAudio::playMusic(const char *path, float fade_time)
 		}
 		else
 		{
+			//int Mix_PlayMusic(Mix_Music *music, int loops)
 			if (Mix_PlayMusic(music, -1) < 0)
 			{
 				LOG("Cannot play in music %s. Mix_GetError(): %s", path, Mix_GetError());
