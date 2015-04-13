@@ -3,6 +3,8 @@
 
 #include <assert.h> 
 
+#define DYN_ARRAY_BLOCK_SIZE 16
+
 template <class TYPE>
 class DynArray {
 
@@ -12,9 +14,26 @@ private:
 	unsigned int allocated_memory;
 	unsigned int num_elements;
 
-	void reallocate(unsigned int _new_mem_size)
+	void reallocate(unsigned int new_mem_size)
 	{
-		if (data != NULL)
+		TYPE *tmp = data;
+
+		allocated_memory = new_mem_size;
+		data = new TYPE[allocated_memory];
+
+		if (num_elements > allocated_memory)
+			num_elements = allocated_memory;
+
+		if (tmp != NULL)
+		{
+			for (unsigned int i = 0; i < num_elements; i++)
+				data[i] = tmp[i];
+
+			delete[] tmp;
+		}
+		
+		// CRZ code
+		/*if (data != NULL)
 		{
 			TYPE *tmp = new TYPE[allocated_memory];
 			for (unsigned int i = 0; i < num_elements; i++)
@@ -22,7 +41,7 @@ private:
 				tmp[i] = data[i];
 			}
 			delete[] data;
-			allocated_memory = _new_mem_size;
+			allocated_memory = new_mem_size;
 			data = new TYPE[allocated_memory];
 			for (unsigned int i = 0; i < num_elements; i++)
 			{
@@ -32,22 +51,35 @@ private:
 		else
 		{
 			delete[] data;
-			allocated_memory = _new_mem_size;
+			allocated_memory = new_mem_size;
 			data = new TYPE[allocated_memory];
-		}
+		}*/
 	}
 
 public:
 
-	DynArray<TYPE>() : data(NULL), allocated_memory(0), num_elements(0) {}
-	DynArray<TYPE>(unsigned int _new_memory_size) : data(NULL), num_elements(0) {
-		reallocate(_new_memory_size);
+	// Constructors
+	DynArray<TYPE>() : data(NULL), allocated_memory(0), num_elements(0)
+	{
+		reallocate(DYN_ARRAY_BLOCK_SIZE);
 	}
+
+	DynArray<TYPE>(unsigned int new_memory_size) : data(NULL), num_elements(0)
+	{
+		reallocate(new_memory_size);
+	}
+
+	DynArray<TYPE>(const DynArray &array) : data(NULL), allocated_memory(0), num_elements(0)
+	{
+		reallocate(array.allocated_memory);
+		for (unsigned int i = 0; i < array.num_elements; i++)
+			pushBack(array.data[i]);
+	}
+
 
 	~DynArray<TYPE>()
 	{
-		if (data != NULL)
-			delete[] data;
+		delete[] data;
 	}
 
 	void pushBack(TYPE new_value)
