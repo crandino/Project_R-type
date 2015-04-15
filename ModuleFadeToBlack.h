@@ -20,13 +20,14 @@ private:
 	Uint32 total_time;
 	SDL_Rect screen;
 	bool fading_in;
+	Module *mod_on;
+	Module *mod_off;
 
 public:
 
 	ModuleFadeToBlack(Application *app, bool start_enabled = true);
 	~ModuleFadeToBlack();
 
-	bool start();
 	update_status update();
 	void fadeToBlack(Module* module_off, Module* module_on, float time = 2.0f);
 

@@ -13,6 +13,7 @@ class ModuleAudio;
 class ModuleSceneSpace;
 class ModulePlayer;
 class ModuleParticles;
+class ModuleSceneIntro;
 class ModuleFadeToBlack;
 //=================================
 // included dependencies
@@ -26,7 +27,7 @@ class Application
 private:
 
 	DList<Module*> list_modules;
-	void addModule(Module*);
+	void addModule(Module *module);
 
 public:
 	
@@ -37,9 +38,10 @@ public:
 	ModuleAudio *audio;
 	ModuleSceneSpace *scene;
 	ModulePlayer *player;
-	ModuleParticles *particles;
 	ModuleFadeToBlack *fade;
-
+	ModuleSceneIntro *scene_intro;
+	ModuleParticles *particles;
+	
 	Application();
 	~Application();
 

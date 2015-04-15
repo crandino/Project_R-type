@@ -30,6 +30,8 @@ bool ModuleSceneSpace::start()
 	app->player->enable();
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
+	app->renderer->camera.x = app->renderer->camera.y = 0;
+
 	return true;
 }
 

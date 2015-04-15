@@ -57,8 +57,8 @@ update_status ModuleParticles::update()
 
 		if (p->update() == false)
 		{
-			active.del(tmp);
 			delete p;
+			active.del(tmp);
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{

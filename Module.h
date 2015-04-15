@@ -21,7 +21,7 @@ public:
 	Application *app;
 
 	Module(Application *parent, bool start_enabled = true) : app(parent), enabled(start_enabled)
-	{	}
+	{ }
 
 	bool isEnabled() const { return enabled; }
 	

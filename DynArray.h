@@ -91,16 +91,15 @@ public:
 		num_elements++;
 	}
 
-	TYPE pop()
+	bool pop(TYPE &value)
 	{
 		// When the element is deleted, it is necessary to return a copy of that element.
-		if (data != NULL && num_elements != 0)
+		if (data != NULL && num_elements > 0)
 		{
-			num_elements--;
-			TYPE element_to_return = data[num_elements];					
-			return element_to_return;
+			value = data[--num_elements];					
+			return true;
 		}
-		return -1;
+		return false;
 	}
 
 	bool insert(int new_value, unsigned int position)
