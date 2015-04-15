@@ -8,14 +8,15 @@
 
 ModuleInput::ModuleInput(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
-	keyboard = NULL;
-	keyboard_down = new Uint8[MAX_KEYS];
-	memset(keyboard_down, 0, sizeof(Uint8) * MAX_KEYS);
+	keyboard = new KEY_STATE[MAX_KEYS];
+	memset(keyboard, KEY_IDLE, sizeof(KEY_STATE) * MAX_KEYS);
 }
 
 // Destructor
 ModuleInput::~ModuleInput() 
-{ }
+{
+	delete keyboard;
+}
 
 // Called before render is available
 bool ModuleInput::init()
@@ -45,22 +46,27 @@ update_status ModuleInput::preUpdate()
 	//of 1 means that the key is pressed and a value of 0 
 	//means that it is not.Indexes into this array are 
 	//obtained by using SDL_Scancode values.
-	keyboard = SDL_GetKeyboardState(NULL);
+	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{
-		if (keyboard[i] == 1)
+		if (keys[i] == 1)
 		{
-			if (keyboard_down[i] == 0)
-				keyboard_down[i] = 1;
+			if (keyboard[i] == KEY_IDLE)
+				keyboard[i] = KEY_DOWN;
 			else
-				keyboard_down[i] = 2;
+				keyboard[i] = KEY_REPEAT;
 		}
 		else
-			keyboard_down[i] = 0;
+		{
+			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+				keyboard[i] = KEY_UP;
+			else
+				keyboard[i] = KEY_IDLE;
+		}
 	}
 
-	if (keyboard[SDL_SCANCODE_ESCAPE] == 1)
+	if (keyboard[SDL_SCANCODE_ESCAPE] == KEY_UP)
 		return UPDATE_STOP;
 
 	SDL_GetMouseState(&mouse_x, &mouse_y);

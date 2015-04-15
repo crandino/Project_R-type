@@ -73,7 +73,7 @@ update_status ModulePlayer::update()
 	// debug camera movement
 	int speed = 1;
 
-	if (app->input->keyboard[SDL_SCANCODE_UP] == 1)
+	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		position.y -= speed;
 
@@ -84,7 +84,7 @@ update_status ModulePlayer::update()
 		}
 	}
 	
-	if (app->input->keyboard[SDL_SCANCODE_DOWN] == 1)
+	if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		position.y += speed;
 
@@ -95,13 +95,13 @@ update_status ModulePlayer::update()
 		}
 	}
 	
-	if (app->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 		position.x -= speed;
 
-	if (app->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		position.x += speed;
 
-	if (app->input->keyboard[SDL_SCANCODE_UP] == 0 && app->input->keyboard[SDL_SCANCODE_DOWN] == 0)
+	if (app->input->getKey(SDL_SCANCODE_UP) == 0 && app->input->getKey(SDL_SCANCODE_DOWN) == 0)
 	{
 		if (current_animation == &idle_to_upward)
 			current_animation = &upward_to_idle;
@@ -117,7 +117,7 @@ update_status ModulePlayer::update()
 		}
 	}	
 
-	if (app->input->keyboard_down[SDL_SCANCODE_LCTRL] == 1)
+	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 	{
 		app->particles->addParticle(app->particles->shot, 
 									position.x + 22,

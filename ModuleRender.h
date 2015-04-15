@@ -29,7 +29,8 @@ public:
 	bool cleanUp();
 
 	bool blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, float speed = 1.0f);
-	
+	bool drawQuad(const SDL_Rect &rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera);
+
 };
 
 #endif // !__MODULERENDER_H__
