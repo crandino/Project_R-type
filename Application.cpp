@@ -10,6 +10,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneSpace.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleParticles.h"
 #include "ModuleFadeToBlack.h"
@@ -25,6 +26,7 @@ Application::Application()
 	audio = new ModuleAudio(this);
 	scene = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
+	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	particles = new ModuleParticles(this);
 	fade = new ModuleFadeToBlack(this);
@@ -42,6 +44,7 @@ Application::Application()
 
 	// Characters
 	addModule(player);
+	addModule(enemy);
 
 	// Miscellaneous
 	addModule(particles);

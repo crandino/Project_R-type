@@ -12,6 +12,7 @@ class ModuleInput;
 class ModuleAudio;
 class ModuleSceneSpace;
 class ModulePlayer;
+class ModuleEnemy;
 class ModuleParticles;
 class ModuleSceneIntro;
 class ModuleFadeToBlack;
@@ -38,6 +39,7 @@ public:
 	ModuleAudio *audio;
 	ModuleSceneSpace *scene;
 	ModulePlayer *player;
+	ModuleEnemy *enemy;
 	ModuleFadeToBlack *fade;
 	ModuleSceneIntro *scene_intro;
 	ModuleParticles *particles;

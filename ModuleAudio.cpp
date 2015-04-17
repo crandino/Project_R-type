@@ -75,6 +75,9 @@ bool ModuleAudio::cleanUp()
 // Play a music file
 bool ModuleAudio::playMusic(const char *path, float fade_time)
 {
+	if (isEnabled() == false)
+		return false;
+
 	bool ret = true;
 
 	// We stop or fade out any music playing at the time of execution of
@@ -127,6 +130,9 @@ bool ModuleAudio::playMusic(const char *path, float fade_time)
 // Load a WAV in memory
 unsigned int ModuleAudio::loadFx(const char *path)
 {
+	if (isEnabled() == false)
+		return 0;
+
 	unsigned int ret = 0;
 	Mix_Chunk *chunk = Mix_LoadWAV(path);
 
@@ -146,6 +152,9 @@ unsigned int ModuleAudio::loadFx(const char *path)
 // Play a previously loaded WAV
 bool ModuleAudio::playFx(unsigned int id, int repeat)
 {
+	if (isEnabled() == false)
+		return false;
+
 	bool ret = false;
 
 	Mix_Chunk *chunk = NULL;

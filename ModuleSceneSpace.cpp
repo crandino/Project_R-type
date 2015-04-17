@@ -6,6 +6,7 @@
 #include "ModuleSceneSpace.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 //=================================
@@ -28,6 +29,7 @@ bool ModuleSceneSpace::start()
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
 	app->player->enable();
+	app->enemy->enable();
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
@@ -42,6 +44,7 @@ bool ModuleSceneSpace::cleanUp()
 
 	app->textures->unload(boundary_level);
 	app->player->disable();
+	app->enemy->disable();
 
 	return true;
 }
