@@ -7,6 +7,7 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "Application.h"
+#include "ModuleCollision.h"
 //=================================
 // the actual code
 
@@ -76,12 +77,37 @@ update_status ModuleParticles::update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::addParticle(const Particle &particle, int x, int y, Uint32 delay)
+void ModuleParticles::onCollision(Collider *c1, Collider *c2)
+{
+	// Explosion for laser hitting wall or something
+	//app->particles->addParticle(explosion, c1->rect.x, c1->rect.y);
+
+	doubleNode<Particle*> *tmp = active.getFirst();
+
+	while (tmp != NULL)
+	{
+		if (tmp->data->collider == c1)
+		{
+			delete tmp->data;
+			active.del(tmp);
+			break;
+		}
+
+		tmp = tmp->next;
+	}
+}
+
+void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Particle *p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
+
+	if (collider_type != COLLIDER_NONE)
+	{
+		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, this);
+	}
 
 	active.add(p);
 }
@@ -102,6 +128,12 @@ Particle::Particle(const Particle &p) : anim(p.anim), position(p.position), spee
 	life = p.life;
 }
 
+Particle::~Particle()
+{
+	if (collider)
+		collider->to_delete = true;
+}
+
 bool Particle::update()
 {
 	bool ret = true;
@@ -117,6 +149,12 @@ bool Particle::update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	if (collider != NULL)
+	{
+		SDL_Rect r = anim.peekCurrentFrame();
+		collider->rect = { position.x, position.y, r.w, r.h };
+	}
 
 	return ret;
 }

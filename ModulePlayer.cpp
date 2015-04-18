@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 //=================================
 // the actual code
 
@@ -13,10 +14,8 @@ ModulePlayer::ModulePlayer(Application *app, bool start_enabled) :
 Module(app, start_enabled)
 {
 	graphics = NULL;
+	collider = NULL;
 	current_animation = &idle;
-
-	position.x = 50;
-	position.y = 100;
 
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -54,7 +53,14 @@ bool ModulePlayer::start()
 {
 	LOG("Loading player...");
 
+	position.x = 50;
+	position.y = 100;
+
 	graphics = app->textures->load("Sprites/Arrowhead.png");
+
+	// Collider to player;
+	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
+	collider->callback = app->player;
 
 	return true;
 }
@@ -124,8 +130,16 @@ update_status ModulePlayer::update()
 									position.y + 3);
 	}
 
+	// Updating collider position
+	collider->setPos(position.x, position.y);
+
 	//Draw everything
 	app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
 
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::onCollision(Collider *col1, Collider *col2)
+{
+	LOG("La nave toca el escenario...");
 }

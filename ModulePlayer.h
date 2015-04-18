@@ -17,6 +17,7 @@ class ModulePlayer : public Module
 public:
 
 	SDL_Texture *graphics;
+	Collider *collider;
 	Animation *current_animation;
 	Animation idle;
 	Animation idle_to_upward;
@@ -31,6 +32,7 @@ public:
 	bool start();
 	update_status update();
 	bool cleanUp();
+	void onCollision(Collider *col1, Collider *col2);
 
 };
 

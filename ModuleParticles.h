@@ -7,6 +7,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "ModuleCollision.h" 
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
@@ -16,6 +17,7 @@
 struct Particle
 {
 	Animation anim;
+	Collider *collider;
 	unsigned int fx;
 	Point2d<int> position;
 	Point2d<int> speed;
@@ -25,6 +27,7 @@ struct Particle
 
 	Particle();
 	Particle(const Particle &p);
+	~Particle();
 	bool update();
 };
 
@@ -38,7 +41,7 @@ private:
 
 public:
 
-	//Particle explosion;
+	//Elements
 	Particle shot;
 
 	ModuleParticles(Application *app, bool start_enabled = true);
@@ -47,8 +50,9 @@ public:
 	bool start();
 	update_status update();
 	bool cleanUp();
+	void onCollision(Collider *col1, Collider *col2);
 
-	void addParticle(const Particle &particle, int x, int y, Uint32 delay = 0);
+	void addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 };
 
 #endif //!__MODULEPARTICLES_H__

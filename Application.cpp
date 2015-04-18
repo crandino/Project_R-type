@@ -13,6 +13,7 @@
 #include "ModuleEnemy.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleParticles.h"
+#include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 //=================================
 // the actual class
@@ -29,6 +30,7 @@ Application::Application()
 	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	particles = new ModuleParticles(this);
+	collision = new ModuleCollision(this);
 	fade = new ModuleFadeToBlack(this);
 
 	// Main modules
@@ -48,6 +50,7 @@ Application::Application()
 
 	// Miscellaneous
 	addModule(particles);
+	addModule(collision);
 	addModule(fade);
 }
 
@@ -63,6 +66,7 @@ Application::~Application()
 	delete scene_intro;
 	delete particles;
 	delete fade;
+	delete collision;
 }
 
 bool Application::init()

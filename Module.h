@@ -5,6 +5,7 @@
 //=================================
 // forward declared dependencies
 class Application; 
+struct Collider;
 //=================================
 // included dependencies
 #include "Globals.h"
@@ -49,6 +50,8 @@ public:
 	virtual update_status update() { return UPDATE_CONTINUE; }
 	virtual update_status postUpdate() { return UPDATE_CONTINUE; }
 	virtual bool cleanUp() { return true; }
+	virtual void onCollision(Collider *col1, Collider *col2)
+	{ }
 
 };
 

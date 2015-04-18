@@ -18,6 +18,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleEnemy.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleEnemy.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
