@@ -104,6 +104,7 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_
 
 Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
 {
+	attack_frequency = e.attack_frequency;
 	attacks = e.attacks;
 	time_to_attack = e.time_to_attack;
 	fx = e.fx;
@@ -133,7 +134,7 @@ bool Enemy::update()
 	// CRZ ----
 	// Proposal for frequency attacking system CRZ
 	time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
-	if (SDL_TICKS_PASSED(time_to_attack, attack_frequency))
+	if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 	{
 		LOG("%d %d", time_to_attack, attacks);
 		attacks++;
