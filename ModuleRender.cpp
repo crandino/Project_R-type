@@ -63,7 +63,7 @@ update_status ModuleRender::update()
 	if (app->input->getKey(SDL_SCANCODE_KP_2) == KEY_REPEAT)
 		app->renderer->camera.y -= speed;
 	if (app->input->getKey(SDL_SCANCODE_KP_4) == KEY_REPEAT)
-		app->renderer->camera.x += speed;
+		app->renderer->camera.x += 2*speed;
 	if (app->input->getKey(SDL_SCANCODE_KP_6) == KEY_REPEAT)
 		app->renderer->camera.x -= speed;
 

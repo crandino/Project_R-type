@@ -34,7 +34,7 @@ bool ModuleParticles::start()
 	shot.speed.x = 5;
 	shot.speed.y = 0;
 	shot.life = 1500;
-
+	
 	return true;
 }
 

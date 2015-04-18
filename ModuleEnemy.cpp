@@ -5,6 +5,9 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+
+// For testing purposes
+#include "ModulePlayer.h"
 //=================================
 // the actual code
 
@@ -17,7 +20,7 @@ ModuleEnemy::~ModuleEnemy()
 // Load assets
 bool ModuleEnemy::start()
 {
-	LOG("Loading enemies");
+	LOG("Loading enemies...");
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
@@ -30,7 +33,6 @@ bool ModuleEnemy::start()
 	pata_pata.anim.frames.pushBack({ 192, 0, 32, 36 });
 	pata_pata.anim.frames.pushBack({ 224, 0, 32, 36 });
 	pata_pata.anim.speed = 0.3f;
-	pata_pata.speed.x = -3;
 
 	return true;
 }
@@ -60,7 +62,8 @@ update_status ModuleEnemy::update()
 		}
 		else if (SDL_GetTicks() >= e->born)
 		{
-			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
+			//app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
+			app->renderer->blit(e->graphics, app->player->position.x, app->player->position.y, &(e->anim.getCurrentFrame()));
 			if (e->fx_played == false)
 			{
 				e->fx_played = true;
@@ -74,12 +77,20 @@ update_status ModuleEnemy::update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, Uint32 delay)
+void ModuleEnemy::onCollision(Collider *col1, Collider *c2)
+{ }
+
+void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Enemy *e = new Enemy(enemy);
 	e->born = SDL_GetTicks() + delay;
 	e->position.x = x;
 	e->position.y = y;
+
+	if (collider_type != COLLIDER_NONE)
+	{
+		e->collider = app->collision->addCollider({ e->position.x, e->position.y, 0, 0 }, collider_type, this);
+	}
 
 	active.add(e);
 }
@@ -92,11 +103,17 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false)
 	speed.setZero();
 }
 
-Enemy::Enemy(const Enemy &e) : anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
+Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
 {
 	fx = e.fx;
 	born = e.born;
 	life = e.life;
+}
+
+Enemy::~Enemy()
+{
+	if (collider)
+		collider->to_delete = true;
 }
 
 bool Enemy::update()
@@ -114,6 +131,12 @@ bool Enemy::update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	if (collider != NULL)
+	{
+		SDL_Rect r = anim.peekCurrentFrame();
+		collider->rect = { position.x, position.y, r.w, r.h };
+	}
 
 	return ret;
 }

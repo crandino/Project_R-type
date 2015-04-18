@@ -125,9 +125,7 @@ update_status ModulePlayer::update()
 
 	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 	{
-		app->particles->addParticle(app->particles->shot, 
-									position.x + 22,
-									position.y + 3);
+		app->particles->addParticle(app->particles->shot, position.x + 22, position.y + 3, COLLIDER_PLAYER_SHOT);
 	}
 
 	// Updating collider position

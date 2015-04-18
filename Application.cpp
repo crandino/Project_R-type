@@ -63,6 +63,7 @@ Application::~Application()
 	delete audio;
 	delete scene;
 	delete player;
+	delete enemy;
 	delete scene_intro;
 	delete particles;
 	delete fade;

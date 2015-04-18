@@ -7,6 +7,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "ModuleCollision.h"
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
@@ -23,9 +24,11 @@ struct Enemy
 	Uint32 life;
 	bool fx_played;
 	unsigned int fx;
+	Collider *collider;
 
 	Enemy();
 	Enemy(const Enemy &e);
+	~Enemy();
 	bool update();
 };
 
@@ -34,6 +37,7 @@ class ModuleEnemy : public Module
 {
 
 private:
+
 	DList<Enemy*> active;
 
 public:
@@ -50,8 +54,9 @@ public:
 	bool start();
 	update_status update();
 	bool cleanUp();
+	void onCollision(Collider *col1, Collider *col2);
 
-	void addEnemy(const Enemy &e, int x, int y, Uint32 delay = 0);	
+	void addEnemy(const Enemy &e, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);	
 };
 
 #endif //!__MODULEENEMY_H__ 
