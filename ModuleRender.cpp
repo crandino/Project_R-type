@@ -18,8 +18,7 @@ ModuleRender::ModuleRender(Application *app, bool start_enabled) : Module(app, s
 
 // Destructor
 ModuleRender::~ModuleRender()
-{
-}
+{ }
 
 bool ModuleRender::init()
 {

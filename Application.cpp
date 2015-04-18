@@ -24,7 +24,7 @@ Application::Application()
 	renderer = new ModuleRender(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
-	audio = new ModuleAudio(this);
+	audio = new ModuleAudio(this, false);
 	scene = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
 	enemy = new ModuleEnemy(this, false);

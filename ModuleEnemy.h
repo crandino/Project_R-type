@@ -16,6 +16,7 @@
 
 struct Enemy
 {
+
 	SDL_Texture *graphics;
 	Point2d<int> position;
 	Point2d<int> speed;
@@ -26,6 +27,11 @@ struct Enemy
 	unsigned int fx;
 	Collider *collider;
 
+	// CRZ
+	Uint32 time_to_attack;
+	Uint32 attacks;
+	Uint32 attack_frequency;
+	
 	Enemy();
 	Enemy(const Enemy &e);
 	~Enemy();

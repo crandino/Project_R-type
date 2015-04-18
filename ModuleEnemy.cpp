@@ -31,6 +31,9 @@ bool ModuleEnemy::start()
 	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
 	pata_pata.anim.speed = 0.1f;
 
+	// CRZ
+	pata_pata.attack_frequency = 2000;
+
 	return true;
 }
 
@@ -93,7 +96,7 @@ void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE colli
 
 // Enemy struct methods
 
-Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false)
+Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_attack(0)
 {
 	position.setZero();
 	speed.setZero();
@@ -101,6 +104,8 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false)
 
 Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
 {
+	attacks = e.attacks;
+	time_to_attack = e.time_to_attack;
 	fx = e.fx;
 	born = e.born;
 	life = e.life;
@@ -124,6 +129,16 @@ bool Enemy::update()
 	/*else
 		if (anim.finished())
 			ret = false;*/
+
+	// CRZ ----
+	// Proposal for frequency attacking system CRZ
+	time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
+	if (SDL_TICKS_PASSED(time_to_attack, attack_frequency))
+	{
+		LOG("%d %d", time_to_attack, attacks);
+		attacks++;
+	}
+	// ---- CRZ
 
 	position.x += speed.x;
 	position.y += speed.y;

@@ -34,6 +34,15 @@ bool ModuleParticles::start()
 	shot.speed.y = 0;
 	shot.life = 1500;
 
+	// Pata-pata shot
+	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
+	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 10, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
+	pata_shot.anim.speed = 0.5f;
+	pata_shot.life = 2000;
+
 	return true;
 }
 
