@@ -17,6 +17,7 @@
 struct Particle
 {
 	Animation anim;
+	SDL_Texture *graphics;
 	Collider *collider;
 	unsigned int fx;
 	Point2d<int> position;

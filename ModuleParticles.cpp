@@ -21,27 +21,26 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::start()
 {
 	LOG("Loading particles");
-	graphics = app->textures->load("Sprites/Arrowhead.png");
-
+	
 	// Shot particle
+	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
 	//shot.fx = app->audio->loadFx("LOQUESEA");
 	shot.anim.frames.pushBack({ 215, 85, 14, 12 });
 	shot.anim.frames.pushBack({ 233, 85, 11, 12 });
 	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
 	shot.anim.loop = false;
-	shot.anim.speed = 0.3f;
-	// CRZ attempts
-	shot.speed.x = 5;
+	shot.anim.speed = 0.5f;
+	shot.speed.x = 10;
 	shot.speed.y = 0;
 	shot.life = 1500;
-	
+
 	return true;
 }
 
 bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
-	app->textures->unload(graphics);
+	app->textures->unload(shot.graphics);
 	return true;
 }
 
@@ -63,7 +62,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			app->renderer->blit(graphics, p->position.x, p->position.y, &(p->anim.getCurrentFrame()));
+			app->renderer->blit(p->graphics, p->position.x, p->position.y, &(p->anim.getCurrentFrame()));
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -121,7 +120,7 @@ Particle::Particle() : fx(0), born(0), life(0), fx_played(false)
 	speed.setZero();
 }
 
-Particle::Particle(const Particle &p) : anim(p.anim), position(p.position), speed(p.speed), fx_played(false)
+Particle::Particle(const Particle &p) : graphics(p.graphics), anim(p.anim), position(p.position), speed(p.speed), fx_played(false)
 {
 	fx = p.fx;
 	born = p.born;
