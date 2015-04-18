@@ -5,9 +5,6 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-
-// For testing purposes
-#include "ModulePlayer.h"
 //=================================
 // the actual code
 
@@ -62,8 +59,7 @@ update_status ModuleEnemy::update()
 		}
 		else if (SDL_GetTicks() >= e->born)
 		{
-			//app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
-			app->renderer->blit(e->graphics, app->player->position.x, app->player->position.y, &(e->anim.getCurrentFrame()));
+			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
 			if (e->fx_played == false)
 			{
 				e->fx_played = true;
