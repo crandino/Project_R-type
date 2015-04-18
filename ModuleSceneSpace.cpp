@@ -47,7 +47,7 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 1376, 144, 112, 80 }, COLLIDER_WALL);
 	
 	// Adding enemies
-	app->enemy->addEnemy(app->enemy->pata_pata, 1000, 100, COLLIDER_ENEMY);
+	app->enemy->addEnemy(app->enemy->pata_pata, 600, 10, COLLIDER_ENEMY);
 
 	return true;
 }

@@ -21,15 +21,15 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-	pata_pata.anim.frames.pushBack({ 0, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 32, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 64, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 96, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 128, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 160, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 192, 0, 32, 36 });
-	pata_pata.anim.frames.pushBack({ 224, 0, 32, 36 });
-	pata_pata.anim.speed = 0.3f;
+	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
+	pata_pata.anim.speed = 0.1f;
 
 	return true;
 }
@@ -121,9 +121,9 @@ bool Enemy::update()
 		if((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
-	else
+	/*else
 		if (anim.finished())
-			ret = false;
+			ret = false;*/
 
 	position.x += speed.x;
 	position.y += speed.y;
