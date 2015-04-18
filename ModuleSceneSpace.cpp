@@ -9,6 +9,7 @@
 #include "ModuleEnemy.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModuleCollision.h"
 //=================================
 // the actual code
 
@@ -28,11 +29,24 @@ bool ModuleSceneSpace::start()
 
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
+	app->collision->enable();
 	app->player->enable();
 	app->enemy->enable();
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
+
+	// Wall collider
+	app->collision->addCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
+	app->collision->addCollider({ 142, 192, 64, 32 }, COLLIDER_WALL);
+	app->collision->addCollider({ 206, 208, 64, 16 }, COLLIDER_WALL);
+	app->collision->addCollider({ 592, 208, 64, 16 }, COLLIDER_WALL);
+	app->collision->addCollider({ 1232, 208, 64, 16 }, COLLIDER_WALL);
+	app->collision->addCollider({ 720, 192, 64, 32 }, COLLIDER_WALL);
+	app->collision->addCollider({ 1376, 16, 112, 80 }, COLLIDER_WALL);
+	app->collision->addCollider({ 1376, 144, 112, 80 }, COLLIDER_WALL);
+
+
 
 	return true;
 }
