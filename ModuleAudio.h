@@ -39,6 +39,8 @@ public:
 	// Play a previously loaded WAV
 	bool playFx(unsigned int fx, int repeat = 0);
 
+	// Stop all music
+	bool stopAllMusic(float fade_time);
 };
 
 #endif //!__MODULEAUDIO_H__

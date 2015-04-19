@@ -167,3 +167,30 @@ bool ModuleAudio::playFx(unsigned int id, int repeat)
 
 	return ret;
 }
+
+bool ModuleAudio::stopAllMusic(float fade_time)
+{
+	if (isEnabled() == false)
+		return false;
+
+	bool ret = true;
+
+	// We stop or fade out any music playing at the time of execution of
+	// playMusic.
+	if (music != NULL)
+	{
+		if (fade_time > 0.0f)
+			// Milliseconds of time that the fade-out effect should take
+			Mix_FadeOutMusic((int)(fade_time * 1000.0f));
+		else
+			// Stop playback of music.
+			Mix_HaltMusic();
+
+		// this call blocks until fade out is done
+		Mix_FreeMusic(music);
+
+		music = NULL;
+	}
+
+	return ret;
+}

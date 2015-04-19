@@ -47,13 +47,6 @@ bool ModuleSceneGameOver::start()
 	LOG("Loading GameOver assets");
 	bool ret = true;
 
-	// CRZ ----
-	app->player->disable();
-	app->enemy->disable();
-	app->particles->disable();
-	app->scene->disable();
-	// ---- CRZ
-
 	graphics = app->textures->load("Images/GameOver.png");
 	sprite = app->textures->load("Sprites/Numbers.png");
 	//fx = app->audio->loadFx("Sounds/Coin.ogg");
