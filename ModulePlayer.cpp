@@ -7,6 +7,8 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleSceneGameOver.h"
 //=================================
 // the actual code
 
@@ -151,5 +153,5 @@ update_status ModulePlayer::update()
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	current_animation = &explosion;
-
+	app->fade->fadeToBlack(this, app->scene_over, 2.0f);
 }

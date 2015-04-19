@@ -2,15 +2,16 @@
 // forward declared dependencies
 //=================================
 // included dependencies
-#include "ModuleSceneIntro.h"
 #include "Application.h"
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
+#include "ModuleSceneIntro.h"
 #include "ModuleSceneGameOver.h"
-
+#include "ModulePlayer.h"
+#include "ModuleParticles.h"
+#include "ModuleEnemy.h"
 
 //=================================
 // the actual class
@@ -45,6 +46,12 @@ bool ModuleSceneGameOver::start()
 	LOG("Loading GameOver assets");
 	bool ret = true;
 
+	// CRZ ----
+	app->player->disable();
+	app->enemy->disable();
+	app->particles->disable();
+	// ---- CRZ
+
 	graphics = app->textures->load("Images/GameOver.png");
 	sprite = app->textures->load("Sprites/Numbers.png");
 	//fx = app->audio->loadFx("Sounds/Coin.ogg");
@@ -73,12 +80,6 @@ update_status ModuleSceneGameOver::update()
 	if (!countdown.finished()){
 		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
 	}
-
-	/*if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
-	{
-		app->audio->playFx(fx);
-		app->fade->fadeToBlack(this, app->scene, 3.0f);
-	}*/
 
 	return UPDATE_CONTINUE;
 }
