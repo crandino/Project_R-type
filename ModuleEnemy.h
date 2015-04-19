@@ -61,7 +61,7 @@ public:
 	update_status update();
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
-
+	
 	void addEnemy(const Enemy &e, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);	
 };
 
