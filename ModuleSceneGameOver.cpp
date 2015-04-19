@@ -8,6 +8,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleSceneSpace.h"
 #include "ModuleSceneGameOver.h"
 #include "ModulePlayer.h"
 #include "ModuleParticles.h"
@@ -50,6 +51,7 @@ bool ModuleSceneGameOver::start()
 	app->player->disable();
 	app->enemy->disable();
 	app->particles->disable();
+	app->scene->disable();
 	// ---- CRZ
 
 	graphics = app->textures->load("Images/GameOver.png");
