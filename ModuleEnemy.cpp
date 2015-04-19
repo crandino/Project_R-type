@@ -5,6 +5,8 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModuleParticles.h"
+#include "ModulePlayer.h"
 //=================================
 // the actual code
 
@@ -68,11 +70,28 @@ update_status ModuleEnemy::update()
 				e->fx_played = true;
 				app->audio->playFx(e->fx);
 			}
+
+			// CRZ ----
+			// Proposal for frequency attacking system, CRZ
+			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);
+			if (SDL_TICKS_PASSED(e->time_to_attack, e->attack_frequency) == true)
+			{
+				LOG("%d %d", e->time_to_attack, e->attacks);
+				Particle *p = new Particle(app->particles->pata_shot);
+				
+				p->speed.x = -2;
+				app->particles->addParticle(*p, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
+
+				e->attacks++;
+			}
+			// ---- CRZ
+
 		}
 
 		tmp = tmp_next;
 	}
 
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -130,16 +149,6 @@ bool Enemy::update()
 	/*else
 		if (anim.finished())
 			ret = false;*/
-
-	// CRZ ----
-	// Proposal for frequency attacking system CRZ
-	time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
-	if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
-	{
-		LOG("%d %d", time_to_attack, attacks);
-		attacks++;
-	}
-	// ---- CRZ
 
 	position.x += speed.x;
 	position.y += speed.y;
