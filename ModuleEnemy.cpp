@@ -76,7 +76,6 @@ update_status ModuleEnemy::update()
 			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);
 			if (SDL_TICKS_PASSED(e->time_to_attack, e->attack_frequency) == true)
 			{
-				LOG("%d %d", e->time_to_attack, e->attacks);
 				Particle *p = new Particle(app->particles->pata_shot);
 				
 				p->speed.x = -2;

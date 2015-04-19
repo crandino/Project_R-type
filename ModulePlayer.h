@@ -24,6 +24,7 @@ public:
 	Animation upward_to_idle;
 	Animation idle_to_downward;
 	Animation downward_to_idle;
+	Animation explosion;
 	Point2d<int> position;
 
 	ModulePlayer(Application *app, bool start_enabled = true);

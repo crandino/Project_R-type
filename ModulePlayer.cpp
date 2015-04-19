@@ -150,5 +150,6 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
-	LOG("La nave toca el escenario...");
+	current_animation = &explosion;
+
 }
