@@ -16,6 +16,7 @@ class ModuleEnemy;
 class ModuleParticles;
 class ModuleSceneIntro;
 class ModuleCollision;
+class ModuleSceneGameOver;
 class ModuleFadeToBlack;
 //=================================
 // included dependencies
@@ -44,6 +45,7 @@ public:
 	ModuleFadeToBlack *fade;
 	ModuleSceneIntro *scene_intro;
 	ModuleCollision *collision;
+	ModuleSceneGameOver *scene_over;
 	ModuleParticles *particles;
 	
 	Application();

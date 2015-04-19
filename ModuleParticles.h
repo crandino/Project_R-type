@@ -7,7 +7,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
-#include "ModuleCollision.h" 
+#include "ModuleCollision.h"
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"

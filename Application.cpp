@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleSceneGameOver.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
@@ -25,10 +26,12 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this, false);
+	audio = new ModuleAudio(this);
 	scene = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
 	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
+	scene_over = new ModuleSceneGameOver(this, false);
 	particles = new ModuleParticles(this);
 	collision = new ModuleCollision(this);
 	fade = new ModuleFadeToBlack(this);
@@ -43,6 +46,7 @@ Application::Application()
 	// Scenes
 	addModule(scene);
 	addModule(scene_intro);
+	addModule(scene_over);
 
 	// Characters
 	addModule(player);
@@ -65,6 +69,7 @@ Application::~Application()
 	delete player;
 	delete enemy;
 	delete scene_intro;
+	delete scene_over;
 	delete particles;
 	delete fade;
 	delete collision;

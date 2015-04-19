@@ -21,7 +21,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::start()
 {
 	LOG("Loading particles");
-	
+
 	// Shot particle
 	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
 	//shot.fx = app->audio->loadFx("LOQUESEA");

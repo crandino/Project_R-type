@@ -4,7 +4,7 @@
 #define __MODULE_H__
 //=================================
 // forward declared dependencies
-class Application; 
+class Application;
 struct Collider;
 //=================================
 // included dependencies
