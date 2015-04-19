@@ -43,6 +43,17 @@ Module(app, start_enabled)
 	downward_to_idle.frames.pushBack({ 134, 3, 32, 13 });
 	downward_to_idle.speed = 0.1f;
 	downward_to_idle.loop = false;
+
+	// explosion animation
+	explosion.frames.pushBack({ 1, 343, 32, 28 });
+	explosion.frames.pushBack({ 35, 343, 32, 28 });
+	explosion.frames.pushBack({ 68, 343, 32, 28 });
+	explosion.frames.pushBack({ 101, 343, 32, 28 });
+	explosion.frames.pushBack({ 134, 343, 32, 28 });
+	explosion.frames.pushBack({ 167, 343, 32, 28 });
+	explosion.frames.pushBack({ 233, 343, 32, 28 });
+	explosion.speed = 0.4f;
+	explosion.loop = false;
 }
 
 ModulePlayer::~ModulePlayer()
