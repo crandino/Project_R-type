@@ -57,6 +57,8 @@ bool ModuleSceneGameOver::cleanUp()
 	LOG("Unloading GameOver scene");
 
 	app->textures->unload(graphics);
+	app->textures->unload(sprite);
+	app->scene_over->disable();
 
 	return true;
 }
@@ -66,7 +68,7 @@ update_status ModuleSceneGameOver::update()
 {
 	// Draw everything
 	app->renderer->blit(graphics, 0, 0, NULL);
-	app->renderer->blit(sprite, 170, 100, &(countdown.getCurrentFrame()));
+	app->renderer->blit(sprite, 170, 100, &(countdown.getCurrentFrame()));	
 
 	if (!countdown.finished()){
 		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
