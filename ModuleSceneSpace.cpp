@@ -65,7 +65,7 @@ bool ModuleSceneSpace::cleanUp()
 	app->textures->unload(boundary_level);
 	app->player->disable();
 	app->enemy->disable();
-	app->collision->disable();
+	//app->collision->disable();
 	app->audio->stopAllMusic(0.1f);
 	return true;
 }
