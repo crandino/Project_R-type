@@ -25,15 +25,14 @@ Application::Application()
 	renderer = new ModuleRender(this);
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
-	audio = new ModuleAudio(this, false);
 	audio = new ModuleAudio(this);
 	scene = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
 	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	scene_over = new ModuleSceneGameOver(this, false);
-	particles = new ModuleParticles(this);
-	collision = new ModuleCollision(this);
+	particles = new ModuleParticles(this, false);
+	collision = new ModuleCollision(this, false);
 	fade = new ModuleFadeToBlack(this);
 
 	// Main modules

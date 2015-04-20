@@ -154,7 +154,7 @@ public:
 	doubleNode<TYPE>* getLast() const
 	{
 		doubleNode<TYPE>* tmp = start;
-		while (tmp->next != NULL)
+		while (tmp != NULL && tmp->next != NULL)
 		{
 			tmp = tmp->next;
 		}

@@ -41,7 +41,7 @@ bool ModuleParticles::start()
 	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
 	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
 	pata_shot.anim.speed = 0.5f;
-	pata_shot.life = 2000;
+	pata_shot.life = 4000;
 
 	return true;
 }

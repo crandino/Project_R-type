@@ -18,7 +18,6 @@ Module(app, start_enabled)
 {
 	graphics = NULL;
 	collider = NULL;
-	current_animation = &idle;
 
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -74,7 +73,6 @@ bool ModulePlayer::start()
 
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
-	LOG("current animation ship");
 
 	// Collider to player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
