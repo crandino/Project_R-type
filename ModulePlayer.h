@@ -27,6 +27,9 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 
+	//ROF ----
+	unsigned int speed = 1; 
+
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();
 

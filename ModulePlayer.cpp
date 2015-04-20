@@ -70,6 +70,8 @@ bool ModulePlayer::start()
 	position.x = 50;
 	position.y = 100;
 
+	speed = 1;
+
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 	LOG("current animation ship");
@@ -92,8 +94,6 @@ bool ModulePlayer::cleanUp()
 
 update_status ModulePlayer::update()
 {
-	// debug camera movement
-	int speed = 1;
 
 	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
@@ -155,6 +155,10 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
+	speed = 0;
 	current_animation = &explosion;
+	app->scene->scroll_player_speed = 0;
+	app->scene->scroll_camera_speed = 0;
+
 	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
 }

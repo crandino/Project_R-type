@@ -18,6 +18,10 @@ public:
 	SDL_Texture *boundary_level;
 	//SDL_Texture* stars;
 
+	//ROF ----
+	int scroll_camera_speed;
+	int scroll_player_speed;
+
 	ModuleSceneSpace(Application *app, bool start_enabled = true);
 	~ModuleSceneSpace();
 
