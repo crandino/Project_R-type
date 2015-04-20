@@ -35,6 +35,10 @@ bool ModuleSceneSpace::start()
 	//app->collision->enable();
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
+	//Speeds added
+	scroll_player_speed = 1;
+	scroll_camera_speed = 2;
+
 	app->renderer->camera.x = app->renderer->camera.y = 0;
 
 	// Wall collider
@@ -70,10 +74,9 @@ bool ModuleSceneSpace::cleanUp()
 update_status ModuleSceneSpace::update()
 {
 	// Move camera forward
-	int scroll_speed = 1; // It is not used.
 
-	app->player->position.x += 1;
-	app->renderer->camera.x -= 2;
+	app->player->position.x += scroll_player_speed;
+	app->renderer->camera.x -= scroll_camera_speed;
 
 	// Draw everything
 	app->renderer->blit(boundary_level, 0, 0, NULL);
