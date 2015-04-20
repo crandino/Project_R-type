@@ -32,6 +32,7 @@ bool ModuleEnemy::start()
 	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
 	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
 	pata_pata.anim.speed = 0.1f;
+	pata_pata.life = 12000;
 
 	// CRZ
 	pata_pata.attack_frequency = 2000;
@@ -114,7 +115,7 @@ void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE colli
 
 // Enemy struct methods
 
-Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_attack(0)
+Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_attack(0), collider(NULL)
 {
 	position.setZero();
 	speed.setZero();
@@ -122,6 +123,7 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_
 
 Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
 {
+	collider = e.collider;
 	attack_frequency = e.attack_frequency;
 	attacks = e.attacks;
 	time_to_attack = e.time_to_attack;

@@ -154,5 +154,6 @@ update_status ModulePlayer::update()
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	current_animation = &explosion;
+	// Finish game after explosion
 	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
 }

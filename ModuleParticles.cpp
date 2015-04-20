@@ -50,6 +50,7 @@ bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
 	app->textures->unload(shot.graphics);
+	app->textures->unload(pata_shot.graphics);
 	return true;
 }
 
@@ -123,7 +124,7 @@ void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLID
 // -------------------------------------------------------
 // -------------------------------------------------------
 
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false)
+Particle::Particle() : fx(0), born(0), life(0), fx_played(false), collider(NULL)
 {
 	position.setZero();
 	speed.setZero();
@@ -131,6 +132,7 @@ Particle::Particle() : fx(0), born(0), life(0), fx_played(false)
 
 Particle::Particle(const Particle &p) : graphics(p.graphics), anim(p.anim), position(p.position), speed(p.speed), fx_played(false)
 {
+	collider = p.collider;
 	fx = p.fx;
 	born = p.born;
 	life = p.life;
