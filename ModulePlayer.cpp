@@ -157,12 +157,10 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	speed = 0;
 	current_animation = &explosion;
-<<<<<<< HEAD
-	// Finish game after explosion
-=======
+	
 	app->scene->scroll_player_speed = 0;
 	app->scene->scroll_camera_speed = 0;
 
->>>>>>> origin/master
+	// Finish game after explosion
 	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
 }
