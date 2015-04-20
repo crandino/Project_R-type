@@ -74,6 +74,9 @@ bool ModulePlayer::start()
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
+	// I don't like this...but it works
+	explosion.reset();
+
 	// Collider to player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
 	collider->callback = app->player;
