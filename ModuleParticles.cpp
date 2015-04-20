@@ -50,6 +50,7 @@ bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
 	app->textures->unload(shot.graphics);
+	app->textures->unload(pata_shot.graphics);
 	return true;
 }
 

@@ -71,6 +71,8 @@ bool ModulePlayer::start()
 	position.y = 100;
 
 	graphics = app->textures->load("Sprites/Arrowhead.png");
+	current_animation = &idle;
+	LOG("current animation ship");
 
 	// Collider to player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
