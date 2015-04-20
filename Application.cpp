@@ -43,8 +43,8 @@ Application::Application()
 	addModule(audio);
 
 	// Scenes
-	addModule(scene);
 	addModule(scene_intro);
+	addModule(scene);
 	addModule(scene_over);
 
 	// Characters

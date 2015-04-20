@@ -160,7 +160,7 @@ bool ModuleCollision::cleanUp()
 		item = item->previous;
 	}
 
-	colliders.delAll();
+	colliders.clear();
 	return true;
 }
 

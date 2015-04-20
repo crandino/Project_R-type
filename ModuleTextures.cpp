@@ -51,7 +51,7 @@ bool ModuleTextures::cleanUp()
 		item = item->next;
 	}
 
-	textures.delAll();
+	textures.clear();
 	IMG_Quit();
 	return true;
 }

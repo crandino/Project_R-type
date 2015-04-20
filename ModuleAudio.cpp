@@ -65,7 +65,7 @@ bool ModuleAudio::cleanUp()
 		Mix_FreeChunk(item->data);
 	}
 
-	fx.delAll();
+	fx.clear();
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
@@ -130,10 +130,12 @@ bool ModuleAudio::playMusic(const char *path, float fade_time)
 // Load a WAV in memory
 unsigned int ModuleAudio::loadFx(const char *path)
 {
-	if (isEnabled() == false)
-		return 0;
 
 	unsigned int ret = 0;
+
+	if (isEnabled() == false)
+		return ret;
+		
 	Mix_Chunk *chunk = Mix_LoadWAV(path);
 
 	if (chunk == NULL)
