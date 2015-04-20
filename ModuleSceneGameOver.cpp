@@ -8,11 +8,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneIntro.h"
-#include "ModuleSceneSpace.h"
 #include "ModuleSceneGameOver.h"
-#include "ModulePlayer.h"
-#include "ModuleParticles.h"
-#include "ModuleEnemy.h"
 
 //=================================
 // the actual class
