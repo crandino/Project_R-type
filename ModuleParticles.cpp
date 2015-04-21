@@ -12,7 +12,18 @@
 // the actual code
 
 ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
-{ }
+{ 
+	//Player ship shot
+	shot.anim.frames.pushBack({ 215, 85, 14, 12 });
+	shot.anim.frames.pushBack({ 233, 85, 11, 12 });
+	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
+
+	//Pata-pata shot
+	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 10, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
+	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
+}
 
 ModuleParticles::~ModuleParticles()
 { }
@@ -25,9 +36,7 @@ bool ModuleParticles::start()
 	// Shot particle
 	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
 	//shot.fx = app->audio->loadFx("LOQUESEA");
-	shot.anim.frames.pushBack({ 215, 85, 14, 12 });
-	shot.anim.frames.pushBack({ 233, 85, 11, 12 });
-	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
+	
 	shot.anim.loop = false;
 	shot.anim.speed = 0.5f;
 	shot.speed.x = 10;
@@ -36,10 +45,6 @@ bool ModuleParticles::start()
 
 	// Pata-pata shot
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
-	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 10, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
 	pata_shot.anim.speed = 0.5f;
 	pata_shot.life = 4000;
 

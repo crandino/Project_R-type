@@ -11,7 +11,19 @@
 // the actual code
 
 ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, start_enabled)
-{ }
+{ 
+	//Pata-pata frames
+	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
+	pata_pata.anim.speed = 0.1f;
+	pata_pata.life = 12000;
+}
 
 ModuleEnemy::~ModuleEnemy()
 { }
@@ -23,16 +35,7 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
-	pata_pata.anim.speed = 0.1f;
-	pata_pata.life = 12000;
+	
 
 	// CRZ
 	pata_pata.attack_frequency = 2000;
