@@ -13,15 +13,15 @@
 ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, start_enabled)
 { 
 	//Pata-pata frames
-	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
-	pata_pata.anim.speed = 0.1f;
+	pata_pata.flying.frames.pushBack({ 5, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 38, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 71, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 104, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 137, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 170, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 203, 6, 21, 24 });
+	pata_pata.flying.frames.pushBack({ 236, 6, 21, 24 });
+	pata_pata.flying.speed = 0.1f;
 	pata_pata.life = 12000;
 	pata_pata.attack_frequency = 2000; // In miliseconds
 }
@@ -36,6 +36,7 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
+	pata_pata.current_animation = &pata_pata.flying;
 
 	return true;
 }
@@ -68,7 +69,7 @@ update_status ModuleEnemy::update()
 		}
 		else if (SDL_GetTicks() >= e->born)
 		{
-			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
+			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->current_animation->getCurrentFrame()));
 			if (e->fx_played == false)
 			{
 				e->fx_played = true;
@@ -82,28 +83,31 @@ update_status ModuleEnemy::update()
 			{
 				Particle *p = new Particle(app->particles->pata_shot);
 				
-				e->ia.x = app->player->position.x - e->position.x;
-				e->ia.y = app->player->position.y - e->position.y;
-
-				p->speed.y = -(e->ia.x / e->ia.y);
-				p->speed.x = -1;
-				app->particles->addParticle(*p, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
+				/*e->ia.x = app->player->position.x - e->position.x;
+				e->ia.y = app->player->position.y - e->position.y;*/
+				//p->speed.y = -(app->player->position.x - e->position.x) / (app->player->position.y - e->position.y);
+				p->speed.x = -2;
+				p->speed.y = 0;
+				app->particles->addParticle(*p, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
 
 				e->attacks++;
 			}
 			// ---- CRZ
-
 		}
-
 		tmp = tmp_next;
 	}
-
-	
+		
 	return UPDATE_CONTINUE;
 }
 
-void ModuleEnemy::onCollision(Collider *col1, Collider *c2)
-{ }
+void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
+{ 
+	LOG("%d %d", col1->type, col2->type);
+
+	/*if (c2->type == COLLIDER_PLAYER_SHOT)
+		pata_pata.current_animation = &(app->particles->pata_explosion.anim);*/
+
+}
 
 void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
@@ -128,7 +132,7 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_
 	speed.setZero();
 }
 
-Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
+Enemy::Enemy(const Enemy &e) : graphics(e.graphics), current_animation(e.current_animation), position(e.position), speed(e.speed), fx_played(false)
 {
 	collider = e.collider;
 	attack_frequency = e.attack_frequency;
@@ -163,7 +167,7 @@ bool Enemy::update()
 
 	if (collider != NULL)
 	{
-		SDL_Rect r = anim.peekCurrentFrame();
+		SDL_Rect r = current_animation->peekCurrentFrame();
 		collider->rect = { position.x, position.y, r.w, r.h };
 	}
 

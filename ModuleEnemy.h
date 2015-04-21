@@ -21,7 +21,8 @@ struct Enemy
 	Point2d<int> position;
 	Point2d<int> ia;
 	Point2d<int> speed;
-	Animation anim;
+	Animation *current_animation;
+	Animation flying;
 	Uint32 born;
 	Uint32 life;
 	bool fx_played;
