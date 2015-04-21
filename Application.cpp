@@ -13,6 +13,7 @@
 #include "ModuleEnemy.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneGameOver.h"
+#include "ModuleSceneWin.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
@@ -31,6 +32,7 @@ Application::Application()
 	enemy = new ModuleEnemy(this, false);
 	scene_intro = new ModuleSceneIntro(this, true);
 	scene_over = new ModuleSceneGameOver(this, false);
+	scene_win = new ModuleSceneWin(this, false);
 	particles = new ModuleParticles(this, false);
 	collision = new ModuleCollision(this, false);
 	fade = new ModuleFadeToBlack(this);
@@ -46,6 +48,7 @@ Application::Application()
 	addModule(scene_intro);
 	addModule(scene);
 	addModule(scene_over);
+	addModule(scene_win);
 
 	// Characters
 	addModule(player);
@@ -69,6 +72,7 @@ Application::~Application()
 	delete enemy;
 	delete scene_intro;
 	delete scene_over;
+	delete scene_win;
 	delete particles;
 	delete fade;
 	delete collision;
