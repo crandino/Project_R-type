@@ -153,14 +153,9 @@ bool ModuleCollision::cleanUp()
 	LOG("Freeing all colliders");
 
 	doubleNode<Collider*> *item = colliders.getLast();
-
-	while (item != NULL)
-	{
-		delete item->data;
-		item = item->previous;
-	}
-
+	//DTM
 	colliders.clear();
+	//DTM
 	return true;
 }
 

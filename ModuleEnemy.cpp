@@ -47,6 +47,9 @@ bool ModuleEnemy::cleanUp()
 {
 	LOG("Unloading particles");
 	app->textures->unload(pata_pata.graphics);
+	//DTM
+	active.clear();
+	//DTM
 	return true;
 }
 
@@ -74,7 +77,7 @@ update_status ModuleEnemy::update()
 				e->fx_played = true;
 				app->audio->playFx(e->fx);
 			}
-
+			
 			// CRZ ----
 			// Proposal for frequency attacking system, CRZ
 			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);

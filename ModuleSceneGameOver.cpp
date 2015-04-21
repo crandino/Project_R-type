@@ -48,7 +48,7 @@ bool ModuleSceneGameOver::start()
 	sprite = app->textures->load("Sprites/Numbers.png");
 	//fx = app->audio->loadFx("Sounds/Coin.ogg");
 	app->renderer->camera.x = app->renderer->camera.y = 0;
-
+	countdown.reset();
 	return ret;
 }
 
