@@ -7,6 +7,9 @@
 #include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleSceneSpace.h"
+#include "ModuleSceneWin.h"
 //=================================
 // the actual code
 
@@ -103,7 +106,13 @@ update_status ModuleEnemy::update()
 void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 { 
 	LOG("%d %d", col1->type, col2->type);
+	
+	//DTM pata explosion, need to delete the enemy
+	app->particles->addParticle(app->particles->pata_explosion, col1->rect.x, col1->rect.y);
 
+	if (!app->particles->pata_explosion.anim.finished()){
+		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);
+	}
 	/*if (c2->type == COLLIDER_PLAYER_SHOT)
 		pata_pata.current_animation = &(app->particles->pata_explosion.anim);*/
 
