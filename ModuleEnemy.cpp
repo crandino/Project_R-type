@@ -36,12 +36,6 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-<<<<<<< HEAD
-
-	// CRZ
-	pata_pata.attack_frequency = 2000;
-=======
->>>>>>> origin/master
 
 	return true;
 }
@@ -88,17 +82,12 @@ update_status ModuleEnemy::update()
 			{
 				Particle *p = new Particle(app->particles->pata_shot);
 				
-<<<<<<< HEAD
 				e->ia.x = app->player->position.x - e->position.x;
 				e->ia.y = app->player->position.y - e->position.y;
 
 				p->speed.y = -(e->ia.x / e->ia.y);
 				p->speed.x = -1;
 				app->particles->addParticle(*p, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
-=======
-				p->speed.x = -2;
-				app->particles->addParticle(*p, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
->>>>>>> origin/master
 
 				e->attacks++;
 			}
