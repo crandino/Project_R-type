@@ -19,6 +19,7 @@ struct Enemy
 
 	SDL_Texture *graphics;
 	Point2d<int> position;
+	Point2d<int> ia;
 	Point2d<int> speed;
 	Animation anim;
 	Uint32 born;
