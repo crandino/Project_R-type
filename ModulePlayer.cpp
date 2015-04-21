@@ -119,10 +119,30 @@ update_status ModulePlayer::update()
 	}
 	
 	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		position.x -= speed;
+	{
+		if (position.x > app->scene->limit_xneg)
+		{
+			position.x -= speed;
+		}
+		else
+		{
+			position.x -= 0;
+		}
+	}
+		
 
 	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		position.x += speed;
+	{
+		if (position.x < app->scene->limit_xpos)
+		{
+			position.x += speed;
+		}
+		else
+		{
+			position.x += 0;
+		}
+	}
+		
 
 	if (app->input->getKey(SDL_SCANCODE_UP) == 0 && app->input->getKey(SDL_SCANCODE_DOWN) == 0)
 	{

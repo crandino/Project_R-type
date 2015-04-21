@@ -21,6 +21,7 @@ public:
 	//ROF ----
 	int scroll_camera_speed;
 	int scroll_player_speed;
+	int limit_xneg, limit_xpos;
 
 	ModuleSceneSpace(Application *app, bool start_enabled = true);
 	~ModuleSceneSpace();

@@ -39,6 +39,8 @@ bool ModuleSceneSpace::start()
 	//Speeds added
 	scroll_player_speed = 1;
 	scroll_camera_speed = 2;
+	limit_xneg = 0;
+	limit_xpos = SCREEN_WIDTH - 32;
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
 
@@ -79,6 +81,8 @@ update_status ModuleSceneSpace::update()
 
 	app->player->position.x += scroll_player_speed;
 	app->renderer->camera.x -= scroll_camera_speed;
+	limit_xneg += scroll_player_speed;
+	limit_xpos += scroll_player_speed;
 
 	// Draw everything
 	app->renderer->blit(boundary_level, 0, 0, NULL);
