@@ -23,6 +23,7 @@ ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, sta
 	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
 	pata_pata.anim.speed = 0.1f;
 	pata_pata.life = 12000;
+	pata_pata.attack_frequency = 2000; // In miliseconds
 }
 
 ModuleEnemy::~ModuleEnemy()
@@ -35,10 +36,6 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-	
-
-	// CRZ
-	pata_pata.attack_frequency = 2000;
 
 	return true;
 }
@@ -86,7 +83,7 @@ update_status ModuleEnemy::update()
 				Particle *p = new Particle(app->particles->pata_shot);
 				
 				p->speed.x = -2;
-				app->particles->addParticle(*p, e->position.x, e->position.y, COLLIDER_ENEMY_SHOT);
+				app->particles->addParticle(*p, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
 
 				e->attacks++;
 			}
