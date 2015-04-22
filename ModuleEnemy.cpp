@@ -107,7 +107,11 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 { 
 	LOG("%d %d", col1->type, col2->type);
 	
-	//DTM pata explosion, need to delete the enemy
+	//ROF need to delete collider
+	app->textures->unload(pata_pata.graphics);
+	pata_pata.collider->to_delete;
+
+	//DTM pata explosion, need to delete the enemy 
 	app->particles->addParticle(app->particles->pata_explosion, col1->rect.x, col1->rect.y);
 
 	if (!app->particles->pata_explosion.anim.finished()){
@@ -167,9 +171,9 @@ bool Enemy::update()
 		if((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
-	/*else
-		if (anim.finished())
-			ret = false;*/
+	else
+		if (current_animation->finished())
+			ret = false;
 
 	position.x += speed.x;
 	position.y += speed.y;
