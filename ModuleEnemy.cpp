@@ -108,8 +108,7 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 	LOG("%d %d", col1->type, col2->type);
 	
 	//ROF need to delete collider
-	app->textures->unload(pata_pata.graphics);
-	pata_pata.collider->to_delete;
+	app->enemy->cleanUp();
 
 	//DTM pata explosion, need to delete the enemy 
 	app->particles->addParticle(app->particles->pata_explosion, col1->rect.x, col1->rect.y);
