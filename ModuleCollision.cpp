@@ -153,9 +153,14 @@ bool ModuleCollision::cleanUp()
 	LOG("Freeing all colliders");
 
 	doubleNode<Collider*> *item = colliders.getLast();
-	//DTM
+	
+	while (item != NULL)
+	{
+		delete item->data;
+		item = item->previous;
+	}
+
 	colliders.clear();
-	//DTM
 	return true;
 }
 
@@ -170,7 +175,9 @@ Collider *ModuleCollision::addCollider(SDL_Rect rect, COLLIDER_TYPE type, Module
 
 bool Collider::checkCollision(SDL_Rect r) const
 {
-	return(rect.x < r.x + r.w &&
+	//return SDL_HasIntersection(&rect, &r);
+	
+	return (rect.x < r.x + r.w &&
 		rect.x + rect.w > r.x &&
 		rect.y < r.y + r.h &&
 		rect.h + rect.y > r.y);

@@ -78,9 +78,8 @@ bool ModulePlayer::start()
 	explosion.reset();
 
 	// Collider to player;
-	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER);
-	collider->callback = app->player;
-
+	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, app->player);
+	
 	return true;
 }
 

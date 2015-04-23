@@ -48,9 +48,16 @@ bool ModuleEnemy::cleanUp()
 {
 	LOG("Unloading particles");
 	app->textures->unload(pata_pata.graphics);
-	//DTM
+
+	doubleNode<Enemy*> *item = active.getLast();
+
+	while (item != NULL)
+	{
+		delete item->data;
+		item = item->previous;
+	}
+
 	active.clear();
-	//DTM
 	return true;
 }
 

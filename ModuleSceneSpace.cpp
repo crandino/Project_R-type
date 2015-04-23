@@ -30,10 +30,10 @@ bool ModuleSceneSpace::start()
 
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
-	app->collision->enable();
 	app->player->enable();
 	app->enemy->enable();
 	app->particles->enable();
+	app->collision->enable();
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	//Speeds added
@@ -68,8 +68,8 @@ bool ModuleSceneSpace::cleanUp()
 	app->textures->unload(boundary_level);
 	app->player->disable();
 	app->enemy->disable();
-	app->collision->disable();
 	app->particles->disable();
+	app->collision->disable();
 	app->audio->stopAllMusic(0.1f);
 	return true;
 }

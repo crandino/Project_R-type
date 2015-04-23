@@ -54,10 +54,8 @@ bool ModuleParticles::start()
 
 	// Shot particle
 	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
-	
 	// Pata-pata shot
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
-
 	// Pata-pata explosion
 	pata_explosion.graphics = app->textures->load("Sprites/Pata_pata_explosion.png");
 
@@ -70,6 +68,16 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(shot.graphics);
 	app->textures->unload(pata_shot.graphics);
 	app->textures->unload(pata_explosion.graphics);
+
+	doubleNode<Particle*> *item = active.getLast();
+
+	while (item != NULL)
+	{
+		delete item->data;
+		item = item->previous;
+	}
+
+	active.clear();
 	return true;
 }
 
@@ -159,7 +167,7 @@ Particle::Particle(const Particle &p) : graphics(p.graphics), anim(p.anim), posi
 
 Particle::~Particle()
 {
-	if (collider)
+	if (collider != NULL)
 		collider->to_delete = true;
 }
 
