@@ -50,13 +50,15 @@ Application::Application()
 	addModule(scene_over);
 	addModule(scene_win);
 
+	// Collisions
+	addModule(collision);
+
 	// Characters
 	addModule(player);
 	addModule(enemy);
 
 	// Miscellaneous
 	addModule(particles);
-	addModule(collision);
 	addModule(fade);
 }
 

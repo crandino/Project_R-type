@@ -18,7 +18,7 @@ Module(app, start_enabled)
 {
 	graphics = NULL;
 	collider = NULL;
-
+	
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
 
@@ -68,8 +68,9 @@ bool ModulePlayer::start()
 
 	position.x = 50;
 	position.y = 100;
-
 	speed = 1;
+
+	keyboard_enabled = true;
 
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
@@ -94,75 +95,78 @@ bool ModulePlayer::cleanUp()
 
 update_status ModulePlayer::update()
 {
-
-	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (keyboard_enabled == true)
 	{
-		position.y -= speed;
-
-		if (current_animation != &idle_to_upward)
+		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		{
-			idle_to_upward.reset();
-			current_animation = &idle_to_upward;
+			position.y -= speed;
+
+			if (current_animation != &idle_to_upward)
+			{
+				idle_to_upward.reset();
+				current_animation = &idle_to_upward;
+			}
+		}
+
+		if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			position.y += speed;
+
+			if (current_animation != &idle_to_downward)
+			{
+				idle_to_downward.reset();
+				current_animation = &idle_to_downward;
+			}
+		}
+
+		if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		{
+			if (position.x > app->scene->limit_xneg)
+			{
+				position.x -= speed;
+			}
+			else
+			{
+				position.x -= 0;
+			}
+		}
+
+
+		if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		{
+			if (position.x < app->scene->limit_xpos)
+			{
+				position.x += speed;
+			}
+			else
+			{
+				position.x += 0;
+			}
+		}
+
+
+		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
+		{
+			if (current_animation == &idle_to_upward)
+				current_animation = &upward_to_idle;
+
+			if (current_animation == &idle_to_downward)
+				current_animation = &downward_to_idle;
+
+			if (upward_to_idle.finished() || downward_to_idle.finished())
+			{
+				upward_to_idle.reset();
+				downward_to_idle.reset();
+				current_animation = &idle;
+			}
+		}
+
+		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
+		{
+			app->particles->addParticle(app->particles->shot, position.x + 22, position.y + 3, COLLIDER_PLAYER_SHOT);
 		}
 	}
 	
-	if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		position.y += speed;
-
-		if (current_animation != &idle_to_downward)
-		{
-			idle_to_downward.reset();
-			current_animation = &idle_to_downward;
-		}
-	}
-	
-	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-		if (position.x > app->scene->limit_xneg)
-		{
-			position.x -= speed;
-		}
-		else
-		{
-			position.x -= 0;
-		}
-	}
-		
-
-	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if (position.x < app->scene->limit_xpos)
-		{
-			position.x += speed;
-		}
-		else
-		{
-			position.x += 0;
-		}
-	}
-		
-
-	if (app->input->getKey(SDL_SCANCODE_UP) == 0 && app->input->getKey(SDL_SCANCODE_DOWN) == 0)
-	{
-		if (current_animation == &idle_to_upward)
-			current_animation = &upward_to_idle;
-
-		if (current_animation == &idle_to_downward)
-			current_animation = &downward_to_idle;
-
-		if (upward_to_idle.finished() || downward_to_idle.finished())
-		{
-			upward_to_idle.reset();
-			downward_to_idle.reset();
-			current_animation = &idle;
-		}
-	}	
-
-	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
-	{
-		app->particles->addParticle(app->particles->shot, position.x + 22, position.y + 3, COLLIDER_PLAYER_SHOT);
-	}
 
 	// Updating collider position
 	collider->setPos(position.x, position.y);
@@ -177,6 +181,7 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	speed = 0;
 	current_animation = &explosion;
+	keyboard_enabled = false;
 	
 	app->scene->scroll_player_speed = 0;
 	app->scene->scroll_camera_speed = 0;

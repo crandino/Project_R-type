@@ -27,8 +27,10 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 
+	bool keyboard_enabled;
+
 	//ROF ----
-	unsigned int speed = 1; 
+	unsigned int speed; 
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();
