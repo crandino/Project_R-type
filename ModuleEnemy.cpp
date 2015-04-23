@@ -10,6 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleSceneWin.h"
+//#include <math.h>
 //=================================
 // the actual code
 
@@ -25,8 +26,12 @@ ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, sta
 	pata_pata.flying.frames.pushBack({ 203, 6, 21, 24 });
 	pata_pata.flying.frames.pushBack({ 236, 6, 21, 24 });
 	pata_pata.flying.speed = 0.1f;
+	pata_pata.speed.x = -1;
+	pata_pata.speed.y = 0;
 	pata_pata.life = 12000;
 	pata_pata.attack_frequency = 2000; // In miliseconds
+
+	
 }
 
 ModuleEnemy::~ModuleEnemy()
@@ -40,6 +45,10 @@ bool ModuleEnemy::start()
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
 	pata_pata.current_animation = &pata_pata.flying;
+
+	// Adding enemies
+	addEnemy(pata_pata, 600, 40, COLLIDER_ENEMY);
+
 
 	return true;
 }
@@ -85,6 +94,10 @@ update_status ModuleEnemy::update()
 				e->fx_played = true;
 				app->audio->playFx(e->fx);
 			}
+
+			//// Pata animation CRZ
+			//LOG("%d %d", e->position.x, e->position.y);
+			//e->position.y = sin(e->position.x);
 			
 			// CRZ ----
 			// Proposal for frequency attacking system, CRZ
@@ -93,9 +106,6 @@ update_status ModuleEnemy::update()
 			{
 				Particle *p = new Particle(app->particles->pata_shot);
 				
-				/*e->ia.x = app->player->position.x - e->position.x;
-				e->ia.y = app->player->position.y - e->position.y;*/
-				//p->speed.y = -(app->player->position.x - e->position.x) / (app->player->position.y - e->position.y);
 				p->speed.x = -2;
 				p->speed.y = 0;
 				app->particles->addParticle(*p, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
@@ -112,19 +122,19 @@ update_status ModuleEnemy::update()
 
 void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 { 
-	LOG("%d %d", col1->type, col2->type);
-	
-	//ROF need to delete collider
-	app->enemy->cleanUp();
+	doubleNode<Enemy*> *item = active.getFirst();
+	while (item != NULL && item->data->collider != col1)
+		item = item->next;
 
-	//DTM pata explosion, need to delete the enemy 
-	app->particles->addParticle(app->particles->pata_explosion, col1->rect.x, col1->rect.y);
-
-	if (!app->particles->pata_explosion.anim.finished()){
-		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);
+	if (item != NULL)
+	{
+		app->particles->addParticle(app->particles->explosion, col1->rect.x, col1->rect.y);
+		delete item->data;
+		active.del(item);
 	}
-	/*if (c2->type == COLLIDER_PLAYER_SHOT)
-		pata_pata.current_animation = &(app->particles->pata_explosion.anim);*/
+
+	/*if (!app->particles->pata_explosion.anim.finished()){
+		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
 
 }
 

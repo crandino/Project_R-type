@@ -27,24 +27,28 @@ Module(app, start_enabled)
 	idle_to_upward.frames.pushBack({ 233, 4, 32, 14 });
 	idle_to_upward.speed = 0.1f;
 	idle_to_upward.loop = false;
+	animation_set.pushBack(&idle_to_upward);
 
 	// from upwards to idle animation
 	upward_to_idle.frames.pushBack({ 233, 4, 32, 14 });
 	upward_to_idle.frames.pushBack({ 200, 3, 32, 13 });
 	upward_to_idle.speed = 0.1f;
 	upward_to_idle.loop = false;
+	animation_set.pushBack(&upward_to_idle);
 
 	// from idle to downwards animation
 	idle_to_downward.frames.pushBack({ 134, 3, 32, 13 });
 	idle_to_downward.frames.pushBack({ 101, 4, 32, 14 });
 	idle_to_downward.speed = 0.1f;
 	idle_to_downward.loop = false;
+	animation_set.pushBack(&idle_to_downward);
 
 	// from downwards to idle animation
 	downward_to_idle.frames.pushBack({ 101, 4, 32, 14 });
 	downward_to_idle.frames.pushBack({ 134, 3, 32, 13 });
 	downward_to_idle.speed = 0.1f;
 	downward_to_idle.loop = false;
+	animation_set.pushBack(&downward_to_idle);
 
 	// explosion animation
 	explosion.frames.pushBack({ 1, 343, 32, 28 });
@@ -56,6 +60,7 @@ Module(app, start_enabled)
 	explosion.frames.pushBack({ 233, 343, 32, 28 });
 	explosion.speed = 0.4f;
 	explosion.loop = false;
+	animation_set.pushBack(&explosion);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -75,8 +80,10 @@ bool ModulePlayer::start()
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
-	// I don't like this...but it works
-	explosion.reset();
+	// CRZ ----
+	for (unsigned int i = 0; i < animation_set.getNumElements(); i++)
+		animation_set[i]->reset();
+	// ---- CRZ
 
 	// Collider to player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, app->player);

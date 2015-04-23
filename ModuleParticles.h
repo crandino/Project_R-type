@@ -45,7 +45,7 @@ public:
 	//Elements
 	Particle shot;
 	Particle pata_shot;
-	Particle pata_explosion;
+	Particle explosion;
 
 	ModuleParticles(Application *app, bool start_enabled = true);
 	~ModuleParticles();

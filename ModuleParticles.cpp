@@ -32,15 +32,15 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	pata_shot.anim.speed = 0.5f;
 	pata_shot.life = 4000;
 
-	//Pata-pata explosion
-	pata_explosion.anim.frames.pushBack({ 0, 0, 34, 32});
-	pata_explosion.anim.frames.pushBack({ 34, 0, 34, 32 });
-	pata_explosion.anim.frames.pushBack({ 68, 0, 34, 32 });
-	pata_explosion.anim.frames.pushBack({ 102, 0, 34, 32 });
-	pata_explosion.anim.frames.pushBack({ 136, 0, 34, 32 });
-	pata_explosion.anim.frames.pushBack({ 170, 0, 34, 32 });
-	pata_explosion.anim.speed = 0.4f;
-	pata_explosion.anim.loop = false;
+	//Common explosion
+	explosion.anim.frames.pushBack({ 0, 0, 34, 32});
+	explosion.anim.frames.pushBack({ 34, 0, 34, 32 });
+	explosion.anim.frames.pushBack({ 68, 0, 34, 32 });
+	explosion.anim.frames.pushBack({ 102, 0, 34, 32 });
+	explosion.anim.frames.pushBack({ 136, 0, 34, 32 });
+	explosion.anim.frames.pushBack({ 170, 0, 34, 32 });
+	explosion.anim.speed = 0.4f;
+	explosion.anim.loop = false;
 
 }
 
@@ -57,7 +57,7 @@ bool ModuleParticles::start()
 	// Pata-pata shot
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
-	pata_explosion.graphics = app->textures->load("Sprites/Pata_pata_explosion.png");
+	explosion.graphics = app->textures->load("Sprites/Common_explosion.png");
 
 	return true;
 }
@@ -67,7 +67,7 @@ bool ModuleParticles::cleanUp()
 	LOG("Unloading particles");
 	app->textures->unload(shot.graphics);
 	app->textures->unload(pata_shot.graphics);
-	app->textures->unload(pata_explosion.graphics);
+	app->textures->unload(explosion.graphics);
 
 	doubleNode<Particle*> *item = active.getLast();
 

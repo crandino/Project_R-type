@@ -27,7 +27,10 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 
+	// CRZ ----
+	DynArray<Animation*> animation_set;
 	bool keyboard_enabled;
+	// ---- CRZ
 
 	//ROF ----
 	unsigned int speed; 

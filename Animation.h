@@ -11,7 +11,7 @@
 //=================================
 // the actual class
 
-class Animation
+class Animation 
 {
 private:
 
@@ -56,6 +56,7 @@ public:
 		loops = 0; // CRZ
 		current_frame = 0;
 	}
+
 };
 
 

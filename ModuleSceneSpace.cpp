@@ -31,9 +31,9 @@ bool ModuleSceneSpace::start()
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
 	app->player->enable();
-	app->enemy->enable();
-	app->particles->enable();
 	app->collision->enable();
+	app->enemy->enable();
+	app->particles->enable();	
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	//Speeds added
@@ -54,9 +54,6 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 1376, 16, 112, 80 }, COLLIDER_WALL);
 	app->collision->addCollider({ 1376, 144, 112, 80 }, COLLIDER_WALL);
 
-	// Adding enemies
-	app->enemy->addEnemy(app->enemy->pata_pata, 600, 40, COLLIDER_ENEMY);
-	
 	return true;
 }
 
