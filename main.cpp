@@ -13,6 +13,10 @@
 #pragma comment( lib, "SDL/lib/x86/SDL2.lib")
 #pragma comment( lib, "SDL/lib/x86/SDL2main.lib")
 
+// --------------- Dr Memory ---------------	
+// Arguments -visual_studio -- "$(TargetPath)"
+// Directory $(SolutionDir)/
+
 // ------------- SDL Config --------------------------
 
 /* Setting up SDL configuration. On Project Properties

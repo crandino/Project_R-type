@@ -20,8 +20,7 @@ struct Enemy
 	SDL_Texture *graphics;
 	Point2d<int> position;
 	Point2d<int> speed;
-	Animation *current_animation;
-	Animation flying;
+	Animation anim;
 	Uint32 born;
 	Uint32 life;
 	bool fx_played;

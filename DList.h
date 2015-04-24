@@ -113,7 +113,7 @@ public:
 		return ret;
 	}
 
-	bool del(doubleNode<TYPE>* node_to_delete)
+	bool del(doubleNode<TYPE> *node_to_delete)
 	{
 		if (start != NULL)
 		{
@@ -143,21 +143,22 @@ public:
 		return false;
 	}
 
-	bool clear() {
+	void clear()
+	{
 
-		if (start != NULL)
+		doubleNode<TYPE> *item = start;
+		doubleNode<TYPE> *item_next;
+
+		while (item != NULL)
 		{
-			while (start->next != NULL)
-			{
-				doubleNode<TYPE>* node_to_delete = start;
-				start = start->next;
-				delete node_to_delete;
-			}
-			start = end = NULL;
-			size = 0;
-			return true;
+			item_next = item->next;
+			delete item;
+			item = item_next;			
 		}
-		return false;
+
+		start = end = NULL;
+		size = 0;
+	
 	}
 
 	doubleNode<TYPE>* getFirst() const

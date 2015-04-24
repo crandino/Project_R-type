@@ -10,27 +10,25 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleSceneWin.h"
-//#include <math.h>
 //=================================
 // the actual code
 
 ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, start_enabled)
 { 
 	//Pata-pata frames
-	pata_pata.flying.frames.pushBack({ 5, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 38, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 71, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 104, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 137, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 170, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 203, 6, 21, 24 });
-	pata_pata.flying.frames.pushBack({ 236, 6, 21, 24 });
-	pata_pata.flying.speed = 0.1f;
+	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
+	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
+	pata_pata.anim.speed = 0.1f;
 	pata_pata.speed.x = -1;
 	pata_pata.speed.y = 0;
 	pata_pata.life = 12000;
 	pata_pata.attack_frequency = 2000; // In miliseconds
-
 	
 }
 
@@ -44,10 +42,14 @@ bool ModuleEnemy::start()
 
 	// Pata-pata
 	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-	pata_pata.current_animation = &pata_pata.flying;
 
 	// Adding enemies
-	addEnemy(pata_pata, 600, 40, COLLIDER_ENEMY);
+	/*addEnemy(pata_pata, 600, 40, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 1000, 80, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 700, 50, COLLIDER_ENEMY);*/
+	addEnemy(pata_pata, 700, 100, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 650, 125, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 400, 150, COLLIDER_ENEMY);
 
 
 	return true;
@@ -88,28 +90,19 @@ update_status ModuleEnemy::update()
 		}
 		else if (SDL_GetTicks() >= e->born)
 		{
-			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->current_animation->getCurrentFrame()));
+			app->renderer->blit(e->graphics, e->position.x, e->position.y, &(e->anim.getCurrentFrame()));
 			if (e->fx_played == false)
 			{
 				e->fx_played = true;
 				app->audio->playFx(e->fx);
 			}
 
-			//// Pata animation CRZ
-			//LOG("%d %d", e->position.x, e->position.y);
-			//e->position.y = sin(e->position.x);
-			
 			// CRZ ----
 			// Proposal for frequency attacking system, CRZ
 			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);
 			if (SDL_TICKS_PASSED(e->time_to_attack, e->attack_frequency) == true)
 			{
-				Particle *p = new Particle(app->particles->pata_shot);
-				
-				p->speed.x = -2;
-				p->speed.y = 0;
-				app->particles->addParticle(*p, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
-
+				app->particles->addParticle(app->particles->pata_shot, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
 				e->attacks++;
 			}
 			// ---- CRZ
@@ -135,7 +128,6 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 
 	/*if (!app->particles->pata_explosion.anim.finished()){
 		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
-
 }
 
 void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
@@ -161,7 +153,7 @@ Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_
 	speed.setZero();
 }
 
-Enemy::Enemy(const Enemy &e) : graphics(e.graphics), current_animation(e.current_animation), position(e.position), speed(e.speed), fx_played(false)
+Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
 {
 	collider = e.collider;
 	attack_frequency = e.attack_frequency;
@@ -188,7 +180,7 @@ bool Enemy::update()
 			ret = false;
 	}
 	else
-		if (current_animation->finished())
+		if (anim.finished())
 			ret = false;
 
 	position.x += speed.x;
@@ -196,7 +188,7 @@ bool Enemy::update()
 
 	if (collider != NULL)
 	{
-		SDL_Rect r = current_animation->peekCurrentFrame();
+		SDL_Rect r = anim.peekCurrentFrame();
 		collider->rect = { position.x, position.y, r.w, r.h };
 	}
 
