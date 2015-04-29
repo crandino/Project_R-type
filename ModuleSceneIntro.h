@@ -21,6 +21,8 @@ public:
 	ModuleSceneIntro(Application *app, bool start_enabled = true);
 	~ModuleSceneIntro();
 
+	bool keyboard_enabled;
+
 	bool start();
 	update_status update();
 	bool cleanUp();
