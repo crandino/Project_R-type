@@ -73,7 +73,7 @@ bool ModulePlayer::start()
 
 	position.x = 50.f;
 	position.y = 100.f;
-	speed = 1.f;
+	speed = 1.5f;
 
 	app->input->keyboard_enabled = true;
 

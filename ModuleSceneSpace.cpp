@@ -39,7 +39,7 @@ bool ModuleSceneSpace::start()
 	//Speeds added
 	scroll_player_speed = 0.5f;
 	//Map speed IMPORTANT!
-	scroll_camera_speed = 1.25f;
+	scroll_camera_speed = 1.5f;
 
 	limit_xneg = 0.f;
 	limit_xpos = SCREEN_WIDTH - 32.f;
