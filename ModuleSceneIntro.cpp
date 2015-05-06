@@ -29,7 +29,7 @@ bool ModuleSceneIntro::start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	keyboard_enabled = true;
+	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Images/rtype_intro.png");
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
@@ -55,12 +55,12 @@ update_status ModuleSceneIntro::update()
 	// Draw everything
 	app->renderer->blit(graphics, 0.f, 0.f, NULL);
 
-	if (keyboard_enabled == true)
+	if (app->input->keyboard_enabled == true)
 	{
 		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
 			{
 				app->audio->playFx(fx);
-				keyboard_enabled = false;
+				app->input->keyboard_enabled = false;
 				app->fade->fadeToBlack(this, app->scene, 3.0f);
 			}
 	}

@@ -74,6 +74,7 @@ update_status ModuleInput::preUpdate()
 	mouse_y /= SCREEN_SIZE;
 
 	return UPDATE_CONTINUE;
+	
 }
 
 // Called before quitting

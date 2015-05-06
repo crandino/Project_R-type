@@ -35,6 +35,8 @@ public:
 	update_status preUpdate();
 	bool cleanUp();
 
+	bool keyboard_enabled;
+
 	KEY_STATE getKey(int id) const
 	{
 		return keyboard[id];

@@ -75,7 +75,7 @@ bool ModulePlayer::start()
 	position.y = 100.f;
 	speed = 1.f;
 
-	keyboard_enabled = true;
+	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
@@ -102,7 +102,7 @@ bool ModulePlayer::cleanUp()
 
 update_status ModulePlayer::update()
 {
-	if (keyboard_enabled == true)
+	if (app->input->keyboard_enabled == true)
 	{
 		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		{
@@ -188,7 +188,7 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	speed = 0.f;
 	current_animation = &explosion;
-	keyboard_enabled = false;
+	app->input->keyboard_enabled = false;
 	
 	app->scene->scroll_player_speed = 0.f;
 	app->scene->scroll_camera_speed = 0.f;

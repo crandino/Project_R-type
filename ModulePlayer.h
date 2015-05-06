@@ -29,7 +29,6 @@ public:
 
 	// CRZ ----
 	DynArray<Animation*> animation_set;
-	bool keyboard_enabled;
 	// ---- CRZ
 
 	//ROF ----
