@@ -67,8 +67,8 @@ bool ModuleSceneGameOver::cleanUp()
 update_status ModuleSceneGameOver::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0, 0, NULL);
-	app->renderer->blit(sprite, 170, 100, &(countdown.getCurrentFrame()));	
+	app->renderer->blit(graphics, 0.f, 0.f, NULL);
+	app->renderer->blit(sprite, 170.f, 100.f, &(countdown.getCurrentFrame()));	
 
 	if (!countdown.finished()){
 		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);

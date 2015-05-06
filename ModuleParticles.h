@@ -20,8 +20,8 @@ struct Particle
 	SDL_Texture *graphics;
 	Collider *collider;
 	unsigned int fx;
-	Point2d<int> position;
-	Point2d<int> speed;
+	Point2d<float> position;
+	Point2d<float> speed;
 	Uint32 born;
 	Uint32 life;
 	bool fx_played;
@@ -55,7 +55,7 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
-	void addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addParticle(const Particle &particle, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 };
 
 #endif //!__MODULEPARTICLES_H__

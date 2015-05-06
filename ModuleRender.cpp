@@ -55,7 +55,7 @@ update_status ModuleRender::preUpdate()
 
 update_status ModuleRender::update()
 {
-	int speed = 3;
+	float speed = 3.f;
 
 	if (app->input->getKey(SDL_SCANCODE_KP_8) == KEY_REPEAT)
 		app->renderer->camera.y += speed;
@@ -91,14 +91,14 @@ bool ModuleRender::cleanUp()
 }
 
 //Blit to screen
-bool ModuleRender::blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, float speed)
+bool ModuleRender::blit(SDL_Texture *texture, float x, float y, SDL_Rect *section, float speed)
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
+	rect.x = (float)(camera.x * speed) + x * SCREEN_SIZE;
+	rect.y = (float)(camera.y * speed) + y * SCREEN_SIZE;
 
-	//LOG("%s %d %d", "Camera:", camera.x, camera.y);
+	LOG("%s %d %d", "Camera:", camera.x, camera.y);
 
 	if (section != NULL)
 	{

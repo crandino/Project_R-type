@@ -53,7 +53,7 @@ bool ModuleSceneIntro::cleanUp()
 update_status ModuleSceneIntro::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0, 0, NULL);
+	app->renderer->blit(graphics, 0.f, 0.f, NULL);
 
 	if (keyboard_enabled == true)
 	{

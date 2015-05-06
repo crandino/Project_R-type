@@ -18,8 +18,8 @@ struct Enemy
 {
 
 	SDL_Texture *graphics;
-	Point2d<int> position;
-	Point2d<int> speed;
+	Point2d<float> position;
+	Point2d<float> speed;
 	Animation anim;
 	Uint32 born;
 	Uint32 life;
@@ -62,7 +62,7 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 	
-	void addEnemy(const Enemy &e, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);	
+	void addEnemy(const Enemy &e, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);	
 };
 
 #endif //!__MODULEENEMY_H__ 

@@ -71,9 +71,9 @@ bool ModulePlayer::start()
 {
 	LOG("Loading player...");
 
-	position.x = 50;
-	position.y = 100;
-	speed = 1;
+	position.x = 50.f;
+	position.y = 100.f;
+	speed = 1.f;
 
 	keyboard_enabled = true;
 
@@ -134,7 +134,7 @@ update_status ModulePlayer::update()
 			}
 			else
 			{
-				position.x -= 0;
+				position.x -= 0.f;
 			}
 		}
 
@@ -147,7 +147,7 @@ update_status ModulePlayer::update()
 			}
 			else
 			{
-				position.x += 0;
+				position.x += 0.f;
 			}
 		}
 
@@ -170,7 +170,7 @@ update_status ModulePlayer::update()
 
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 		{
-			app->particles->addParticle(app->particles->shot, position.x + 22, position.y + 3, COLLIDER_PLAYER_SHOT);
+			app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
 		}
 	}
 	
@@ -186,12 +186,12 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
-	speed = 0;
+	speed = 0.f;
 	current_animation = &explosion;
 	keyboard_enabled = false;
 	
-	app->scene->scroll_player_speed = 0;
-	app->scene->scroll_camera_speed = 0;
+	app->scene->scroll_player_speed = 0.f;
+	app->scene->scroll_camera_speed = 0.f;
 
 	// Finish game after explosion
 	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);

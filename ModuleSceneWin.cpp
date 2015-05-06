@@ -50,7 +50,7 @@ bool ModuleSceneWin::cleanUp()
 update_status ModuleSceneWin::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0, 0, NULL);
+	app->renderer->blit(graphics, 0.f, 0.f, NULL);
 
 	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
 	{

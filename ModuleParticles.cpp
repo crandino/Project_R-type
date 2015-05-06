@@ -20,8 +20,8 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
 	shot.anim.loop = false;
 	shot.anim.speed = 0.5f;
-	shot.speed.x = 10;
-	shot.speed.y = 0;
+	shot.speed.x = 10.f;
+	shot.speed.y = 0.f;
 	shot.life = 1500;
 
 	//Pata-pata shot
@@ -30,7 +30,7 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
 	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
 	pata_shot.anim.speed = 0.5f;
-	pata_shot.speed.x = -2;
+	pata_shot.speed.x = -2.f;
 	pata_shot.life = 4000;
 
 	//Common explosion
@@ -134,7 +134,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 	}
 }
 
-void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::addParticle(const Particle &particle, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Particle *p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;

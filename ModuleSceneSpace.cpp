@@ -37,12 +37,14 @@ bool ModuleSceneSpace::start()
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	//Speeds added
-	scroll_player_speed = 1;
-	scroll_camera_speed = 2;
-	limit_xneg = 0;
-	limit_xpos = SCREEN_WIDTH - 32;
+	scroll_player_speed = 0.5f;
+	//Map speed IMPORTANT!
+	scroll_camera_speed = 1.25f;
 
-	app->renderer->camera.x = app->renderer->camera.y = 0;
+	limit_xneg = 0.f;
+	limit_xpos = SCREEN_WIDTH - 32.f;
+
+	app->renderer->camera.x = app->renderer->camera.y = 0.f;
 
 	// Wall collider
 	app->collision->addCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
@@ -82,7 +84,7 @@ update_status ModuleSceneSpace::update()
 	limit_xpos += scroll_player_speed;
 
 	// Draw everything
-	app->renderer->blit(boundary_level, 0, 0, NULL);
+	app->renderer->blit(boundary_level, 0.f, 0.f, NULL);
 
 	return UPDATE_CONTINUE;
 }

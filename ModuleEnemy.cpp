@@ -25,8 +25,8 @@ ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, sta
 	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
 	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
 	pata_pata.anim.speed = 0.1f;
-	pata_pata.speed.x = -1;
-	pata_pata.speed.y = 0;
+	pata_pata.speed.x = -1.f;
+	pata_pata.speed.y = 0.f;
 	pata_pata.life = 12000;
 	pata_pata.attack_frequency = 2000; // In miliseconds
 	
@@ -47,9 +47,9 @@ bool ModuleEnemy::start()
 	/*addEnemy(pata_pata, 600, 40, COLLIDER_ENEMY);
 	addEnemy(pata_pata, 1000, 80, COLLIDER_ENEMY);
 	addEnemy(pata_pata, 700, 50, COLLIDER_ENEMY);*/
-	addEnemy(pata_pata, 700, 100, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 650, 125, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 400, 150, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 700.f, 100.f, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 650.f, 125.f, COLLIDER_ENEMY);
+	addEnemy(pata_pata, 400.f, 150.f, COLLIDER_ENEMY);
 
 
 	return true;
@@ -102,7 +102,7 @@ update_status ModuleEnemy::update()
 			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);
 			if (SDL_TICKS_PASSED(e->time_to_attack, e->attack_frequency) == true)
 			{
-				app->particles->addParticle(app->particles->pata_shot, e->position.x, e->position.y + 10, COLLIDER_ENEMY_SHOT);
+				app->particles->addParticle(app->particles->pata_shot, e->position.x, e->position.y + 10.f, COLLIDER_ENEMY_SHOT);
 				e->attacks++;
 			}
 			// ---- CRZ
@@ -130,7 +130,7 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
 }
 
-void ModuleEnemy::addEnemy(const Enemy &enemy, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleEnemy::addEnemy(const Enemy &enemy, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Enemy *e = new Enemy(enemy);
 	e->born = SDL_GetTicks() + delay;

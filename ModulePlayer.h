@@ -25,7 +25,7 @@ public:
 	Animation idle_to_downward;
 	Animation downward_to_idle;
 	Animation explosion;
-	Point2d<int> position;
+	Point2d<float> position;
 
 	// CRZ ----
 	DynArray<Animation*> animation_set;
@@ -33,7 +33,7 @@ public:
 	// ---- CRZ
 
 	//ROF ----
-	unsigned int speed; 
+	float speed; 
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();
