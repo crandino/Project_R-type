@@ -37,11 +37,11 @@ bool ModuleSceneSpace::start()
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
 	//Speeds added
-	scroll_player_speed = 0.5f;
+	scroll_player_speed = 0.333f;
 	//Map speed IMPORTANT!
-	scroll_camera_speed = 1.5f;
+	scroll_camera_speed = 1.75f;
 
-	limit_xneg = 0.f;
+	limit_xneg = 10.f;
 	limit_xpos = SCREEN_WIDTH - 32.f;
 
 	app->renderer->camera.x = app->renderer->camera.y = 0.f;
