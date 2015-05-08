@@ -15,6 +15,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DynArray.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="ModuleSceneWin.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="PataEnemy.h" />
     <ClInclude Include="Point2d.h" />
   </ItemGroup>
   <ItemGroup>

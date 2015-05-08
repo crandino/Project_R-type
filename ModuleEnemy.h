@@ -4,6 +4,8 @@
 #define __MODULEENEMY_H__
 //=================================
 // forward declared dependencies
+class PataEnemy;
+class Enemy;
 //=================================
 // included dependencies
 #include "Module.h"
@@ -11,33 +13,14 @@
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
+
 //=================================
 // the actual class
 
-struct Enemy
+enum enemy_types
 {
-
-	SDL_Texture *graphics;
-	Point2d<float> position;
-	Point2d<float> speed;
-	Animation anim;
-	Uint32 born;
-	Uint32 life;
-	bool fx_played;
-	unsigned int fx;
-	Collider *collider;
-
-	// CRZ
-	Uint32 time_to_attack;
-	Uint32 attacks;
-	Uint32 attack_frequency;
-	
-	Enemy();
-	Enemy(const Enemy &e);
-	~Enemy();
-	bool update();
+	PATA_ENEMY
 };
-
 
 class ModuleEnemy : public Module
 {
@@ -45,12 +28,12 @@ class ModuleEnemy : public Module
 private:
 
 	DList<Enemy*> active;
-
+	
 public:
 
-	// List of enemies
+	// List of enemy textures
 	// Level 1
-	Enemy pata_pata;
+	SDL_Texture *pata_graphics;
 
 	// Level 2
 
@@ -62,7 +45,8 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 	
-	void addEnemy(const Enemy &e, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);	
+	void addEnemy(enemy_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+
 };
 
 #endif //!__MODULEENEMY_H__ 

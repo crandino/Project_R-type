@@ -10,27 +10,12 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleSceneWin.h"
+#include "PataEnemy.h"
 //=================================
 // the actual code
 
 ModuleEnemy::ModuleEnemy(Application *app, bool start_enabled) : Module(app, start_enabled)
-{ 
-	//Pata-pata frames
-	pata_pata.anim.frames.pushBack({ 5, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 38, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 71, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 104, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 137, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 170, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 203, 6, 21, 24 });
-	pata_pata.anim.frames.pushBack({ 236, 6, 21, 24 });
-	pata_pata.anim.speed = 0.1f;
-	pata_pata.speed.x = -1.f;
-	pata_pata.speed.y = 0.f;
-	pata_pata.life = 12000;
-	pata_pata.attack_frequency = 2000; // In miliseconds
-	
-}
+{ }
 
 ModuleEnemy::~ModuleEnemy()
 { }
@@ -38,27 +23,24 @@ ModuleEnemy::~ModuleEnemy()
 // Load assets
 bool ModuleEnemy::start()
 {
+	LOG("Loading enemy textures");
+
+	pata_graphics = app->textures->load("Sprites/Pata_pata.png");
+	
 	LOG("Loading enemies...");
 
-	// Pata-pata
-	pata_pata.graphics = app->textures->load("Sprites/Pata_pata.png");
-
 	// Adding enemies
-	/*addEnemy(pata_pata, 600, 40, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 1000, 80, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 700, 50, COLLIDER_ENEMY);*/
-	addEnemy(pata_pata, 700.f, 100.f, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 650.f, 125.f, COLLIDER_ENEMY);
-	addEnemy(pata_pata, 400.f, 150.f, COLLIDER_ENEMY);
-
-
+	addEnemy(PATA_ENEMY, pata_graphics, 700.f, 100.f, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 650.f, 125.f, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 400.f, 150.f, COLLIDER_ENEMY);
+	
 	return true;
 }
 
 bool ModuleEnemy::cleanUp()
 {
-	LOG("Unloading particles");
-	app->textures->unload(pata_pata.graphics);
+
+	app->textures->unload(pata_graphics);
 
 	doubleNode<Enemy*> *item = active.getLast();
 
@@ -69,6 +51,7 @@ bool ModuleEnemy::cleanUp()
 	}
 
 	active.clear();
+
 	return true;
 }
 
@@ -96,16 +79,6 @@ update_status ModuleEnemy::update()
 				e->fx_played = true;
 				app->audio->playFx(e->fx);
 			}
-
-			// CRZ ----
-			// Proposal for frequency attacking system, CRZ
-			e->time_to_attack = (SDL_GetTicks() - e->born) - (e->attacks * e->attack_frequency);
-			if (SDL_TICKS_PASSED(e->time_to_attack, e->attack_frequency) == true)
-			{
-				app->particles->addParticle(app->particles->pata_shot, e->position.x, e->position.y + 10.f, COLLIDER_ENEMY_SHOT);
-				e->attacks++;
-			}
-			// ---- CRZ
 		}
 		tmp = tmp_next;
 	}
@@ -130,9 +103,15 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
 }
 
-void ModuleEnemy::addEnemy(const Enemy &enemy, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleEnemy::addEnemy(enemy_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	Enemy *e = new Enemy(enemy);
+	Enemy *e = NULL;
+
+	switch (type)
+	{
+	case(PATA_ENEMY) : e = new PataEnemy(app, texture); break;
+	}
+
 	e->born = SDL_GetTicks() + delay;
 	e->position.x = x;
 	e->position.y = y;
@@ -142,55 +121,6 @@ void ModuleEnemy::addEnemy(const Enemy &enemy, float x, float y, COLLIDER_TYPE c
 		e->collider = app->collision->addCollider({ e->position.x, e->position.y, 0, 0 }, collider_type, this);
 	}
 
-	active.add(e);
-}
-
-// Enemy struct methods
-
-Enemy::Enemy() : fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_attack(0), collider(NULL)
-{
-	position.setZero();
-	speed.setZero();
-}
-
-Enemy::Enemy(const Enemy &e) : graphics(e.graphics), anim(e.anim), position(e.position), speed(e.speed), fx_played(false)
-{
-	collider = e.collider;
-	attack_frequency = e.attack_frequency;
-	attacks = e.attacks;
-	time_to_attack = e.time_to_attack;
-	fx = e.fx;
-	born = e.born;
-	life = e.life;
-}
-
-Enemy::~Enemy()
-{
-	if (collider)
-		collider->to_delete = true;
-}
-
-bool Enemy::update()
-{
-	bool ret = true;
-
-	if (life > 0)
-	{
-		if((SDL_GetTicks() - born) > life)
-			ret = false;
-	}
-	else
-		if (anim.finished())
-			ret = false;
-
-	position.x += speed.x;
-	position.y += speed.y;
-
-	if (collider != NULL)
-	{
-		SDL_Rect r = anim.peekCurrentFrame();
-		collider->rect = { position.x, position.y, r.w, r.h };
-	}
-
-	return ret;
+	if (e != NULL)
+		active.add(e);
 }
