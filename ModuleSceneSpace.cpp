@@ -56,6 +56,7 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 1376, 16, 112, 80 }, COLLIDER_WALL);
 	app->collision->addCollider({ 1376, 144, 112, 80 }, COLLIDER_WALL);
 	app->collision->addCollider({ 1376, 0, 560, 16 }, COLLIDER_WALL);
+	app->collision->addCollider({ 1680, 16, 64, 16 }, COLLIDER_WALL);
 
 	return true;
 }
