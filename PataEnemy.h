@@ -7,6 +7,7 @@
 //=================================
 // included dependencies
 #include "Enemy.h"
+#include <math.h>
 //=================================
 // the actual class
 
@@ -29,7 +30,7 @@ public:
 		anim.speed = 0.1f;
 		speed.x = -1;
 		speed.y = 0;
-		life = 12000;
+		life = 12000; // In miliseconds
 		attack_frequency = 2000; // In miliseconds
 		graphics = texture;
 	}
@@ -51,6 +52,7 @@ public:
 				ret = false;
 
 		position.x += speed.x;
+		speed.y = -sin(0.05 * position.x);
 		position.y += speed.y;
 
 		// CRZ ----
