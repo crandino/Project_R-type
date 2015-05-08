@@ -50,7 +50,7 @@ bool ModuleSceneGameOver::start()
 
 	graphics = app->textures->load("Images/GameOver.png");
 	sprite = app->textures->load("Sprites/Numbers.png");
-	//fx = app->audio->loadFx("Sounds/Coin.ogg");
+	app->audio->playMusic("Sounds/CountdownMusic.wav", 1.0f);
 	app->renderer->camera.x = app->renderer->camera.y = 0;
 	countdown.reset();
 	return ret;
@@ -83,7 +83,8 @@ update_status ModuleSceneGameOver::update()
 		}
 	}
 	
-	if (countdown.finished()){
+	if (!countdown.finished())
+	{
 		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
 	}
 
