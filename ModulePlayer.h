@@ -32,7 +32,10 @@ public:
 	// ---- CRZ
 
 	//ROF ----
-	float speed; 
+	float speed;
+
+	//DTM
+	unsigned int lives = 2;
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();

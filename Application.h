@@ -10,6 +10,7 @@ class ModuleRender;
 class ModuleTextures;
 class ModuleInput;
 class ModuleAudio;
+class ModuleInterface;
 class ModuleSceneSpace;
 class ModulePlayer;
 class ModuleEnemy;
@@ -34,12 +35,14 @@ private:
 	void addModule(Module *module);
 
 public:
-	
+	unsigned int coins = 0;
+
 	ModuleWindow *window;
 	ModuleRender *renderer;
 	ModuleTextures *textures;
 	ModuleInput *input;
 	ModuleAudio *audio;
+	ModuleInterface *game_interface;
 	ModuleSceneSpace *scene;
 	ModulePlayer *player;
 	ModuleEnemy *enemy;

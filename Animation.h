@@ -23,7 +23,7 @@ public:
 	bool loop;
 	float speed;
 	DynArray<SDL_Rect> frames;
-
+	
 	Animation() : frames(5), speed(1.0f), current_frame(0), loop(true), loops(0)
 	{ }
 

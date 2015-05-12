@@ -90,6 +90,9 @@
     <ClInclude Include="Point2d.h">
       <Filter>Header Files\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">
@@ -146,6 +149,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneWin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

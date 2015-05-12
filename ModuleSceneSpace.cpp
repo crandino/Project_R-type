@@ -6,6 +6,7 @@
 #include "ModuleSceneSpace.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
+#include "ModuleInterface.h"
 #include "ModuleEnemy.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
@@ -31,6 +32,7 @@ bool ModuleSceneSpace::start()
 	boundary_level = app->textures->load("Sprites/boundary_level.png");
 
 	app->player->enable();
+	app->game_interface->enable();
 	app->collision->enable();
 	app->enemy->enable();
 	app->particles->enable();	
@@ -68,6 +70,7 @@ bool ModuleSceneSpace::cleanUp()
 
 	app->textures->unload(boundary_level);
 	app->player->disable();
+	app->game_interface->disable();
 	app->enemy->disable();
 	app->particles->disable();
 	app->collision->disable();

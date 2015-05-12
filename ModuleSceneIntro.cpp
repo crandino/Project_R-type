@@ -57,12 +57,17 @@ update_status ModuleSceneIntro::update()
 
 	if (app->input->keyboard_enabled == true)
 	{
-		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
+		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
 			{
-				app->audio->playFx(fx);
 				app->input->keyboard_enabled = false;
 				app->fade->fadeToBlack(this, app->scene, 3.0f);
+				app->coins--;
 			}
+		if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
+		{
+			app->audio->playFx(fx);
+			app->coins++;
+		}
 	}
 	
 

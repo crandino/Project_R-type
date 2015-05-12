@@ -10,6 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleSceneGameOver.h"
+#include "ModuleInterface.h"
 //=================================
 // the actual code
 
@@ -192,6 +193,7 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 	
 	app->scene->scroll_player_speed = 0.f;
 	app->scene->scroll_camera_speed = 0.f;
+	app->game_interface->speed_interface = 0.f;
 
 	// Finish game after explosion
 	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);

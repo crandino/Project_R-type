@@ -8,6 +8,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModuleInterface.h"
 #include "ModuleSceneSpace.h"
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
@@ -27,6 +28,7 @@ Application::Application()
 	textures = new ModuleTextures(this);
 	input = new ModuleInput(this);
 	audio = new ModuleAudio(this);
+	game_interface = new ModuleInterface(this, false);
 	scene = new ModuleSceneSpace(this, false);
 	player = new ModulePlayer(this, false);
 	enemy = new ModuleEnemy(this, false);
@@ -43,6 +45,8 @@ Application::Application()
 	addModule(textures);
 	addModule(input);
 	addModule(audio);
+
+	addModule(game_interface);
 
 	// Scenes
 	addModule(scene_intro);
@@ -69,6 +73,7 @@ Application::~Application()
 	delete textures;
 	delete input;
 	delete audio;
+	delete game_interface;
 	delete scene;
 	delete player;
 	delete enemy;
