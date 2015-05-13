@@ -50,19 +50,26 @@ update_status ModuleInput::preUpdate()
 
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{
-		if (keys[i] == 1)
+		if (keyboard_enabled == true)
 		{
-			if (keyboard[i] == KEY_IDLE)
-				keyboard[i] = KEY_DOWN;
+			if (keys[i] == 1)
+			{
+				if (keyboard[i] == KEY_IDLE)
+					keyboard[i] = KEY_DOWN;
+				else
+					keyboard[i] = KEY_REPEAT;
+			}
 			else
-				keyboard[i] = KEY_REPEAT;
+			{
+				if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
+					keyboard[i] = KEY_UP;
+				else
+					keyboard[i] = KEY_IDLE;
+			}
 		}
 		else
 		{
-			if (keyboard[i] == KEY_REPEAT || keyboard[i] == KEY_DOWN)
-				keyboard[i] = KEY_UP;
-			else
-				keyboard[i] = KEY_IDLE;
+			keyboard[i] = KEY_IDLE;
 		}
 	}
 

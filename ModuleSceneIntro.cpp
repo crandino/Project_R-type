@@ -55,21 +55,18 @@ update_status ModuleSceneIntro::update()
 	// Draw everything
 	app->renderer->blit(graphics, 0.f, 0.f, NULL);
 
-	if (app->input->keyboard_enabled == true)
-	{
-		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
-			{
-				app->input->keyboard_enabled = false;
-				app->fade->fadeToBlack(this, app->scene, 3.0f);
-				app->coins--;
-			}
-		if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
-		{
-			app->audio->playFx(fx);
-			app->coins++;
-		}
-	}
 	
+	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
+		{
+			app->input->keyboard_enabled = false;
+			app->fade->fadeToBlack(this, app->scene, 3.0f);
+			app->coins--;
+		}
+	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
+	{
+		app->audio->playFx(fx);
+		app->coins++;
+	}	
 
 	return UPDATE_CONTINUE;
 }
