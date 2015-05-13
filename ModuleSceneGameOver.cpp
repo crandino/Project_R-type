@@ -19,7 +19,6 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 {
 	graphics = NULL;
 	sprite = NULL;
-	fx = 0;
 
 	// from countdown animation
 	countdown.frames.pushBack({ 0, 0, 48, 71 });
@@ -72,18 +71,16 @@ update_status ModuleSceneGameOver::update()
 {
 	// Draw everything
 	app->renderer->blit(graphics, 0.f, 0.f, NULL);
-	app->renderer->blit(sprite, 170.f, 100.f, &(countdown.getCurrentFrame()));	
+	app->renderer->blit(sprite, 170.f, 100.f, &(countdown.getCurrentFrame()));
 
-	if (app->input->keyboard_enabled == true)
+	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
 	{
-		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
-		{
-			app->input->keyboard_enabled = false;
-			app->fade->fadeToBlack(this, app->scene, 3.0f);
-		}
+		app->input->keyboard_enabled = false;
+		app->fade->fadeToBlack(this, app->scene, 3.0f);
 	}
 	
-	if (!countdown.finished())
+	// No funciona con ! ni sin !.
+	if (countdown.finished())
 	{
 		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
 	}

@@ -35,6 +35,9 @@ private:
 	void addModule(Module *module);
 
 public:
+
+	// No se pueden inicializar valores en las cabezeras.
+	// Habría que hacerlo de otra manera.
 	unsigned int coins = 0;
 
 	ModuleWindow *window;

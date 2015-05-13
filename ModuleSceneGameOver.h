@@ -19,8 +19,6 @@ public:
 	SDL_Texture *graphics;
 	SDL_Texture *sprite;
 
-	unsigned int fx;
-
 	Animation countdown;
 
 	ModuleSceneGameOver(Application *app, bool start_enabled = true);

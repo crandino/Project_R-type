@@ -74,22 +74,21 @@ update_status ModuleSceneIntro::update()
 
 	app->renderer->blit(sprite, 344.f, 113.f, &(numbers_coins.getCurrentFrame()));
 
-	if (app->input->keyboard_enabled == true)
+if (app->input->keyboard_enabled == true)
+{
+	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
 	{
-		if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
-			{
-				app->input->keyboard_enabled = false;
-				app->fade->fadeToBlack(this, app->scene, 3.0f);
-				app->coins--;
-			}
-		if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
-		{
-			app->audio->playFx(fx);
-			app->coins++;
-			numbers_coins.current_frame = app->coins;
-		}
+		app->input->keyboard_enabled = false;
+		app->fade->fadeToBlack(this, app->scene, 3.0f);
+		app->coins--;
 	}
-	
+	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
+	{
+		app->audio->playFx(fx);
+		app->coins++;
+		numbers_coins.current_frame = app->coins;
+	}
+}
 
 	return UPDATE_CONTINUE;
 }
