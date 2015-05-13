@@ -8,6 +8,7 @@
 // included dependencies
 #include "Module.h"
 #include "SDL\include\SDL.h"
+#include "Animation.h"
 //=================================
 // the actual class
 
@@ -16,7 +17,10 @@ class ModuleSceneIntro : public Module
 public:
 
 	SDL_Texture *graphics;
+	SDL_Texture *sprite;
 	unsigned int fx;
+
+	Animation numbers_coins;
 
 	ModuleSceneIntro(Application *app, bool start_enabled = true);
 	~ModuleSceneIntro();

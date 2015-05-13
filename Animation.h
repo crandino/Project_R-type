@@ -14,12 +14,12 @@
 class Animation 
 {
 private:
-
-	float current_frame;
+	
 	int loops;
 
 public:
 
+	float current_frame;
 	bool loop;
 	float speed;
 	DynArray<SDL_Rect> frames;

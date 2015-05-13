@@ -17,7 +17,22 @@
 ModuleSceneIntro::ModuleSceneIntro(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
+	sprite = NULL;
 	fx = 0;
+
+	// from numbers_coins animation
+	numbers_coins.frames.pushBack({ 0, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 8, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 16, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 24, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 32, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 40, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 48, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 56, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 64, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 72, 0, 8, 7 });
+	numbers_coins.speed = 0.f;
+	numbers_coins.loop = false;
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -32,6 +47,7 @@ bool ModuleSceneIntro::start()
 	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Images/rtype_intro.png");
+	sprite = app->textures->load("Sprites/numbers_blue.png");
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
 	fx = app->audio->loadFx("Sounds/Coin.ogg");
 	app->renderer->camera.x = app->renderer->camera.y = 0;
@@ -45,6 +61,7 @@ bool ModuleSceneIntro::cleanUp()
 	LOG("Unloading Intro scene");
 
 	app->textures->unload(graphics);
+	app->textures->unload(sprite);
 
 	return true;
 }
@@ -54,6 +71,8 @@ update_status ModuleSceneIntro::update()
 {
 	// Draw everything
 	app->renderer->blit(graphics, 0.f, 0.f, NULL);
+
+	app->renderer->blit(sprite, 344.f, 113.f, &(numbers_coins.getCurrentFrame()));
 
 	if (app->input->keyboard_enabled == true)
 	{
@@ -67,6 +86,7 @@ update_status ModuleSceneIntro::update()
 		{
 			app->audio->playFx(fx);
 			app->coins++;
+			numbers_coins.current_frame = app->coins;
 		}
 	}
 	
