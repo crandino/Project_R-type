@@ -45,6 +45,8 @@ bool ModuleSceneGameOver::start()
 	LOG("Loading GameOver assets");
 	bool ret = true;
 
+	fade_to_black = false;
+
 	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Images/GameOver.png");
@@ -80,9 +82,14 @@ update_status ModuleSceneGameOver::update()
 	}
 	
 	// No funciona con ! ni sin !.
+	
 	if (countdown.finished())
 	{
-		app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
+		if (fade_to_black == false)
+		{
+			fade_to_black = true;
+			app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
+		}
 	}
 
 	return UPDATE_CONTINUE;

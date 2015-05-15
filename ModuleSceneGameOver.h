@@ -20,6 +20,7 @@ public:
 	SDL_Texture *sprite;
 
 	Animation countdown;
+	bool fade_to_black;
 
 	ModuleSceneGameOver(Application *app, bool start_enabled = true);
 	~ModuleSceneGameOver();
