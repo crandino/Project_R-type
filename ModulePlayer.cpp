@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
@@ -19,6 +20,9 @@ Module(app, start_enabled)
 {
 	graphics = NULL;
 	collider = NULL;
+
+	fx_shoot = 0;
+	fx_boom = 0;
 	
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -78,6 +82,8 @@ bool ModulePlayer::start()
 
 	app->input->keyboard_enabled = true;
 
+	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
+	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
@@ -169,6 +175,7 @@ update_status ModulePlayer::update()
 
 	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 	{
+		app->audio->playFx(fx_shoot);
 		app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
 	}	
 
@@ -185,6 +192,7 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	speed = 0.f;
 	current_animation = &explosion;
+	app->audio->playFx(fx_boom);
 	app->input->keyboard_enabled = false;
 	
 	app->scene->scroll_player_speed = 0.f;
