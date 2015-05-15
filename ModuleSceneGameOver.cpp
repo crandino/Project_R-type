@@ -75,13 +75,17 @@ update_status ModuleSceneGameOver::update()
 	app->renderer->blit(graphics, 0.f, 0.f, NULL);
 	app->renderer->blit(sprite, 170.f, 100.f, &(countdown.getCurrentFrame()));
 
-	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
 	{
-		app->input->keyboard_enabled = false;
-		app->fade->fadeToBlack(this, app->scene, 3.0f);
+		app->audio->playFx(app->scene_intro->fx);
+		app->coins++;
 	}
-	
-	// No funciona con ! ni sin !.
+
+	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
+	{
+			app->input->keyboard_enabled = false;
+			app->fade->fadeToBlack(this, app->scene, 3.0f);
+	}
 	
 	if (countdown.finished())
 	{
