@@ -19,8 +19,8 @@ public:
 	Application *app;
 
 	SDL_Texture *graphics;
-	Point2d<float> position;
-	Point2d<float> speed;
+	Point2d<int> position;
+	Point2d<int> speed;
 	Animation anim;
 	Uint32 born;
 	Uint32 life;
@@ -33,7 +33,7 @@ public:
 		speed.setZero();
 	}
 
-	~PowerUp()
+	virtual ~PowerUp()
 	{
 		if (collider)
 			collider->to_delete = true;
