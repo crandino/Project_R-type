@@ -13,6 +13,8 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "ModuleParticles.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleSceneWin.h"
 //=================================
 // the actual code
 
@@ -55,7 +57,9 @@ bool ModuleSceneSpace::start()
 	scroll_camera_speed = (int)(0.5 * SCALE_FACTOR); //1.75f;
 
 	left_limit = (10 * SCALE_FACTOR);
-	right_limit = (SCREEN_WIDTH - 32) * SCALE_FACTOR;
+	right_limit = (SCREEN_WIDTH - 22) * SCALE_FACTOR;
+
+	finish = false;
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
 
@@ -192,7 +196,7 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 3536, 192, 64, 32 }, COLLIDER_WALL, false);
 
 	app->collision->addCollider({ 2832, 16, 192, 80 }, COLLIDER_WALL, false);
-	app->collision->addCollider({ 2832, 288, 192, 80 }, COLLIDER_WALL, false);
+	app->collision->addCollider({ 2832, 148, 192, 80 }, COLLIDER_WALL, false);
 
 	return true;
 }
@@ -216,14 +220,24 @@ bool ModuleSceneSpace::cleanUp()
 // Update: draw background
 update_status ModuleSceneSpace::update()
 {
-	// Move camera forward
-	app->player->position.x += scroll_player_speed;
-	app->renderer->camera.x -= scroll_camera_speed;
-	left_limit += scroll_player_speed;
-	right_limit += scroll_player_speed;
+	LOG("%d", app->renderer->camera.x)
+	if (app->renderer->camera.x > (-3930 * SCALE_FACTOR) && finish == false)
+	{
+		// Move camera forward
+		app->player->position.x += scroll_player_speed;
+		app->renderer->camera.x -= scroll_camera_speed;
+		left_limit += scroll_player_speed;
+		right_limit += scroll_player_speed;
 
-	// Draw everything
-	app->renderer->blit(boundary_level, 0, 0, NULL);
+		// Draw everything
+		app->renderer->blit(boundary_level, 0, 0, NULL);
+	}
+	else
+	{
+		finish = true;
+		app->fade->fadeToBlack(this, app->scene_win, 2.0f);
+	}
+	
 
 	return UPDATE_CONTINUE;
 }
