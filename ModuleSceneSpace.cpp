@@ -220,7 +220,7 @@ bool ModuleSceneSpace::cleanUp()
 // Update: draw background
 update_status ModuleSceneSpace::update()
 {
-	LOG("%d", app->renderer->camera.x)
+	//LOG("%d", app->renderer->camera.x)
 	if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
 	{
 		if (finish == false)

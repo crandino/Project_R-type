@@ -57,8 +57,12 @@ public:
 			if (anim.finished())
 				ret = false;
 
+		// These variables control the oscillation of Pata.
+		int amplitude = 2;
+		float frecuency = 0.0005f;
+
 		position.x += speed.x;
-		speed.y = -sin(5.0f * position.x);
+		speed.y = (sin(frecuency * position.x) * amplitude) * SCALE_FACTOR;
 		position.y += speed.y;
 
 		// CRZ ----
