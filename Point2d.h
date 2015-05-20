@@ -71,6 +71,11 @@ public:
 		return sqrt(pow(x - p.x, 2) + pow(y - p.y, 2));
 	}
 
+	bool isClosedTo(const Point2d &p, float delta) const
+	{
+		return (abs(p.x - x) <= delta && abs(p.y - y) <= delta);
+	}
+
 };
 
 #endif // !__Point2d_H__

@@ -55,7 +55,7 @@ update_status ModuleRender::preUpdate()
 
 update_status ModuleRender::update()
 {
-	float speed = 3.f;
+	int speed = 3 * SCALE_FACTOR;
 
 	if (app->input->getKey(SDL_SCANCODE_KP_8) == KEY_REPEAT)
 		app->renderer->camera.y += speed;
@@ -91,12 +91,13 @@ bool ModuleRender::cleanUp()
 }
 
 //Blit to screen
-bool ModuleRender::blit(SDL_Texture *texture, float x, float y, SDL_Rect *section, float speed)
+bool ModuleRender::blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, float speed)
 {
 	bool ret = true;
 	SDL_Rect rect;
-	rect.x = (float)(camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (float)(camera.y * speed) + y * SCREEN_SIZE;
+	// Speed is eliminated from the code!!
+	rect.x = (camera.x + x) * (SCREEN_SIZE) / SCALE_FACTOR;
+	rect.y = (camera.y + y) * (SCREEN_SIZE) / SCALE_FACTOR;
 
 	//LOG("%s %d %d", "Camera:", camera.x, camera.y);
 
@@ -134,10 +135,10 @@ bool ModuleRender::drawQuad(const SDL_Rect &rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_Rect rec(rect);
 	if (use_camera)
 	{
-		rec.x = (int)(camera.x + rect.x * SCREEN_SIZE);
-		rec.y = (int)(camera.y + rect.y * SCREEN_SIZE);
-		rec.w *= SCREEN_SIZE;
-		rec.h *= SCREEN_SIZE;
+		rec.x = (camera.x + rect.x) * (SCREEN_SIZE) / SCALE_FACTOR;
+		rec.y = (camera.y + rect.y) * (SCREEN_SIZE) / SCALE_FACTOR;
+		rec.w = rec.w * SCREEN_SIZE / SCALE_FACTOR;
+		rec.h = rec.h * SCREEN_SIZE / SCALE_FACTOR;
 	}
 
 	if (SDL_RenderFillRect(renderer, &rec) != 0)

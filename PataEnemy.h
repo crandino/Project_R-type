@@ -16,6 +16,11 @@ class PataEnemy : public Enemy
 
 public:
 
+	// CRZ
+	Uint32 time_to_attack;
+	Uint32 attacks;
+	Uint32 attack_frequency;
+
 	PataEnemy(Application *app, SDL_Texture *texture) : Enemy(app)
 	{
 		//Pata-pata frames
@@ -28,10 +33,11 @@ public:
 		anim.frames.pushBack({ 203, 6, 21, 24 });
 		anim.frames.pushBack({ 236, 6, 21, 24 });
 		anim.speed = 0.1f;
-		speed.x = -1;
-		speed.y = 0;
+		speed.x = -1 * SCALE_FACTOR;
+		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
 		attack_frequency = 2000; // In miliseconds
+		attacks = 0;
 		graphics = texture;
 	}
 
@@ -52,7 +58,7 @@ public:
 				ret = false;
 
 		position.x += speed.x;
-		speed.y = -sin(0.05 * position.x);
+		speed.y = -sin(5.0f * position.x);
 		position.y += speed.y;
 
 		// CRZ ----
@@ -60,7 +66,7 @@ public:
 		time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
 		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 		{
-			app->particles->addParticle(app->particles->pata_shot, position.x, position.y + 10, COLLIDER_ENEMY_SHOT);
+			app->particles->addParticle(app->particles->pata_shot, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
 			attacks++;
 		}
 		// ---- CRZ
@@ -68,7 +74,7 @@ public:
 		if (collider != NULL)
 		{
 			SDL_Rect r = anim.peekCurrentFrame();
-			collider->rect = { position.x, position.y, r.w, r.h };
+			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 
 		return ret;

@@ -18,8 +18,6 @@ enum WEAPON_TYPE
 	WEAPON_RIBBON
 };
 
-
-
 class ModulePlayer : public Module
 {
 public:
@@ -35,15 +33,15 @@ public:
 	Animation idle_to_downward;
 	Animation downward_to_idle;
 	Animation explosion;
-	Point2d<float> position;
-	int weapon_type;
+	Point2d<int> position;
+	//WEAPON_TYPE weapon_type;
+	int  weapon_type;
+	int speed;
 
 	// CRZ ----
 	DynArray<Animation*> animation_set;
+	bool active;
 	// ---- CRZ
-
-	//ROF ----
-	float speed;
 
 	//DTM
 	unsigned int lives = 2;

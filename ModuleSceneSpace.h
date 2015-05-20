@@ -16,12 +16,11 @@ class ModuleSceneSpace : public Module
 public:
 
 	SDL_Texture *boundary_level;
-	//SDL_Texture* stars;
 
 	//ROF ----
-	float scroll_camera_speed;
-	float scroll_player_speed;
-	float limit_xneg, limit_xpos;
+	int scroll_camera_speed;
+	int scroll_player_speed;
+	int right_limit, left_limit;
 
 	ModuleSceneSpace(Application *app, bool start_enabled = true);
 	~ModuleSceneSpace();

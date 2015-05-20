@@ -105,6 +105,9 @@
     <ClInclude Include="RibbonPowerUp.h">
       <Filter>Header Files\PowerUps</Filter>
     </ClInclude>
+    <ClInclude Include="BugEnemy.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">

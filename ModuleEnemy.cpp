@@ -10,7 +10,9 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleSceneWin.h"
+// -- Enemies --
 #include "PataEnemy.h"
+#include "BugEnemy.h"
 //=================================
 // the actual code
 
@@ -26,21 +28,27 @@ bool ModuleEnemy::start()
 	LOG("Loading enemy textures");
 
 	pata_graphics = app->textures->load("Sprites/Pata_pata.png");
+	bug_graphics = app->textures->load("Sprites/Bug.png");
 	
 	LOG("Loading enemies...");
 
 	// Adding enemies
-	addEnemy(PATA_ENEMY, pata_graphics, 700.f, 100.f, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 650.f, 125.f, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 400.f, 150.f, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 700, 100, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 650, 125, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 400, 150, COLLIDER_ENEMY);
+
+	addEnemy(BUG_ENEMY, bug_graphics, 1100, 50, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 1140, 50, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 1180, 50, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 1220, 50, COLLIDER_ENEMY);
 	
 	return true;
 }
 
 bool ModuleEnemy::cleanUp()
 {
-
 	app->textures->unload(pata_graphics);
+	app->textures->unload(bug_graphics);
 
 	doubleNode<Enemy*> *item = active.getLast();
 
@@ -103,22 +111,23 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
 }
 
-void ModuleEnemy::addEnemy(enemy_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleEnemy::addEnemy(enemy_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Enemy *e = NULL;
 
 	switch (type)
 	{
 	case(PATA_ENEMY) : e = new PataEnemy(app, texture); break;
+	case(BUG_ENEMY) : e = new BugEnemy(app, texture); break;
 	}
 
 	e->born = SDL_GetTicks() + delay;
-	e->position.x = x;
-	e->position.y = y;
+	e->position.x = x * SCALE_FACTOR;
+	e->position.y = y * SCALE_FACTOR;
 
 	if (collider_type != COLLIDER_NONE)
 	{
-		e->collider = app->collision->addCollider({ e->position.x, e->position.y, 0, 0 }, collider_type, this);
+		e->collider = app->collision->addCollider({ e->position.x, e->position.y, 0, 0 }, collider_type, true, this);
 	}
 
 	if (e != NULL)
