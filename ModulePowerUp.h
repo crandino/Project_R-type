@@ -13,7 +13,6 @@ class PowerUp;
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
-
 //=================================
 // the actual class
 
