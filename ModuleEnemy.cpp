@@ -33,9 +33,9 @@ bool ModuleEnemy::start()
 	LOG("Loading enemies...");
 
 	// Adding enemies
-	addEnemy(PATA_ENEMY, pata_graphics, 700.f, 100.f, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 650.f, 125.f, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 400.f, 150.f, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 700, 100, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 650, 125, COLLIDER_ENEMY);
+	addEnemy(PATA_ENEMY, pata_graphics, 400, 150, COLLIDER_ENEMY);
 
 	addEnemy(BUG_ENEMY, bug_graphics, 1100, 50, COLLIDER_ENEMY);
 	addEnemy(BUG_ENEMY, bug_graphics, 1140, 50, COLLIDER_ENEMY);

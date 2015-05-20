@@ -163,21 +163,22 @@ update_status ModulePlayer::update()
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 		{
 			switch (weapon_type)
-				{
-					case WEAPON_BASIC:
-					{
-						app->audio->playFx(fx_shoot);
-						app->particles->addParticle(app->particles->shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-					} 
-					break;
-
-					case WEAPON_RIBBON:
-					{
-						app->particles->addParticle(app->particles->ribbon_shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-					} 
-					break;
+			{
+			case WEAPON_BASIC:
+			{
+				app->audio->playFx(fx_shoot);
+				app->particles->addParticle(app->particles->shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 			}
-		}	
+			break;
+
+			case WEAPON_RIBBON:
+			{
+				app->particles->addParticle(app->particles->ribbon_shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+			}
+			break;
+			}
+		}
+	}
 
 	// Updating collider position
 	collider->setPos(position.x, position.y);
