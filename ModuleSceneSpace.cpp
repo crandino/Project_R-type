@@ -57,7 +57,7 @@ bool ModuleSceneSpace::start()
 	scroll_camera_speed = (int)(0.5 * SCALE_FACTOR); //1.75f;
 
 	left_limit = (10 * SCALE_FACTOR);
-	right_limit = (SCREEN_WIDTH - 22) * SCALE_FACTOR;
+	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
 
 	finish = false;
 
@@ -196,7 +196,7 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 3536, 192, 64, 32 }, COLLIDER_WALL, false);
 
 	app->collision->addCollider({ 2832, 16, 192, 80 }, COLLIDER_WALL, false);
-	app->collision->addCollider({ 2832, 148, 192, 80 }, COLLIDER_WALL, false);
+	app->collision->addCollider({ 2832, 144, 192, 80 }, COLLIDER_WALL, false);
 
 	return true;
 }
@@ -221,23 +221,22 @@ bool ModuleSceneSpace::cleanUp()
 update_status ModuleSceneSpace::update()
 {
 	LOG("%d", app->renderer->camera.x)
-	if (app->renderer->camera.x > (-3930 * SCALE_FACTOR) && finish == false)
+	if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
 	{
-		// Move camera forward
-		app->player->position.x += scroll_player_speed;
-		app->renderer->camera.x -= scroll_camera_speed;
-		left_limit += scroll_player_speed;
-		right_limit += scroll_player_speed;
+		if (finish == false)
+		{	
+			finish = true;
+			app->fade->fadeToBlack(this, app->scene_win, 2.0f);
+		}
+	}
+	// Move camera forward
+	app->player->position.x += scroll_player_speed;
+	app->renderer->camera.x -= scroll_camera_speed;
+	left_limit += scroll_player_speed;
+	right_limit += scroll_player_speed;
 
-		// Draw everything
-		app->renderer->blit(boundary_level, 0, 0, NULL);
-	}
-	else
-	{
-		finish = true;
-		app->fade->fadeToBlack(this, app->scene_win, 2.0f);
-	}
-	
+	// Draw everything
+	app->renderer->blit(boundary_level, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }
