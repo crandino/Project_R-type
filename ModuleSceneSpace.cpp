@@ -144,7 +144,6 @@ bool ModuleSceneSpace::start()
 	app->collision->addCollider({ 2119, 222, 3, 2 }, COLLIDER_WALL, false);
 	app->collision->addCollider({ 2122, 223, 4, 1 }, COLLIDER_WALL, false);
 
-
 	//Concrete walls by pixel
 	app->collision->addCollider({ 2243, 200, 13, 24 }, COLLIDER_WALL, false);
 	app->collision->addCollider({ 2241, 201, 2, 23 }, COLLIDER_WALL, false);

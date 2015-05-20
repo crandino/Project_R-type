@@ -39,10 +39,16 @@ ModuleSceneIntro::ModuleSceneIntro(Application *app, bool start_enabled) : Modul
 	press_space_glow.frames.pushBack({ 0, 16, 160, 7 });
 	press_space_glow.frames.pushBack({ 0, 24, 160, 7 });
 	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
+	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
+	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
+	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
+	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
+	press_space_glow.frames.pushBack({ 0, 32, 160, 7 });
 	press_space_glow.frames.pushBack({ 0, 40, 160, 7 });
 	press_space_glow.frames.pushBack({ 0, 48, 160, 7 });
 	press_space_glow.frames.pushBack({ 0, 56, 160, 7 });
-	press_space_glow.speed = 0.2f;
+	press_space_glow.frames.pushBack({ 0, 0, 160, 7 });
+	press_space_glow.speed = 0.15f;
 	press_space_glow.loop = true;
 }
 
@@ -59,7 +65,7 @@ bool ModuleSceneIntro::start()
 
 	intro = app->textures->load("Images/Intro_tuned.png");
 	numbers = app->textures->load("Sprites/numbers_blue.png");
-	press_space_to_start = app->textures->load("Images/Press_space_to_start.png");
+	press_space_to_start = app->textures->load("Images/Press_space_to_start_black.png");
 
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
 	fx = app->audio->loadFx("Sounds/Coin.ogg");

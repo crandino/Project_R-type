@@ -32,11 +32,11 @@ public:
 		anim.frames.pushBack({ 170, 6, 21, 24 });
 		anim.frames.pushBack({ 203, 6, 21, 24 });
 		anim.frames.pushBack({ 236, 6, 21, 24 });
-		anim.speed = 0.1f;
+		anim.speed = 0.3f;
 		speed.x = -1 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
-		attack_frequency = 2000; // In miliseconds
+		attack_frequency = (rand() % 6 + 2) * 1000; // In miliseconds
 		attacks = 0;
 		graphics = texture;
 	}
@@ -58,8 +58,8 @@ public:
 				ret = false;
 
 		// These variables control the oscillation of Pata.
-		int amplitude = 2;
-		float frecuency = 0.0005f;
+		int amplitude = 1;
+		float frecuency = 0.001f;
 
 		position.x += speed.x;
 		speed.y = (sin(frecuency * position.x) * amplitude) * SCALE_FACTOR;

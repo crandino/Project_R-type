@@ -34,15 +34,11 @@ bool ModuleEnemy::start()
 	
 	LOG("Loading enemies...");
 
-	// Adding enemies
-	addEnemy(PATA_ENEMY, pata_graphics, 700, 100, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 650, 125, COLLIDER_ENEMY);
-	addEnemy(PATA_ENEMY, pata_graphics, 400, 150, COLLIDER_ENEMY);
-
-	addEnemy(BUG_ENEMY, bug_graphics, 1100, 50, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 1140, 50, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 1180, 50, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 1220, 50, COLLIDER_ENEMY);
+	/*addEnemy(BUG_ENEMY, bug_graphics, 650, 120, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 690, 120, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 730, 120, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 770, 120, COLLIDER_ENEMY);
+	addEnemy(BUG_ENEMY, bug_graphics, 810, 120, COLLIDER_ENEMY);*/
 	
 	return true;
 }
@@ -63,6 +59,64 @@ bool ModuleEnemy::cleanUp()
 	active.clear();
 
 	return true;
+}
+
+update_status ModuleEnemy::preUpdate()
+{
+	/* The intention of this method is to create enemies on the fly
+	and to eliminate each enemy that will be outside the screen limits.*/
+
+	// Adding enemies
+	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
+	{
+	case(440) :
+		// PATA-PATA - Group 1 ( 4 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 440, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 470, 55, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 500, 40, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 535, 60, COLLIDER_ENEMY);
+		break;
+
+	case(510) :
+		// PATA-PATA - Group 2 ( 4 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 510, 185, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 540, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 570, 190, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 600, 180, COLLIDER_ENEMY);
+		break;
+
+	case(680) :
+		// PATA-PATA - Group 3 ( 3 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 680, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 720, 165, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 750, 180, COLLIDER_ENEMY);
+		break;
+	
+	case(740) :
+		// PATA-PATA - Group 4 ( 22 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 740, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 750, 180, COLLIDER_ENEMY);
+		break;
+	}
+	// We elimante enemies that were at the left side of the screen.
+	/*doubleNode<Enemy*> *tmp = active.getFirst();
+	doubleNode<Enemy*> *tmp_next;
+
+	while (tmp != NULL)
+	{
+		Enemy *e = tmp->data;
+		tmp_next = tmp->next;
+
+		if (e->position.x < (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR) - SCREEN_WIDTH)
+		{
+			delete e;
+			active.del(tmp);
+		}
+		tmp = tmp_next;
+	}*/
+
+	return UPDATE_CONTINUE;	
 }
 
 // Update: draw enemies

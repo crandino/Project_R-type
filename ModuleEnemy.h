@@ -44,6 +44,7 @@ public:
 	~ModuleEnemy();
 
 	bool start();
+	update_status preUpdate();
 	update_status update();
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
