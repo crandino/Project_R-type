@@ -106,7 +106,7 @@ void ModulePowerUp::addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, int x, 
 
 	if (collider_type != COLLIDER_NONE)
 	{
-		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, this);
+		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
 	}
 
 	if (p != NULL)

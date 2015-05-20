@@ -46,7 +46,6 @@ public:
 		if (collider)
 			collider->to_delete = true;
 	}
-
 	
 	virtual bool update() { return true; }
 	
