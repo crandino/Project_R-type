@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BugEnemy.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Enemy.h" />

@@ -19,7 +19,8 @@ class Enemy;
 
 enum enemy_types
 {
-	PATA_ENEMY
+	PATA_ENEMY,
+	BUG_ENEMY
 };
 
 class ModuleEnemy : public Module
@@ -34,6 +35,7 @@ public:
 	// List of enemy textures
 	// Level 1
 	SDL_Texture *pata_graphics;
+	SDL_Texture *bug_graphics;
 
 	// Level 2
 
@@ -45,7 +47,7 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 	
-	void addEnemy(enemy_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addEnemy(enemy_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 };
 

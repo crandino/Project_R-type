@@ -50,7 +50,7 @@ bool ModuleSceneWin::cleanUp()
 update_status ModuleSceneWin::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0.f, 0.f, NULL);
+	app->renderer->blit(graphics, 0, 0, NULL);
 
 	if (app->input->keyboard_enabled == true)
 	{

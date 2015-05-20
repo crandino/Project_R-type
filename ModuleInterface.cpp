@@ -28,8 +28,8 @@ bool ModuleInterface::start()
 	img_numbers_interface = app->textures->load("Sprites/numbers_interface.png");
 	img_bar = app->textures->load("Sprites/Shot_Bar.png");
 
-	position_interface = 32.f;
-	speed_interface = 0.333333f;
+	position_interface = 32 * SCALE_FACTOR;
+	speed_interface = (int)(0.5 * SCALE_FACTOR);
 
 	return true;
 }
@@ -52,14 +52,14 @@ bool ModuleInterface::cleanUp()
 update_status ModuleInterface::update()
 {
 	position_interface += speed_interface;
-	for ( float i = 1; i <= app->player->lives ; i++)
+	for (unsigned int i = 1; i <= app->player->lives; i++)
 	{
-		app->renderer->blit(img_life, position_interface + (8 * i), 241.f, NULL);
+		app->renderer->blit(img_life, position_interface + (8 * SCALE_FACTOR * i), 241 * SCALE_FACTOR, NULL);
 	}
 	
-	app->renderer->blit(img_beam, position_interface + 50.f, 241.f, NULL);
-	app->renderer->blit(img_hi, position_interface + 114.f, 249.f, NULL);
+	app->renderer->blit(img_beam, position_interface + 50 * SCALE_FACTOR, 241 * SCALE_FACTOR, NULL);
+	app->renderer->blit(img_hi, position_interface + 114 * SCALE_FACTOR, 249 * SCALE_FACTOR, NULL);
 	//app->renderer->blit(img_numbers_interface, 183.f, 249.f, NULL);
-	app->renderer->blit(img_bar, position_interface + 96.f, 241.f, NULL);
+	app->renderer->blit(img_bar, position_interface + 96 * SCALE_FACTOR, 241 * SCALE_FACTOR, NULL);
 	return UPDATE_CONTINUE;
 }

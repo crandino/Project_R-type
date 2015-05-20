@@ -46,7 +46,6 @@ bool ModuleSceneGameOver::start()
 	bool ret = true;
 
 	fade_to_black = false;
-
 	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Images/GameOver.png");
@@ -72,8 +71,8 @@ bool ModuleSceneGameOver::cleanUp()
 update_status ModuleSceneGameOver::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0.f, 0.f, NULL);
-	app->renderer->blit(sprite, 170.f, 100.f, &(countdown.getCurrentFrame()));
+	app->renderer->blit(graphics, 0 * SCALE_FACTOR, 0 * SCALE_FACTOR, NULL);
+	app->renderer->blit(sprite, 170 * SCALE_FACTOR, 100 * SCALE_FACTOR, &(countdown.getCurrentFrame()));
 
 	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
 	{

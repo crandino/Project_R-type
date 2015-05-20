@@ -19,8 +19,8 @@ public:
 	Application *app;
 
 	SDL_Texture *graphics;
-	Point2d<float> position;
-	Point2d<float> speed;
+	Point2d<int> position;
+	Point2d<int> speed;
 	Animation anim;
 	Uint32 born;
 	Uint32 life;
@@ -28,18 +28,20 @@ public:
 	unsigned int fx;
 	Collider *collider;
 
-	// CRZ
-	Uint32 time_to_attack;
-	Uint32 attacks;
-	Uint32 attack_frequency;
 	
-	Enemy(Application *parent) : app(parent), fx(0), born(0), life(0), fx_played(false), attacks(0), time_to_attack(0), collider(NULL)
+	Enemy(Application *parent)
 	{
+		app = parent;
+		fx = 0;
+		born = 0;
+		life = 0;
+		fx_played = false;
+		collider = NULL;
 		position.setZero();
 		speed.setZero();
 	}
 
-	~Enemy()
+	virtual ~Enemy()
 	{
 		if (collider)
 			collider->to_delete = true;

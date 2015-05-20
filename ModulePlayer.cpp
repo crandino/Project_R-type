@@ -76,13 +76,14 @@ bool ModulePlayer::start()
 {
 	LOG("Loading player...");
 
-	position.x = 50.f;
-	position.y = 100.f;
-	speed = 1.5f;
+	active = true;
+	app->input->keyboard_enabled = true;
+
+	position.x = 50 * SCALE_FACTOR;
+	position.y = 100 * SCALE_FACTOR;
+	speed = 2 * SCALE_FACTOR;
 
 	weapon_type = WEAPON_BASIC;
-
-	app->input->keyboard_enabled = true;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
@@ -95,7 +96,7 @@ bool ModulePlayer::start()
 	// ---- CRZ
 
 	// Collider to player;
-	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, app->player);
+	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, false, app->player);
 	
 	return true;
 }
@@ -111,90 +112,74 @@ bool ModulePlayer::cleanUp()
 
 update_status ModulePlayer::update()
 {
-	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (active)
 	{
-		position.y -= speed;
-
-		if (current_animation != &idle_to_upward)
+		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT  && position.y > 0)
 		{
-			idle_to_upward.reset();
-			current_animation = &idle_to_upward;
+			position.y -= speed;
+
+			if (current_animation != &idle_to_upward)
+			{
+				idle_to_upward.reset();
+				current_animation = &idle_to_upward;
+			}
 		}
-	}
 
-	if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		position.y += speed;
-
-		if (current_animation != &idle_to_downward)
+		if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 		{
-			idle_to_downward.reset();
-			current_animation = &idle_to_downward;
+			position.y += speed;
+
+			if (current_animation != &idle_to_downward)
+			{
+				idle_to_downward.reset();
+				current_animation = &idle_to_downward;
+			}
 		}
-	}
 
-	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-		if (position.x > app->scene->limit_xneg)
-		{
+		if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT &&
+			position.x > app->scene->left_limit)
 			position.x -= speed;
-		}
-		else
-		{
-			position.x -= 0.f;
-		}
-	}
 
-
-	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if (position.x < app->scene->limit_xpos)
-		{
+		if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT &&
+			position.x < app->scene->right_limit)
 			position.x += speed;
-		}
-		else
+
+		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
 		{
-			position.x += 0.f;
+			if (current_animation == &idle_to_upward)
+				current_animation = &upward_to_idle;
+
+			if (current_animation == &idle_to_downward)
+				current_animation = &downward_to_idle;
+
+			if (upward_to_idle.finished() || downward_to_idle.finished())
+			{
+				upward_to_idle.reset();
+				downward_to_idle.reset();
+				current_animation = &idle;
+			}
 		}
-	}
 
-
-	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
-	{
-		if (current_animation == &idle_to_upward)
-			current_animation = &upward_to_idle;
-
-		if (current_animation == &idle_to_downward)
-			current_animation = &downward_to_idle;
-
-		if (upward_to_idle.finished() || downward_to_idle.finished())
+		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 		{
-			upward_to_idle.reset();
-			downward_to_idle.reset();
-			current_animation = &idle;
-		}
-	}
 
-	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
-	{
-		
 			switch (weapon_type)
 			{
-				case WEAPON_BASIC:
-				{
-					app->audio->playFx(fx_shoot);
-					app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
-				} 
-				break;
-
-				case WEAPON_RIBBON:
-				{
-
-				} 
-				break;
+			case WEAPON_BASIC:
+			{
+				app->audio->playFx(fx_shoot);
+				app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
 			}
-		
-	}	
+			break;
+
+			case WEAPON_RIBBON:
+			{
+
+			}
+			break;
+			}
+		}
+	}
 
 	// Updating collider position
 	collider->setPos(position.x, position.y);
@@ -207,15 +192,19 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
-	speed = 0.f;
+	speed = 0;
 	current_animation = &explosion;
 	app->audio->playFx(fx_boom);
 	app->input->keyboard_enabled = false;
 	
-	app->scene->scroll_player_speed = 0.f;
-	app->scene->scroll_camera_speed = 0.f;
-	app->game_interface->speed_interface = 0.f;
+	app->scene->scroll_player_speed = 0;
+	app->scene->scroll_camera_speed = 0;
+	app->game_interface->speed_interface = 0;
 
-	// Finish game after explosion
-	if (!explosion.finished()) app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
+	// If player is still active, the fade occurs and the player is inactive;
+	if (active)
+	{
+		app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
+		active = false;
+	}
 }

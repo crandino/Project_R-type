@@ -39,7 +39,7 @@ struct Collider
 		to_delete(false)
 	{ }
 
-	void setPos(float x, float y)
+	void setPos(int x, int y)
 	{
 		rect.x = x;
 		rect.y = y;
@@ -66,7 +66,7 @@ public:
 	update_status update();
 	bool cleanUp();
 
-	Collider* addCollider(SDL_Rect rect, COLLIDER_TYPE type, Module *callback = NULL);
+	Collider* addCollider(SDL_Rect rect, COLLIDER_TYPE type, bool positions_scaled = true, Module *callback = NULL);
 	void drawDebug(Collider *col);
 };
 

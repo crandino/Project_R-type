@@ -13,7 +13,7 @@ ModuleCollision::ModuleCollision(Application *app, bool start_enabled) : Module(
 
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER_SHOT] = true;
 	matrix[COLLIDER_WALL][COLLIDER_ENEMY_SHOT] = true;
 	matrix[COLLIDER_WALL][COLLIDER_POWER_UP] = false;
@@ -25,7 +25,7 @@ ModuleCollision::ModuleCollision(Application *app, bool start_enabled) : Module(
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_POWER_UP] = true;
 
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = true;
+	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER_SHOT] = true;
@@ -164,8 +164,18 @@ bool ModuleCollision::cleanUp()
 	return true;
 }
 
-Collider *ModuleCollision::addCollider(SDL_Rect rect, COLLIDER_TYPE type, Module *callback)
+Collider *ModuleCollision::addCollider(SDL_Rect rect, COLLIDER_TYPE type, bool positions_scaled, Module *callback)
 {
+
+	if (positions_scaled == false)
+	{
+		rect.x *= SCALE_FACTOR;
+		rect.y *= SCALE_FACTOR;
+	}
+
+	rect.w *= SCALE_FACTOR;
+	rect.h *= SCALE_FACTOR;
+
 	Collider *ret = new Collider(rect, type, callback);
 	colliders.add(ret);
 	return ret;

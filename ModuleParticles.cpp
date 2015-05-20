@@ -20,8 +20,8 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
 	shot.anim.loop = false;
 	shot.anim.speed = 0.5f;
-	shot.speed.x = 10.f;
-	shot.speed.y = 0.f;
+	shot.speed.x = 10 * SCALE_FACTOR;
+	shot.speed.y = 0 * SCALE_FACTOR;
 	shot.life = 1500;
 
 	//Pata-pata shot
@@ -30,11 +30,11 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
 	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
 	pata_shot.anim.speed = 0.5f;
-	pata_shot.speed.x = -2.f;
+	pata_shot.speed.x = -2 * SCALE_FACTOR;
 	pata_shot.life = 4000;
 
 	//Common explosion
-	explosion.anim.frames.pushBack({ 0, 0, 34, 32});
+	explosion.anim.frames.pushBack({ 0, 0, 34, 32 });
 	explosion.anim.frames.pushBack({ 34, 0, 34, 32 });
 	explosion.anim.frames.pushBack({ 68, 0, 34, 32 });
 	explosion.anim.frames.pushBack({ 102, 0, 34, 32 });
@@ -134,7 +134,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 	}
 }
 
-void ModuleParticles::addParticle(const Particle &particle, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Particle *p = new Particle(particle);
 	p->born = SDL_GetTicks() + delay;
@@ -143,7 +143,7 @@ void ModuleParticles::addParticle(const Particle &particle, float x, float y, CO
 
 	if (collider_type != COLLIDER_NONE)
 	{
-		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, this);
+		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
 	}
 
 	active.add(p);
@@ -191,7 +191,7 @@ bool Particle::update()
 	if (collider != NULL)
 	{
 		SDL_Rect r = anim.peekCurrentFrame();
-		collider->rect = { position.x, position.y, r.w, r.h };
+		collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 	}
 
 	return ret;

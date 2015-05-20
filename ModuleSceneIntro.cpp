@@ -71,9 +71,8 @@ bool ModuleSceneIntro::cleanUp()
 update_status ModuleSceneIntro::update()
 {
 	// Draw everything
-	app->renderer->blit(graphics, 0.f, 0.f, NULL);
-
-	app->renderer->blit(sprite, 344.f, 113.f, &(numbers_coins.getCurrentFrame()));
+	app->renderer->blit(graphics, 0 * SCALE_FACTOR, 0 * SCALE_FACTOR, NULL);
+	app->renderer->blit(sprite, 344 * SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
 
 if (app->input->keyboard_enabled == true)
 {
