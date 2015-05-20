@@ -25,8 +25,8 @@ public:
 		anim.frames.pushBack({ 60, 0, 19, 17 });
 		anim.frames.pushBack({ 80, 0, 19, 17 });
 		anim.speed = 0.1f;
-		speed.x = 0;
-		speed.y = 0;
+		speed.x = 0 * SCALE_FACTOR;
+		speed.y = 0 * SCALE_FACTOR;
 		life = 28000; // In miliseconds
 		graphics = texture;
 		powerup_type = RIBBON_POWERUP;
