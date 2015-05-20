@@ -84,6 +84,7 @@ update_status ModuleSceneGameOver::update()
 	if (app->input->getKey(SDL_SCANCODE_SPACE) == KEY_UP && app->coins > 0)
 	{
 			app->input->keyboard_enabled = false;
+			app->coins--;
 			app->fade->fadeToBlack(this, app->scene, 3.0f);
 	}
 	

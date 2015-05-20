@@ -26,7 +26,7 @@ bool ModulePowerUp::start()
 
 	LOG("Loading PowerUps...");
 
-	// Adding enemies
+	// Adding power-ups
 	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 500.f, 100.f, COLLIDER_POWER_UP);
 
 	return true;
@@ -78,19 +78,19 @@ update_status ModulePowerUp::update()
 
 void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 {
-	/*doubleNode<PowerUp*> *item = active.getFirst();
+	doubleNode<PowerUp*> *item = active.getFirst();
 	while (item != NULL && item->data->collider != col1)
 		item = item->next;
 
 	if (item != NULL)
 	{
-		app->particles->addParticle(app->particles->explosion, col1->rect.x, col1->rect.y);
+		app->player->weapon_type = item->data->powerup_type;
 		delete item->data;
 		active.del(item);
-	}*/
+	}
 }
 
-void ModulePowerUp::addPowerUp(powerup_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModulePowerUp::addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	PowerUp *p = NULL;
 

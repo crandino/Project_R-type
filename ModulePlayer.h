@@ -14,7 +14,7 @@
 
 enum WEAPON_TYPE
 {
-	WEAPON_BASIC = 1,
+	WEAPON_BASIC = 0,
 	WEAPON_RIBBON
 };
 
@@ -36,7 +36,7 @@ public:
 	Animation downward_to_idle;
 	Animation explosion;
 	Point2d<float> position;
-	WEAPON_TYPE weapon_type;
+	int weapon_type;
 
 	// CRZ ----
 	DynArray<Animation*> animation_set;
