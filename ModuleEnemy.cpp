@@ -29,6 +29,8 @@ bool ModuleEnemy::start()
 
 	pata_graphics = app->textures->load("Sprites/Pata_pata.png");
 	bug_graphics = app->textures->load("Sprites/Bug.png");
+
+	fx_pata_explosion = app->audio->loadFx("Sounds/ExplosionPataPata.wav");
 	
 	LOG("Loading enemies...");
 
@@ -103,6 +105,7 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 	if (item != NULL)
 	{
 		app->particles->addParticle(app->particles->explosion, col1->rect.x, col1->rect.y);
+		app->audio->playFx(fx_pata_explosion);
 		delete item->data;
 		active.del(item);
 	}

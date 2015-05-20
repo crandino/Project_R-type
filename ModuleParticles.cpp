@@ -53,6 +53,8 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	explosion.anim.speed = 0.4f;
 	explosion.anim.loop = false;
 
+	fx_shot_explosion = 0;
+
 }
 
 ModuleParticles::~ModuleParticles()
@@ -71,6 +73,8 @@ bool ModuleParticles::start()
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
 	explosion.graphics = app->textures->load("Sprites/Common_explosion.png");
+
+	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
 	return true;
 }
@@ -138,6 +142,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 	{
 		if (tmp->data->collider == c1)
 		{
+			app->audio->playFx(fx_shot_explosion);
 			delete tmp->data;
 			active.del(tmp);
 			break;

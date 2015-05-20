@@ -48,6 +48,8 @@ public:
 	Particle pata_shot;
 	Particle explosion;
 
+	unsigned int fx_shot_explosion;
+
 	ModuleParticles(Application *app, bool start_enabled = true);
 	~ModuleParticles();
 

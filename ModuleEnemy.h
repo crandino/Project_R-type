@@ -36,6 +36,7 @@ public:
 	// Level 1
 	SDL_Texture *pata_graphics;
 	SDL_Texture *bug_graphics;
+	unsigned int fx_pata_explosion;
 
 	// Level 2
 
