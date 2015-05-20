@@ -17,7 +17,7 @@ class ModuleSceneIntro : public Module
 public:
 
 	SDL_Texture *graphics;
-	SDL_Texture *sprite;
+	SDL_Texture *numbers;
 	unsigned int fx;
 
 	Animation numbers_coins;

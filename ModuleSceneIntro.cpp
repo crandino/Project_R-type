@@ -17,7 +17,7 @@
 ModuleSceneIntro::ModuleSceneIntro(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
 	graphics = NULL;
-	sprite = NULL;
+	numbers = NULL;
 	fx = 0;
 
 	// from numbers_coins animation
@@ -47,7 +47,7 @@ bool ModuleSceneIntro::start()
 	app->input->keyboard_enabled = true;
 
 	graphics = app->textures->load("Images/rtype_intro.png");
-	sprite = app->textures->load("Sprites/numbers_blue.png");
+	numbers = app->textures->load("Sprites/numbers_blue.png");
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
 	fx = app->audio->loadFx("Sounds/Coin.ogg");
 	app->renderer->camera.x = app->renderer->camera.y = 0;
@@ -62,7 +62,7 @@ bool ModuleSceneIntro::cleanUp()
 	LOG("Unloading Intro scene");
 
 	app->textures->unload(graphics);
-	app->textures->unload(sprite);
+	app->textures->unload(numbers);
 
 	return true;
 }
@@ -72,7 +72,16 @@ update_status ModuleSceneIntro::update()
 {
 	// Draw everything
 	app->renderer->blit(graphics, 0 * SCALE_FACTOR, 0 * SCALE_FACTOR, NULL);
-	app->renderer->blit(sprite, 344 * SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
+
+	// Coins visualization
+	unsigned int units = app->coins % 10;
+	numbers_coins.current_frame = units;
+	app->renderer->blit(numbers, 348 * SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
+
+	unsigned int tens = (app->coins / 10) % 100;
+	numbers_coins.current_frame = tens;	
+	app->renderer->blit(numbers, 340* SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
+	
 
 if (app->input->keyboard_enabled == true)
 {
