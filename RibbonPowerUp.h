@@ -51,7 +51,7 @@ public:
 		if (collider != NULL)
 		{
 			SDL_Rect r = anim.peekCurrentFrame();
-			collider->rect = { position.x, position.y, r.w, r.h };
+			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 
 		return ret;
@@ -59,4 +59,4 @@ public:
 
 };
 
-#endif //!__ENEMY_H__
+#endif //!__RIBBONPOWERUP_H__

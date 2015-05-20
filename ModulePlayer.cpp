@@ -192,7 +192,7 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
-	if (col2->type != COLLIDER_POWER_UP)
+	if (col2->type != COLLIDER_POWER_UP && active == true)
 	{
 		speed = 0.f;
 		current_animation = &explosion;
@@ -203,15 +203,8 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 		app->scene->scroll_camera_speed = 0.f;
 		app->game_interface->speed_interface = 0.f;
 
-		// If player is still active, the fade occurs and the player is inactive;
-		if (active)
-		{
-			app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
-			active = false;
-		}
+		app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
+		active = false;
 	}
-	else
-	{
-		app->powerup->onCollision(col1, col2);
-	}
+	
 }
