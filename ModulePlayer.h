@@ -14,11 +14,9 @@
 
 enum WEAPON_TYPE
 {
-	WEAPON_BASIC = 1,
+	WEAPON_BASIC = 0,
 	WEAPON_RIBBON
 };
-
-
 
 class ModulePlayer : public Module
 {
@@ -36,7 +34,8 @@ public:
 	Animation downward_to_idle;
 	Animation explosion;
 	Point2d<int> position;
-	WEAPON_TYPE weapon_type;
+	//WEAPON_TYPE weapon_type;
+	int  weapon_type;
 	int speed;
 
 	// CRZ ----

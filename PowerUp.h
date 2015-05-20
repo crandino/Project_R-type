@@ -25,6 +25,7 @@ public:
 	Uint32 born;
 	Uint32 life;
 	Collider *collider;
+	int powerup_type;
 
 	PowerUp(Application *parent) : app(parent), born(0), life(0), collider(NULL)
 	{

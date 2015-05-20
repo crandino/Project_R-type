@@ -16,9 +16,9 @@ class PowerUp;
 //=================================
 // the actual class
 
-enum powerup_types
+enum POWERUP_TYPES
 {
-	RIBBON_POWERUP
+	RIBBON_POWERUP = 1
 };
 
 class ModulePowerUp : public Module
@@ -42,7 +42,8 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
-	void addPowerUp(powerup_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+
 
 };
 
