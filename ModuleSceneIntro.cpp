@@ -51,6 +51,7 @@ bool ModuleSceneIntro::start()
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
 	fx = app->audio->loadFx("Sounds/Coin.ogg");
 	app->renderer->camera.x = app->renderer->camera.y = 0;
+	numbers_coins.current_frame = app->coins;
 
 	return ret;
 }

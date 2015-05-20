@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInterface.h"
 #include "ModuleEnemy.h"
+#include "ModulePowerUp.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
@@ -35,6 +36,7 @@ bool ModuleSceneSpace::start()
 	app->game_interface->enable();
 	app->collision->enable();
 	app->enemy->enable();
+	app->powerup->enable();
 	app->particles->enable();	
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
@@ -72,6 +74,7 @@ bool ModuleSceneSpace::cleanUp()
 	app->player->disable();
 	app->game_interface->disable();
 	app->enemy->disable();
+	app->powerup->disable();
 	app->particles->disable();
 	app->collision->disable();
 	app->audio->stopAllMusic(0.1f);

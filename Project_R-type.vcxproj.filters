@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Tools">
       <UniqueIdentifier>{bdcf6cd6-e5ed-4bd8-beb0-c4d304b1a583}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PowerUps">
+      <UniqueIdentifier>{b496bc2b-bc5f-4800-9485-a113039594b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -93,6 +96,15 @@
     <ClInclude Include="ModuleInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePowerUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="RibbonPowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">
@@ -152,6 +164,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModuleInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerUp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

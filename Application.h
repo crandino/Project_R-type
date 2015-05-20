@@ -14,6 +14,7 @@ class ModuleInterface;
 class ModuleSceneSpace;
 class ModulePlayer;
 class ModuleEnemy;
+class ModulePowerUp;
 class ModuleParticles;
 class ModuleSceneIntro;
 class ModuleCollision;
@@ -49,6 +50,7 @@ public:
 	ModuleSceneSpace *scene;
 	ModulePlayer *player;
 	ModuleEnemy *enemy;
+	ModulePowerUp *powerup;
 	ModuleFadeToBlack *fade;
 	ModuleSceneIntro *scene_intro;
 	ModuleCollision *collision;
