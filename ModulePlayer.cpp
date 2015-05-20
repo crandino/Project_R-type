@@ -176,8 +176,7 @@ update_status ModulePlayer::update()
 	}
 
 	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
-	{
-		
+	{	
 			switch (weapon_type)
 			{
 				case WEAPON_BASIC:
@@ -189,11 +188,10 @@ update_status ModulePlayer::update()
 
 				case WEAPON_RIBBON:
 				{
-
+					app->particles->addParticle(app->particles->ribbon_shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
 				} 
 				break;
 			}
-		
 	}	
 
 	// Updating collider position

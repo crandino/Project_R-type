@@ -44,6 +44,7 @@ public:
 
 	//Elements
 	Particle shot;
+	Particle ribbon_shot;
 	Particle pata_shot;
 	Particle explosion;
 

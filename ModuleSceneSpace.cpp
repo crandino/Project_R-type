@@ -85,7 +85,6 @@ bool ModuleSceneSpace::cleanUp()
 update_status ModuleSceneSpace::update()
 {
 	// Move camera forward
-
 	app->player->position.x += scroll_player_speed;
 	app->renderer->camera.x -= scroll_camera_speed;
 	limit_xneg += scroll_player_speed;
