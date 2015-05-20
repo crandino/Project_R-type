@@ -43,7 +43,7 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
-	void addPowerUp(powerup_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addPowerUp(powerup_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 };
 

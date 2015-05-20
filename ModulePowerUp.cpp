@@ -90,7 +90,7 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 	}*/
 }
 
-void ModulePowerUp::addPowerUp(powerup_types type, SDL_Texture *texture, float x, float y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModulePowerUp::addPowerUp(powerup_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	PowerUp *p = NULL;
 
@@ -100,8 +100,8 @@ void ModulePowerUp::addPowerUp(powerup_types type, SDL_Texture *texture, float x
 	}
 
 	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
+	p->position.x = x * SCALE_FACTOR;
+	p->position.y = y * SCALE_FACTOR;
 
 	if (collider_type != COLLIDER_NONE)
 	{
