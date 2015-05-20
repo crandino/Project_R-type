@@ -37,9 +37,7 @@ private:
 
 public:
 
-	// No se pueden inicializar valores en las cabezeras.
-	// Habría que hacerlo de otra manera.
-	unsigned int coins = 0;
+	unsigned int coins;
 
 	ModuleWindow *window;
 	ModuleRender *renderer;

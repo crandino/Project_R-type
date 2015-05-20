@@ -93,6 +93,9 @@ bool Application::init()
 {
 	bool ret = true;
 
+	// Variables
+	coins = 0;
+
 	// We call init() for all modules
 	doubleNode<Module*>* item = list_modules.getFirst();
 
