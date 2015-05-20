@@ -29,7 +29,6 @@ bool ModulePowerUp::start()
 	// Adding enemies
 	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 500, 100, COLLIDER_POWER_UP);
 
-
 	return true;
 }
 
@@ -85,10 +84,15 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 
 	if (item != NULL)
 	{
-		app->player->weapon_type = item->data->powerup_type;
+		switch (item->data->type)
+		{
+			case(RIBBON_POWERUP) : app->player->weapon_type = WEAPON_RIBBON; break;
+		}
+
 		delete item->data;
 		active.del(item);
 	}
+	
 }
 
 void ModulePowerUp::addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)

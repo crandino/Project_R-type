@@ -32,7 +32,6 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 	countdown.frames.pushBack({ 384, 0, 48, 71 });
 	countdown.frames.pushBack({ 432, 0, 48, 71 });
 	countdown.speed = 0.014f;
-	//countdown.speed = 0.15f;
 	countdown.loop = false;
 }
 

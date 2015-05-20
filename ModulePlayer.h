@@ -14,7 +14,7 @@
 
 enum WEAPON_TYPE
 {
-	WEAPON_BASIC = 0,
+	WEAPON_BASIC,
 	WEAPON_RIBBON
 };
 
@@ -35,7 +35,7 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 	//WEAPON_TYPE weapon_type;
-	int  weapon_type;
+	int weapon_type;
 	int speed;
 
 	// CRZ ----

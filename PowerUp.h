@@ -7,6 +7,7 @@
 
 //=================================
 // included dependencies
+#include "ModulePowerUp.h"
 
 //=================================
 // the actual class
@@ -25,10 +26,11 @@ public:
 	Uint32 born;
 	Uint32 life;
 	Collider *collider;
-	int powerup_type;
+	POWERUP_TYPES type;
 
 	PowerUp(Application *parent) : app(parent), born(0), life(0), collider(NULL)
 	{
+		type = NONE_POWERUP;
 		position.setZero();
 		speed.setZero();
 	}
@@ -38,7 +40,6 @@ public:
 		if (collider)
 			collider->to_delete = true;
 	}
-
 
 	virtual bool update() { return true; }
 

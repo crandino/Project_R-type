@@ -29,7 +29,7 @@ public:
 		speed.y = 0 * SCALE_FACTOR;
 		life = 28000; // In miliseconds
 		graphics = texture;
-		powerup_type = RIBBON_POWERUP;
+		type = RIBBON_POWERUP;
 	}
 
 	~RibbonPowerUp()

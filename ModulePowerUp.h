@@ -18,7 +18,9 @@ class PowerUp;
 
 enum POWERUP_TYPES
 {
-	RIBBON_POWERUP = 1
+	NONE_POWERUP,
+
+	RIBBON_POWERUP
 };
 
 class ModulePowerUp : public Module
