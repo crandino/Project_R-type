@@ -80,6 +80,8 @@ bool ModulePlayer::start()
 	position.y = 100.f;
 	speed = 1.5f;
 
+	weapon_type = WEAPON_BASIC;
+
 	app->input->keyboard_enabled = true;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
@@ -175,8 +177,23 @@ update_status ModulePlayer::update()
 
 	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 	{
-		app->audio->playFx(fx_shoot);
-		app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
+		
+			switch (weapon_type)
+			{
+				case WEAPON_BASIC:
+				{
+					app->audio->playFx(fx_shoot);
+					app->particles->addParticle(app->particles->shot, position.x + 22.f, position.y + 3.f, COLLIDER_PLAYER_SHOT);
+				} 
+				break;
+
+				case WEAPON_RIBBON:
+				{
+
+				} 
+				break;
+			}
+		
 	}	
 
 	// Updating collider position

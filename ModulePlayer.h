@@ -12,6 +12,14 @@
 //=================================
 // the actual class
 
+enum WEAPON_TYPE
+{
+	WEAPON_BASIC = 1,
+	WEAPON_RIBBON
+};
+
+
+
 class ModulePlayer : public Module
 {
 public:
@@ -28,6 +36,7 @@ public:
 	Animation downward_to_idle;
 	Animation explosion;
 	Point2d<float> position;
+	WEAPON_TYPE weapon_type;
 
 	// CRZ ----
 	DynArray<Animation*> animation_set;
