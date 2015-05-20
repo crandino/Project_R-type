@@ -24,6 +24,16 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	shot.speed.y = 0 * SCALE_FACTOR;
 	shot.life = 1500;
 
+	//Player Ribbon shot
+	ribbon_shot.anim.frames.pushBack({ 18, 10, 24, 44 });
+	ribbon_shot.anim.frames.pushBack({ 48, 8, 26, 49 });
+	ribbon_shot.anim.frames.pushBack({ 84, 4, 33, 58 });//etc
+	ribbon_shot.anim.loop = false;
+	ribbon_shot.anim.speed = 0.5f;
+	ribbon_shot.speed.x = 10.f;
+	ribbon_shot.speed.y = 0.f;
+	ribbon_shot.life = 1500;
+
 	//Pata-pata shot
 	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
 	pata_shot.anim.frames.pushBack({ 10, 1, 7, 6 });
@@ -55,6 +65,8 @@ bool ModuleParticles::start()
 
 	// Shot particle
 	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
+	//Ribbon particle
+	ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
 	// Pata-pata shot
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
@@ -69,6 +81,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(shot.graphics);
 	app->textures->unload(pata_shot.graphics);
 	app->textures->unload(explosion.graphics);
+	app->textures->unload(ribbon_shot.graphics);
 
 	doubleNode<Particle*> *item = active.getLast();
 
