@@ -18,16 +18,6 @@
 //=================================
 // the actual code
 
-//SDL_Rect& scale(SDL_Rect rect)
-//{
-//	SDL_Rect *rectangle = &rect;
-//	rectangle->x *= SCALE_FACTOR;
-//	rectangle->y *= SCALE_FACTOR;
-//	rectangle->w *= SCALE_FACTOR;
-//	rectangle->h *= SCALE_FACTOR;
-//	return *rectangle;
-//}
-
 ModuleSceneSpace::ModuleSceneSpace(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
 	boundary_level = NULL;
@@ -51,17 +41,17 @@ bool ModuleSceneSpace::start()
 	app->particles->enable();	
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
-	// Speeds added
 	scroll_player_speed = (int)(0.5 * SCALE_FACTOR); //0.333f;
-	// Map speed IMPORTANT!
 	scroll_camera_speed = (int)(0.5 * SCALE_FACTOR); //1.75f;
-
 	left_limit = (10 * SCALE_FACTOR);
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
 
 	finish = false;
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
+
+	// Collider created to avoid proyectiles going beyond the screen.
+	proyectile_barrier = app->collision->addCollider({ SCREEN_WIDTH, 0, 1, SCREEN_HEIGHT }, COLLIDER_WALL, false);
 
 	// Wall collider
 	app->collision->addCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL, false);
@@ -220,7 +210,16 @@ bool ModuleSceneSpace::cleanUp()
 // Update: draw background
 update_status ModuleSceneSpace::update()
 {
-	//LOG("%d", app->renderer->camera.x)
+	// Move camera forward
+	app->player->position.x += scroll_player_speed;
+	app->renderer->camera.x -= scroll_camera_speed;
+	left_limit += scroll_player_speed;
+	right_limit += scroll_player_speed;
+
+	// We move the proyectile barrier.
+	proyectile_barrier->setPos(proyectile_barrier->rect.x + scroll_player_speed, 0);
+
+	// The player wins wether it reaches the end of the level. 
 	if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
 	{
 		if (finish == false)
@@ -229,11 +228,6 @@ update_status ModuleSceneSpace::update()
 			app->fade->fadeToBlack(this, app->scene_win, 2.0f);
 		}
 	}
-	// Move camera forward
-	app->player->position.x += scroll_player_speed;
-	app->renderer->camera.x -= scroll_camera_speed;
-	left_limit += scroll_player_speed;
-	right_limit += scroll_player_speed;
 
 	// Draw everything
 	app->renderer->blit(boundary_level, 0, 0, NULL);

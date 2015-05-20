@@ -22,6 +22,10 @@ public:
 	int scroll_player_speed;
 	int right_limit, left_limit;
 	bool finish;
+	// ---- ROF
+
+	//CRZ ----
+	Collider *proyectile_barrier;
 
 	ModuleSceneSpace(Application *app, bool start_enabled = true);
 	~ModuleSceneSpace();
