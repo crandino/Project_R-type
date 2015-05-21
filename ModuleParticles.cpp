@@ -67,16 +67,16 @@ bool ModuleParticles::start()
 {
 	LOG("Loading particles");
 
-	// Shot particle
+	// Weapons
 	basic_shot = app->textures->load("Sprites/Arrowhead.png");
-	//Ribbon particle
-	/*first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
-	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");*/
-	// Pata-pata shot
 	pata_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
-	// Pata-pata explosion
+
+	// Explosions
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
+
+	/*first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
+	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");*/
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -199,7 +199,6 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 	{
 		if (tmp_explosion->data->collider == c1)
 		{
-			app->audio->playFx(fx_shot_explosion);
 			delete tmp_explosion->data;
 			active_explosions.del(tmp_explosion);
 			break;
