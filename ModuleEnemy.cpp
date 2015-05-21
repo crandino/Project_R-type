@@ -13,6 +13,7 @@
 // -- Enemies --
 #include "PataEnemy.h"
 #include "BugEnemy.h"
+#include "BlasterEnemy.h"
 //=================================
 // the actual code
 
@@ -29,6 +30,7 @@ bool ModuleEnemy::start()
 
 	pata_graphics = app->textures->load("Sprites/Pata_pata.png");
 	bug_graphics = app->textures->load("Sprites/Bug.png");
+	blaster_graphics = app->textures->load("Sprites/Blaster.png");
 
 	fx_pata_explosion = app->audio->loadFx("Sounds/ExplosionPataPata.wav");
 	
@@ -43,6 +45,7 @@ bool ModuleEnemy::cleanUp()
 {
 	app->textures->unload(pata_graphics);
 	app->textures->unload(bug_graphics);
+	app->textures->unload(blaster_graphics);
 
 	doubleNode<Enemy*> *item = active.getLast();
 
@@ -62,7 +65,6 @@ update_status ModuleEnemy::preUpdate()
 	/* The intention of this method is to create enemies on the fly
 	and to eliminate each enemy that will be outside the screen limits.*/
 
-	LOG("Loading enemies...");
 	// Adding enemies
 	int wave = app->scene->proyectile_barrier->rect.x / SCALE_FACTOR;
 	switch (wave)
@@ -198,6 +200,19 @@ update_status ModuleEnemy::preUpdate()
 			last_wave = wave;
 		}
 			   break;
+
+		//  ---------------------------------------------------------------
+		//  ----------------------  BLASTER -------------------------------
+		//  ---------------------------------------------------------------
+	case(1687) :
+		// BLASTER - Group 1 ( 8 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1688, 191, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+		break;
 	}
 
 	return UPDATE_CONTINUE;	
@@ -206,8 +221,8 @@ update_status ModuleEnemy::preUpdate()
 // Update: draw enemies
 update_status ModuleEnemy::update()
 {
-	doubleNode<Enemy*>* tmp = active.getFirst();
-	doubleNode<Enemy*>* tmp_next = active.getFirst();
+	doubleNode<Enemy*> *tmp = active.getFirst();
+	doubleNode<Enemy*> *tmp_next = active.getFirst();
 
 	while (tmp != NULL)
 	{
@@ -234,6 +249,28 @@ update_status ModuleEnemy::update()
 	return UPDATE_CONTINUE;
 }
 
+update_status ModuleEnemy::postUpdate()
+{
+	doubleNode<Enemy*> *tmp = active.getFirst();
+	doubleNode<Enemy*> *tmp_next = active.getFirst();
+
+	while (tmp != NULL)
+	{
+		Enemy *e = tmp->data;
+		tmp_next = tmp->next;
+
+		if (e->position.x < app->scene->proyectile_barrier->rect.x - ((SCREEN_WIDTH + 30) * SCALE_FACTOR) )
+		{
+			delete e;
+			active.del(tmp);
+		}
+
+		tmp = tmp_next;
+	}
+
+	return UPDATE_CONTINUE;
+}
+
 void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 { 
 	doubleNode<Enemy*> *item = active.getFirst();
@@ -247,12 +284,9 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 		delete item->data;
 		active.del(item);
 	}
-
-	/*if (!app->particles->pata_explosion.anim.finished()){
-		app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);*/
 }
 
-void ModuleEnemy::addEnemy(enemy_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleEnemy::addEnemy(ENEMY_TYPES type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	Enemy *e = NULL;
 
@@ -260,6 +294,7 @@ void ModuleEnemy::addEnemy(enemy_types type, SDL_Texture *texture, int x, int y,
 	{
 	case(PATA_ENEMY) : e = new PataEnemy(app, texture); break;
 	case(BUG_ENEMY) : e = new BugEnemy(app, texture); break;
+	case(BLASTER_ENEMY) : e = new BlasterEnemy(app, texture); break;
 	}
 
 	e->born = SDL_GetTicks() + delay;

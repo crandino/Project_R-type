@@ -4,7 +4,9 @@
 #define __MODULEENEMY_H__
 //=================================
 // forward declared dependencies
-class PataEnemy;
+//class BlasterEnemy;
+//class BugEnemy;
+//class PataEnemy;
 class Enemy;
 //=================================
 // included dependencies
@@ -17,10 +19,11 @@ class Enemy;
 //=================================
 // the actual class
 
-enum enemy_types
+enum ENEMY_TYPES
 {
 	PATA_ENEMY,
-	BUG_ENEMY
+	BUG_ENEMY,
+	BLASTER_ENEMY
 };
 
 class ModuleEnemy : public Module
@@ -37,6 +40,7 @@ public:
 	// Level 1
 	SDL_Texture *pata_graphics;
 	SDL_Texture *bug_graphics;
+	SDL_Texture *blaster_graphics;
 	unsigned int fx_pata_explosion;
 
 	// Level 2
@@ -47,10 +51,11 @@ public:
 	bool start();
 	update_status preUpdate();
 	update_status update();
+	update_status postUpdate();
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 	
-	void addEnemy(enemy_types type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addEnemy(ENEMY_TYPES type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 
 };
 

@@ -14,6 +14,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="BasicShot.h" />
+    <ClInclude Include="BlasterEnemy.h" />
     <ClInclude Include="BugEnemy.h" />
     <ClInclude Include="CommonExplosion.h" />
     <ClInclude Include="DList.h" />

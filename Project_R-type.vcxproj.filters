@@ -135,6 +135,9 @@
     <ClInclude Include="RibbonShot.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="BlasterEnemy.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">
