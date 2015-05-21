@@ -69,12 +69,9 @@ update_status ModuleEnemy::preUpdate()
 	// Adding enemies
 	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
 	{
-<<<<<<< HEAD
 	// PATA-PATA -----------------------------------------------------
-	case(440) :
-=======
 	case(450) :
->>>>>>> origin/master
+
 		// PATA-PATA - Group 1 ( 4 units )
 		addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
