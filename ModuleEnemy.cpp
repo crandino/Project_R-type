@@ -85,11 +85,11 @@ update_status ModuleEnemy::preUpdate()
 		addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
 		break;
 
-	case(680) :
+	case(700) :
 		// PATA-PATA - Group 3 ( 3 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 680, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 720, 165, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 750, 180, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 700, 160, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 725, 170, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
 		break;
 	
 	case(740) :
