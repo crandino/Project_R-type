@@ -96,15 +96,15 @@ update_status ModuleEnemy::preUpdate()
 	
 	case(740) :
 		// PATA-PATA - Group 4 ( 12 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 740, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 760, 70, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 790, 75, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 815, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 850, 55, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 875, 75, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 890, 85, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 955, 65, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 990, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
