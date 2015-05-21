@@ -48,11 +48,11 @@ private:
 	SDL_Texture *player_explosion;
 	SDL_Texture *common_explosion;
 
-	DList<Weapons*> active_weapons;
 	DList<Explosions*> active_explosions;
 
 public:
-
+	
+	DList<Weapons*> active_weapons;
 	unsigned int fx_shot_explosion;
 
 	ModuleParticles(Application *app, bool start_enabled = true);

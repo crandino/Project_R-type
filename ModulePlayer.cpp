@@ -72,6 +72,7 @@ bool ModulePlayer::start()
 	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
+	last_shot = 0;
 
 	weapon_type = BASIC_SHOT;
 
@@ -163,7 +164,10 @@ update_status ModulePlayer::update()
 
 				case RIBBON_SHOT:
 				{
-					app->particles->addWeapon(RIBBON_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					if ((last_shot + 600) < (SDL_GetTicks()) || last_shot == 0 || app->particles->active_weapons.count() == 0){
+						last_shot = SDL_GetTicks();
+						app->particles->addWeapon(RIBBON_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					}
 					break;
 				}
 			}

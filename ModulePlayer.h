@@ -30,6 +30,7 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 	WEAPON_TYPES weapon_type;
+	int last_shot;
 	
 	int speed;
 
