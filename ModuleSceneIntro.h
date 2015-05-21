@@ -31,6 +31,12 @@ public:
 	update_status update();
 	bool cleanUp();
 
+	// DTM animation intro
+	unsigned int ticks, seconds;
+	SDL_Texture *title;
+	SDL_Rect rects[20];
+	SDL_Rect source_rects[20];
+
 };
 
 #endif // !__MODULESCENEINTRO_H__
