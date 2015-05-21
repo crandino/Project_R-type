@@ -16,7 +16,6 @@ class RibbonShot : public Weapons
 public:
 
 	Animation second_ribbon_shot;
-	Animation* current_animation;
 
 	RibbonShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
@@ -48,12 +47,10 @@ public:
 		second_ribbon_shot.frames.pushBack({ 1410, 12, 64, 32 });
 		second_ribbon_shot.frames.pushBack({ 1474, 12, 64, 32 });
 		anim.loop = false;
-		second_ribbon_shot.loop = false;
-		anim.speed = 0.5f;
-		second_ribbon_shot.speed = 0.5f;
-		speed.x = 0.5 * SCALE_FACTOR;
-		speed.y = 0 * SCALE_FACTOR;
-		speed.x = 0.5 * SCALE_FACTOR;
+		second_ribbon_shot.loop = true;
+		anim.speed = 0.7f;
+		second_ribbon_shot.speed = 0.17f;
+		speed.x = 0.9 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		/*life = 1500;
 		second_ribbon_shot.life = 1500;*/
@@ -68,10 +65,22 @@ public:
 	{
 		bool ret = true;
 
-		
+		if (current_animation->finished() && current_animation != &second_ribbon_shot)
+		{
+			current_animation = &second_ribbon_shot;
+			position.y += 12 * SCALE_FACTOR;
+			position.x += 56 * SCALE_FACTOR;
+		}
+
+		if (current_animation == &second_ribbon_shot)
+		{
+			//position.y += 12 * SCALE_FACTOR;
+			position.x += 5 * SCALE_FACTOR;
+		}
+
 		if (collider != NULL)
 		{
-			SDL_Rect r = anim.peekCurrentFrame();
+			SDL_Rect r = current_animation->peekCurrentFrame();
 			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 
