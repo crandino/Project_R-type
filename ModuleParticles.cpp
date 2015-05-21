@@ -30,8 +30,8 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	ribbon_shot.anim.frames.pushBack({ 84, 4, 33, 58 });//etc
 	ribbon_shot.anim.loop = false;
 	ribbon_shot.anim.speed = 0.5f;
-	ribbon_shot.speed.x = 10;
-	ribbon_shot.speed.y = 0;
+	ribbon_shot.speed.x = 10 * SCALE_FACTOR;
+	ribbon_shot.speed.y = 0 * SCALE_FACTOR;
 	ribbon_shot.life = 1500;
 
 	//Pata-pata shot

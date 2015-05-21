@@ -93,12 +93,63 @@ update_status ModuleEnemy::preUpdate()
 		break;
 	
 	case(740) :
-		// PATA-PATA - Group 4 ( 22 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 740, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 750, 180, COLLIDER_ENEMY);
+		// PATA-PATA - Group 4 ( 12 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 740, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 760, 70, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 790, 75, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 815, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 850, 55, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 875, 75, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 890, 85, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 955, 65, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 990, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
 		break;
+
+	case(1200) :
+		// PATA-PATA - Group 5 ( 3 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1200, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1265, 165, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1285, 180, COLLIDER_ENEMY);
+		break;
+
+	case(1400) :
+		// PATA-PATA - Group 6 ( 1 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1400, 175, COLLIDER_ENEMY);
+		break;
+
+	case(1525) :
+		// PATA-PATA - Group 7 ( 2 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1525, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1565, 175, COLLIDER_ENEMY);
+		break;
+
+	case(1680) :
+		// PATA-PATA - Group 8 ( 1 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1680, 175, COLLIDER_ENEMY);
+		break;
+
+	case(1935) :
+		// PATA-PATA - Group 9 ( 2 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1935, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1980, 175, COLLIDER_ENEMY);
+		break;
+
+	case(2165) :
+		// PATA-PATA - Group 10 ( 2 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 2165, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 2215, 175, COLLIDER_ENEMY);
+		break;
+
+	// And there are more inside the mothership.
+
 	}
+
+
+
+
 	// We elimante enemies that were at the left side of the screen.
 	/*doubleNode<Enemy*> *tmp = active.getFirst();
 	doubleNode<Enemy*> *tmp_next;
