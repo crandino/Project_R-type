@@ -69,6 +69,7 @@ update_status ModuleEnemy::preUpdate()
 	// Adding enemies
 	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
 	{
+	// PATA-PATA -----------------------------------------------------
 	case(440) :
 		// PATA-PATA - Group 1 ( 4 units )
 		addEnemy(PATA_ENEMY, pata_graphics, 440, 60, COLLIDER_ENEMY);
@@ -144,6 +145,16 @@ update_status ModuleEnemy::preUpdate()
 		break;
 
 	// And there are more inside the mothership.
+
+	// BUG -----------------------------------------------------
+	case(1132) :
+		// BUG - Group 1 ( 5 units)
+		addEnemy(BUG_ENEMY, bug_graphics, 1132, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 1172, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 1204, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 1236, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 1268, 160, COLLIDER_ENEMY);
+
 
 	}
 
