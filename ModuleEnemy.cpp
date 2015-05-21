@@ -110,39 +110,39 @@ update_status ModuleEnemy::preUpdate()
 		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
 		break;
 
-	case(1150) :
+	case(850) :
 		// PATA-PATA - Group 5 ( 3 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1150, 50, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1265, 65, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1285, 55, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1050, 50, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1130, 75, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1170, 55, COLLIDER_ENEMY);
+		break;
+
+	case(950) :
+		// PATA-PATA - Group 6 ( 1 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1180, 150, COLLIDER_ENEMY);
+		break;
+
+	case(1100) :
+		// PATA-PATA - Group 7 ( 2 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1225, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1295, 190, COLLIDER_ENEMY);
+		break;
+
+	case(1280) :
+		// PATA-PATA - Group 8 ( 1 units )
+		addEnemy(PATA_ENEMY, pata_graphics, 1380, 40, COLLIDER_ENEMY);
 		break;
 
 	case(1400) :
-		// PATA-PATA - Group 6 ( 1 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1400, 175, COLLIDER_ENEMY);
-		break;
-
-	case(1525) :
-		// PATA-PATA - Group 7 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1525, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1565, 175, COLLIDER_ENEMY);
-		break;
-
-	case(1680) :
-		// PATA-PATA - Group 8 ( 1 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1680, 175, COLLIDER_ENEMY);
-		break;
-
-	case(1935) :
 		// PATA-PATA - Group 9 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1935, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1980, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1435, 195, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1480, 195, COLLIDER_ENEMY);
 		break;
 
-	case(2165) :
+	case(1550) :
 		// PATA-PATA - Group 10 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 2165, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 2215, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1565, 150, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1515, 120, COLLIDER_ENEMY);
 		break;
 
 	// And there are more inside the mothership.

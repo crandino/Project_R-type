@@ -44,10 +44,10 @@ public:
 		anim.frames.pushBack({ 448, 0, 32, 32 });
 		anim.frames.pushBack({ 480, 0, 32, 32 });
 
-		path.pushBack({ 520 * SCALE_FACTOR, 35 * SCALE_FACTOR });
-		path.pushBack({ 470 * SCALE_FACTOR, 30 * SCALE_FACTOR });
-		path.pushBack({ 445 * SCALE_FACTOR, 35 * SCALE_FACTOR });
-		path.pushBack({ 240 * SCALE_FACTOR, 300 * SCALE_FACTOR });
+		path.pushBack({ 540 * SCALE_FACTOR, 35 * SCALE_FACTOR });
+		path.pushBack({ 450 * SCALE_FACTOR, 30 * SCALE_FACTOR });
+		path.pushBack({ 410 * SCALE_FACTOR, 35 * SCALE_FACTOR });
+		path.pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
 
 	
 		path_position = 0;
