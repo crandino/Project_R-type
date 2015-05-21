@@ -80,12 +80,6 @@ update_status ModuleEnemy::preUpdate()
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 450, 50, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 450, 180, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 550, 50, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 550, 180, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 650, 50, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 650, 180, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 			  break;
@@ -145,7 +139,7 @@ update_status ModuleEnemy::preUpdate()
 			  break;
 
 	case(875) :
-		// PATA-PATA - Group 6 ( 1 unit )
+		// PATA-PATA - Group 6 ( 1 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 875, 95, COLLIDER_ENEMY);
@@ -154,7 +148,7 @@ update_status ModuleEnemy::preUpdate()
 			  break;
 
 	case(900) :
-		// PATA-PATA - Group 7 ( 2 unit )
+		// PATA-PATA - Group 7 ( 2 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 900, 95, COLLIDER_ENEMY);
@@ -164,7 +158,7 @@ update_status ModuleEnemy::preUpdate()
 			  break;
 
 	case(945) :
-		// PATA-PATA - Group 8 ( 1 unit )
+		// PATA-PATA - Group 8 ( 1 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 945, 95, COLLIDER_ENEMY);
@@ -183,7 +177,7 @@ update_status ModuleEnemy::preUpdate()
 			  break;
 
 	case(1040) :
-		// PATA-PATA - Group 10 ( 2 unit )
+		// PATA-PATA - Group 10 ( 2 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 1040, 60, COLLIDER_ENEMY);
@@ -195,7 +189,7 @@ update_status ModuleEnemy::preUpdate()
 	// Inside the mothership ------------------------------------------------------
 
 	case(2445) :
-		// PATA-PATA - Group 11 ( 2 unit )
+		// PATA-PATA - Group 11 ( 2 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 2245, 160, COLLIDER_ENEMY);
@@ -205,7 +199,7 @@ update_status ModuleEnemy::preUpdate()
 		}
 			   break;
 	case(2540) :
-		// PATA-PATA - Group 11 ( 2 unit )
+		// PATA-PATA - Group 11 ( 2 units )
 		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 2540, 60, COLLIDER_ENEMY);
@@ -218,7 +212,7 @@ update_status ModuleEnemy::preUpdate()
 		//  ------------------------  BUG ---------------------------------
 		//  ---------------------------------------------------------------
 	case(550) :
-		// BUG - Group 1 ( 2 unit )
+		// BUG - Group 1 ( 2 units )
 		if (last_wave != wave)
 		{
 			addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
@@ -231,14 +225,72 @@ update_status ModuleEnemy::preUpdate()
 		//  ----------------------  BLASTER -------------------------------
 		//  ---------------------------------------------------------------
 	case(1687) :
-		// BLASTER - Group 1 ( 8 unit )
+		// BLASTER - Group 1 ( 8 units )
 		if (last_wave != wave)
 		{
 			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 32, COLLIDER_ENEMY);
-			//addEnemy(BLASTER_ENEMY, blaster_graphics, 1688, 191, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 193, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 193, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 177, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 177, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 		break;
+
+	case(2008) :
+		// BLASTER - Group 2 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2008, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2038, 16, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+
+	case(2391) :
+		// BLASTER - Group 3 ( 8 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2391, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2424, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2456, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2488, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2520, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2552, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2584, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2616, 16, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+
+	case(2711) :
+		// BLASTER - Group 4 ( 4 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 177, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 177, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+
+	case(3031) :
+		// BLASTER - Group 5 ( 6 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3031, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3064, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3096, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3128, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3160, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3192, 32, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 	}
 
 	return UPDATE_CONTINUE;	

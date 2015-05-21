@@ -43,7 +43,7 @@ public:
 		graphics = texture;
 
 		attacks = 0;
-		attack_frequency = 1000;
+		attack_frequency = 10000;
 	}
 
 	~BlasterEnemy()
