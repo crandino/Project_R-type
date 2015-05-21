@@ -19,6 +19,7 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 {
 	graphics = NULL;
 	sprite = NULL;
+	numbers = NULL;
 
 	// from countdown animation
 	countdown.frames.pushBack({ 0, 0, 48, 71 });
@@ -33,6 +34,20 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 	countdown.frames.pushBack({ 432, 0, 48, 71 });
 	countdown.speed = 0.014f;
 	countdown.loop = false;
+
+	// from numbers_coins animation
+	numbers_coins.frames.pushBack({ 0, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 8, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 16, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 24, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 32, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 40, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 48, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 56, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 64, 0, 8, 7 });
+	numbers_coins.frames.pushBack({ 72, 0, 8, 7 });
+	numbers_coins.speed = 0.0f;
+	numbers_coins.loop = false;
 }
 
 ModuleSceneGameOver::~ModuleSceneGameOver()
@@ -49,8 +64,10 @@ bool ModuleSceneGameOver::start()
 
 	graphics = app->textures->load("Images/GameOver.png");
 	sprite = app->textures->load("Sprites/Numbers.png");
+	numbers = app->textures->load("Sprites/numbers_blue2.png");
 	app->audio->playMusic("Sounds/CountdownMusic.wav", 1.0f);
 	app->renderer->camera.x = app->renderer->camera.y = 0;
+	numbers_coins.current_frame = app->coins;
 	countdown.reset();
 	return ret;
 }
@@ -62,6 +79,7 @@ bool ModuleSceneGameOver::cleanUp()
 
 	app->textures->unload(graphics);
 	app->textures->unload(sprite);
+	app->textures->unload(numbers);
 
 	return true;
 }
@@ -73,7 +91,16 @@ update_status ModuleSceneGameOver::update()
 	app->renderer->blit(graphics, 0 * SCALE_FACTOR, 0 * SCALE_FACTOR, NULL);
 	app->renderer->blit(sprite, 170 * SCALE_FACTOR, 100 * SCALE_FACTOR, &(countdown.getCurrentFrame()));
 
-	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
+	// Coins visualization
+	unsigned int units = app->coins % 10;
+	numbers_coins.current_frame = units;
+	app->renderer->blit(numbers, 248 * SCALE_FACTOR, 217 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
+
+	unsigned int tens = (app->coins / 10) % 100;
+	numbers_coins.current_frame = tens;
+	app->renderer->blit(numbers, 240 * SCALE_FACTOR, 217 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
+
+	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP && app->coins < 99)
 	{
 		app->audio->playFx(app->scene_intro->fx);
 		app->coins++;

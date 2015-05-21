@@ -115,7 +115,7 @@ if (app->input->keyboard_enabled == true)
 		app->fade->fadeToBlack(this, app->scene, 3.0f);
 		
 	}
-	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP)
+	if (app->input->getKey(SDL_SCANCODE_C) == KEY_UP && app->coins < 99)
 	{
 		app->audio->playFx(fx);
 		app->coins++;
