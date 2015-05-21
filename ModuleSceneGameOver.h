@@ -18,7 +18,9 @@ public:
 
 	SDL_Texture *graphics;
 	SDL_Texture *sprite;
+	SDL_Texture *numbers;
 
+	Animation numbers_coins;
 	Animation countdown;
 	bool fade_to_black;
 
