@@ -15,6 +15,8 @@ class PataShot : public Weapons
 
 public:
 
+	bool oriented;
+
 	PataShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
 		//Pata-pata shot
@@ -24,12 +26,18 @@ public:
 		anim.frames.pushBack({ 19, 1, 7, 6 });
 		anim.frames.pushBack({ 27, 1, 7, 6 });
 		anim.speed = 0.5f;
-		speed.x = -2 * SCALE_FACTOR;
 		life = 4000;
 		type = PATA_SHOT;
+		oriented = false;
+	}
 
-		float dx = app->player->position.x - position.x;
-		float dy = app->player->position.y - position.y;
+	~PataShot()
+	{ }
+
+	void orientTo(const Point2d<int> &destiny_position)
+	{
+		float dx = destiny_position.x - position.x;
+		float dy = destiny_position.y - position.y;
 
 		float angle = atan(dy / dx);
 
@@ -49,9 +57,6 @@ public:
 		speed.y = (int)(sin(angle) * speed_value);
 	}
 
-	~PataShot()
-	{ }
-
 	bool update()
 	{
 		bool ret = true;
@@ -64,6 +69,12 @@ public:
 		else
 			if (anim.finished())
 				ret = false;
+
+		if (oriented == false)
+		{
+			orientTo(app->player->position);
+			oriented = true;
+		}
 
 		position.x += speed.x;
 		position.y += speed.y;

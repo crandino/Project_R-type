@@ -16,6 +16,9 @@ class BlasterEnemy : public Enemy
 private:
 
 	float angle;
+	Uint32 time_to_attack;
+	Uint32 attacks;
+	Uint32 attack_frequency;
 
 public:
 
@@ -28,6 +31,7 @@ public:
 		anim.frames.pushBack({ 35, 19, 17, 15 });
 		anim.frames.pushBack({ 18, 19, 17, 15 });
 		anim.frames.pushBack({ 1, 19, 17, 15 });
+		anim.frames.pushBack({ 1, 2, 17, 15 });
 		anim.frames.pushBack({ 18, 2, 17, 15 });
 		anim.frames.pushBack({ 35, 2, 17, 15 });
 		anim.frames.pushBack({ 52, 2, 17, 15 });
@@ -37,6 +41,9 @@ public:
 		angle = 0;
 		life = 50000; // In miliseconds
 		graphics = texture;
+
+		attacks = 0;
+		attack_frequency = 1000;
 	}
 
 	~BlasterEnemy()
@@ -49,8 +56,6 @@ public:
 
 		float dx = position_destiny.x - position.x;
 		float dy = position_destiny.y - position.y;
-
-		//LOG("%d %d", position_destiny.x - position.x, position_destiny.y - position.y);		
 
 		angle = atan(dy / dx);
 
@@ -82,23 +87,30 @@ public:
 
 		orientTo(app->player->position);
 
-		if (position.y < SCREEN_HEIGHT * SCALE_FACTOR)
+		if (position.y < (SCREEN_HEIGHT * SCALE_FACTOR) / 2)
 		{
-			if (angle > 180.0f && angle <= 270.0f)
-				anim.current_frame = 6;
-			else if (angle <= 365.9f && angle > 270.0f)
+			if (angle >= M_PI && angle <= M_PI * 3 / 2)
+				anim.current_frame = 5;		
+			else if (angle < M_PI * 2 && angle > M_PI * 3 / 2)
 				anim.current_frame = 0;
 			else
 				anim.current_frame = (int)(angle * (180.0f / M_PI) / (360.0f / anim.frames.getNumElements()));
 		}
 		else
 		{
-			if (angle < 180.0f && angle >= 90.0f)
-				anim.current_frame = 7;
-			else if (angle > 0.0f && angle < 90.0f)
-				anim.current_frame = 12;
+			if (angle <= M_PI && angle >= M_PI / 2)
+				anim.current_frame = 6;
+			else if (angle >= 0.0f && angle < M_PI / 2)
+				anim.current_frame = 11;
 			else
-				anim.current_frame = (int)((angle * (180.0f / M_PI) / (360.0f / anim.frames.getNumElements())) + 6) ;
+				anim.current_frame = (int)(angle * (180.0f / M_PI) / (360.0f / anim.frames.getNumElements()));
+		}
+
+		time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
+		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
+		{
+			app->particles->addWeapon(PATA_SHOT, position.x + 4 * SCALE_FACTOR, position.y, COLLIDER_ENEMY_SHOT);
+			attacks++;
 		}
 
 		if (collider != NULL)

@@ -56,6 +56,12 @@ enum main_states
 
 int main(int argc, char** argv)
 {
+
+	int i = 10;
+	if (i < 100) { LOG("Primer if"); }
+	else if (i < 1000) { LOG("Segundo if"); }
+	else { LOG("Tercero..."); }
+
 	LOG("Starting game '%s'...", TITLE);
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;

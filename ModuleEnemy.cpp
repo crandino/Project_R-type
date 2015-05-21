@@ -80,6 +80,12 @@ update_status ModuleEnemy::preUpdate()
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 450, 50, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 450, 180, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 550, 50, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 550, 180, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 650, 50, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 650, 180, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 			  break;
@@ -229,7 +235,7 @@ update_status ModuleEnemy::preUpdate()
 		if (last_wave != wave)
 		{
 			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 32, COLLIDER_ENEMY);
-			addEnemy(BLASTER_ENEMY, blaster_graphics, 1688, 191, COLLIDER_ENEMY);
+			//addEnemy(BLASTER_ENEMY, blaster_graphics, 1688, 191, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 		break;
