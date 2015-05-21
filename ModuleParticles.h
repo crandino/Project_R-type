@@ -42,6 +42,7 @@ class ModuleParticles : public Module
 private:
 
 	SDL_Texture *basic_shot;
+	SDL_Texture *ribbon_shot;
 	SDL_Texture *pata_shot;
 
 	SDL_Texture *player_explosion;
@@ -51,10 +52,6 @@ private:
 	DList<Explosions*> active_explosions;
 
 public:
-
-	//Elements
-	/*Particle first_ribbon_shot;
-	Particle second_ribbon_shot;*/
 
 	unsigned int fx_shot_explosion;
 

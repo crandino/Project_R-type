@@ -154,22 +154,18 @@ update_status ModulePlayer::update()
 		{
 			switch (weapon_type)
 			{
-			case BASIC_SHOT:
-			{
-				app->audio->playFx(fx_shoot);
-				app->particles->addWeapon(BASIC_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-				break;
-			}
-
-			/*case WEAPON_RIBBON:
-			{
-				app->particles->addParticle(app->particles->first_ribbon_shot, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-				if (app->particles->first_ribbon_shot.anim.finished())
+				case BASIC_SHOT:
 				{
-					app->particles->addParticle(app->particles->second_ribbon_shot, position.x + 22 + 56 * SCALE_FACTOR, position.y - 28 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					app->audio->playFx(fx_shoot);
+					app->particles->addWeapon(BASIC_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					break;
 				}
-			}
-			break;*/
+
+				case RIBBON_SHOT:
+				{
+					app->particles->addWeapon(RIBBON_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					break;
+				}
 			}
 		}
 	}

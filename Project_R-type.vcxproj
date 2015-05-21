@@ -44,6 +44,7 @@
     <ClInclude Include="Point2d.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="RibbonPowerUp.h" />
+    <ClInclude Include="RibbonShot.h" />
     <ClInclude Include="Weapons.h" />
   </ItemGroup>
   <ItemGroup>

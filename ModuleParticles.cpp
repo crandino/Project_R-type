@@ -11,6 +11,7 @@
 #include "ModuleCollision.h"
 // -- Weapons -- 
 #include "BasicShot.h"
+#include "RibbonShot.h"
 #include "PataShot.h"
 // -- Explosions -- 
 #include "PlayerExplosion.h"
@@ -20,44 +21,7 @@
 // the actual code
 
 ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(app, start_enabled)
-{ 
-	//Player Ribbon shot
-	/*first_ribbon_shot.anim.frames.pushBack({ 0, 0, 12, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 12, 0, 18, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 30, 0, 27, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 57, 0, 37, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 94, 0, 47, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 141, 0, 55, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 196, 0, 61, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 257, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 321, 0, 70, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 391, 0, 81, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 472, 0, 87, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 559, 0, 92, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 651, 0, 98, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 749, 0, 101, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 850, 0, 112, 56 });
-	second_ribbon_shot.anim.frames.pushBack({ 962, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1026, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1090, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1154, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1218, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1282, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1346, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1410, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1474, 12, 64, 32 });
-	first_ribbon_shot.anim.loop = false;
-	second_ribbon_shot.anim.loop = false;
-	first_ribbon_shot.anim.speed = 0.5f;
-	second_ribbon_shot.anim.speed = 0.5f;
-	first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
-	first_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	second_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
-	second_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	first_ribbon_shot.life = 1500;
-	second_ribbon_shot.life = 1500;*/
-
-}
+{ }
 
 ModuleParticles::~ModuleParticles()
 { }
@@ -70,8 +34,7 @@ bool ModuleParticles::start()
 	// Shot particle
 	basic_shot = app->textures->load("Sprites/Arrowhead.png");
 	//Ribbon particle
-	/*first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
-	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");*/
+	ribbon_shot = app->textures->load("Sprites/Ribbon_shot.png");
 	// Pata-pata shot
 	pata_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
@@ -216,6 +179,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	switch (type)
 	{
 		case(BASIC_SHOT) : p = new BasicShot(app, basic_shot); break;
+		case(RIBBON_SHOT) : p = new RibbonShot(app, ribbon_shot); break;
 		case(PATA_SHOT) : p = new PataShot(app, pata_shot); break;
 	}
 
@@ -225,6 +189,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 
 	if (collider_type != COLLIDER_NONE)
 	{
+
 		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
 	}
 
