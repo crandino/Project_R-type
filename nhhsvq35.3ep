@@ -6,7 +6,6 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-#include "ModulePlayer.h"
 #include "Application.h"
 #include "ModuleCollision.h"
 //=================================
@@ -26,40 +25,35 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	shot.life = 1500;
 
 	//Player Ribbon shot
-	first_ribbon_shot.anim.frames.pushBack({ 0, 0, 16, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 16, 0, 24, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 40, 0, 32, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 72, 0, 40, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 112, 0, 48, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 160, 0, 56, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 216, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 280, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 344, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 408, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 472, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 536, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 600, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 664, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 728, 0, 64, 56 });
-	second_ribbon_shot.anim.frames.pushBack({ 792, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 856, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 920, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 984, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1048, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1112, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1176, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1240, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1304, 12, 62, 32 });
-	first_ribbon_shot.anim.loop = false;
-	second_ribbon_shot.anim.loop = false;
-	first_ribbon_shot.anim.speed = 0.5f;
-	second_ribbon_shot.anim.speed = 0.5f;
-	first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
-	first_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	second_ribbon_shot.speed.x = 5 * SCALE_FACTOR;
-	second_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	first_ribbon_shot.life = 1500;
-	second_ribbon_shot.life = 1500;
+	ribbon_shot.anim.frames.pushBack({ 0, 0, 16, 56 });
+	ribbon_shot.anim.frames.pushBack({ 16, 0, 24, 56 });
+	ribbon_shot.anim.frames.pushBack({ 40, 0, 32, 56 });
+	ribbon_shot.anim.frames.pushBack({ 72, 0, 40, 56 });
+	ribbon_shot.anim.frames.pushBack({ 112, 0, 48, 56 });
+	ribbon_shot.anim.frames.pushBack({ 160, 0, 56, 56 });
+	ribbon_shot.anim.frames.pushBack({ 216, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 280, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 344, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 408, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 472, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 536, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 600, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 664, 0, 64, 56 });
+	ribbon_shot.anim.frames.pushBack({ 728, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 792, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 856, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 920, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 984, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 1048, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 1112, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 1176, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 1240, 11, 64, 32 });
+	ribbon_shot.anim.frames.pushBack({ 1304, 11, 62, 32 });
+	ribbon_shot.anim.loop = false;
+	ribbon_shot.anim.speed = 0.5f;
+	ribbon_shot.speed.x = 10;
+	ribbon_shot.speed.y = 0;
+	ribbon_shot.life = 1500;
 
 	//Pata-pata shot
 	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
@@ -95,8 +89,7 @@ bool ModuleParticles::start()
 	// Shot particle
 	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
 	//Ribbon particle
-	first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
-	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
+	ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
 	// Pata-pata shot
 	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
@@ -113,8 +106,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(shot.graphics);
 	app->textures->unload(pata_shot.graphics);
 	app->textures->unload(explosion.graphics);
-	app->textures->unload(first_ribbon_shot.graphics);
-	app->textures->unload(second_ribbon_shot.graphics);
+	app->textures->unload(ribbon_shot.graphics);
 
 	doubleNode<Particle*> *item = active.getLast();
 
