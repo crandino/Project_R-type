@@ -54,7 +54,7 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	second_ribbon_shot.anim.loop = false;
 	first_ribbon_shot.anim.speed = 0.5f;
 	second_ribbon_shot.anim.speed = 0.5f;
-	first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
+	first_ribbon_shot.speed.x = 1 * SCALE_FACTOR;
 	first_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
 	second_ribbon_shot.speed.x = 5 * SCALE_FACTOR;
 	second_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
