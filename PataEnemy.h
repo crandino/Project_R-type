@@ -36,7 +36,7 @@ public:
 		speed.x = -1 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
-		attack_frequency = (rand() % 6 + 2) * 1000; // In miliseconds
+		attack_frequency = (rand() % 5 + 5) * 1000; // In miliseconds
 		attacks = 0;
 		graphics = texture;
 	}
@@ -70,7 +70,7 @@ public:
 		time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
 		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 		{
-			app->particles->addParticle(app->particles->pata_shot, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
+			shootAt(app->player->position);
 			attacks++;
 		}
 		// ---- CRZ
@@ -82,6 +82,32 @@ public:
 		}
 
 		return ret;
+	}
+
+	void shootAt(const Point2d<int> &destiny_position)
+	{
+		float dx = destiny_position.x - position.x;
+		float dy = destiny_position.y - position.y;
+
+		float angle = atan(dy / dx);
+
+		if (dx >= 0)
+		{
+			if (dy < 0)
+				angle = 2.0f * M_PI + angle;
+		}
+		else
+		{
+			angle = M_PI + angle;
+		}
+
+		int speed_value = 1.5 * SCALE_FACTOR;
+
+		app->particles->pata_shot.speed.x = (int)(cos(angle) * speed_value);
+		app->particles->pata_shot.speed.y = (int)(sin(angle) * speed_value);
+
+		app->particles->addParticle(app->particles->pata_shot, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
+
 	}
 
 };
