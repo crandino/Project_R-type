@@ -174,7 +174,8 @@ update_status ModulePlayer::update()
 	collider->setPos(position.x, position.y);
 
 	//Draw everything
-	app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
+	if (active)
+		app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
 
 	return UPDATE_CONTINUE;
 }
