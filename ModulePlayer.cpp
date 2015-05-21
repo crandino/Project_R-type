@@ -56,17 +56,6 @@ Module(app, start_enabled)
 	downward_to_idle.loop = false;
 	animation_set.pushBack(&downward_to_idle);
 
-	// explosion animation
-	explosion.frames.pushBack({ 1, 343, 32, 28 });
-	explosion.frames.pushBack({ 35, 343, 32, 28 });
-	explosion.frames.pushBack({ 68, 343, 32, 28 });
-	explosion.frames.pushBack({ 101, 343, 32, 28 });
-	explosion.frames.pushBack({ 134, 343, 32, 28 });
-	explosion.frames.pushBack({ 167, 343, 32, 28 });
-	explosion.frames.pushBack({ 233, 343, 32, 28 });
-	explosion.speed = 0.4f;
-	explosion.loop = false;
-	animation_set.pushBack(&explosion);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -84,7 +73,7 @@ bool ModulePlayer::start()
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 
-	weapon_type = WEAPON_BASIC;
+	weapon_type = BASIC_SHOT;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
@@ -165,14 +154,14 @@ update_status ModulePlayer::update()
 		{
 			switch (weapon_type)
 			{
-			case WEAPON_BASIC:
+			case BASIC_SHOT:
 			{
 				app->audio->playFx(fx_shoot);
-				app->particles->addParticle(app->particles->shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				app->particles->addWeapon(BASIC_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				break;
 			}
-			break;
 
-			case WEAPON_RIBBON:
+			/*case WEAPON_RIBBON:
 			{
 				app->particles->addParticle(app->particles->first_ribbon_shot, position.x + 22 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				if (app->particles->first_ribbon_shot.anim.finished())
@@ -180,7 +169,7 @@ update_status ModulePlayer::update()
 					app->particles->addParticle(app->particles->second_ribbon_shot, position.x + 22 * SCALE_FACTOR, position.y - 28 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				}
 			}
-			break;
+			break;*/
 			}
 		}
 	}
@@ -198,14 +187,14 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
 	if (col2->type != COLLIDER_POWER_UP && active == true)
 	{
-		speed = 0.f;
-		current_animation = &explosion;
+		speed = 0;
+		app->particles->addExplosion(PLAYER_EXPLOSION, position.x, position.y, COLLIDER_NONE);
 		app->audio->playFx(fx_boom);
 		app->input->keyboard_enabled = false;
 
-		app->scene->scroll_player_speed = 0.f;
-		app->scene->scroll_camera_speed = 0.f;
-		app->game_interface->speed_interface = 0.f;
+		app->scene->scroll_player_speed = 0;
+		app->scene->scroll_camera_speed = 0;
+		app->game_interface->speed_interface = 0;
 
 		app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
 		active = false;

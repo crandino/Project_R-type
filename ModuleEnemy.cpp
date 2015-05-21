@@ -209,7 +209,7 @@ void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
 
 	if (item != NULL)
 	{
-		app->particles->addParticle(app->particles->explosion, col1->rect.x, col1->rect.y);
+		app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
 		app->audio->playFx(fx_pata_explosion);
 		delete item->data;
 		active.del(item);

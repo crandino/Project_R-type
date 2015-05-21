@@ -9,78 +9,55 @@
 #include "ModulePlayer.h"
 #include "Application.h"
 #include "ModuleCollision.h"
+// -- Weapons -- 
+#include "BasicShot.h"
+#include "PataShot.h"
+// -- Explosions -- 
+#include "PlayerExplosion.h"
+#include "CommonExplosion.h"
+
 //=================================
 // the actual code
 
-ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(app, start_enabled), graphics(NULL)
+ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(app, start_enabled)
 { 
-	//Player ship shot
-	//shot.fx = app->audio->loadFx("LOQUESEA");
-	shot.anim.frames.pushBack({ 215, 85, 14, 12 });
-	shot.anim.frames.pushBack({ 233, 85, 11, 12 });
-	shot.anim.frames.pushBack({ 249, 85, 15, 12 });
-	shot.anim.loop = false;
-	shot.anim.speed = 0.5f;
-	shot.speed.x = 10 * SCALE_FACTOR;
-	shot.speed.y = 0 * SCALE_FACTOR;
-	shot.life = 1500;
+	////Player Ribbon shot
+	//first_ribbon_shot.anim.frames.pushBack({ 0, 0, 16, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 16, 0, 24, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 40, 0, 32, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 72, 0, 40, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 112, 0, 48, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 160, 0, 56, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 216, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 280, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 344, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 408, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 472, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 536, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 600, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 664, 0, 64, 56 });
+	//first_ribbon_shot.anim.frames.pushBack({ 728, 0, 64, 56 });
+	//second_ribbon_shot.anim.frames.pushBack({ 792, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 856, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 920, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 984, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 1048, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 1112, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 1176, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 1240, 12, 64, 32 });
+	//second_ribbon_shot.anim.frames.pushBack({ 1304, 12, 62, 32 });
+	//first_ribbon_shot.anim.loop = false;
+	//second_ribbon_shot.anim.loop = true;
+	//first_ribbon_shot.anim.speed = 0.5f;
+	//second_ribbon_shot.anim.speed = 0.5f;
+	//first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
+	//first_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
+	//second_ribbon_shot.speed.x = 5 * SCALE_FACTOR;
+	//second_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
+	//first_ribbon_shot.life = 1500;
+	//second_ribbon_shot.life = 1500;
 
-	//Player Ribbon shot
-	first_ribbon_shot.anim.frames.pushBack({ 0, 0, 16, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 16, 0, 24, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 40, 0, 32, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 72, 0, 40, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 112, 0, 48, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 160, 0, 56, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 216, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 280, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 344, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 408, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 472, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 536, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 600, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 664, 0, 64, 56 });
-	first_ribbon_shot.anim.frames.pushBack({ 728, 0, 64, 56 });
-	second_ribbon_shot.anim.frames.pushBack({ 792, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 856, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 920, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 984, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1048, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1112, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1176, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1240, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1304, 12, 62, 32 });
-	first_ribbon_shot.anim.loop = false;
-	second_ribbon_shot.anim.loop = false;
-	first_ribbon_shot.anim.speed = 0.5f;
-	second_ribbon_shot.anim.speed = 0.5f;
-	first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;
-	first_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	second_ribbon_shot.speed.x = 5 * SCALE_FACTOR;
-	second_ribbon_shot.speed.y = 0 * SCALE_FACTOR;
-	first_ribbon_shot.life = 1500;
-	second_ribbon_shot.life = 1500;
-
-	//Pata-pata shot
-	pata_shot.anim.frames.pushBack({ 1, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 10, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 19, 1, 7, 6 });
-	pata_shot.anim.frames.pushBack({ 27, 1, 7, 6 });
-	pata_shot.anim.speed = 0.5f;
-	pata_shot.speed.x = -2 * SCALE_FACTOR;
-	pata_shot.life = 4000;
-
-	//Common explosion
-	explosion.anim.frames.pushBack({ 0, 0, 34, 32 });
-	explosion.anim.frames.pushBack({ 34, 0, 34, 32 });
-	explosion.anim.frames.pushBack({ 68, 0, 34, 32 });
-	explosion.anim.frames.pushBack({ 102, 0, 34, 32 });
-	explosion.anim.frames.pushBack({ 136, 0, 34, 32 });
-	explosion.anim.frames.pushBack({ 170, 0, 34, 32 });
-	explosion.anim.speed = 0.4f;
-	explosion.anim.loop = false;
-
-	fx_shot_explosion = 0;
+	//fx_shot_explosion = 0;
 
 }
 
@@ -93,14 +70,15 @@ bool ModuleParticles::start()
 	LOG("Loading particles");
 
 	// Shot particle
-	shot.graphics = app->textures->load("Sprites/Arrowhead.png");
+	basic_shot = app->textures->load("Sprites/Arrowhead.png");
 	//Ribbon particle
-	first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
-	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
+	/*first_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");
+	second_ribbon_shot.graphics = app->textures->load("Sprites/Ribbon_shot.png");*/
 	// Pata-pata shot
-	pata_shot.graphics = app->textures->load("Sprites/Basic_shot_pata_pata.png");
+	pata_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	// Pata-pata explosion
-	explosion.graphics = app->textures->load("Sprites/Common_explosion.png");
+	common_explosion = app->textures->load("Sprites/Common_explosion.png");
+	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -110,51 +88,90 @@ bool ModuleParticles::start()
 bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
-	app->textures->unload(shot.graphics);
-	app->textures->unload(pata_shot.graphics);
-	app->textures->unload(explosion.graphics);
+	app->textures->unload(basic_shot);
+	app->textures->unload(pata_shot);
+	app->textures->unload(player_explosion);
+	app->textures->unload(common_explosion);
+	/*app->textures->unload(explosion.graphics);
 	app->textures->unload(first_ribbon_shot.graphics);
-	app->textures->unload(second_ribbon_shot.graphics);
+	app->textures->unload(second_ribbon_shot.graphics);*/
 
-	doubleNode<Particle*> *item = active.getLast();
+	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
 
-	while (item != NULL)
+	while (item_weapon != NULL)
 	{
-		delete item->data;
-		item = item->previous;
+		delete item_weapon->data;
+		item_weapon = item_weapon->previous;
 	}
 
-	active.clear();
+	active_weapons.clear();
+
+	doubleNode<Explosions*> *item_explosion = active_explosions.getLast();
+
+	while (item_explosion != NULL)
+	{
+		delete item_explosion->data;
+		item_explosion = item_explosion->previous;
+	}
+
+	active_explosions.clear();
+
 	return true;
 }
 
 // Update: draw background
 update_status ModuleParticles::update()
 {
-	doubleNode<Particle*>* tmp = active.getFirst();
-	doubleNode<Particle*>* tmp_next = active.getFirst();
+	doubleNode<Weapons*>* tmp_weapon = active_weapons.getFirst();
+	doubleNode<Weapons*>* tmp_weapon_next = active_weapons.getFirst();
 
-	while (tmp != NULL)
+	while (tmp_weapon != NULL)
 	{
-		Particle *p = tmp->data;
-		tmp_next = tmp->next;
+		Weapons *w = tmp_weapon->data;
+		tmp_weapon_next = tmp_weapon->next;
 
-		if (p->update() == false)
+		if (w->update() == false)
 		{
-			delete p;
-			active.del(tmp);
+			delete w;
+			active_weapons.del(tmp_weapon);
 		}
-		else if (SDL_GetTicks() >= p->born)
+		else if (SDL_GetTicks() >= w->born)
 		{
-			app->renderer->blit(p->graphics, p->position.x, p->position.y, &(p->anim.getCurrentFrame()));
-			if (p->fx_played == false)
+			app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
+			if (w->fx_played == false)
 			{
-				p->fx_played = true;
-				app->audio->playFx(p->fx);
+				w->fx_played = true;
+				app->audio->playFx(w->fx);
 			}
 		}
 
-		tmp = tmp_next;
+		tmp_weapon = tmp_weapon_next;
+	}
+
+	doubleNode<Explosions*>* tmp_explosion = active_explosions.getFirst();
+	doubleNode<Explosions*>* tmp_explosion_next = active_explosions.getFirst();
+
+	while (tmp_explosion != NULL)
+	{
+		Explosions *x = tmp_explosion->data;
+		tmp_explosion_next = tmp_explosion->next;
+
+		if (x->update() == false)
+		{
+			delete x;
+			active_explosions.del(tmp_explosion);
+		}
+		else if (SDL_GetTicks() >= x->born)
+		{
+			app->renderer->blit(x->graphics, x->position.x, x->position.y, &(x->anim.getCurrentFrame()));
+			if (x->fx_played == false)
+			{
+				x->fx_played = true;
+				app->audio->playFx(x->fx);
+			}
+		}
+
+		tmp_explosion = tmp_explosion_next;
 	}
 
 	return UPDATE_CONTINUE;
@@ -162,28 +179,48 @@ update_status ModuleParticles::update()
 
 void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 {
-	// Explosion for laser hitting wall or something
-	//app->particles->addParticle(explosion, c1->rect.x, c1->rect.y);
 
-	doubleNode<Particle*> *tmp = active.getFirst();
+	doubleNode<Weapons*> *tmp_weapon = active_weapons.getFirst();
 
-	while (tmp != NULL)
+	while (tmp_weapon != NULL)
 	{
-		if (tmp->data->collider == c1)
+		if (tmp_weapon->data->collider == c1)
 		{
 			app->audio->playFx(fx_shot_explosion);
-			delete tmp->data;
-			active.del(tmp);
+			delete tmp_weapon->data;
+			active_weapons.del(tmp_weapon);
 			break;
 		}
 
-		tmp = tmp->next;
+		tmp_weapon = tmp_weapon->next;
+	}
+
+	doubleNode<Explosions*> *tmp_explosion = active_explosions.getFirst();
+
+	while (tmp_explosion != NULL)
+	{
+		if (tmp_explosion->data->collider == c1)
+		{
+			app->audio->playFx(fx_shot_explosion);
+			delete tmp_explosion->data;
+			active_explosions.del(tmp_explosion);
+			break;
+		}
+
+		tmp_explosion = tmp_explosion->next;
 	}
 }
 
-void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	Particle *p = new Particle(particle);
+	Weapons *p = NULL;
+
+	switch (type)
+	{
+		case(BASIC_SHOT) : p = new BasicShot(app, basic_shot); break;
+		case(PATA_SHOT) : p = new PataShot(app, pata_shot); break;
+	}
+
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
@@ -193,53 +230,27 @@ void ModuleParticles::addParticle(const Particle &particle, int x, int y, COLLID
 		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
 	}
 
-	active.add(p);
+	active_weapons.add(p);
 }
 
-// -------------------------------------------------------
-// -------------------------------------------------------
-
-Particle::Particle() : fx(0), born(0), life(0), fx_played(false), collider(NULL)
+void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	position.setZero();
-	speed.setZero();
-}
+	Explosions *p = NULL;
 
-Particle::Particle(const Particle &p) : graphics(p.graphics), anim(p.anim), position(p.position), speed(p.speed), fx_played(false)
-{
-	collider = p.collider;
-	fx = p.fx;
-	born = p.born;
-	life = p.life;
-}
-
-Particle::~Particle()
-{
-	if (collider != NULL)
-		collider->to_delete = true;
-}
-
-bool Particle::update()
-{
-	bool ret = true;
-
-	if (life > 0)
+	switch (type)
 	{
-		if ((SDL_GetTicks() - born) > life)
-			ret = false;
-	}
-	else
-		if (anim.finished())
-			ret = false;
-
-	position.x += speed.x;
-	position.y += speed.y;
-
-	if (collider != NULL)
-	{
-		SDL_Rect r = anim.peekCurrentFrame();
-		collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
+	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
+	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	}
 
-	return ret;
+	p->born = SDL_GetTicks() + delay;
+	p->position.x = x;
+	p->position.y = y;
+
+	if (collider_type != COLLIDER_NONE)
+	{
+		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
+	}
+
+	active_explosions.add(p);
 }

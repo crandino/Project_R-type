@@ -86,7 +86,7 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 	{
 		switch (item->data->type)
 		{
-			case(RIBBON_POWERUP) : app->player->weapon_type = WEAPON_RIBBON; break;
+			case(RIBBON_POWERUP) : app->player->weapon_type = RIBBON_SHOT; break;
 		}
 
 		delete item->data;

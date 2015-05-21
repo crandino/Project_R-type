@@ -4,7 +4,6 @@
 #define __POWERUP_H__
 //=================================
 // forward declared dependencies
-
 //=================================
 // included dependencies
 #include "ModulePowerUp.h"

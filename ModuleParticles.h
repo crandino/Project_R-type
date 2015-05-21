@@ -4,32 +4,36 @@
 #define __MODULEPARTICLES_H__
 //=================================
 // forward declared dependencies
+class Weapons;
+class Explosions;
 //=================================
 // included dependencies
 #include "Module.h"
-#include "ModuleCollision.h"
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
+#include "ModuleCollision.h"
+
+//#include "Explosions.h"
+//#include "Weapons.h"
 //=================================
 // the actual class
 
-struct Particle
+enum WEAPON_TYPES
 {
-	Animation anim;
-	SDL_Texture *graphics;
-	Collider *collider;
-	unsigned int fx;
-	Point2d<int> position;
-	Point2d<int> speed;
-	Uint32 born;
-	Uint32 life;
-	bool fx_played;
+	NONE_WEAPON,
 
-	Particle();
-	Particle(const Particle &p);
-	~Particle();
-	bool update();
+	BASIC_SHOT,
+	RIBBON_SHOT,
+	PATA_SHOT
+};
+
+enum EXPLOSION_TYPES
+{
+	NONE_EXPLOSION,
+
+	COMMON_EXPLOSION,
+	PLAYER_EXPLOSION
 };
 
 class ModuleParticles : public Module
@@ -37,17 +41,20 @@ class ModuleParticles : public Module
 
 private:
 
-	SDL_Texture *graphics;
-	DList<Particle*> active;
+	SDL_Texture *basic_shot;
+	SDL_Texture *pata_shot;
+
+	SDL_Texture *player_explosion;
+	SDL_Texture *common_explosion;
+
+	DList<Weapons*> active_weapons;
+	DList<Explosions*> active_explosions;
 
 public:
 
 	//Elements
-	Particle shot;
-	Particle first_ribbon_shot;
-	Particle second_ribbon_shot;
-	Particle pata_shot;
-	Particle explosion;
+	/*Particle first_ribbon_shot;
+	Particle second_ribbon_shot;*/
 
 	unsigned int fx_shot_explosion;
 
@@ -59,7 +66,8 @@ public:
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
-	void addParticle(const Particle &particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addWeapon(WEAPON_TYPES type , int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
 };
 
 #endif //!__MODULEPARTICLES_H__

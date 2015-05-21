@@ -13,10 +13,13 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BasicShot.h" />
     <ClInclude Include="BugEnemy.h" />
+    <ClInclude Include="CommonExplosion.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Explosions.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -36,9 +39,12 @@
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="PataEnemy.h" />
+    <ClInclude Include="PataShot.h" />
+    <ClInclude Include="PlayerExplosion.h" />
     <ClInclude Include="Point2d.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="RibbonPowerUp.h" />
+    <ClInclude Include="Weapons.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt" />

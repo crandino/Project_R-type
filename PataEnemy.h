@@ -70,7 +70,8 @@ public:
 		time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
 		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 		{
-			shootAt(app->player->position);
+			//shootAt(app->player->position);
+			app->particles->addWeapon(PATA_SHOT, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
 			attacks++;
 		}
 		// ---- CRZ
@@ -84,7 +85,7 @@ public:
 		return ret;
 	}
 
-	void shootAt(const Point2d<int> &destiny_position)
+	/*void shootAt(const Point2d<int> &destiny_position)
 	{
 		float dx = destiny_position.x - position.x;
 		float dy = destiny_position.y - position.y;
@@ -106,9 +107,9 @@ public:
 		app->particles->pata_shot.speed.x = (int)(cos(angle) * speed_value);
 		app->particles->pata_shot.speed.y = (int)(sin(angle) * speed_value);
 
-		app->particles->addParticle(app->particles->pata_shot, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
+		app->particles->addWeapon(PATA_SHOT, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
 
-	}
+	}*/
 
 };
 

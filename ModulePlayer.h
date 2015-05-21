@@ -4,6 +4,7 @@
 #define __MODULEPOINT2D_H__
 //=================================
 // forward declared dependencies
+enum WEAPON_TYPES;
 //=================================
 // included dependencies
 #include "Module.h"
@@ -11,12 +12,6 @@
 #include "Point2d.h"
 //=================================
 // the actual class
-
-enum WEAPON_TYPE
-{
-	WEAPON_BASIC,
-	WEAPON_RIBBON
-};
 
 class ModulePlayer : public Module
 {
@@ -34,8 +29,8 @@ public:
 	Animation downward_to_idle;
 	Animation explosion;
 	Point2d<int> position;
-	//WEAPON_TYPE weapon_type;
-	int weapon_type;
+	WEAPON_TYPES weapon_type;
+	
 	int speed;
 
 	// CRZ ----
