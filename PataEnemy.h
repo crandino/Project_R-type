@@ -33,7 +33,7 @@ public:
 		anim.frames.pushBack({ 203, 6, 21, 24 });
 		anim.frames.pushBack({ 236, 6, 21, 24 });
 		anim.speed = 0.3f;
-		speed.x = -1 * SCALE_FACTOR;
+		speed.x = -1.5 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
 		attack_frequency = (rand() % 5 + 5) * 1000; // In miliseconds

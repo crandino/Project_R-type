@@ -69,20 +69,20 @@ update_status ModuleEnemy::preUpdate()
 	// Adding enemies
 	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
 	{
-	case(440) :
+	case(450) :
 		// PATA-PATA - Group 1 ( 4 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 440, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 470, 55, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 500, 40, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 535, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
 		break;
 
-	case(510) :
+	case(515) :
 		// PATA-PATA - Group 2 ( 4 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 510, 185, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 540, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 570, 190, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 600, 180, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 580, 190, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
 		break;
 
 	case(680) :
