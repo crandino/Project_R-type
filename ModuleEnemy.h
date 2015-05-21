@@ -28,6 +28,7 @@ class ModuleEnemy : public Module
 
 private:
 
+	int last_wave;
 	DList<Enemy*> active;
 	
 public:

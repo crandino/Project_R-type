@@ -33,7 +33,7 @@ public:
 		anim.frames.pushBack({ 203, 6, 21, 24 });
 		anim.frames.pushBack({ 236, 6, 21, 24 });
 		anim.speed = 0.3f;
-		speed.x = -1.5 * SCALE_FACTOR;
+		speed.x = -1.6 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
 		attack_frequency = (rand() % 5 + 5) * 1000; // In miliseconds
@@ -84,32 +84,6 @@ public:
 
 		return ret;
 	}
-
-	/*void shootAt(const Point2d<int> &destiny_position)
-	{
-		float dx = destiny_position.x - position.x;
-		float dy = destiny_position.y - position.y;
-
-		float angle = atan(dy / dx);
-
-		if (dx >= 0)
-		{
-			if (dy < 0)
-				angle = 2.0f * M_PI + angle;
-		}
-		else
-		{
-			angle = M_PI + angle;
-		}
-
-		int speed_value = 1.5 * SCALE_FACTOR;
-
-		app->particles->pata_shot.speed.x = (int)(cos(angle) * speed_value);
-		app->particles->pata_shot.speed.y = (int)(sin(angle) * speed_value);
-
-		app->particles->addWeapon(PATA_SHOT, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
-
-	}*/
 
 };
 

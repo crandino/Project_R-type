@@ -34,11 +34,7 @@ bool ModuleEnemy::start()
 	
 	LOG("Loading enemies...");
 
-	/*addEnemy(BUG_ENEMY, bug_graphics, 650, 120, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 690, 120, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 730, 120, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 770, 120, COLLIDER_ENEMY);
-	addEnemy(BUG_ENEMY, bug_graphics, 810, 120, COLLIDER_ENEMY);*/
+	last_wave = 0;
 	
 	return true;
 }
@@ -66,118 +62,143 @@ update_status ModuleEnemy::preUpdate()
 	/* The intention of this method is to create enemies on the fly
 	and to eliminate each enemy that will be outside the screen limits.*/
 
+	LOG("Loading enemies...");
 	// Adding enemies
-	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
+	int wave = app->scene->proyectile_barrier->rect.x / SCALE_FACTOR;
+	switch (wave)
 	{
-	// PATA-PATA -----------------------------------------------------
+		//  ---------------------------------------------------------------
+		//	---------------------  PATA-PATA ------------------------------
+		//  ---------------------------------------------------------------
 	case(450) :
-
 		// PATA-PATA - Group 1 ( 4 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
-		break;
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
 	case(515) :
 		// PATA-PATA - Group 2 ( 4 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 580, 190, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
-		break;
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 580, 190, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
 	case(700) :
 		// PATA-PATA - Group 3 ( 3 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 700, 160, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 725, 170, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
-		break;
-	
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 700, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 725, 170, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
 	case(740) :
 		// PATA-PATA - Group 4 ( 12 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
-		break;
-
-	case(850) :
-		// PATA-PATA - Group 5 ( 3 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1050, 50, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1130, 75, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1170, 55, COLLIDER_ENEMY);
-		break;
-
-	case(950) :
-		// PATA-PATA - Group 6 ( 1 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1180, 150, COLLIDER_ENEMY);
-		break;
-
-	case(1100) :
-		// PATA-PATA - Group 7 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1225, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1295, 190, COLLIDER_ENEMY);
-		break;
-
-	case(1280) :
-		// PATA-PATA - Group 8 ( 1 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1380, 40, COLLIDER_ENEMY);
-		break;
-
-	case(1400) :
-		// PATA-PATA - Group 9 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1435, 195, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1480, 195, COLLIDER_ENEMY);
-		break;
-
-	case(1550) :
-		// PATA-PATA - Group 10 ( 2 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1565, 150, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1515, 120, COLLIDER_ENEMY);
-		break;
-
-	// And there are more inside the mothership.
-
-	// BUG -----------------------------------------------------
-	case(560) :
-		// BUG - Group 1 ( 5 units)
-		addEnemy(BUG_ENEMY, bug_graphics, 600, 160, COLLIDER_ENEMY);
-		addEnemy(BUG_ENEMY, bug_graphics, 638, 160, COLLIDER_ENEMY);
-		addEnemy(BUG_ENEMY, bug_graphics, 676, 160, COLLIDER_ENEMY);
-		addEnemy(BUG_ENEMY, bug_graphics, 714, 160, COLLIDER_ENEMY);
-		addEnemy(BUG_ENEMY, bug_graphics, 752, 160, COLLIDER_ENEMY);
-
-
-	}
-
-
-
-
-	// We elimante enemies that were at the left side of the screen.
-	/*doubleNode<Enemy*> *tmp = active.getFirst();
-	doubleNode<Enemy*> *tmp_next;
-
-	while (tmp != NULL)
-	{
-		Enemy *e = tmp->data;
-		tmp_next = tmp->next;
-
-		if (e->position.x < (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR) - SCREEN_WIDTH)
+		if (last_wave != wave)
 		{
-			delete e;
-			active.del(tmp);
+			addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
+			last_wave = wave;
 		}
-		tmp = tmp_next;
-	}*/
+			  break;
+
+	case(840) :
+		// PATA-PATA - Group 5 ( 3 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 840, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 895, 100, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 915, 70, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
+	case(875) :
+		// PATA-PATA - Group 6 ( 1 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 875, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
+	case(900) :
+		// PATA-PATA - Group 7 ( 2 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 900, 95, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 940, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
+	case(945) :
+		// PATA-PATA - Group 8 ( 1 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 945, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
+	case(975) :
+		// PATA-PATA - Group 9 ( 2 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 975, 50, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1020, 170, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
+
+	case(1040) :
+		// PATA-PATA - Group 10 ( 2 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 1040, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1090, 90, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+		break;
+
+		// And there are more inside the mothership.
+
+		//  ---------------------------------------------------------------
+		//  ------------------------  BUG ---------------------------------
+		//  ---------------------------------------------------------------
+	case(550) :
+		// BUG - Group 1 ( 2 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 600, 90, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+	}
 
 	return UPDATE_CONTINUE;	
 }

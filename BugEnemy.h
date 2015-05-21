@@ -21,6 +21,7 @@ private:
 public:
 
 	int speed_value;
+
 	DynArray<Point2d<int>> path;
 	unsigned int path_position;
 
@@ -48,7 +49,6 @@ public:
 		path.pushBack({ 450 * SCALE_FACTOR, 30 * SCALE_FACTOR });
 		path.pushBack({ 410 * SCALE_FACTOR, 35 * SCALE_FACTOR });
 		path.pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
-
 	
 		path_position = 0;
 		anim.speed = 0.0f;
