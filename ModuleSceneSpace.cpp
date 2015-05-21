@@ -224,6 +224,8 @@ update_status ModuleSceneSpace::update()
 		if (finish == false)
 		{	
 			finish = true;
+			scroll_camera_speed = 0;
+			scroll_player_speed = 0;
 			app->fade->fadeToBlack(this, app->scene_win, 2.0f);
 		}
 	}
