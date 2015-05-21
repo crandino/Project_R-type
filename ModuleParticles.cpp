@@ -49,9 +49,9 @@ ModuleParticles::ModuleParticles(Application *app, bool start_enabled) : Module(
 	second_ribbon_shot.anim.frames.pushBack({ 1282, 12, 64, 32 });
 	second_ribbon_shot.anim.frames.pushBack({ 1346, 12, 64, 32 });
 	second_ribbon_shot.anim.frames.pushBack({ 1410, 12, 64, 32 });
-	second_ribbon_shot.anim.frames.pushBack({ 1474, 12, 62, 32 });
+	second_ribbon_shot.anim.frames.pushBack({ 1474, 12, 64, 32 });
 	first_ribbon_shot.anim.loop = false;
-	second_ribbon_shot.anim.loop = true;
+	second_ribbon_shot.anim.loop = false;
 	first_ribbon_shot.anim.speed = 0.5f;
 	second_ribbon_shot.anim.speed = 0.5f;
 	first_ribbon_shot.speed.x = 0.5 * SCALE_FACTOR;

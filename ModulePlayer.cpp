@@ -169,12 +169,12 @@ update_status ModulePlayer::update()
 			{
 				app->audio->playFx(fx_shoot);
 				app->particles->addParticle(app->particles->shot, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				break;
 			}
-			break;
 
 			case WEAPON_RIBBON:
 			{
-				app->particles->addParticle(app->particles->first_ribbon_shot, position.x + 22 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				app->particles->addParticle(app->particles->first_ribbon_shot, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				if (app->particles->first_ribbon_shot.anim.finished())
 				{
 					app->particles->addParticle(app->particles->second_ribbon_shot, position.x + 22 + 56 * SCALE_FACTOR, position.y - 28 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
