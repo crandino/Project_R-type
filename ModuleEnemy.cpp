@@ -69,7 +69,9 @@ update_status ModuleEnemy::preUpdate()
 	// Adding enemies
 	switch (app->scene->proyectile_barrier->rect.x / SCALE_FACTOR)
 	{
+	// PATA-PATA -----------------------------------------------------
 	case(450) :
+
 		// PATA-PATA - Group 1 ( 4 units )
 		addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
@@ -94,25 +96,25 @@ update_status ModuleEnemy::preUpdate()
 	
 	case(740) :
 		// PATA-PATA - Group 4 ( 12 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 740, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 760, 70, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 790, 75, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 815, 60, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 850, 55, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 875, 75, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 890, 85, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 955, 65, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 990, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
 		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
 		break;
 
-	case(1200) :
+	case(1150) :
 		// PATA-PATA - Group 5 ( 3 units )
-		addEnemy(PATA_ENEMY, pata_graphics, 1200, 175, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1265, 165, COLLIDER_ENEMY);
-		addEnemy(PATA_ENEMY, pata_graphics, 1285, 180, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1150, 50, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1265, 65, COLLIDER_ENEMY);
+		addEnemy(PATA_ENEMY, pata_graphics, 1285, 55, COLLIDER_ENEMY);
 		break;
 
 	case(1400) :
@@ -144,6 +146,16 @@ update_status ModuleEnemy::preUpdate()
 		break;
 
 	// And there are more inside the mothership.
+
+	// BUG -----------------------------------------------------
+	case(560) :
+		// BUG - Group 1 ( 5 units)
+		addEnemy(BUG_ENEMY, bug_graphics, 600, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 638, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 676, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 714, 160, COLLIDER_ENEMY);
+		addEnemy(BUG_ENEMY, bug_graphics, 752, 160, COLLIDER_ENEMY);
+
 
 	}
 
