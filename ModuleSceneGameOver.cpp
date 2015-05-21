@@ -142,6 +142,7 @@ update_status ModuleSceneGameOver::update()
 		if (fade_to_black == false)
 		{
 			fade_to_black = true;
+			app->audio->stopAllMusic(1.0f);
 			app->fade->fadeToBlack(this, app->scene_intro, 3.0f);
 		}
 	}
