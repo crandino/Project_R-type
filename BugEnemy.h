@@ -62,7 +62,7 @@ public:
 		path5->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
 		path5->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
 		path5->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
-		path5->pushBack({ 1500 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path5->pushBack({ 1500 * SCALE_FACTOR, 100 * SCALE_FACTOR });
 		path_set.pushBack(path5);
 
 		path_found = false;
