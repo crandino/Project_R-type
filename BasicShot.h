@@ -27,7 +27,7 @@ public:
 		anim.speed = 0.5f;
 		speed.x = 10 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
-		life = 1500;
+		life = 750;
 		type = BASIC_SHOT;
 	}
 
