@@ -26,7 +26,7 @@ public:
 		anim.frames.pushBack({ 19, 1, 7, 6 });
 		anim.frames.pushBack({ 27, 1, 7, 6 });
 		anim.speed = 0.5f;
-		life = 4000;
+		life = 8000;
 		type = PATA_SHOT;
 		oriented = false;
 	}
@@ -51,7 +51,7 @@ public:
 			angle = M_PI + angle;
 		}
 
-		int speed_value = 1.5 * SCALE_FACTOR;
+		int speed_value = 1.6 * SCALE_FACTOR;
 
 		speed.x = (int)(cos(angle) * speed_value);
 		speed.y = (int)(sin(angle) * speed_value);

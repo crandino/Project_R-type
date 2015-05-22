@@ -27,7 +27,7 @@ public:
 		anim.speed = 0.1f;
 		speed.x = 0 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
-		life = 28000; // In miliseconds
+		life = 100000; // In miliseconds
 		graphics = texture;
 		type = RIBBON_POWERUP;
 	}

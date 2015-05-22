@@ -49,9 +49,7 @@ bool ModuleSceneSpace::start()
 	finish = false;
 
 	app->renderer->camera.x = app->renderer->camera.y = 0;
-
-	// Collider created to avoid proyectiles going beyond the screen.
-	proyectile_barrier = app->collision->addCollider({ SCREEN_WIDTH, 0, 1, SCREEN_HEIGHT }, COLLIDER_WALL, false);
+	origin = 0;
 
 	// Wall collider
 	app->collision->addCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL, false);
@@ -215,8 +213,7 @@ update_status ModuleSceneSpace::update()
 	left_limit += scroll_player_speed;
 	right_limit += scroll_player_speed;
 
-	// We move the proyectile barrier.
-	proyectile_barrier->setPos(proyectile_barrier->rect.x + scroll_player_speed, 0);
+	origin += scroll_player_speed;
 
 	// The player wins wether it reaches the end of the level. 
 	if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))

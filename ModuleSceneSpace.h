@@ -26,6 +26,7 @@ public:
 
 	//CRZ ----
 	Collider *proyectile_barrier;
+	int origin;
 
 	ModuleSceneSpace(Application *app, bool start_enabled = true);
 	~ModuleSceneSpace();

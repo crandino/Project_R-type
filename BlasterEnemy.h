@@ -43,7 +43,7 @@ public:
 		graphics = texture;
 
 		attacks = 0;
-		attack_frequency = ((rand() % 3) + (rand() % 3)) * 1000;
+		attack_frequency = attack_frequency = ((rand() % 3) + 3) * 1000;
 	
 	}
 

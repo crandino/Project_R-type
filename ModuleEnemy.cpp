@@ -66,7 +66,8 @@ update_status ModuleEnemy::preUpdate()
 	and to eliminate each enemy that will be outside the screen limits.*/
 
 	// Adding enemies
-	int wave = app->scene->proyectile_barrier->rect.x / SCALE_FACTOR;
+	
+	int wave = (app->scene->origin / SCALE_FACTOR + SCREEN_WIDTH);
 	switch (wave)
 	{
 		//  ---------------------------------------------------------------
@@ -337,7 +338,9 @@ update_status ModuleEnemy::postUpdate()
 		Enemy *e = tmp->data;
 		tmp_next = tmp->next;
 
-		if (e->position.x < app->scene->proyectile_barrier->rect.x - ((SCREEN_WIDTH + 30) * SCALE_FACTOR) )
+		// The enemies that go 30 pixels beyond the left edge of the screen
+		// are deleted.
+		if (e->position.x < app->scene->origin - 30 * SCALE_FACTOR)
 		{
 			delete e;
 			active.del(tmp);

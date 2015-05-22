@@ -27,7 +27,7 @@ bool ModulePowerUp::start()
 	LOG("Loading PowerUps...");
 
 	// Adding enemies
-	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 300, 100, COLLIDER_POWER_UP);
+	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 1150, 110, COLLIDER_POWER_UP);
 
 	return true;
 }
