@@ -189,13 +189,13 @@ update_status ModuleEnemy::preUpdate()
 
 	// Inside the mothership ------------------------------------------------------
 
-	case(2445) :
+	case(2495) :
 		// PATA-PATA - Group 11 ( 2 units )
 		if (last_wave != wave)
 		{
-			addEnemy(PATA_ENEMY, pata_graphics, 2245, 160, COLLIDER_ENEMY);
-			addEnemy(PATA_ENEMY, pata_graphics, 2245, 160, COLLIDER_ENEMY);
-			addEnemy(PATA_ENEMY, pata_graphics, 2245, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2495, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2470, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2450, 160, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 			   break;
