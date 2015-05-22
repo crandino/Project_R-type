@@ -36,7 +36,7 @@ public:
 		speed.x = -1.6 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 12000; // In miliseconds
-		attack_frequency = (rand() % 5 + 5) * 1000; // In miliseconds
+		attack_frequency = ((rand() % 3) + 3) * 1000;
 		attacks = 0;
 		graphics = texture;
 	}
@@ -58,8 +58,8 @@ public:
 				ret = false;
 
 		// These variables control the oscillation of Pata.
-		int amplitude = 1;
-		float frecuency = 0.001f;
+		float amplitude = 2;
+		float frecuency = 0.0005f;
 
 		position.x += speed.x;
 		speed.y = (sin(frecuency * position.x) * amplitude) * SCALE_FACTOR;

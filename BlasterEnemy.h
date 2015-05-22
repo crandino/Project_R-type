@@ -43,7 +43,8 @@ public:
 		graphics = texture;
 
 		attacks = 0;
-		attack_frequency = 10000;
+		attack_frequency = ((rand() % 3) + (rand() % 3)) * 1000;
+	
 	}
 
 	~BlasterEnemy()

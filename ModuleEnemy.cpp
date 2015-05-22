@@ -90,7 +90,7 @@ update_status ModuleEnemy::preUpdate()
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
-			addEnemy(PATA_ENEMY, pata_graphics, 580, 190, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 580, 170, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
