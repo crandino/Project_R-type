@@ -193,9 +193,9 @@ update_status ModuleEnemy::preUpdate()
 		// PATA-PATA - Group 11 ( 2 units )
 		if (last_wave != wave)
 		{
-			addEnemy(PATA_ENEMY, pata_graphics, 2495, 160, COLLIDER_ENEMY);
-			addEnemy(PATA_ENEMY, pata_graphics, 2470, 160, COLLIDER_ENEMY);
-			addEnemy(PATA_ENEMY, pata_graphics, 2450, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2495, 140, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2520, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2550, 125, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 			   break;
