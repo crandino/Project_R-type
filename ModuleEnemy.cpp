@@ -217,10 +217,27 @@ update_status ModuleEnemy::preUpdate()
 		if (last_wave != wave)
 		{
 			addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 600, 90, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 640, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 680, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 720, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 760, 110, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
 			   break;
+
+	case(2000) :
+		// BUG - Group 5 ( 6 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -30, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -70, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -150, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -190, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -230, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
 		//  ---------------------------------------------------------------
 		//  ----------------------  BLASTER -------------------------------

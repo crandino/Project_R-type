@@ -22,8 +22,13 @@ public:
 
 	int speed_value;
 
-	DynArray<Point2d<int>> path;
+	DynArray<Point2d<int>> *path1;
+	DynArray<Point2d<int>> *path5;
 	unsigned int path_position;
+
+	DynArray<DynArray<Point2d<int>>*> path_set;
+	unsigned int current_path;
+	bool path_found;
 
 	BugEnemy(Application *app, SDL_Texture *texture) : Enemy(app)
 	{
@@ -45,10 +50,23 @@ public:
 		anim.frames.pushBack({ 448, 0, 32, 32 });
 		anim.frames.pushBack({ 480, 0, 32, 32 });
 
-		path.pushBack({ 540 * SCALE_FACTOR, 35 * SCALE_FACTOR });
-		path.pushBack({ 450 * SCALE_FACTOR, 30 * SCALE_FACTOR });
-		path.pushBack({ 410 * SCALE_FACTOR, 35 * SCALE_FACTOR });
-		path.pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
+		path1 = new DynArray<Point2d<int>>;
+		path1->pushBack({ 600 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path1->pushBack({ 550 * SCALE_FACTOR, 35 * SCALE_FACTOR });
+		path1->pushBack({ 450 * SCALE_FACTOR, 30 * SCALE_FACTOR });
+		path1->pushBack({ 410 * SCALE_FACTOR, 35 * SCALE_FACTOR });
+		path1->pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
+		path_set.pushBack(path1);
+
+		path5 = new DynArray<Point2d<int>>;
+		path5->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path5->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
+		path5->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path5->pushBack({ 1500 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path_set.pushBack(path5);
+
+		path_found = false;
+		current_path = 0;
 	
 		path_position = 0;
 		anim.speed = 0.0f;
@@ -59,7 +77,24 @@ public:
 	}
 
 	~BugEnemy()
-	{ }
+	{
+		for (unsigned int i = 0; i < path_set.getNumElements(); i++)
+		{
+			delete path_set[i];
+		}
+	}
+
+	bool findPath()
+	{
+		DynArray<Point2d<int>> *tmp;
+		for (unsigned int i = 0; i < path_set.getNumElements(); i++)
+		{
+			tmp = path_set[i];
+			if ( (*tmp)[0].x <= position.x)
+				current_path = i;
+		}
+		return true;
+	}
 
 	void orientTo(const Point2d<int> &position_destiny)
 	{
@@ -85,14 +120,14 @@ public:
 
 		speed.x = (int)(cos(angle) * speed_value);
 		speed.y = (int)(sin(angle) * speed_value);
-
-		//LOG("%f - %f", speed.x, speed.y);
-		//LOG("%f", angle * 180.0f / M_PI);
 	}
 
 	bool update()
 	{
 		bool ret = true;
+
+		if (path_found != true)
+			path_found = findPath();
 
 		if (life > 0)
 		{
@@ -105,20 +140,16 @@ public:
 				ret = false;
 		}		
 
-		/*LOG("X: %f %f", position.x, path[path_position].x);
-		LOG("Y: %f %f", position.y, path[path_position].y);*/
-		//LOG("%d", path_position);
-
-		if (position.isClosedTo(path[path_position], 1 * SCALE_FACTOR ))
+		if (position.isClosedTo((*path_set[current_path])[path_position], 1 * SCALE_FACTOR ))
 		{ 		
-			if (path_position < path.getNumElements() - 1)
+			if (path_position < (*path_set[current_path]).getNumElements() - 1)
 				path_position++;
 			else
 				speed.x = speed.y = 0;
 		}
 		else
 		{
-			orientTo(path[path_position]);			
+			orientTo((*path_set[current_path])[path_position]);
 		}		
 
 		position.x += speed.x;
