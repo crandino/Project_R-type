@@ -4,12 +4,15 @@
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleTextures.h"
+#include "ModulePlayer.h"
 //=================================
 // the actual code
 
 ModuleCollision::ModuleCollision(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
 	debug = false;
+	god_mode = false;
 
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
@@ -72,6 +75,12 @@ ModuleCollision::ModuleCollision(Application *app, bool start_enabled) : Module(
 ModuleCollision::~ModuleCollision()
 { }
 
+bool ModuleCollision::start()
+{
+	god = app->textures->load("Images/god.png");
+	return true;
+}
+
 update_status ModuleCollision::preUpdate()
 {
 	// Remove all colliders scheduled for deletion
@@ -94,6 +103,10 @@ update_status ModuleCollision::preUpdate()
 
 update_status ModuleCollision::update()
 {
+	// Debug ---
+	if (app->input->getKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		debug = !debug;
+
 	doubleNode<Collider*> *tmp = colliders.getFirst();
 
 	Collider *c1;
@@ -125,9 +138,34 @@ update_status ModuleCollision::update()
 		tmp = tmp->next;
 	}
 
-	// Debug ---
-	if (app->input->getKey(SDL_SCANCODE_F1) == KEY_DOWN)
-		debug = !debug;
+	// God_Mode --- The player lose all its collisions.
+	if (app->input->getKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		if (god_mode == true)
+		{
+			matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
+			matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
+			matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
+			matrix[COLLIDER_PLAYER][COLLIDER_POWER_UP] = true;
+			matrix[COLLIDER_PLAYER][COLLIDER_RIBBON_SHOT] = false;
+		}
+		else
+		{
+			matrix[COLLIDER_PLAYER][COLLIDER_WALL] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_POWER_UP] = false;
+			matrix[COLLIDER_PLAYER][COLLIDER_RIBBON_SHOT] = false;
+		}
+		god_mode = !god_mode;
+	}
+
+	if (god_mode)
+		app->renderer->blit(god, app->player->position.x - 10 * SCALE_FACTOR, app->player->position.y - 55 * SCALE_FACTOR, NULL);
 
 	return UPDATE_CONTINUE;
 }
@@ -167,8 +205,9 @@ void ModuleCollision::drawDebug(Collider *col)
 // Called before quitting
 bool ModuleCollision::cleanUp()
 {
-	LOG("Freeing all colliders");
+	app->textures->unload(god);
 
+	LOG("Freeing all colliders");
 	doubleNode<Collider*> *item = colliders.getLast();
 	
 	while (item != NULL)

@@ -113,54 +113,54 @@ bool ModuleSceneIntro::cleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::update()
 {
-	// start animation
-	if (ticks < 216) //420)
-	{
-		if (ticks < 80) // move letters to the left
-		{
-			for (unsigned int i = 7; i > 0; i--)
-			{
-				rects[i - 1].x -= 5 * SCREEN_SIZE;
+	//// start animation
+	//if (ticks < 216) //420)
+	//{
+	//	if (ticks < 80) // move letters to the left
+	//	{
+	//		for (unsigned int i = 7; i > 0; i--)
+	//		{
+	//			rects[i - 1].x -= 5 * SCREEN_SIZE;
 
-				SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
-			}
-		}
+	//			SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
+	//		}
+	//	}
 
-		else if (ticks < 100) // small pause
-		{
-			for (unsigned int i = 7; i > 0; i--)
-			{
-				SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
-			}
-		}
+	//	else if (ticks < 100) // small pause
+	//	{
+	//		for (unsigned int i = 7; i > 0; i--)
+	//		{
+	//			SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
+	//		}
+	//	}
 
-		else if (ticks < 156) // move letters to the right
-		{
-			for (unsigned int i = 7; i > 0; i--)
-			{
-				rects[i - 1].x += (i - 1)  * SCREEN_SIZE;
+	//	else if (ticks < 156) // move letters to the right
+	//	{
+	//		for (unsigned int i = 7; i > 0; i--)
+	//		{
+	//			rects[i - 1].x += (i - 1)  * SCREEN_SIZE;
 
-				SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
-			}
-		}
-		else if (ticks < 216) // move letters to the right
-		{
-			for (unsigned int i = 7; i > 0; i--)
-			{
-				rects[i - 1].y += SCREEN_SIZE;
+	//			SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
+	//		}
+	//	}
+	//	else if (ticks < 216) // move letters to the right
+	//	{
+	//		for (unsigned int i = 7; i > 0; i--)
+	//		{
+	//			rects[i - 1].y += SCREEN_SIZE;
 
-				SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
-			}
-		}
+	//			SDL_RenderCopy(app->renderer->renderer, title, &source_rects[i - 1], &rects[i - 1]);
+	//		}
+	//	}
 
 
 
-		// update ticks counter
-		ticks++;
-	}
+	//	// update ticks counter
+	//	ticks++;
+	//}
 
-	else
-	{
+	//else
+	//{
 		// Draw everything
 		app->renderer->blit(intro, 0 * SCALE_FACTOR, 0 * SCALE_FACTOR, NULL);
 		if (app->coins > 0)
@@ -192,7 +192,7 @@ update_status ModuleSceneIntro::update()
 				numbers_coins.current_frame = app->coins;
 			}
 		}
-	}
+	//}
 	return UPDATE_CONTINUE;
 }
 

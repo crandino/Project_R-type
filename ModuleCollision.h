@@ -57,12 +57,15 @@ private:
 	DList<Collider*> colliders;
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug;
+	bool god_mode;
+	SDL_Texture *god;
 
 public:
 
 	ModuleCollision(Application *app, bool start_enabled = true);
 	~ModuleCollision();
 
+	bool start();
 	update_status preUpdate();
 	update_status update();
 	bool cleanUp();
