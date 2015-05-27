@@ -10,13 +10,12 @@
 #include "Application.h"
 #include "ModuleCollision.h"
 // -- Weapons -- 
-#include "BasicShot.h"
+#include "BasicPlayerShot.h"
+#include "BasicEnemyShot.h"
 #include "RibbonShot.h"
-#include "PataShot.h"
 // -- Explosions -- 
 #include "PlayerExplosion.h"
 #include "CommonExplosion.h"
-
 //=================================
 // the actual code
 
@@ -32,12 +31,10 @@ bool ModuleParticles::start()
 	LOG("Loading particles");
 
 	// Weapons
-	basic_shot = app->textures->load("Sprites/Arrowhead.png");
-	//Ribbon particle
-	ribbon_shot = app->textures->load("Sprites/Ribbon_shot.png");
-	// Pata-pata shot
-	pata_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
-
+	basic_player_shot = app->textures->load("Sprites/Arrowhead.png");
+	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
+	ribbon_player_shot = app->textures->load("Sprites/Ribbon_shot.png");
+	
 	// Explosions
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
@@ -50,13 +47,12 @@ bool ModuleParticles::start()
 bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
-	app->textures->unload(basic_shot);
-	app->textures->unload(pata_shot);
+	app->textures->unload(basic_player_shot);
+	app->textures->unload(basic_enemy_shot);
 	app->textures->unload(player_explosion);
 	app->textures->unload(common_explosion);
-	/*app->textures->unload(explosion.graphics);
-	app->textures->unload(first_ribbon_shot.graphics);
-	app->textures->unload(second_ribbon_shot.graphics);*/
+	app->textures->unload(ribbon_player_shot);
+	
 
 	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
 
@@ -99,7 +95,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= w->born)
 		{
-			if (tmp_weapon->data->type != RIBBON_SHOT)
+			if (tmp_weapon->data->type != RIBBON_PLAYER_SHOT)
 				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
 			else
 				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));
@@ -182,9 +178,9 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 
 	switch (type)
 	{
-		case(BASIC_SHOT) : p = new BasicShot(app, basic_shot); break;
-		case(RIBBON_SHOT) : p = new RibbonShot(app, ribbon_shot); break;
-		case(PATA_SHOT) : p = new PataShot(app, pata_shot); break;
+		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
+		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
+		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;

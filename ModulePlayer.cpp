@@ -74,7 +74,7 @@ bool ModulePlayer::start()
 	speed = 2 * SCALE_FACTOR;
 	last_shot = 0;
 
-	weapon_type = BASIC_SHOT;
+	weapon_type = BASIC_PLAYER_SHOT;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
@@ -155,18 +155,18 @@ update_status ModulePlayer::update()
 		{
 			switch (weapon_type)
 			{
-				case BASIC_SHOT:
+				case BASIC_PLAYER_SHOT:
 				{
 					app->audio->playFx(fx_shoot);
-					app->particles->addWeapon(BASIC_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 					break;
 				}
 
-				case RIBBON_SHOT:
+				case RIBBON_PLAYER_SHOT:
 				{
 					if ((last_shot + 600) < (SDL_GetTicks()) || last_shot == 0 || app->particles->active_weapons.count() == 0){
 						last_shot = SDL_GetTicks();
-						app->particles->addWeapon(RIBBON_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
+						app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
 					}
 					break;
 				}

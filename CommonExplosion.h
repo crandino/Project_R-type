@@ -60,4 +60,4 @@ public:
 
 };
 
-#endif //!__RIBBONPOWERUP_H__
+#endif //!__COMMONEXPLOSION_H__

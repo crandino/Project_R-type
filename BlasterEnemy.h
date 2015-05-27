@@ -110,7 +110,7 @@ public:
 		time_to_attack = (SDL_GetTicks() - born) - (attacks * attack_frequency);
 		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 		{
-			app->particles->addWeapon(PATA_SHOT, position.x + 4 * SCALE_FACTOR, position.y, COLLIDER_ENEMY_SHOT);
+			app->particles->addWeapon(BASIC_ENEMY_SHOT, position.x + 4 * SCALE_FACTOR, position.y, COLLIDER_ENEMY_SHOT);
 			attacks++;
 		}
 

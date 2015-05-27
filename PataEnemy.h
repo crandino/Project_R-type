@@ -71,7 +71,7 @@ public:
 		if (SDL_TICKS_PASSED(time_to_attack, attack_frequency) == true)
 		{
 			//shootAt(app->player->position);
-			app->particles->addWeapon(PATA_SHOT, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
+			app->particles->addWeapon(BASIC_ENEMY_SHOT, position.x, position.y + 10 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
 			attacks++;
 		}
 		// ---- CRZ

@@ -117,17 +117,11 @@
     <ClInclude Include="Weapons.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="BasicShot.h">
-      <Filter>Header Files\Weapons</Filter>
-    </ClInclude>
     <ClInclude Include="CommonExplosion.h">
       <Filter>Header Files\Explosions</Filter>
     </ClInclude>
     <ClInclude Include="Explosions.h">
       <Filter>Header Files\Explosions</Filter>
-    </ClInclude>
-    <ClInclude Include="PataShot.h">
-      <Filter>Header Files\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="PlayerExplosion.h">
       <Filter>Header Files\Explosions</Filter>
@@ -137,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="BlasterEnemy.h">
       <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicPlayerShot.h">
+      <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicEnemyShot.h">
+      <Filter>Header Files\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

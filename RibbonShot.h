@@ -54,7 +54,7 @@ public:
 		speed.y = 0 * SCALE_FACTOR;
 		/*life = 1500;
 		second_ribbon_shot.life = 1500;*/
-		type = RIBBON_SHOT;
+		type = RIBBON_PLAYER_SHOT;
 		current_animation = &anim;
 	}
 

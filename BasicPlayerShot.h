@@ -1,7 +1,7 @@
 //=================================
 // include guard
-#ifndef __BASICSHOT_H__
-#define __BASICSHOT_H__
+#ifndef __BASICPLAYERSHOT_H__
+#define __BASICPLAYERSHOT_H__
 //=================================
 // forward declared dependencies
 //=================================
@@ -10,12 +10,12 @@
 //=================================
 // the actual class
 
-class BasicShot : public Weapons
+class BasicPlayerShot : public Weapons
 {
 
 public:
 
-	BasicShot(Application *app, SDL_Texture *texture) : Weapons(app)
+	BasicPlayerShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
 		//Player ship shot
 		//shot.fx = app->audio->loadFx("LOQUESEA");
@@ -28,10 +28,10 @@ public:
 		speed.x = 10 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 750;
-		type = BASIC_SHOT;
+		type = BASIC_PLAYER_SHOT;
 	}
 
-	~BasicShot()
+	~BasicPlayerShot()
 	{ }
 
 	bool update()

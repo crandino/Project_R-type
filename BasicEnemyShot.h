@@ -1,6 +1,6 @@
 // include guard
-#ifndef __PATASHOT_H__
-#define __PATASHOT_H__
+#ifndef __BASICENEMYSHOT_H__
+#define __BASICENEMYSHOT_H__
 //=================================
 // forward declared dependencies
 //=================================
@@ -10,14 +10,14 @@
 //=================================
 // the actual class
 
-class PataShot : public Weapons
+class BasicEnemyShot : public Weapons
 {
 
 public:
 
 	bool oriented;
 
-	PataShot(Application *app, SDL_Texture *texture) : Weapons(app)
+	BasicEnemyShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
 		//Pata-pata shot
 		graphics = texture;
@@ -27,11 +27,11 @@ public:
 		anim.frames.pushBack({ 27, 1, 7, 6 });
 		anim.speed = 0.5f;
 		life = 8000;
-		type = PATA_SHOT;
+		type = BASIC_ENEMY_SHOT;
 		oriented = false;
 	}
 
-	~PataShot()
+	~BasicEnemyShot()
 	{ }
 
 	void orientTo(const Point2d<int> &destiny_position)
@@ -90,4 +90,4 @@ public:
 
 };
 
-#endif //!__RIBBONPOWERUP_H__
+#endif //!__BASICENEMYSHOT_H__

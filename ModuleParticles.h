@@ -13,9 +13,6 @@ class Explosions;
 #include "Point2d.h"
 #include "DList.h"
 #include "ModuleCollision.h"
-
-//#include "Explosions.h"
-//#include "Weapons.h"
 //=================================
 // the actual class
 
@@ -23,9 +20,9 @@ enum WEAPON_TYPES
 {
 	NONE_WEAPON,
 
-	BASIC_SHOT,
-	RIBBON_SHOT,
-	PATA_SHOT
+	BASIC_PLAYER_SHOT,
+	BASIC_ENEMY_SHOT,
+	RIBBON_PLAYER_SHOT	
 };
 
 enum EXPLOSION_TYPES
@@ -41,9 +38,10 @@ class ModuleParticles : public Module
 
 private:
 
-	SDL_Texture *basic_shot;
-	SDL_Texture *ribbon_shot;
-	SDL_Texture *pata_shot;
+	SDL_Texture *basic_player_shot;
+	SDL_Texture *basic_enemy_shot;
+	SDL_Texture *ribbon_player_shot;
+	
 
 	SDL_Texture *player_explosion;
 	SDL_Texture *common_explosion;
