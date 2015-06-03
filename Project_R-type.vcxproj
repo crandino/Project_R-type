@@ -22,6 +22,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Explosions.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="MissilePlayerShot.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollision.h" />

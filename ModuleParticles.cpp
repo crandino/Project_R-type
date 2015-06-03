@@ -11,6 +11,7 @@
 #include "ModuleCollision.h"
 // -- Weapons -- 
 #include "BasicPlayerShot.h"
+#include "MissilePlayerShot.h"
 #include "BasicEnemyShot.h"
 #include "RibbonShot.h"
 // -- Explosions -- 
@@ -31,6 +32,7 @@ bool ModuleParticles::start()
 	LOG("Loading particles");
 
 	// Weapons
+	missile_player_shot = app->textures->load("Sprites/Player_missiles.png");
 	basic_player_shot = app->textures->load("Sprites/Arrowhead.png");
 	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	ribbon_player_shot = app->textures->load("Sprites/Ribbon_shot.png");
@@ -48,6 +50,7 @@ bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
 	app->textures->unload(basic_player_shot);
+	app->textures->unload(missile_player_shot);
 	app->textures->unload(basic_enemy_shot);
 	app->textures->unload(player_explosion);
 	app->textures->unload(common_explosion);
@@ -179,6 +182,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	switch (type)
 	{
 		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
+		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot); break;
 		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
 		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
 	}

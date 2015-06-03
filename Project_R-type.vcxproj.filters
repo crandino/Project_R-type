@@ -138,6 +138,9 @@
     <ClInclude Include="BasicEnemyShot.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="MissilePlayerShot.h">
+      <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">
