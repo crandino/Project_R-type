@@ -14,7 +14,8 @@ class MissilePlayerShot : public Weapons
 
 public:
 
-	bool oriented;
+	INT32 target_delay;
+	bool targeting;
 
 	MissilePlayerShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
@@ -22,9 +23,10 @@ public:
 		graphics = texture;
 		anim.frames.pushBack({ 108, 12, 12, 12 });
 		anim.speed = 0.5f;
-		life = 8000;
+		life = 10000;
+		target_delay = 2000;
+		targeting = false;
 		type = MISSILE_PLAYER_SHOT;
-		oriented = false;
 		speed.x = 1 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 	}
@@ -67,6 +69,12 @@ public:
 		else
 			if (anim.finished())
 				ret = false;
+
+		if (SDL_GetTicks() - born > target_delay )
+			targeting = true;
+		
+		if (targeting == true)
+			speed.x = 10 * SCALE_FACTOR;			
 
 		/*if (oriented == false)
 		{

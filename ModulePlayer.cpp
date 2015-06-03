@@ -165,8 +165,8 @@ update_status ModulePlayer::update()
 				case MISSILE_PLAYER_SHOT:
 				{
 					app->audio->playFx(fx_shoot);
-					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y - 10 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 10 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y - 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y + 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 					break;
 				}
 
