@@ -4,9 +4,6 @@
 #define __MODULEENEMY_H__
 //=================================
 // forward declared dependencies
-//class BlasterEnemy;
-//class BugEnemy;
-//class PataEnemy;
 class Enemy;
 //=================================
 // included dependencies
@@ -15,7 +12,6 @@ class Enemy;
 #include "Animation.h"
 #include "Point2d.h"
 #include "DList.h"
-
 //=================================
 // the actual class
 
@@ -28,13 +24,10 @@ enum ENEMY_TYPES
 
 class ModuleEnemy : public Module
 {
-
-private:
+public:
 
 	int last_wave;
 	DList<Enemy*> active;
-	
-public:
 
 	// List of enemy textures
 	// Level 1

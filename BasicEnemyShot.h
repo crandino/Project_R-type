@@ -19,7 +19,6 @@ public:
 
 	BasicEnemyShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
-		//Pata-pata shot
 		graphics = texture;
 		anim.frames.pushBack({ 1, 1, 7, 6 });
 		anim.frames.pushBack({ 10, 1, 7, 6 });

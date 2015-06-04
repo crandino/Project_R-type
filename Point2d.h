@@ -66,9 +66,11 @@ public:
 		x = y = 0;
 	}
 
-	TYPE distanceTo(const Point2d &p) const
+	float distanceTo(const Point2d &p) const
 	{
-		return sqrt(pow(x - p.x, 2) + pow(y - p.y, 2));
+		float fx = x - p.x;
+		float fy = y - p.y;
+		return sqrt((fx*fx) + (fy*fy));
 	}
 
 	bool isClosedTo(const Point2d &p, float delta) const
