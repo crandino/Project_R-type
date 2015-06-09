@@ -19,8 +19,8 @@ class PowerUp;
 enum POWERUP_TYPES
 {
 	NONE_POWERUP,
-
-	RIBBON_POWERUP
+	RIBBON_POWERUP,
+	MISSILE_POWERUP
 };
 
 class ModulePowerUp : public Module
@@ -34,7 +34,7 @@ public:
 
 	// List of PowerUp textures
 	SDL_Texture *ribbon_graphics;
-
+	SDL_Texture *missile_graphics;
 
 	ModulePowerUp(Application *app, bool start_enabled = true);
 	~ModulePowerUp();

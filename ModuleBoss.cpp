@@ -23,7 +23,7 @@ bool ModuleBoss::start()
 	stop_scrolling_position = 3929 * SCALE_FACTOR;
 	dobkeratops_texture = app->textures->load("Sprites/Boss1_Dobkeratops.png");
 
-	app->audio->stopAllMusic(1.0f);
+	app->audio->stopAllMusic(0.1f);
 
 	// Breeding of Dobkeratops
 	alien = new Alien();

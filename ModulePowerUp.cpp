@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleSceneSpace.h"
 #include "RibbonPowerUp.h"
+#include "MissilePowerUp.h"
 //=================================
 // the actual code
 
@@ -23,11 +24,13 @@ bool ModulePowerUp::start()
 	LOG("Loading PowerUp textures");
 
 	ribbon_graphics = app->textures->load("Sprites/ribbon_powerup.png");
+	missile_graphics = app->textures->load("Sprites/ribbon_powerup.png");
 
 	LOG("Loading PowerUps...");
 
 	// Adding enemies
 	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 1150, 110, COLLIDER_POWER_UP);
+	addPowerUp(MISSILE_POWERUP, missile_graphics, 650, 110, COLLIDER_POWER_UP);
 
 	return true;
 }
@@ -87,6 +90,8 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 		switch (item->data->type)
 		{
 			case(RIBBON_POWERUP) : app->player->weapon_type = RIBBON_PLAYER_SHOT; break;
+
+			case(MISSILE_POWERUP) : app->player->weapon_type = MISSILE_PLAYER_SHOT; break;
 		}
 
 		delete item->data;
@@ -101,7 +106,9 @@ void ModulePowerUp::addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, int x, 
 
 	switch (type)
 	{
-	case(RIBBON_POWERUP) : p = new RibbonPowerUp(app, texture); break;
+		case(RIBBON_POWERUP) : p = new RibbonPowerUp(app, texture); break;
+
+		case(MISSILE_POWERUP) : p = new MissilePowerUp(app, texture); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;

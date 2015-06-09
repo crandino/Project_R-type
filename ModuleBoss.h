@@ -57,7 +57,7 @@ struct Antenna1 : Boss
 {
 	Antenna1() : Boss()
 	{
-		anim.frames.pushBack({ 177, 1926, 192, 32 });
+		anim.frames.pushBack({ 177, 1926, 192, 34 });
 		anim.loop = false;
 	}
 };
