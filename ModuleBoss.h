@@ -7,6 +7,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "SDL\include\SDL.h"
 //=================================
 // the actual class
 
@@ -14,6 +15,10 @@ class ModuleBoss : public Module
 {
 
 public:
+
+	SDL_Texture *dobkeratops_texture;
+
+	unsigned int stop_scrolling_position;
 
 	ModuleBoss(Application *app, bool start_enabled = true);
 	~ModuleBoss();
