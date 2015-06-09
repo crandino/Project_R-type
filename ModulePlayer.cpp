@@ -74,7 +74,7 @@ bool ModulePlayer::start()
 	speed = 2 * SCALE_FACTOR;
 	last_shot = 0;
 
-	weapon_type = MISSILE_PLAYER_SHOT;
+	weapon_type = BASIC_PLAYER_SHOT;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");

@@ -141,6 +141,9 @@
     <ClInclude Include="MissilePlayerShot.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="MissilePowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">
