@@ -19,14 +19,14 @@
     <Filter Include="Header Files\Tools">
       <UniqueIdentifier>{bdcf6cd6-e5ed-4bd8-beb0-c4d304b1a583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\PowerUps">
-      <UniqueIdentifier>{b496bc2b-bc5f-4800-9485-a113039594b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Weapons">
       <UniqueIdentifier>{75d16159-ee27-4e24-9aa4-9a78a5e8d434}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Explosions">
       <UniqueIdentifier>{f6c79d98-1d65-43a0-b9d4-b75828cce8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tools\PowerUps">
+      <UniqueIdentifier>{b496bc2b-bc5f-4800-9485-a113039594b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,10 +106,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PowerUp.h">
-      <Filter>Header Files\PowerUps</Filter>
+      <Filter>Header Files\Tools\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="RibbonPowerUp.h">
-      <Filter>Header Files\PowerUps</Filter>
+      <Filter>Header Files\Tools\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="BugEnemy.h">
       <Filter>Header Files\Enemies</Filter>
@@ -140,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="MissilePlayerShot.h">
       <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBoss.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +206,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModulePowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBoss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
