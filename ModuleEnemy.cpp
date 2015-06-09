@@ -311,13 +311,13 @@ update_status ModuleEnemy::preUpdate()
 	//	}
 	//		   break;
 
-	case(500) :
+	case(3650) :
 		// Boss Dobkeratops
 		if (last_wave != wave)
 		{
 			app->boss->enable();
 		}
-			  break;
+		break;
 	}
 
 	return UPDATE_CONTINUE;	

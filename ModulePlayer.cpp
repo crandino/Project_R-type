@@ -106,12 +106,6 @@ update_status ModulePlayer::update()
 {
 	if (active)
 	{
-		if (app->input->getKey(SDL_SCANCODE_G))
-		{
-			app->boss->start();
-		}
-
-
 		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT  && position.y > 0)
 		{
 			position.y -= speed;

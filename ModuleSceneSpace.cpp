@@ -47,9 +47,11 @@ bool ModuleSceneSpace::start()
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
 
 	finish = false;
-
-	app->renderer->camera.x = app->renderer->camera.y = 0;
-	origin = 0;
+	
+	// CRZ changed this to directly go to the boss.
+	origin = 3000 * SCALE_FACTOR;
+	app->renderer->camera.x = origin * (-1);
+	app->renderer->camera.y = 0 * SCALE_FACTOR;
 
 	// Wall collider
 	app->collision->addCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL, false);
@@ -215,17 +217,17 @@ update_status ModuleSceneSpace::update()
 
 	origin += scroll_player_speed;
 
-	// The player wins wether it reaches the end of the level. 
-	if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
-	{
-		if (finish == false)
-		{	
-			finish = true;
-			scroll_camera_speed = 0;
-			scroll_player_speed = 0;
-			app->fade->fadeToBlack(this, app->scene_win, 2.0f);
-		}
-	}
+	//// The player wins wether it reaches the end of the level. 
+	//if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
+	//{
+	//	if (finish == false)
+	//	{	
+	//		finish = true;
+	//		scroll_camera_speed = 0;
+	//		scroll_player_speed = 0;
+	//		app->fade->fadeToBlack(this, app->scene_win, 2.0f);
+	//	}
+	//}
 
 	// Draw everything
 	app->renderer->blit(boundary_level, 0, 0, NULL);

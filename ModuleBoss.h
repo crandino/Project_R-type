@@ -7,9 +7,87 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "Point2d.h"
+#include "Animation.h"
 #include "SDL\include\SDL.h"
 //=================================
 // the actual class
+
+struct Boss
+{
+	Point2d<int> position;
+	Animation anim;
+};
+
+struct Alien : Boss
+{
+	Alien() : Boss()
+	{
+		anim.frames.pushBack({ 636, 1964, 32, 32 });
+		anim.frames.pushBack({ 603, 1964, 32, 32 });
+		anim.frames.pushBack({ 570, 1964, 32, 32 });
+		anim.frames.pushBack({ 603, 1964, 32, 32 });
+		anim.frames.pushBack({ 636, 1964, 32, 32 });
+		anim.frames.pushBack({ 636, 1964, 32, 32 });
+		anim.frames.pushBack({ 636, 1964, 32, 32 });
+		anim.speed = 0.05f;
+
+	}
+};
+
+struct Dobkeratops : Boss
+{
+	Dobkeratops() : Boss()
+	{
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 189, 2, 155, 204 });
+		anim.frames.pushBack({  27, 2, 155, 204 });
+		anim.frames.pushBack({ 189, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.frames.pushBack({ 351, 2, 155, 204 });
+		anim.speed = 0.035f;
+	}
+};
+
+struct Antenna1 : Boss
+{
+	Antenna1() : Boss()
+	{
+		anim.frames.pushBack({ 177, 1926, 192, 32 });
+		anim.loop = false;
+	}
+};
+
+struct Antenna2 : Boss
+{
+	Antenna2() : Boss()
+	{
+		anim.frames.pushBack({ 265, 1982, 104, 57 });
+		anim.loop = false;
+	}
+};
+
+struct Antenna3 : Boss
+{
+	Antenna3() : Boss()
+	{
+		anim.frames.pushBack({ 265, 2054, 104, 36 });
+		anim.loop = false;
+	}
+};
+
+struct Antenna4 : Boss
+{
+	Antenna4() : Boss()
+	{
+		anim.frames.pushBack({ 177, 2102, 192, 32 });
+		anim.loop = false;
+	}
+};
 
 class ModuleBoss : public Module
 {
@@ -17,6 +95,17 @@ class ModuleBoss : public Module
 public:
 
 	SDL_Texture *dobkeratops_texture;
+
+	// Parts of Dobkeratops:
+	Alien *alien;
+	Dobkeratops *dobkeratops;
+	Antenna1 *antenna1;
+	Antenna2 *antenna2;
+	Antenna3 *antenna3;
+	Antenna4 *antenna4;
+
+	
+	DList<Boss*> boss_parts;
 
 	unsigned int stop_scrolling_position;
 
