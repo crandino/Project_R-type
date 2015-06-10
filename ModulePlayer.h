@@ -21,6 +21,7 @@ public:
 	unsigned int fx_shoot;
 	unsigned int fx_ribbon_shoot;
 	unsigned int fx_boom;
+	unsigned int fx_missile_shot;
 	Collider *collider;
 	Animation *current_animation;
 	Animation idle;
