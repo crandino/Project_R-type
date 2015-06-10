@@ -23,6 +23,9 @@ struct Boss
 
 struct Alien : Boss
 {
+	int life;
+	unsigned int points;
+
 	Alien() : Boss()
 	{
 		anim.frames.pushBack({ 636, 1964, 32, 32 });
@@ -124,7 +127,7 @@ public:
 	bool start();
 	update_status update();
 	//bool cleanUp();
-	//void onCollision(Collider *col1, Collider *col2);
+	void onCollision(Collider *col1, Collider *col2);
 
 };
 

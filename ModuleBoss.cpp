@@ -2,6 +2,7 @@
 // included dependencies
 #include "Application.h"
 #include "ModuleBoss.h"
+#include "ModulePlayer.h"
 #include "ModuleSceneSpace.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -23,6 +24,8 @@ Module(app, start_enabled)
 	alien->position.x = stop_scrolling_position - (97 * SCALE_FACTOR);
 	alien->position.y = 112 * SCALE_FACTOR;
 	boss_parts.add(alien);
+	alien->life = 30;
+	alien->points = 5000;
 
 	// Dobkeratops itself
 	dobkeratops = new Dobkeratops();
@@ -151,6 +154,18 @@ update_status ModuleBoss::update()
 
 	return UPDATE_CONTINUE;
 }
-//
-//void ModuleBoss::onCollision(Collider *col1, Collider *col2)
-//{ }
+
+void ModuleBoss::onCollision(Collider *col1, Collider *col2)
+{
+	if (col1 == alien->col){
+		if (alien->life > 1){
+			alien->life--;
+		}
+		else
+		{
+			app->player->player_points += alien->points;
+			app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
+			app->particles->addExplosion(HUGE_EXPLOSION, col1->rect.x, col1->rect.y);
+		}
+	}
+}
