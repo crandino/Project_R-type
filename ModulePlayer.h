@@ -41,6 +41,7 @@ public:
 
 	//DTM
 	unsigned int lives = 2;
+	unsigned int player_points;
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();

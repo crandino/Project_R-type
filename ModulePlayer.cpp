@@ -76,6 +76,7 @@ bool ModulePlayer::start()
 	last_shot = 0;
 
 	weapon_type = BASIC_PLAYER_SHOT;
+	player_points = 98;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
