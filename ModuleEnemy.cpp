@@ -71,12 +71,21 @@ update_status ModuleEnemy::preUpdate()
 	int wave = (app->scene->origin / SCALE_FACTOR + SCREEN_WIDTH);
 	switch (wave)
 	{
+<<<<<<< HEAD
 	//	//  ---------------------------------------------------------------
 	//	//	---------------------  PATA-PATA ------------------------------
 	//	//  ---------------------------------------------------------------
 	//case(450) :
 	//	// PATA-PATA - Group 1 ( 4 units )
 	/*	if (last_wave != wave)
+=======
+		//  ---------------------------------------------------------------
+		//	---------------------  PATA-PATA ------------------------------
+		//  ---------------------------------------------------------------
+	case(450) :
+		// PATA-PATA - Group 1 ( 4 units )
+		if (last_wave != wave)
+>>>>>>> origin/master
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
@@ -86,230 +95,243 @@ update_status ModuleEnemy::preUpdate()
 		}
 			  break;*/
 
-	//case(515) :
-	//	// PATA-PATA - Group 2 ( 4 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 580, 170, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(515) :
+		// PATA-PATA - Group 2 ( 4 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 515, 185, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 545, 175, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 580, 170, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 625, 180, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(700) :
-	//	// PATA-PATA - Group 3 ( 3 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 700, 160, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 725, 170, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(700) :
+		// PATA-PATA - Group 3 ( 3 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 700, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 725, 170, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 760, 165, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(740) :
-	//	// PATA-PATA - Group 4 ( 12 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(740) :
+		// PATA-PATA - Group 4 ( 12 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 740, 80, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 760, 65, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 790, 55, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 815, 90, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 850, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 875, 70, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 890, 95, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 955, 52, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 990, 58, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1025, 80, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1060, 45, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1095, 80, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(840) :
-	//	// PATA-PATA - Group 5 ( 3 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 840, 60, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 895, 100, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 915, 70, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(840) :
+		// PATA-PATA - Group 5 ( 3 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 840, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 895, 100, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 915, 70, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(875) :
-	//	// PATA-PATA - Group 6 ( 1 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 875, 95, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(875) :
+		// PATA-PATA - Group 6 ( 1 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 875, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(900) :
-	//	// PATA-PATA - Group 7 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 900, 95, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 940, 95, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(900) :
+		// PATA-PATA - Group 7 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 900, 95, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 940, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(945) :
-	//	// PATA-PATA - Group 8 ( 1 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 945, 95, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(945) :
+		// PATA-PATA - Group 8 ( 1 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 945, 95, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(975) :
-	//	// PATA-PATA - Group 9 ( 2 unit )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 975, 50, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1020, 170, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(975) :
+		// PATA-PATA - Group 9 ( 2 unit )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 975, 50, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1020, 170, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(1040) :
-	//	// PATA-PATA - Group 10 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1040, 60, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 1090, 90, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//	break;
+	case(1040) :
+		// PATA-PATA - Group 10 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 1040, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1090, 90, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+		break;
 
-	//// Inside the mothership ------------------------------------------------------
+	// Inside the mothership ------------------------------------------------------
 
-	//case(2495) :
-	//	// PATA-PATA - Group 11 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 2495, 140, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 2520, 160, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 2550, 125, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
-	//case(2540) :
-	//	// PATA-PATA - Group 11 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 2540, 60, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 2640, 80, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+	case(2495) :
+		// PATA-PATA - Group 11 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 2495, 140, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2520, 160, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2550, 125, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+	case(2540) :
+		// PATA-PATA - Group 11 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 2540, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 2640, 80, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
-	//	//  ---------------------------------------------------------------
-	//	//  ------------------------  BUG ---------------------------------
-	//	//  ---------------------------------------------------------------
-	//case(550) :
-	//	// BUG - Group 1 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 640, 110, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 680, 110, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 720, 110, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 760, 110, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+		//  ---------------------------------------------------------------
+		//  ------------------------  BUG ---------------------------------
+		//  ---------------------------------------------------------------
+	case(550) :
+		// BUG - Group 1 ( 5 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 640, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 680, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 720, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 760, 110, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
-	//case(2000) :
-	//	// BUG - Group 5 ( 6 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -30, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -70, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -110, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -150, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -190, COLLIDER_ENEMY);
-	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -230, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+	case(650) :
+		// BUG - Group 2 ( 5 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BUG_ENEMY, bug_graphics, 700, 80, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 760, 80, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 780, 80, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 800, 80, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 820, 80, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//	//  ---------------------------------------------------------------
-	//	//  ----------------------  BLASTER -------------------------------
-	//	//  ---------------------------------------------------------------
-	//case(1687) :
-	//	// BLASTER - Group 1 ( 8 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 32, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 193, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 32, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 193, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 48, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 177, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 48, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 177, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//	break;
+	case(2000) :
+		// BUG - Group 5 ( 6 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -30, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -70, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -150, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -190, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 1960, -230, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
-	//case(2008) :
-	//	// BLASTER - Group 2 ( 2 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2008, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2038, 16, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+		//  ---------------------------------------------------------------
+		//  ----------------------  BLASTER -------------------------------
+		//  ---------------------------------------------------------------
+	case(1687) :
+		// BLASTER - Group 1 ( 8 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1687, 193, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1721, 193, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1753, 177, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 1782, 177, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+		break;
 
-	//case(2391) :
-	//	// BLASTER - Group 3 ( 8 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2391, 32, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2424, 32, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2456, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2488, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2520, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2552, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2584, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2616, 16, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+	case(2008) :
+		// BLASTER - Group 2 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2008, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2038, 16, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
-	//case(2711) :
-	//	// BLASTER - Group 4 ( 4 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 48, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 48, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 177, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 177, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+	case(2391) :
+		// BLASTER - Group 3 ( 8 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2391, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2424, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2456, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2488, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2520, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2552, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2584, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2616, 16, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
-	//case(3031) :
-	//	// BLASTER - Group 5 ( 6 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3031, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3064, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3096, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3128, 16, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3160, 32, COLLIDER_ENEMY);
-	//		addEnemy(BLASTER_ENEMY, blaster_graphics, 3192, 32, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		   break;
+	case(2711) :
+		// BLASTER - Group 4 ( 4 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 48, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2711, 177, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 2743, 177, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
+
+	case(3031) :
+		// BLASTER - Group 5 ( 6 units )
+		if (last_wave != wave)
+		{
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3031, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3064, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3096, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3128, 16, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3160, 32, COLLIDER_ENEMY);
+			addEnemy(BLASTER_ENEMY, blaster_graphics, 3192, 32, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
 	case(3650) :
 		// Boss Dobkeratops
