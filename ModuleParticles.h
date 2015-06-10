@@ -23,7 +23,8 @@ enum WEAPON_TYPES
 	BASIC_PLAYER_SHOT,
 	RIBBON_PLAYER_SHOT,
 	MISSILE_PLAYER_SHOT,
-	BASIC_ENEMY_SHOT
+	BASIC_ENEMY_SHOT,
+	BOSS_WEAPON
 	
 };
 
@@ -45,6 +46,8 @@ private:
 	SDL_Texture *missile_player_shot;
 	SDL_Texture *basic_enemy_shot;
 	SDL_Texture *ribbon_player_shot;
+	SDL_Texture *boss_weapon;
+
 	SDL_Texture *basic_player_shot_explosion;
 	SDL_Texture *player_explosion;
 	SDL_Texture *common_explosion;

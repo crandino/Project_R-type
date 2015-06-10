@@ -11,9 +11,11 @@
 #include "ModuleCollision.h"
 // -- Weapons -- 
 #include "BasicPlayerShot.h"
+#include "RibbonShot.h"
 #include "MissilePlayerShot.h"
 #include "BasicEnemyShot.h"
-#include "RibbonShot.h"
+#include "BossWeapon.h"
+
 // -- Explosions -- 
 #include "PlayerExplosion.h"
 #include "PlayerBasicShotExplosion.h"
@@ -33,10 +35,11 @@ bool ModuleParticles::start()
 	LOG("Loading particles");
 
 	// Weapons
-	missile_player_shot = app->textures->load("Sprites/Player_missiles.png");
 	basic_player_shot = app->textures->load("Sprites/Arrowhead.png");
-	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	ribbon_player_shot = app->textures->load("Sprites/Ribbon_shot.png");
+	missile_player_shot = app->textures->load("Sprites/Player_missiles.png");
+	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
+	boss_weapon = app->textures->load("Sprites/Boss_weapon.png");
 	
 	// Explosions
 	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
@@ -212,9 +215,10 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	switch (type)
 	{
 		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
+		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
 		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot); break;
 		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
-		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
+		case(BOSS_WEAPON) : p = new BossWeapon(app, boss_weapon); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;

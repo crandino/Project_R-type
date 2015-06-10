@@ -71,14 +71,12 @@ update_status ModuleEnemy::preUpdate()
 	int wave = (app->scene->origin / SCALE_FACTOR + SCREEN_WIDTH);
 	switch (wave)
 	{
-
 		//  ---------------------------------------------------------------
 		//	---------------------  PATA-PATA ------------------------------
 		//  ---------------------------------------------------------------
 	case(450) :
 	    //PATA-PATA - Group 1 ( 4 units )
 		if (last_wave != wave)
-
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
