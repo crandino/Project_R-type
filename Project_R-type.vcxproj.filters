@@ -144,15 +144,12 @@
     <ClInclude Include="ModuleBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
-=======
     <ClInclude Include="MissilePowerUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BossWeapon.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
->>>>>>> origin/master
     <ClInclude Include="PlayerBasicShotExplosion.h">
       <Filter>Header Files\Explosions</Filter>
     </ClInclude>
