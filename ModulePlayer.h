@@ -17,15 +17,8 @@ class ModulePlayer : public Module
 {
 public:
 
+	// Texture and animations
 	SDL_Texture *graphics;
-	SDL_Texture *contrail_image;
-	unsigned int fx_shoot;
-	unsigned int fx_big_shoot;
-	unsigned int fx_ribbon_shoot;
-	unsigned int fx_boom;
-	unsigned int fx_missile_shot;
-	unsigned int fx_charging;
-	Collider *collider;
 	Animation *current_animation;
 	Animation idle;
 	Animation idle_to_upward;
@@ -34,24 +27,32 @@ public:
 	Animation downward_to_idle;
 	Animation explosion;
 	Animation charging_animation;
-	Animation contrail;
+	DynArray<Animation*> animation_set;
+
+	// Sounds
+	unsigned int fx_shoot;
+	unsigned int fx_ribbon_shoot;
+	unsigned int fx_spaceship_explosion;
+	unsigned int fx_missile_shot;
+	unsigned int fx_big_shoot;
+	unsigned int fx_charging;
+
+	//Properties
+
 	Point2d<int> position;
-	WEAPON_TYPES weapon_type;
+	Collider *collider;
+	int speed;
+	bool active;
+	WEAPON_TYPES weapon_type;	
+	unsigned int lifes;
+	unsigned int player_points;
+
+	// Weapon related
 	Uint32 start_charging;
 	Uint32 end_charging;
+	Uint32 last_ribbon_shot;
 	bool charging;
-	int last_ribbon_shot;
-	
-	int speed;
 
-	// CRZ ----
-	DynArray<Animation*> animation_set;
-	bool active;
-	// ---- CRZ
-
-	//DTM
-	unsigned int lives = 2;
-	unsigned int player_points;
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();

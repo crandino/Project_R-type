@@ -3,6 +3,7 @@
 //=================================
 // included dependencies
 #include "Application.h"
+#include "ModuleSceneSpace.h"
 #include "ModuleInterface.h"
 #include "ModulePlayer.h"
 #include "ModuleTextures.h"
@@ -44,7 +45,6 @@ bool ModuleInterface::start()
 	img_bar = app->textures->load("Sprites/Shot_Bar.png");
 
 	position_interface = 2 * SCALE_FACTOR;
-	speed_interface = (int)(0.57 * SCALE_FACTOR);
 
 	return true;
 }
@@ -67,8 +67,8 @@ bool ModuleInterface::cleanUp()
 // Update: draw background
 update_status ModuleInterface::update()
 {
-	position_interface += speed_interface;
-	for (unsigned int i = 1; i <= app->player->lives; i++)
+	position_interface += app->scene->scroll_speed;
+	for (unsigned int i = 1; i <= app->player->lifes; i++)
 	{
 		app->renderer->blit(img_life, position_interface + (8 * SCALE_FACTOR * i), 241 * SCALE_FACTOR, NULL);
 	}

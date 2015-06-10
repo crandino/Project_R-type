@@ -27,7 +27,7 @@ public:
 		anim.frames.pushBack({ 67, 0, 23, 16 });
 		anim.speed = 0.4f;
 		anim.loop = false;
-		speed.x = app->scene->scroll_player_speed;
+		speed.x = app->scene->scroll_speed;
 		type = CONTRAIL;
 	}
 
