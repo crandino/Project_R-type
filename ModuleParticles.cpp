@@ -101,10 +101,11 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= w->born)
 		{
-			if (tmp_weapon->data->type != RIBBON_PLAYER_SHOT)
-				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
-			else
+			if (tmp_weapon->data->type == RIBBON_PLAYER_SHOT || tmp_weapon->data->type == BASIC_PLAYER_SHOT)
 				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));
+			else
+				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
+				
 
 			if (w->fx_played == false)
 			{

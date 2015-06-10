@@ -14,6 +14,8 @@
 #include "ModuleSceneGameOver.h"
 #include "ModuleInterface.h"
 #include "ModulePowerUp.h"
+
+#include <time.h>
 //=================================
 // the actual code
 
@@ -74,6 +76,8 @@ bool ModulePlayer::start()
 	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
+	start_charging = end_charging = 0;
+	charging = false;
 	last_shot = 0;
 
 	weapon_type = BASIC_PLAYER_SHOT;
@@ -155,14 +159,25 @@ update_status ModulePlayer::update()
 			}
 		}
 
+		if (charging == false)
+		{
+			if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
+			{
+				start_charging = SDL_GetTicks();
+				charging = true;
+			}
+		}
+
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 		{
 			switch (weapon_type)
 			{
 				case BASIC_PLAYER_SHOT:
 				{
+					end_charging = SDL_GetTicks();
 					app->audio->playFx(fx_shoot);
 					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+					charging = false;
 					break;
 				}
 
