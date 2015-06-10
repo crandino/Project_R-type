@@ -80,7 +80,7 @@ bool ModulePlayer::start()
 	player_points = 98;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
-	fx_ribbon_shoot = app->audio->loadFx("Sounds/DisparoRibbon.mp3");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
 	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
