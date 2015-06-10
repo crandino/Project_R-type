@@ -81,7 +81,7 @@ bool ModuleBoss::start()
 	antenna4->col = app->collision->addCollider(rect_antenna4, COLLIDER_ENEMY, true, this);
 
 	// Stopping music level and initiating boss music.
-	app->audio->stopAllMusic(0.1f);
+	app->audio->stopAllMusic();
 	app->audio->playMusic("Music/Boss_Level.ogg", 1.0f);
 
 	return true;

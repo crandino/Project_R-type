@@ -326,7 +326,7 @@ update_status ModuleEnemy::preUpdate()
 		}
 			   break;
 
-	case(3650) :
+	case(3750) :
 		// Boss Dobkeratops
 		if (last_wave != wave)
 		{
@@ -401,6 +401,7 @@ void ModuleEnemy::onCollision(Collider *c1, Collider *c2)
 
 	if (item != NULL)
 	{
+		app->player->player_points += item->data->points;
 		app->particles->addExplosion(COMMON_EXPLOSION, c1->rect.x, c1->rect.y);
 		app->audio->playFx(fx_pata_explosion);
 		delete item->data;

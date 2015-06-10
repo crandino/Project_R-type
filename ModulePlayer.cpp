@@ -77,7 +77,7 @@ bool ModulePlayer::start()
 	last_shot = 0;
 
 	weapon_type = BASIC_PLAYER_SHOT;
-	player_points = 98;
+	player_points = 0;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");

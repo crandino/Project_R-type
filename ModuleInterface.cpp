@@ -44,7 +44,7 @@ bool ModuleInterface::start()
 	img_bar = app->textures->load("Sprites/Shot_Bar.png");
 
 	position_interface = 2 * SCALE_FACTOR;
-	speed_interface = (int)(0.5 * SCALE_FACTOR);
+	speed_interface = (int)(0.57 * SCALE_FACTOR);
 
 	return true;
 }
@@ -56,6 +56,7 @@ bool ModuleInterface::cleanUp()
 
 	app->textures->unload(img_life);
 	app->textures->unload(img_beam);
+	app->textures->unload(img_p1);
 	app->textures->unload(img_hi);
 	app->textures->unload(img_numbers_interface);
 	app->textures->unload(img_bar);
