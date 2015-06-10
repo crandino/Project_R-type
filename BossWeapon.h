@@ -24,7 +24,6 @@ class BossWeapon : public Weapons
 {
 public:
 
-	DIRECTION dir;
 	bool dir_set;
 	INT32 dir_delay;
 
@@ -56,15 +55,24 @@ public:
 
 		if (SDL_GetTicks() > born)
 		{
-			if (SDL_GetTicks() - born > dir_delay)
-				dir_set = true;
+			switch (dir)
+			{
+			case(UP) :
+			case(DOWN) :
+				speed.y *= 1.1f;
+				break;
+			}
 
-			if (dir == NONE && dir_set == true)
+			if (SDL_GetTicks() - born > dir_delay)
+				position.y += speed.y;
+			position.x += speed.x;
+
+			if (dir == NONE && SDL_GetTicks() - born > dir_delay)
 			{
 				if (app->player->position.y < position.y - 25 * SCALE_FACTOR)
 				{
 					dir = UP;
-					speed.y = -0.5f * SCALE_FACTOR;
+					speed.y = -0.4f * SCALE_FACTOR;
 				}
 				else if (app->player->position.y > position.y + 25 * SCALE_FACTOR)
 				{
@@ -76,26 +84,17 @@ public:
 					dir = STRAIGHT;
 				}
 
-		/*		doubleNode<Weapons*> *item_weapon = app->particles->active_weapons.getFirst();
+				doubleNode<Weapons*> *item_weapon = app->particles->active_weapons.getFirst();
 				while (item_weapon != NULL)
 				{
-					if (item_weapon->data) 
-				}*/
-			}			
-
-			switch (dir)
-			{
-				case(UP) :
-				case(DOWN) : 
-					speed.y *= 1.02f;
-					break;
+					if (item_weapon->data->type == BOSS_WEAPON)
+					{
+						item_weapon->data->dir = dir;
+						item_weapon->data->speed.y = speed.y;
+					}
+					item_weapon = item_weapon->next;
+				}
 			}
-
-			position.x += speed.x;
-			position.y += speed.y;
-
-			if (life > 0 && (SDL_GetTicks() - born) > life)
-				ret = false;
 		}
 
 		if (collider != NULL)
