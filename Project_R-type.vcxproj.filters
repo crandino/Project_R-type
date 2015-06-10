@@ -25,7 +25,7 @@
     <Filter Include="Header Files\Explosions">
       <UniqueIdentifier>{f6c79d98-1d65-43a0-b9d4-b75828cce8d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Tools\PowerUps">
+    <Filter Include="Header Files\PowerUps">
       <UniqueIdentifier>{b496bc2b-bc5f-4800-9485-a113039594b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -106,10 +106,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PowerUp.h">
-      <Filter>Header Files\Tools\PowerUps</Filter>
+      <Filter>Header Files\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="RibbonPowerUp.h">
-      <Filter>Header Files\Tools\PowerUps</Filter>
+      <Filter>Header Files\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="BugEnemy.h">
       <Filter>Header Files\Enemies</Filter>
@@ -145,7 +145,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MissilePowerUp.h">
-      <Filter>Header Files\PowerUps</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
