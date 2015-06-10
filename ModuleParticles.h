@@ -33,7 +33,8 @@ enum EXPLOSION_TYPES
 	NONE_EXPLOSION,
 
 	COMMON_EXPLOSION,
-	PLAYER_EXPLOSION
+	PLAYER_EXPLOSION,
+	BASIC_PLAYER_SHOT_EXPLOSION
 };
 
 class ModuleParticles : public Module
@@ -46,8 +47,8 @@ private:
 	SDL_Texture *basic_enemy_shot;
 	SDL_Texture *ribbon_player_shot;
 	SDL_Texture *boss_weapon;
-	
 
+	SDL_Texture *basic_player_shot_explosion;
 	SDL_Texture *player_explosion;
 	SDL_Texture *common_explosion;
 

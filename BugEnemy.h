@@ -94,6 +94,8 @@ public:
 		angle = 0;
 		life = 50000; // In miliseconds
 		graphics = texture;
+
+		points = 200;
 	}
 
 	~BugEnemy()

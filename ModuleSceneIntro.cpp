@@ -171,7 +171,7 @@ update_status ModuleSceneIntro::update()
 		numbers_coins.current_frame = units;
 		app->renderer->blit(numbers, 348 * SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
 
-		unsigned int tens = (app->coins / 10) % 100;
+		unsigned int tens = (app->coins / 10) % 10;
 		numbers_coins.current_frame = tens;
 		app->renderer->blit(numbers, 340 * SCALE_FACTOR, 113 * SCALE_FACTOR, &(numbers_coins.getCurrentFrame()));
 

@@ -150,6 +150,9 @@
     <ClInclude Include="BossWeapon.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerBasicShotExplosion.h">
+      <Filter>Header Files\Explosions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CodeStyle.txt">

@@ -40,7 +40,7 @@ public:
 	bool playFx(unsigned int fx, int repeat = 0);
 
 	// Stop all music
-	bool stopAllMusic(float fade_time);
+	bool stopAllMusic(float fade_time = 0.0f);
 };
 
 #endif //!__MODULEAUDIO_H__

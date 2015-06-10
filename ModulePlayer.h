@@ -21,6 +21,7 @@ public:
 	unsigned int fx_shoot;
 	unsigned int fx_ribbon_shoot;
 	unsigned int fx_boom;
+	unsigned int fx_missile_shot;
 	Collider *collider;
 	Animation *current_animation;
 	Animation idle;
@@ -42,6 +43,7 @@ public:
 
 	//DTM
 	unsigned int lives = 2;
+	unsigned int player_points;
 
 	ModulePlayer(Application *app, bool start_enabled = true);
 	~ModulePlayer();

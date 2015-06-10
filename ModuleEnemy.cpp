@@ -75,8 +75,8 @@ update_status ModuleEnemy::preUpdate()
 		//	---------------------  PATA-PATA ------------------------------
 		//  ---------------------------------------------------------------
 	case(450) :
-		// PATA-PATA - Group 1 ( 4 units )
-	if (last_wave != wave)
+	    //PATA-PATA - Group 1 ( 4 units )
+		if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
@@ -324,7 +324,7 @@ update_status ModuleEnemy::preUpdate()
 		}
 			   break;
 
-	case(3650) :
+	case(3750) :
 		// Boss Dobkeratops
 		if (last_wave != wave)
 		{
@@ -399,6 +399,7 @@ void ModuleEnemy::onCollision(Collider *c1, Collider *c2)
 
 	if (item != NULL)
 	{
+		app->player->player_points += item->data->points;
 		app->particles->addExplosion(COMMON_EXPLOSION, c1->rect.x, c1->rect.y);
 		app->audio->playFx(fx_pata_explosion);
 		delete item->data;
