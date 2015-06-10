@@ -74,9 +74,9 @@ update_status ModuleEnemy::preUpdate()
 	//	//  ---------------------------------------------------------------
 	//	//	---------------------  PATA-PATA ------------------------------
 	//	//  ---------------------------------------------------------------
-	case(450) :
+	//case(450) :
 	//	// PATA-PATA - Group 1 ( 4 units )
-		if (last_wave != wave)
+	/*	if (last_wave != wave)
 		{
 			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
 			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
@@ -84,7 +84,7 @@ update_status ModuleEnemy::preUpdate()
 			addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
 			last_wave = wave;
 		}
-			  break;
+			  break;*/
 
 	//case(515) :
 	//	// PATA-PATA - Group 2 ( 4 units )

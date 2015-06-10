@@ -9,6 +9,7 @@
 #include "Module.h"
 #include "Point2d.h"
 #include "Animation.h"
+#include "ModuleCollision.h"
 #include "SDL\include\SDL.h"
 //=================================
 // the actual class
@@ -17,6 +18,7 @@ struct Boss
 {
 	Point2d<int> position;
 	Animation anim;
+	Collider *col;
 };
 
 struct Alien : Boss
@@ -31,7 +33,6 @@ struct Alien : Boss
 		anim.frames.pushBack({ 636, 1964, 32, 32 });
 		anim.frames.pushBack({ 636, 1964, 32, 32 });
 		anim.speed = 0.05f;
-
 	}
 };
 
@@ -104,7 +105,6 @@ public:
 	Antenna3 *antenna3;
 	Antenna4 *antenna4;
 
-	
 	DList<Boss*> boss_parts;
 
 	unsigned int stop_scrolling_position;
