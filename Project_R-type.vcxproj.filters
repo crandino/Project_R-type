@@ -153,8 +153,8 @@
     <ClInclude Include="PlayerBasicShotExplosion.h">
       <Filter>Header Files\Explosions</Filter>
     </ClInclude>
-    <ClInclude Include="MissilePowerUp.h">
-      <Filter>Header Files\PowerUps</Filter>
+    <ClInclude Include="HugeExplosion.h">
+      <Filter>Header Files\Explosions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

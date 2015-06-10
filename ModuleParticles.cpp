@@ -20,6 +20,7 @@
 #include "PlayerExplosion.h"
 #include "PlayerBasicShotExplosion.h"
 #include "CommonExplosion.h"
+#include "HugeExplosion.h"
 //=================================
 // the actual code
 
@@ -44,6 +45,7 @@ bool ModuleParticles::start()
 	// Explosions
 	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
+	huge_explosion = app->textures->load("Sprites/huge_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
@@ -59,6 +61,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(missile_player_shot);
 	app->textures->unload(basic_enemy_shot);
 	app->textures->unload(player_explosion);
+	app->textures->unload(common_explosion);
 	app->textures->unload(common_explosion);
 	app->textures->unload(ribbon_player_shot);
 	
@@ -242,6 +245,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_
 	switch (type)
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
+	case(HUGE_EXPLOSION) : p = new HugeExplosion(app, huge_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
 	}

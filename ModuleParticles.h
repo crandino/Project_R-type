@@ -33,6 +33,7 @@ enum EXPLOSION_TYPES
 	NONE_EXPLOSION,
 
 	COMMON_EXPLOSION,
+	HUGE_EXPLOSION,
 	PLAYER_EXPLOSION,
 	BASIC_PLAYER_SHOT_EXPLOSION
 };
@@ -51,6 +52,7 @@ private:
 	SDL_Texture *basic_player_shot_explosion;
 	SDL_Texture *player_explosion;
 	SDL_Texture *common_explosion;
+	SDL_Texture *huge_explosion;
 
 	DList<Explosions*> active_explosions;
 
