@@ -20,7 +20,7 @@
 
 ModuleSceneSpace::ModuleSceneSpace(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
-	boundary_level = NULL;
+	level1 = NULL;
 }
 
 ModuleSceneSpace::~ModuleSceneSpace()
@@ -31,7 +31,7 @@ bool ModuleSceneSpace::start()
 {
 	LOG("Loading space scene");
 
-	boundary_level = app->textures->load("Sprites/boundary_level.png");
+	level1 = app->textures->load("Sprites/boundary_level.png");
 
 	app->player->enable();
 	app->game_interface->enable();
@@ -39,17 +39,15 @@ bool ModuleSceneSpace::start()
 	app->enemy->enable();
 	app->powerup->enable();
 	app->particles->enable();	
-	app->audio->playMusic("Music/Level1.ogg", 1.0f);
+	app->audio->playMusic("Music/Level1_resmastered.ogg", 1.0f);
 
-	scroll_player_speed = (int)(0.57 * SCALE_FACTOR); //0.333f;
-	scroll_camera_speed = (int)(0.57 * SCALE_FACTOR); //1.75f;
+	scroll_speed = (int)(0.50 * SCALE_FACTOR); 
 	left_limit = (10 * SCALE_FACTOR);
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
-
-	finish = false;
 	
-	// CRZ changed this to directly go to the boss.
-	origin = 3200 * SCALE_FACTOR;
+	// Changing origin we can go to an exact position
+	// along the level.
+	origin = 0 * SCALE_FACTOR;
 	app->renderer->camera.x = origin * (-1);
 	app->renderer->camera.y = 0 * SCALE_FACTOR;
 
@@ -195,7 +193,7 @@ bool ModuleSceneSpace::cleanUp()
 {
 	LOG("Unloading space scene");
 
-	app->textures->unload(boundary_level);
+	app->textures->unload(level1);
 	app->player->disable();
 	app->game_interface->disable();
 	app->enemy->disable();
@@ -209,15 +207,15 @@ bool ModuleSceneSpace::cleanUp()
 // Update: draw background
 update_status ModuleSceneSpace::update()
 {
-	// Move camera forward
-	app->player->position.x += scroll_player_speed;
-	app->renderer->camera.x -= scroll_camera_speed;
-	left_limit += scroll_player_speed;
-	right_limit += scroll_player_speed;
+	// All the variables of ModuleScene are updated
+	// with the scroll speed.
+	app->player->position.x += scroll_speed;
+	app->renderer->camera.x -= scroll_speed;
+	left_limit += scroll_speed;
+	right_limit += scroll_speed;
+	origin += scroll_speed;
 
-	origin += scroll_player_speed;
-
-	//// The player wins wether it reaches the end of the level. 
+	//// The player wins wether it reaches the end of the level.
 	//if (app->renderer->camera.x < (-3550 * SCALE_FACTOR))
 	//{
 	//	if (finish == false)
@@ -230,7 +228,7 @@ update_status ModuleSceneSpace::update()
 	//}
 
 	// Draw everything
-	app->renderer->blit(boundary_level, 0, 0, NULL);
+	app->renderer->blit(level1, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }

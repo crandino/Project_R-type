@@ -324,7 +324,7 @@ update_status ModuleEnemy::preUpdate()
 		}
 			   break;
 
-	case(3750) :
+	case(3700) :
 		// Boss Dobkeratops
 		if (last_wave != wave)
 		{

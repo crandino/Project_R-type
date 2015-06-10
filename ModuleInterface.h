@@ -26,8 +26,7 @@ public:
 
 	Animation numbers_points;
 
-	float position_interface;
-	float speed_interface;
+	int position_interface;
 
 	ModuleInterface(Application *app, bool start_enabled = true);
 	~ModuleInterface();

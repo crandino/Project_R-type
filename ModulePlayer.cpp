@@ -27,7 +27,7 @@ Module(app, start_enabled)
 
 	fx_shoot = 0;
 	fx_ribbon_shoot = 0;
-	fx_boom = 0;
+	fx_spaceship_explosion = 0;
 	
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -73,12 +73,13 @@ bool ModulePlayer::start()
 	active = true;
 	app->input->keyboard_enabled = true;
 
-	position.x = 3300 * SCALE_FACTOR;
+	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = end_charging = 0;
 	charging = false;
 	last_ribbon_shot = 0;
+	lifes = 2;
 
 	weapon_type = BASIC_PLAYER_SHOT;
 	player_points = 0;
@@ -86,15 +87,15 @@ bool ModulePlayer::start()
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
 	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
-	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
+	fx_spaceship_explosion = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
-	// CRZ ----
+	// Each animation of Player is reseted.
 	for (unsigned int i = 0; i < animation_set.getNumElements(); i++)
 		animation_set[i]->reset();
 
-	// Collider to player;
+	// Collider of player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, false, app->player);
 	
 	return true;
@@ -220,12 +221,10 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 	{
 		speed = 0;
 		app->particles->addExplosion(PLAYER_EXPLOSION, position.x, position.y, COLLIDER_NONE);
-		app->audio->playFx(fx_boom);
+		app->audio->playFx(fx_spaceship_explosion);
 		app->input->keyboard_enabled = false;
 
-		app->scene->scroll_player_speed = 0;
-		app->scene->scroll_camera_speed = 0;
-		app->game_interface->speed_interface = 0;
+		app->scene->scroll_speed = 0;
 
 		app->fade->fadeToBlack(app->scene, app->scene_over, 2.0f);
 		active = false;

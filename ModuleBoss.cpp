@@ -119,11 +119,7 @@ bool ModuleBoss::start()
 update_status ModuleBoss::update()
 { 
 	if ((app->scene->origin + SCREEN_WIDTH * SCALE_FACTOR) > stop_scrolling_position)
-	{
-		app->scene->scroll_player_speed = 0;
-		app->scene->scroll_camera_speed = 0;
-		app->game_interface->speed_interface = 0;
-	}
+		app->scene->scroll_speed = 0;
 	
 	if ((int)alien->anim.current_frame == 4)
 		wait_to_shoot = false;

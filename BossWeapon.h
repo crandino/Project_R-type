@@ -30,7 +30,7 @@ public:
 
 	BossWeapon(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
-		//Player ship shot
+		// Ray weapon of Dobkeratops
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 21, 20 });
 		anim.frames.pushBack({ 23, 0, 21, 20 });
@@ -85,12 +85,12 @@ public:
 				if (app->player->position.y < position.y - 25 * SCALE_FACTOR)
 				{
 					dir = UP;
-					speed.y = -0.04f * SCALE_FACTOR;
+					speed.y = -0.05f * SCALE_FACTOR;
 				}
 				else if (app->player->position.y > position.y + 25 * SCALE_FACTOR)
 				{
 					dir = DOWN;
-					speed.y = 0.04f * SCALE_FACTOR;
+					speed.y = 0.05f * SCALE_FACTOR;
 				}
 				else
 				{

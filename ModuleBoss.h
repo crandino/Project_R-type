@@ -127,4 +127,5 @@ public:
 	//void onCollision(Collider *col1, Collider *col2);
 
 };
+
 #endif // !__MODULEBOSS_H__
