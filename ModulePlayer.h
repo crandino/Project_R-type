@@ -18,10 +18,13 @@ class ModulePlayer : public Module
 public:
 
 	SDL_Texture *graphics;
+	SDL_Texture *contrail_image;
 	unsigned int fx_shoot;
+	unsigned int fx_big_shoot;
 	unsigned int fx_ribbon_shoot;
 	unsigned int fx_boom;
 	unsigned int fx_missile_shot;
+	unsigned int fx_charging;
 	Collider *collider;
 	Animation *current_animation;
 	Animation idle;
@@ -30,6 +33,8 @@ public:
 	Animation idle_to_downward;
 	Animation downward_to_idle;
 	Animation explosion;
+	Animation charging_animation;
+	Animation contrail;
 	Point2d<int> position;
 	WEAPON_TYPES weapon_type;
 	Uint32 start_charging;

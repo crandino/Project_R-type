@@ -49,7 +49,7 @@ bool ModuleSceneSpace::start()
 	finish = false;
 	
 	// CRZ changed this to directly go to the boss.
-	origin = 3200 * SCALE_FACTOR;
+	origin = 0 * SCALE_FACTOR;
 	app->renderer->camera.x = origin * (-1);
 	app->renderer->camera.y = 0 * SCALE_FACTOR;
 

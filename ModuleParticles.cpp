@@ -18,6 +18,7 @@
 
 // -- Explosions -- 
 #include "PlayerExplosion.h"
+#include "Contrail.h"
 #include "PlayerBasicShotExplosion.h"
 #include "CommonExplosion.h"
 //=================================
@@ -45,6 +46,7 @@ bool ModuleParticles::start()
 	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
+	contrail = app->textures->load("Sprites/Contrail.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -59,6 +61,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(missile_player_shot);
 	app->textures->unload(basic_enemy_shot);
 	app->textures->unload(player_explosion);
+	app->textures->unload(contrail);
 	app->textures->unload(common_explosion);
 	app->textures->unload(ribbon_player_shot);
 	
@@ -243,6 +246,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
+	case(CONTRAIL) : p = new Contrail(app, contrail); break;
 	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
 	}
 

@@ -18,6 +18,7 @@
     <ClInclude Include="BossWeapon.h" />
     <ClInclude Include="BugEnemy.h" />
     <ClInclude Include="CommonExplosion.h" />
+    <ClInclude Include="Contrail.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DynArray.h" />
     <ClInclude Include="Enemy.h" />

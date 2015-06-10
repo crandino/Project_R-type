@@ -56,7 +56,7 @@ public:
 		anim.loop = false;
 		anim_1.loop = anim_2.loop = anim_3.loop = anim_4.loop = anim_5.loop = true;
 		anim.speed = anim_1.speed = anim_2.speed = anim_3.speed = anim_4.speed = anim_5.speed = 0.5f;
-		speed.x = 10 * SCALE_FACTOR;
+		speed.x = 8 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 750;
 		type = BASIC_PLAYER_SHOT;

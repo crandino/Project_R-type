@@ -23,11 +23,14 @@ ModulePlayer::ModulePlayer(Application *app, bool start_enabled) :
 Module(app, start_enabled)
 {
 	graphics = NULL;
+	contrail_image = NULL;
 	collider = NULL;
 
 	fx_shoot = 0;
+	fx_big_shoot = 0;
 	fx_ribbon_shoot = 0;
 	fx_boom = 0;
+	fx_charging = 0;
 	
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -60,6 +63,25 @@ Module(app, start_enabled)
 	downward_to_idle.loop = false;
 	animation_set.pushBack(&downward_to_idle);
 
+	charging_animation.frames.pushBack({ 2, 51, 33, 32 });
+	charging_animation.frames.pushBack({ 35, 51, 33, 32 });
+	charging_animation.frames.pushBack({ 68, 51, 35, 32 });
+	charging_animation.frames.pushBack({ 103, 51, 32, 32 });
+	charging_animation.frames.pushBack({ 135, 51, 33, 32 });
+	charging_animation.frames.pushBack({ 168, 51, 32, 32 });
+	charging_animation.frames.pushBack({ 200, 51, 33, 32 });
+	charging_animation.frames.pushBack({ 233, 51, 20, 32 });
+	charging_animation.speed = 0.2f;
+	charging_animation.loop = true;
+	animation_set.pushBack(&charging_animation);
+
+	contrail.frames.pushBack({ 0, 0, 16, 16 });
+	contrail.frames.pushBack({ 16, 0, 22, 16 });
+	contrail.frames.pushBack({ 38, 0, 29, 16 });
+	contrail.frames.pushBack({ 67, 0, 23, 16 });
+	contrail.speed = 0.01f;
+	contrail.loop = false;
+	animation_set.pushBack(&contrail);
 }
 
 ModulePlayer::~ModulePlayer()
@@ -73,7 +95,7 @@ bool ModulePlayer::start()
 	active = true;
 	app->input->keyboard_enabled = true;
 
-	position.x = 3300 * SCALE_FACTOR;
+	position.x = 0 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = end_charging = 0;
@@ -84,10 +106,13 @@ bool ModulePlayer::start()
 	player_points = 0;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
+	fx_big_shoot = app->audio->loadFx("Sounds/DisparoPotenteNave.wav");
 	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
 	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
+	fx_charging = app->audio->loadFx("Sounds/Charging_Sound.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
+	contrail_image = app->textures->load("Sprites/Contrail.png");
 	current_animation = &idle;
 
 	// CRZ ----
@@ -163,8 +188,20 @@ update_status ModulePlayer::update()
 		{
 			if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
 			{
+				app->audio->playFx(fx_shoot);
+				app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				start_charging = SDL_GetTicks();
 				charging = true;
+			}
+		}
+
+		else
+		{
+			Uint32 tmp_charging = SDL_GetTicks();
+			if (tmp_charging - start_charging > 200)
+			{
+				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
+				app->audio->playFx(fx_charging);
 			}
 		}
 
@@ -175,9 +212,15 @@ update_status ModulePlayer::update()
 				case BASIC_PLAYER_SHOT:
 				{
 					end_charging = SDL_GetTicks();
-					app->audio->playFx(fx_shoot);
-					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 					charging = false;
+					if (end_charging - start_charging > 200)
+					{
+						//No suena casi nunca!!!!!!!
+						app->audio->playFx(fx_big_shoot);
+						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
+						app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
+					}
+					start_charging = end_charging = 0;
 					break;
 				}
 
