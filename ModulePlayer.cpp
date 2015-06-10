@@ -79,7 +79,7 @@ bool ModulePlayer::start()
 	weapon_type = BASIC_PLAYER_SHOT;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
-	fx_ribbon_shoot = app->audio->loadFx("Sounds/DisparoRibbon.mp3");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/DisparoRibbon.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;

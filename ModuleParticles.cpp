@@ -16,6 +16,7 @@
 #include "RibbonShot.h"
 // -- Explosions -- 
 #include "PlayerExplosion.h"
+#include "PlayerBasicShotExplosion.h"
 #include "CommonExplosion.h"
 //=================================
 // the actual code
@@ -38,6 +39,7 @@ bool ModuleParticles::start()
 	ribbon_player_shot = app->textures->load("Sprites/Ribbon_shot.png");
 	
 	// Explosions
+	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 
@@ -49,6 +51,7 @@ bool ModuleParticles::start()
 bool ModuleParticles::cleanUp()
 {
 	LOG("Unloading particles");
+	app->textures->unload(basic_player_shot_explosion);
 	app->textures->unload(basic_player_shot);
 	app->textures->unload(missile_player_shot);
 	app->textures->unload(basic_enemy_shot);
@@ -151,9 +154,36 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 	{
 		if (tmp_weapon->data->collider == c1)
 		{
-			app->audio->playFx(fx_shot_explosion);
-			delete tmp_weapon->data;
-			active_weapons.del(tmp_weapon);
+			switch (tmp_weapon->data->type)
+			{
+				case(BASIC_PLAYER_SHOT):
+				{
+					if (c2->type == COLLIDER_WALL)
+					{
+						addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
+						app->audio->playFx(fx_shot_explosion);
+					}					
+					delete tmp_weapon->data;
+					active_weapons.del(tmp_weapon);
+					break;
+				}
+
+				case(MISSILE_PLAYER_SHOT) :
+				{
+					addExplosion(COMMON_EXPLOSION, c1->rect.x, c1->rect.y);
+					app->audio->playFx(app->enemy->fx_pata_explosion);
+					delete tmp_weapon->data;
+					active_weapons.del(tmp_weapon);
+					break;
+				}
+
+				case(RIBBON_PLAYER_SHOT) :
+				{
+					delete tmp_weapon->data;
+					active_weapons.del(tmp_weapon);
+					break;
+				}
+			}
 			break;
 		}
 
@@ -208,6 +238,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
+	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;
