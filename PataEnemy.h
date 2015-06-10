@@ -39,6 +39,8 @@ public:
 		attack_frequency = ((rand() % 3) + 3) * 1000;
 		attacks = 0;
 		graphics = texture;
+
+		points = 200;
 	}
 
 	~PataEnemy()

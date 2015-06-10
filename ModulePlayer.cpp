@@ -77,9 +77,11 @@ bool ModulePlayer::start()
 	last_shot = 0;
 
 	weapon_type = BASIC_PLAYER_SHOT;
+	player_points = 98;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
-	fx_ribbon_shoot = app->audio->loadFx("Sounds/DisparoRibbon.wav");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
+	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
@@ -87,7 +89,6 @@ bool ModulePlayer::start()
 	// CRZ ----
 	for (unsigned int i = 0; i < animation_set.getNumElements(); i++)
 		animation_set[i]->reset();
-	// ---- CRZ
 
 	// Collider to player;
 	collider = app->collision->addCollider({ position.x, position.y, 32, 14 }, COLLIDER_PLAYER, false, app->player);
@@ -167,7 +168,7 @@ update_status ModulePlayer::update()
 
 				case MISSILE_PLAYER_SHOT:
 				{
-					app->audio->playFx(fx_shoot);
+					app->audio->playFx(fx_missile_shot);
 					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y - 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y + 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 					break;

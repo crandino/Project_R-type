@@ -23,6 +23,9 @@ public:
 	int speed_value;
 
 	DynArray<Point2d<int>> *path1;
+	DynArray<Point2d<int>> *path2;
+	DynArray<Point2d<int>> *path3;
+	DynArray<Point2d<int>> *path4;
 	DynArray<Point2d<int>> *path5;
 	unsigned int path_position;
 
@@ -58,6 +61,23 @@ public:
 		path1->pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
 		path_set.pushBack(path1);
 
+		path2 = new DynArray<Point2d<int>>;
+		path2->pushBack({ 700 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 650 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 600 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 550 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 500 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 450 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 400 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path_set.pushBack(path2);
+
+		path3 = new DynArray<Point2d<int>>;
+		path3->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path3->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
+		path3->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path3->pushBack({ 1500 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path_set.pushBack(path3);
+
 		path5 = new DynArray<Point2d<int>>;
 		path5->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
 		path5->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
@@ -74,6 +94,8 @@ public:
 		angle = 0;
 		life = 50000; // In miliseconds
 		graphics = texture;
+
+		points = 200;
 	}
 
 	~BugEnemy()
@@ -99,7 +121,7 @@ public:
 	void orientTo(const Point2d<int> &position_destiny)
 	{
 		// https://www.mathsisfun.com/geometry/unit-circle.html
-		// It might be helpul!
+		// It might be helpfull!
 
 		float dx = position_destiny.x - position.x;
 		float dy = position_destiny.y - position.y;

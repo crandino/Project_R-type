@@ -42,6 +42,8 @@ public:
 		life = 50000; // In miliseconds
 		graphics = texture;
 
+		points = 100;
+
 		attacks = 0;
 		attack_frequency = attack_frequency = ((rand() % 3) + 3) * 1000;
 	
