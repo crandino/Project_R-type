@@ -6,6 +6,7 @@
 // forward declared dependencies
 class ModulleCollision;
 enum WEAPON_TYPES;
+enum DIRECTION;
 //=================================
 // included dependencies
 #include "ModuleParticles.h"
@@ -30,6 +31,7 @@ public:
 	bool fx_played;
 	WEAPON_TYPES type;
 	unsigned int fx;
+	DIRECTION dir;
 
 	Weapons(Application *parent) : app(parent), born(0), life(0), collider(NULL)
 	{

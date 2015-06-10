@@ -41,15 +41,15 @@ bool ModuleSceneSpace::start()
 	app->particles->enable();	
 	app->audio->playMusic("Music/Level1.ogg", 1.0f);
 
-	scroll_player_speed = (int)(0.5 * SCALE_FACTOR); //0.333f;
-	scroll_camera_speed = (int)(0.5 * SCALE_FACTOR); //1.75f;
+	scroll_player_speed = (int)(0.57 * SCALE_FACTOR); //0.333f;
+	scroll_camera_speed = (int)(0.57 * SCALE_FACTOR); //1.75f;
 	left_limit = (10 * SCALE_FACTOR);
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
 
 	finish = false;
 	
 	// CRZ changed this to directly go to the boss.
-	origin = 0 * SCALE_FACTOR;
+	origin = 3200 * SCALE_FACTOR;
 	app->renderer->camera.x = origin * (-1);
 	app->renderer->camera.y = 0 * SCALE_FACTOR;
 

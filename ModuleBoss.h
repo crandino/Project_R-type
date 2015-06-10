@@ -95,6 +95,8 @@ class ModuleBoss : public Module
 
 public:
 
+	bool wait_to_shoot;
+
 	SDL_Texture *dobkeratops_texture;
 
 	// Parts of Dobkeratops:

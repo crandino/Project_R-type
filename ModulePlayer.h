@@ -32,10 +32,10 @@ public:
 	Animation explosion;
 	Point2d<int> position;
 	WEAPON_TYPES weapon_type;
-	int last_shot;
 	Uint32 start_charging;
 	Uint32 end_charging;
 	bool charging;
+	int last_ribbon_shot;
 	
 	int speed;
 

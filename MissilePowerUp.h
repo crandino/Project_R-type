@@ -19,11 +19,11 @@ public:
 	MissilePowerUp(Application *app, SDL_Texture *texture) : PowerUp(app)
 	{
 		//Missile powerup frames
-		anim.frames.pushBack({ 0, 0, 19, 17 });
-		anim.frames.pushBack({ 20, 0, 19, 17 });
-		anim.frames.pushBack({ 40, 0, 19, 17 });
-		anim.frames.pushBack({ 60, 0, 19, 17 });
-		anim.frames.pushBack({ 80, 0, 19, 17 });
+		anim.frames.pushBack({ 6, 3, 21, 18 });
+		anim.frames.pushBack({ 38, 3, 21, 18 });
+		anim.frames.pushBack({ 70, 3, 21, 18 });
+		anim.frames.pushBack({ 102, 3, 21, 18 });
+		anim.frames.pushBack({ 134, 3, 21, 18 });
 		anim.speed = 0.1f;
 		speed.x = 0 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;

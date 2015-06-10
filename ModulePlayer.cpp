@@ -73,15 +73,15 @@ bool ModulePlayer::start()
 	active = true;
 	app->input->keyboard_enabled = true;
 
-	position.x = 50 * SCALE_FACTOR;
+	position.x = 3300 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = end_charging = 0;
 	charging = false;
-	last_shot = 0;
+	last_ribbon_shot = 0;
 
 	weapon_type = BASIC_PLAYER_SHOT;
-	player_points = 98;
+	player_points = 0;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
 	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
@@ -192,10 +192,10 @@ update_status ModulePlayer::update()
 				case RIBBON_PLAYER_SHOT:
 				{
 					
-					if ((last_shot + 600) < (SDL_GetTicks()) || last_shot == 0 || app->particles->active_weapons.count() == 0)
+					if ((last_ribbon_shot + 600) < (SDL_GetTicks()) || last_ribbon_shot == 0 || app->particles->active_weapons.count() == 0)
 					{
 						app->audio->playFx(fx_ribbon_shoot);
-						last_shot = SDL_GetTicks();
+						last_ribbon_shot = SDL_GetTicks();
 						app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
 					}
 					break;

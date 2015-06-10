@@ -8,6 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleInterface.h"
+#include "ModuleParticles.h"
 //=================================
 // the actual code
 
@@ -15,6 +16,7 @@ ModuleBoss::ModuleBoss(Application *app, bool start_enabled) :
 Module(app, start_enabled)
 { 
 	stop_scrolling_position = 3929 * SCALE_FACTOR;
+	wait_to_shoot = false;
 
 	// Breeding of Dobkeratops
 	alien = new Alien();
@@ -81,7 +83,7 @@ bool ModuleBoss::start()
 	antenna4->col = app->collision->addCollider(rect_antenna4, COLLIDER_ENEMY, true, this);
 
 	// Stopping music level and initiating boss music.
-	app->audio->stopAllMusic(0.1f);
+	app->audio->stopAllMusic();
 	app->audio->playMusic("Music/Boss_Level.ogg", 1.0f);
 
 	return true;
@@ -97,6 +99,23 @@ update_status ModuleBoss::update()
 		app->scene->scroll_player_speed = 0;
 		app->scene->scroll_camera_speed = 0;
 		app->game_interface->speed_interface = 0;
+	}
+	
+	if ((int)alien->anim.current_frame == 4)
+		wait_to_shoot = false;
+
+	if (wait_to_shoot == false && (int)alien->anim.current_frame == 2 )
+	{
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR , app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 80);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 160);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 240);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 320);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 400);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 480);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 560);
+		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 640);
+		wait_to_shoot = true;
 	}
 
 	doubleNode<Boss*> *tmp = boss_parts.getFirst();
