@@ -38,6 +38,13 @@ struct Alien : Boss
 
 struct Dobkeratops : Boss
 {
+	Collider *col_dob_head1;
+	Collider *col_dob_head2;
+	Collider *col_dob_head3;
+	Collider *col_dob_body1;
+	Collider *col_dob_body2;
+	Collider *col_dob_tail;
+
 	Dobkeratops() : Boss()
 	{
 		anim.frames.pushBack({ 351, 2, 155, 204 });
