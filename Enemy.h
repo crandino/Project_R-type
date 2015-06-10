@@ -25,6 +25,7 @@ public:
 	bool fx_played;
 	unsigned int fx;
 	Collider *collider;
+	unsigned int points;
 
 	
 	Enemy(Application *parent)

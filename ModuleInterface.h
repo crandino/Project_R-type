@@ -7,6 +7,7 @@
 //=================================
 // included dependencies
 #include "Module.h"
+#include "Animation.h"
 #include "SDL\include\SDL.h"
 //=================================
 // the actual class
@@ -17,10 +18,13 @@ public:
 
 	SDL_Texture *img_life;
 	SDL_Texture *img_beam;
+	SDL_Texture *img_p1;
 	SDL_Texture *img_hi;
 	SDL_Texture *img_numbers_interface;
 	SDL_Texture *img_bar;
 	unsigned int fx;
+
+	Animation numbers_points;
 
 	float position_interface;
 	float speed_interface;
