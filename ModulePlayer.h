@@ -19,6 +19,7 @@ public:
 
 	SDL_Texture *graphics;
 	unsigned int fx_shoot;
+	unsigned int fx_ribbon_shoot;
 	unsigned int fx_boom;
 	Collider *collider;
 	Animation *current_animation;

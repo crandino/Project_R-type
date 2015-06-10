@@ -4,6 +4,7 @@
 #include "ModulePowerUp.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleAudio.h"
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModuleSceneSpace.h"
@@ -22,6 +23,8 @@ ModulePowerUp::~ModulePowerUp()
 bool ModulePowerUp::start()
 {
 	LOG("Loading PowerUp textures");
+
+	fx_power_up = app->audio->loadFx("Sounds/PowerUP.aif");
 
 	ribbon_graphics = app->textures->load("Sprites/ribbon_powerup.png");
 	missile_graphics = app->textures->load("Sprites/ribbon_powerup.png");
@@ -87,6 +90,8 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 
 	if (item != NULL)
 	{
+		app->audio->playFx(fx_power_up);
+
 		switch (item->data->type)
 		{
 			case(RIBBON_POWERUP) : app->player->weapon_type = RIBBON_PLAYER_SHOT; break;

@@ -74,17 +74,17 @@ update_status ModuleEnemy::preUpdate()
 	//	//  ---------------------------------------------------------------
 	//	//	---------------------  PATA-PATA ------------------------------
 	//	//  ---------------------------------------------------------------
-	//case(450) :
+	case(450) :
 	//	// PATA-PATA - Group 1 ( 4 units )
-	//	if (last_wave != wave)
-	//	{
-	//		addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
-	//		addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
-	//		last_wave = wave;
-	//	}
-	//		  break;
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 450, 30, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 485, 35, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 535, 45, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 575, 60, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			  break;
 
 	//case(515) :
 	//	// PATA-PATA - Group 2 ( 4 units )
@@ -378,15 +378,15 @@ update_status ModuleEnemy::postUpdate()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleEnemy::onCollision(Collider *col1, Collider *col2)
+void ModuleEnemy::onCollision(Collider *c1, Collider *c2)
 { 
 	doubleNode<Enemy*> *item = active.getFirst();
-	while (item != NULL && item->data->collider != col1)
+	while (item != NULL && item->data->collider != c1)
 		item = item->next;
 
 	if (item != NULL)
 	{
-		app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
+		app->particles->addExplosion(COMMON_EXPLOSION, c1->rect.x, c1->rect.y);
 		app->audio->playFx(fx_pata_explosion);
 		delete item->data;
 		active.del(item);

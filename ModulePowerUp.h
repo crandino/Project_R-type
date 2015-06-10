@@ -35,6 +35,7 @@ public:
 	// List of PowerUp textures
 	SDL_Texture *ribbon_graphics;
 	SDL_Texture *missile_graphics;
+	unsigned int fx_power_up;
 
 	ModulePowerUp(Application *app, bool start_enabled = true);
 	~ModulePowerUp();

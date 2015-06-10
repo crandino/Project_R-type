@@ -24,6 +24,7 @@ Module(app, start_enabled)
 	collider = NULL;
 
 	fx_shoot = 0;
+	fx_ribbon_shoot = 0;
 	fx_boom = 0;
 	
 	// idle animation (there is no animation here, just the ship)
@@ -78,6 +79,7 @@ bool ModulePlayer::start()
 	weapon_type = BASIC_PLAYER_SHOT;
 
 	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/DisparoRibbon.mp3");
 	fx_boom = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
@@ -173,7 +175,10 @@ update_status ModulePlayer::update()
 
 				case RIBBON_PLAYER_SHOT:
 				{
-					if ((last_shot + 600) < (SDL_GetTicks()) || last_shot == 0 || app->particles->active_weapons.count() == 0){
+					
+					if ((last_shot + 600) < (SDL_GetTicks()) || last_shot == 0 || app->particles->active_weapons.count() == 0)
+					{
+						app->audio->playFx(fx_ribbon_shoot);
 						last_shot = SDL_GetTicks();
 						app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
 					}
