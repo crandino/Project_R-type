@@ -60,6 +60,9 @@ public:
 
 	bool start();
 	update_status update();
+	void shoot();
+	void charge_basic_shot();
+	void move();
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 

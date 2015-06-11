@@ -133,120 +133,9 @@ update_status ModulePlayer::update()
 {
 	if (active)
 	{
-		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT  && position.y > 0)
-		{
-			position.y -= speed;
+		move();
 
-			if (current_animation != &idle_to_upward)
-			{
-				idle_to_upward.reset();
-				current_animation = &idle_to_upward;
-			}
-		}
-
-		if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		{
-			position.y += speed;
-
-			if (current_animation != &idle_to_downward)
-			{
-				idle_to_downward.reset();
-				current_animation = &idle_to_downward;
-			}
-		}
-
-		if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT &&
-			position.x > app->scene->left_limit)
-			position.x -= speed;
-
-		if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT &&
-			position.x < app->scene->right_limit)
-			position.x += speed;
-
-		if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
-		{
-			if (current_animation == &idle_to_upward)
-				current_animation = &upward_to_idle;
-
-			if (current_animation == &idle_to_downward)
-				current_animation = &downward_to_idle;
-
-			if (upward_to_idle.finished() || downward_to_idle.finished())
-			{
-				upward_to_idle.reset();
-				downward_to_idle.reset();
-				current_animation = &idle;
-			}
-		}
-
-		if (charging == false)
-		{
-			if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
-			{
-				app->audio->playFx(fx_shoot);
-				charged_shot = false;
-				app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-				start_charging = SDL_GetTicks();
-				charging = true;
-			}
-		}
-
-		else
-		{
-			if (weapon_type == BASIC_PLAYER_SHOT)
-			{
-				actual_charging = SDL_GetTicks();
-				if (actual_charging - start_charging > 200)
-				{
-					app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
-					app->audio->playFx(fx_charging);
-				}
-			}
-		}
-
-		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
-		{
-			switch (weapon_type)
-			{
-				case BASIC_PLAYER_SHOT:
-				{
-					end_charging = SDL_GetTicks();
-					charging = false;
-					if (end_charging - start_charging > 200)
-					{
-						//No suena casi nunca!!!!!!!
-						app->audio->playFx(fx_big_shoot);
-
-						charged_shot = true;
-						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
-						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
-						app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
-					}
-					start_charging = actual_charging = end_charging = 0;
-					break;
-				}
-
-				case MISSILE_PLAYER_SHOT:
-				{
-					app->audio->playFx(fx_missile_shot);
-					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y - 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-					app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y + 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
-					break;
-				}
-
-				case RIBBON_PLAYER_SHOT:
-				{
-					
-					if ((last_ribbon_shot + 600) < (SDL_GetTicks()) || last_ribbon_shot == 0 || app->particles->active_weapons.count() == 0)
-					{
-						app->audio->playFx(fx_ribbon_shoot);
-						last_ribbon_shot = SDL_GetTicks();
-						app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
-					}
-					break;
-				}
-			}
-		}
+		shoot();
 	}
 
 	// Updating collider position
@@ -257,6 +146,131 @@ update_status ModulePlayer::update()
 		app->renderer->blit(graphics, position.x, position.y, &(current_animation->getCurrentFrame()));
 
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::shoot()
+{
+	charge_basic_shot();
+
+	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
+	{
+		switch (weapon_type)
+		{
+			case BASIC_PLAYER_SHOT:
+			{
+				end_charging = SDL_GetTicks();
+				charging = false;
+				if (end_charging - start_charging > 200)
+				{
+					//No suena casi nunca!!!!!!!
+					app->audio->playFx(fx_big_shoot);
+					charged_shot = true;
+					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
+					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
+					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
+				}
+				start_charging = actual_charging = end_charging = 0;
+				break;
+			}
+
+			case MISSILE_PLAYER_SHOT:
+			{
+				app->audio->playFx(fx_missile_shot);
+				app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y - 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y + 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+				break;
+			}
+
+			case RIBBON_PLAYER_SHOT:
+			{
+
+				if ((last_ribbon_shot + 600) < (SDL_GetTicks()) || last_ribbon_shot == 0 || app->particles->active_weapons.count() == 0)
+				{
+					app->audio->playFx(fx_ribbon_shoot);
+					last_ribbon_shot = SDL_GetTicks();
+					app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
+				}
+				break;
+			}
+		}
+	}
+}
+
+void ModulePlayer::charge_basic_shot()
+{
+	if (charging == false)
+	{
+		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
+		{
+			app->audio->playFx(fx_shoot);
+			charged_shot = false;
+			app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
+			start_charging = SDL_GetTicks();
+			charging = true;
+		}
+	}
+
+	else
+	{
+		if (weapon_type == BASIC_PLAYER_SHOT)
+		{
+			actual_charging = SDL_GetTicks();
+			if (actual_charging - start_charging > 200)
+			{
+				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
+				app->audio->playFx(fx_charging);
+			}
+		}
+	}
+}
+
+void ModulePlayer::move()
+{
+	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT  && position.y > 0)
+	{
+		position.y -= speed;
+
+		if (current_animation != &idle_to_upward)
+		{
+			idle_to_upward.reset();
+			current_animation = &idle_to_upward;
+		}
+	}
+
+	if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		position.y += speed;
+
+		if (current_animation != &idle_to_downward)
+		{
+			idle_to_downward.reset();
+			current_animation = &idle_to_downward;
+		}
+	}
+
+	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT &&
+		position.x > app->scene->left_limit)
+		position.x -= speed;
+
+	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT &&
+		position.x < app->scene->right_limit)
+		position.x += speed;
+
+	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
+	{
+		if (current_animation == &idle_to_upward)
+			current_animation = &upward_to_idle;
+
+		if (current_animation == &idle_to_downward)
+			current_animation = &downward_to_idle;
+
+		if (upward_to_idle.finished() || downward_to_idle.finished())
+		{
+			upward_to_idle.reset();
+			downward_to_idle.reset();
+			current_animation = &idle;
+		}
+	}
 }
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)

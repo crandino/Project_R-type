@@ -32,6 +32,7 @@ public:
 	WEAPON_TYPES type;
 	unsigned int fx;
 	DIRECTION dir;
+	int power;
 
 	Weapons(Application *parent) : app(parent), born(0), life(0), collider(NULL)
 	{

@@ -49,6 +49,7 @@ public:
 		second_ribbon_shot.loop = true;
 		anim.speed = 0.7f;
 		second_ribbon_shot.speed = 0.17f;
+		power = 100;
 		speed.x = 0.9 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		type = RIBBON_PLAYER_SHOT;

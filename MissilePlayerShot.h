@@ -61,6 +61,7 @@ public:
 		target_delay = 1000;
 		targeting = false;
 		type = MISSILE_PLAYER_SHOT;
+		power = 1;
 		speed.x = 2 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		angle = 0.0f;

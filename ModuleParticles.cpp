@@ -200,15 +200,30 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 							addExplosion(CHARGED_EXPLOSION, c1->rect.x + (c1->rect.w - (28 * SCALE_FACTOR)), c1->rect.y - 13 *SCALE_FACTOR);
 							app->audio->playFx(fx_shot_explosion);
 						}
+
 						else
 						{
 							addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
 							app->audio->playFx(fx_shot_explosion);
 						}
-					}					
-					delete tmp_weapon->data;
-					active_weapons.del(tmp_weapon);
-					break;
+
+						delete tmp_weapon->data;
+						active_weapons.del(tmp_weapon);
+						break;
+					}
+
+					if (c2->type == COLLIDER_ENEMY)
+					{
+						if (tmp_weapon->data->power > 0)
+							tmp_weapon->data->power--;
+
+						if (tmp_weapon->data->power <= 0)
+						{
+							delete tmp_weapon->data;
+							active_weapons.del(tmp_weapon);
+						}
+						break;
+					}
 				}
 
 				case(MISSILE_PLAYER_SHOT) :
@@ -222,8 +237,6 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 
 				case(RIBBON_PLAYER_SHOT) :
 				{
-					delete tmp_weapon->data;
-					active_weapons.del(tmp_weapon);
 					break;
 				}
 			}
