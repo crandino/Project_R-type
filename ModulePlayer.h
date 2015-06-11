@@ -49,6 +49,7 @@ public:
 
 	// Weapon related
 	Uint32 start_charging;
+	Uint32 actual_charging;
 	Uint32 end_charging;
 	Uint32 last_ribbon_shot;
 	bool charged_shot;

@@ -4,6 +4,7 @@
 // included dependencies
 #include "Application.h"
 #include "ModuleSceneSpace.h"
+#include "ModulePlayer.h"
 #include "ModuleInterface.h"
 #include "ModulePlayer.h"
 #include "ModuleTextures.h"

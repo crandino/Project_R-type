@@ -90,7 +90,7 @@ bool ModulePlayer::start()
 	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
-	start_charging = end_charging = 0;
+	start_charging = actual_charging = end_charging = 0;
 	charged_shot = false;
 	charging = false;
 	last_ribbon_shot = 0;
@@ -193,11 +193,14 @@ update_status ModulePlayer::update()
 
 		else
 		{
-			Uint32 tmp_charging = SDL_GetTicks();
-			if (tmp_charging - start_charging > 200)
+			if (weapon_type == BASIC_PLAYER_SHOT)
 			{
-				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
-				app->audio->playFx(fx_charging);
+				actual_charging = SDL_GetTicks();
+				if (actual_charging - start_charging > 200)
+				{
+					app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
+					app->audio->playFx(fx_charging);
+				}
 			}
 		}
 
@@ -219,7 +222,7 @@ update_status ModulePlayer::update()
 						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
 						app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 					}
-					start_charging = end_charging = 0;
+					start_charging = actual_charging = end_charging = 0;
 					break;
 				}
 
