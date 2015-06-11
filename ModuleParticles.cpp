@@ -209,7 +209,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	{
 		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
 		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
-		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot); break;
+		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion); break;
 		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
 		case(BOSS_WEAPON) : p = new BossWeapon(app, boss_weapon); break;
 	}

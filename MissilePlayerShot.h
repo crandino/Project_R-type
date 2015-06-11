@@ -17,13 +17,16 @@ class MissilePlayerShot : public Weapons
 
 public:
 
+	SDL_Texture *propulsion;
+	Animation prop_anim;
 	INT32 target_delay;
 	bool targeting;
 	float angle;
 
-	MissilePlayerShot(Application *app, SDL_Texture *texture) : Weapons(app)
+	MissilePlayerShot(Application *app, SDL_Texture *missile_texture, SDL_Texture *propulsion_texture) : Weapons(app)
 	{
-		graphics = texture;
+		graphics = missile_texture;
+		propulsion = propulsion_texture;
 		anim.frames.pushBack({ 108, 12, 12, 12 });
 		anim.frames.pushBack({ 96, 12, 12, 12 });
 		anim.frames.pushBack({ 84, 12, 12, 12 });
@@ -46,6 +49,13 @@ public:
 		anim.frames.pushBack({ 108, 0, 12, 12 });
 		anim.speed = 0.5f;
 		current_animation = &anim;
+
+		prop_anim.frames.pushBack({ 4, 3, 6, 6 });
+		prop_anim.frames.pushBack({ 16, 2, 10, 8 });
+		prop_anim.frames.pushBack({ 40, 10, 12, 10 });
+		prop_anim.frames.pushBack ({ 42, 0, 14, 12 });
+		prop_anim.speed = 0.8f;
+		
 
 		life = 10000;
 		target_delay = 1000;
