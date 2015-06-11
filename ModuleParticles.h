@@ -74,7 +74,7 @@ public:
 	void onCollision(Collider *col1, Collider *col2);
 
 	void addWeapon(WEAPON_TYPES type , int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
-	void addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 delay = 0);
 };
 
 #endif //!__MODULEPARTICLES_H__

@@ -159,8 +159,13 @@
     <ClInclude Include="MissilePowerUp.h">
       <Filter>Header Files\PowerUps</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="PlayerBasicShotCharged.h">
       <Filter>Header Files\Explosions</Filter>
+=======
+    <ClInclude Include="BasicPowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
