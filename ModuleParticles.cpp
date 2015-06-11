@@ -23,6 +23,7 @@
 #include "PlayerMissileShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
+#include "PlayerBasicShotCharged.h"
 //=================================
 // the actual code
 
@@ -52,6 +53,7 @@ bool ModuleParticles::start()
 	huge_explosion = app->textures->load("Sprites/huge_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 	contrail = app->textures->load("Sprites/Contrail.png");
+	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -71,6 +73,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(common_explosion);
 	app->textures->unload(huge_explosion);
 	app->textures->unload(ribbon_player_shot);
+	app->textures->unload(charged_explosion);
 	
 
 	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
@@ -170,8 +173,16 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 				{
 					if (c2->type == COLLIDER_WALL)
 					{
-						addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
-						app->audio->playFx(fx_shot_explosion);
+						if (app->player->charged_shot == true)
+						{
+							addExplosion(CHARGED_EXPLOSION, c1->rect.x + (c1->rect.w - (28 * SCALE_FACTOR)), c1->rect.y - 13 *SCALE_FACTOR);
+							app->audio->playFx(fx_shot_explosion);
+						}
+						else
+						{
+							addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
+							app->audio->playFx(fx_shot_explosion);
+						}
 					}					
 					delete tmp_weapon->data;
 					active_weapons.del(tmp_weapon);
@@ -234,7 +245,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	switch (type)
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
-	//case(CHARGED_EXPLOSION) : p = new PlayerBasicShotCharged(app, charged_explosion); break;
+	case(CHARGED_EXPLOSION) : p = new PlayerBasicShotCharged(app, charged_explosion); break;
 	case(HUGE_EXPLOSION) : p = new HugeExplosion(app, huge_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
