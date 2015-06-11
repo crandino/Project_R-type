@@ -23,6 +23,8 @@ public:
 	SDL_Texture *img_hi;
 	SDL_Texture *img_numbers_interface;
 	SDL_Texture *img_bar;
+	SDL_Texture *charge_beam;
+
 	unsigned int fx;
 
 	Animation numbers_points;

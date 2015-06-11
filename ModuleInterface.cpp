@@ -10,6 +10,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "BasicPlayerShot.h"
 //=================================
 // the actual code
 
@@ -44,8 +45,11 @@ bool ModuleInterface::start()
 	img_hi = app->textures->load("Sprites/Hi-.png");
 	img_numbers_interface = app->textures->load("Sprites/numbers_interface.png");
 	img_bar = app->textures->load("Sprites/Shot_Bar.png");
+	charge_beam = app->textures->load("Sprites/beam_fill.png");
 
 	position_interface = 2 * SCALE_FACTOR;
+
+	charge = 0;
 
 	return true;
 }
@@ -61,6 +65,7 @@ bool ModuleInterface::cleanUp()
 	app->textures->unload(img_hi);
 	app->textures->unload(img_numbers_interface);
 	app->textures->unload(img_bar);
+	app->textures->unload(charge_beam);
 
 	return true;
 }
@@ -78,6 +83,15 @@ update_status ModuleInterface::update()
 	app->renderer->blit(img_bar, position_interface + 136 * SCALE_FACTOR, 241 * SCALE_FACTOR, NULL);
 	app->renderer->blit(img_p1, position_interface + 30 * SCALE_FACTOR, 250 * SCALE_FACTOR, NULL);
 	app->renderer->blit(img_hi, position_interface + 154 * SCALE_FACTOR, 249 * SCALE_FACTOR, NULL);
+
+	////Beam rectangle to charge
+	//if (app->player->charging == true)
+	//{	
+	//	for (float i = 0.0f; i < 128.0f; i += 0.001f)
+	//	{
+	//		app->renderer->blit(charge_beam, position_interface + (141 + (int)i) * SCALE_FACTOR, 243 * SCALE_FACTOR, NULL);
+	//	}
+	//}
 
 	// Points visualization
 	if (app->player->player_points > 9999)

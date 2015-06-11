@@ -97,7 +97,7 @@ bool ModuleRender::blit(SDL_Texture *texture, int x, int y, SDL_Rect *section, f
 	SDL_Rect rect;
 	// Speed is eliminated from the code!!
 	rect.x = (camera.x + x) * (SCREEN_SIZE) / SCALE_FACTOR;
-	rect.y = (camera.y + y) * (SCREEN_SIZE) / SCALE_FACTOR;
+ 	rect.y = (camera.y + y) * (SCREEN_SIZE) / SCALE_FACTOR;
 
 	//LOG("%s %d %d", "Camera:", camera.x, camera.y);
 
