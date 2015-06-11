@@ -208,12 +208,14 @@ void ModuleBoss::onCollision(Collider *col1, Collider *col2)
 		if (item->data->col == alien->col){
 			if (alien->life >= 1){
 				alien->life--;
+				app->particles->addExplosion(BOSS_HIT, stop_scrolling_position - (170 * SCALE_FACTOR), 18 * SCALE_FACTOR, 0);
 			}
 			if (alien->life == 0)
 			{
 				app->player->player_points += alien->points;
 				app->player->player_points += dobkeratops->points;
 				app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
+				col1->to_delete = true;
 				//Start head
 				app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 0);
 				app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 300);

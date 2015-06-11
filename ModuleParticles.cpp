@@ -23,6 +23,7 @@
 #include "PlayerMissileShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
+#include "BossHit.h"
 #include "PlayerBasicShotChargedExplosion.h"
 //=================================
 // the actual code
@@ -54,6 +55,7 @@ bool ModuleParticles::start()
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 	contrail = app->textures->load("Sprites/Contrail.png");
 	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
+	boss_hit = app->textures->load("Sprites/Boss1_Dobkeratops_negative.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -78,6 +80,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(huge_explosion);
 	app->textures->unload(ribbon_player_shot);
 	app->textures->unload(charged_explosion);
+	app->textures->unload(boss_hit);
 	
 
 	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
@@ -307,6 +310,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
 	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
 	case(MISSILE_PLAYER_SHOT_EXPLOSION) : p = new PlayerMissileShotExplosion(app, missile_player_shot_explosion); break;
+	case(BOSS_HIT) : p = new BossHit(app, boss_hit); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;
