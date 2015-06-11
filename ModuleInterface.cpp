@@ -49,8 +49,6 @@ bool ModuleInterface::start()
 
 	position_interface = 2 * SCALE_FACTOR;
 
-	charge = 0;
-
 	return true;
 }
 

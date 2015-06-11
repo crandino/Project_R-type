@@ -19,11 +19,11 @@ public:
 	{
 		//Explosion animation
 		graphics = texture;
-		anim.frames.pushBack({ 2, 13, 24, 22 });
-		anim.frames.pushBack({ 27, 10, 34, 28 });
-		anim.frames.pushBack({ 61, 7, 42, 34 });
-		anim.frames.pushBack({ 104, 3, 48, 42 });
-		anim.frames.pushBack({ 154, 0, 56, 48 });
+		anim.frames.pushBack({ 0, 0, 56, 48 });
+		anim.frames.pushBack({ 56, 0, 56, 48 });
+		anim.frames.pushBack({ 112, 0, 56, 48 });
+		anim.frames.pushBack({ 168, 0, 56, 48 });
+		anim.frames.pushBack({ 224, 0, 56, 48 });
 		anim.speed = 0.4f;
 		anim.loop = false;
 		current_animation = &anim;
