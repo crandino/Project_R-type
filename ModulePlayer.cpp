@@ -91,6 +91,7 @@ bool ModulePlayer::start()
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = end_charging = 0;
+	charged_shot = false;
 	charging = false;
 	last_ribbon_shot = 0;
 	lifes = 2;
@@ -183,6 +184,7 @@ update_status ModulePlayer::update()
 			if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
 			{
 				app->audio->playFx(fx_shoot);
+				charged_shot = false;
 				app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				start_charging = SDL_GetTicks();
 				charging = true;
@@ -211,6 +213,7 @@ update_status ModulePlayer::update()
 					{
 						//No suena casi nunca!!!!!!!
 						app->audio->playFx(fx_big_shoot);
+						charged_shot = true;
 						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
 						app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 					}

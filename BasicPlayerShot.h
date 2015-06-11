@@ -20,6 +20,8 @@ public:
 	Animation anim_4;
 	Animation anim_5;
 
+	bool charged;
+
 	BasicPlayerShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
 		//Player ship shot
@@ -27,27 +29,33 @@ public:
 		switch (chooseShot())
 		{
 		case(0) :
+			charged = false;
 			anim.frames.pushBack({ 215, 85, 14, 12 });
 			anim.frames.pushBack({ 233, 85, 11, 12 });
 			anim.frames.pushBack({ 249, 85, 15, 12 });
 			break;
 		case(1) :
+			charged = true;
 			anim_1.frames.pushBack({ 232, 103, 16, 12 });
 			anim_1.frames.pushBack({ 249, 103, 16, 8 });
 			break;
 		case(2) :
+			charged = true;
 			anim_2.frames.pushBack({ 200, 121, 32, 10 });
 			anim_2.frames.pushBack({ 233, 121, 32, 12 });
 			break;
 		case(3) :
+			charged = true;
 			anim_3.frames.pushBack({ 168, 137, 48, 12 });
 			anim_3.frames.pushBack({ 217, 137, 48, 14 });
 			break;
 		case(4) :
+			charged = true;
 			anim_4.frames.pushBack({ 136, 154, 64, 14 });
 			anim_4.frames.pushBack({ 201, 154, 64, 14 });
 			break;
 		case(5) :
+			charged = true;
 			anim_5.frames.pushBack({ 104, 171, 80, 14 });
 			anim_5.frames.pushBack({ 185, 171, 80, 16 });
 			break;

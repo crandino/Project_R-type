@@ -51,6 +51,7 @@ public:
 	Uint32 start_charging;
 	Uint32 end_charging;
 	Uint32 last_ribbon_shot;
+	bool charged_shot;
 	bool charging;
 
 

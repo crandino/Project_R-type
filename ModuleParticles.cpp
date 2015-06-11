@@ -22,6 +22,7 @@
 #include "PlayerBasicShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
+#include "PlayerBasicShotCharged.h"
 //=================================
 // the actual code
 
@@ -49,6 +50,7 @@ bool ModuleParticles::start()
 	huge_explosion = app->textures->load("Sprites/huge_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 	contrail = app->textures->load("Sprites/Contrail.png");
+	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
@@ -67,6 +69,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(common_explosion);
 	app->textures->unload(common_explosion);
 	app->textures->unload(ribbon_player_shot);
+	app->textures->unload(charged_explosion);
 	
 
 	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
@@ -166,8 +169,17 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 				{
 					if (c2->type == COLLIDER_WALL)
 					{
-						addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
-						app->audio->playFx(fx_shot_explosion);
+						if (app->player->charged_shot == true)
+						{
+							addExplosion(CHARGED_EXPLOSION, c1->rect.x, c1->rect.y);
+							app->audio->playFx(fx_shot_explosion);
+						}
+						else
+						{
+							addExplosion(BASIC_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
+							app->audio->playFx(fx_shot_explosion);
+						}
+						
 					}					
 					delete tmp_weapon->data;
 					active_weapons.del(tmp_weapon);
