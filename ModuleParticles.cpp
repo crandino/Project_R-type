@@ -57,6 +57,10 @@ bool ModuleParticles::start()
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
+	last_missile_shot = last_ribbon_shot = missile_counter = 0;
+	ribbon_delay = 600;
+	missile_delay = 1000;
+
 	return true;
 }
 
@@ -254,23 +258,40 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	switch (type)
 	{
 		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
-		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
-		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion); break;
+		case(RIBBON_PLAYER_SHOT) : 
+		{
+			if ((last_ribbon_shot + ribbon_delay) < (SDL_GetTicks()))
+			{
+				last_ribbon_shot = SDL_GetTicks();
+				p = new RibbonShot(app, ribbon_player_shot);
+			}
+			break; 
+		}
+		case(MISSILE_PLAYER_SHOT) : 
+		{
+			if ((last_missile_shot + missile_delay) < (SDL_GetTicks()) || missile_counter % 2 != 0)
+			{
+				last_missile_shot = SDL_GetTicks();
+				p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion);
+				missile_counter++;
+			}
+			break;
+		}
 		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
 		case(BOSS_WEAPON) : p = new BossWeapon(app, boss_weapon); break;
 	}
 
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-
-	if (collider_type != COLLIDER_NONE)
+	if (p != NULL)
 	{
+		p->born = SDL_GetTicks() + delay;
+		p->position.x = x;
+		p->position.y = y;
 
-		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
+		if (collider_type != COLLIDER_NONE)
+			p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
+
+		active_weapons.add(p);
 	}
-
-	active_weapons.add(p);
 }
 
 void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 delay)

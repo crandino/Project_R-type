@@ -87,7 +87,7 @@ bool ModulePlayer::start()
 	app->input->keyboard_enabled = true;
 
 
-	position.x = 400 * SCALE_FACTOR;
+	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = actual_charging = end_charging = 0;
@@ -165,7 +165,6 @@ void ModulePlayer::shoot()
 					//No suena casi nunca!!!!!!!
 					app->audio->playFx(fx_big_shoot);
 					charged_shot = true;
-					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
 					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
 					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 				}
@@ -183,13 +182,8 @@ void ModulePlayer::shoot()
 
 			case RIBBON_PLAYER_SHOT:
 			{
-
-				if ((last_ribbon_shot + 600) < (SDL_GetTicks()) || last_ribbon_shot == 0 || app->particles->active_weapons.count() == 0)
-				{
-					app->audio->playFx(fx_ribbon_shoot);
-					last_ribbon_shot = SDL_GetTicks();
-					app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
-				}
+				app->audio->playFx(fx_ribbon_shoot);
+				app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
 				break;
 			}
 		}

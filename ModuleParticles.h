@@ -69,6 +69,12 @@ public:
 	
 	DList<Weapons*> active_weapons;
 	unsigned int fx_shot_explosion;
+	Uint32 last_ribbon_shot;
+	Uint32 last_missile_shot;
+	Uint32 ribbon_delay;
+	Uint32 missile_delay;
+	UINT32 missile_counter;
+
 
 	ModuleParticles(Application *app, bool start_enabled = true);
 	~ModuleParticles();
