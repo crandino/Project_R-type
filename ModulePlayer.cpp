@@ -86,7 +86,7 @@ bool ModulePlayer::start()
 	active = true;
 	app->input->keyboard_enabled = true;
 
-	position.x = 50 * SCALE_FACTOR;
+	position.x = 3200 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = actual_charging = end_charging = first_sound_moment = 0;
@@ -106,7 +106,6 @@ bool ModulePlayer::start()
 	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
 	fx_spaceship_explosion = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	fx_charging = app->audio->loadFx("Sounds/Charging_Sound.wav");
-
 	
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;

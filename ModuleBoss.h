@@ -112,6 +112,7 @@ public:
 	bool wait_to_shoot;
 
 	SDL_Texture *dobkeratops_texture;
+	unsigned int fx_explosion;
 
 	// Parts of Dobkeratops:
 	Alien *alien;
