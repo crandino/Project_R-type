@@ -36,7 +36,8 @@ enum EXPLOSION_TYPES
 	HUGE_EXPLOSION,
 	PLAYER_EXPLOSION,
 	CONTRAIL,
-	BASIC_PLAYER_SHOT_EXPLOSION
+	BASIC_PLAYER_SHOT_EXPLOSION,
+	MISSILE_PLAYER_SHOT_EXPLOSION
 };
 
 class ModuleParticles : public Module
@@ -52,6 +53,7 @@ private:
 	SDL_Texture *boss_weapon;
 
 	SDL_Texture *basic_player_shot_explosion;
+	SDL_Texture *missile_player_shot_explosion;
 	SDL_Texture *player_explosion;
 	SDL_Texture *contrail;
 	SDL_Texture *common_explosion;

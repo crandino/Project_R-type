@@ -51,6 +51,7 @@
     <ClInclude Include="PlayerBasicShotCharged.h" />
     <ClInclude Include="PlayerBasicShotExplosion.h" />
     <ClInclude Include="PlayerExplosion.h" />
+    <ClInclude Include="PlayerMissileShotExplosion.h" />
     <ClInclude Include="Point2d.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="RibbonPowerUp.h" />
