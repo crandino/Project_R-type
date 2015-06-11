@@ -158,6 +158,27 @@ update_status ModuleParticles::update()
 	return UPDATE_CONTINUE;
 }
 
+update_status ModuleParticles::postUpdate()
+{
+	doubleNode<Weapons*>* tmp_weapon = active_weapons.getFirst();
+	doubleNode<Weapons*>* tmp_weapon_next = active_weapons.getFirst();
+
+	while (tmp_weapon != NULL)
+	{
+		Weapons *w = tmp_weapon->data;
+		tmp_weapon_next = tmp_weapon->next;
+
+		if (w->position.x > app->scene->origin + ((SCREEN_WIDTH + 30) * SCALE_FACTOR))
+		{
+			delete w;
+			active_weapons.del(tmp_weapon);
+		}
+
+		tmp_weapon = tmp_weapon_next;
+	}
+	return UPDATE_CONTINUE;
+}
+
 void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 {
 

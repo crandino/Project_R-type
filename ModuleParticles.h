@@ -75,6 +75,7 @@ public:
 
 	bool start();
 	update_status update();
+	update_status postUpdate();
 	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
