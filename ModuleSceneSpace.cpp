@@ -44,7 +44,6 @@ bool ModuleSceneSpace::start()
 	scroll_speed = (int)(0.50 * SCALE_FACTOR); 
 	left_limit = (10 * SCALE_FACTOR);
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
-	
 
 	// Changing origin we can go to an exact position
 	// along the level.

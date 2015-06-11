@@ -58,7 +58,7 @@ public:
 		path1->pushBack({ 550 * SCALE_FACTOR, 35 * SCALE_FACTOR });
 		path1->pushBack({ 450 * SCALE_FACTOR, 30 * SCALE_FACTOR });
 		path1->pushBack({ 410 * SCALE_FACTOR, 35 * SCALE_FACTOR });
-		path1->pushBack({ 200 * SCALE_FACTOR, 300 * SCALE_FACTOR });
+		path1->pushBack({ 150 * SCALE_FACTOR, 300 * SCALE_FACTOR });
 		path_set.pushBack(path1);
 
 		path2 = new DynArray<Point2d<int>>;
