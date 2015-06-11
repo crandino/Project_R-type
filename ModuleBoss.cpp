@@ -186,61 +186,61 @@ void ModuleBoss::onCollision(Collider *col1, Collider *col2)
 			app->player->player_points += alien->points;
 			app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
 			//head inicial
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), COLLIDER_NONE, 0);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 300);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 600);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), COLLIDER_NONE, 900);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 1200);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 0);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 300);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), 600);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), 900);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), 1200);
 			//head 2
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), COLLIDER_NONE, 1500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 2100);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 1700);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), COLLIDER_NONE, 2300);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 1900);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 1500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 2100);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), 1700);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), 2300);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), 1900);
 			//body inicial
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 1500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 1800);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 2000);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 2200);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 2400);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), COLLIDER_NONE, 2500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), COLLIDER_NONE, 2600);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), 1500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), 1800);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), 2000);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), 2200);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), 2400);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), 2500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), 2600);
 
 			//head sec
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), COLLIDER_NONE, 1200);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 1500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 1800);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), COLLIDER_NONE, 2100);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 2400);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 1200);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 1500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), 1800);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), 2100);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), 2400);
 			//head 2 sec
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), COLLIDER_NONE, 1700);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 3300);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 2900);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), COLLIDER_NONE, 3500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 3100);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 1700);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 3300);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), 2900);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), 3500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), 3100);
 			//body sec
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 4100);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 4000);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 3600);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 3400);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 3200);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), COLLIDER_NONE, 3000);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), COLLIDER_NONE, 2700);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), 4100);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), 4000);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), 3600);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), 3400);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), 3200);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), 3000);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), 2700);
 
 			//head all
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), COLLIDER_NONE, 2600);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 2580);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), COLLIDER_NONE, 2560);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), COLLIDER_NONE, 2540);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 2500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 2600);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 2580);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (22 * SCALE_FACTOR), 2560);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (182 * SCALE_FACTOR), (42 * SCALE_FACTOR), 2540);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (90 * SCALE_FACTOR), (52 * SCALE_FACTOR), 2500);
 			//body all
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), COLLIDER_NONE, 2500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 2500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), COLLIDER_NONE, 2500);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 2540);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), COLLIDER_NONE, 2560);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), COLLIDER_NONE, 2580);
-			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), COLLIDER_NONE, 2600);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (130 * SCALE_FACTOR), (52 * SCALE_FACTOR), 2500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (62 * SCALE_FACTOR), (90 * SCALE_FACTOR), 2500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (90 * SCALE_FACTOR), 2500);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (66 * SCALE_FACTOR), (126 * SCALE_FACTOR), 2540);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (106 * SCALE_FACTOR), (126 * SCALE_FACTOR), 2560);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (102 * SCALE_FACTOR), (170 * SCALE_FACTOR), 2580);
+			app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), 2600);
 		}
 	}
 }
