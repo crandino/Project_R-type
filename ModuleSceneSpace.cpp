@@ -46,8 +46,7 @@ bool ModuleSceneSpace::start()
 	left_limit = (10 * SCALE_FACTOR);
 	right_limit = (SCREEN_WIDTH - 42) * SCALE_FACTOR;
 
-	// Changing origin we can go to an exact position
-	// along the level.
+	// Changing origin we can go to an exact position along the level.
 	origin = 0 * SCALE_FACTOR;
 	app->renderer->camera.x = origin * (-1);
 	app->renderer->camera.y = 0 * SCALE_FACTOR;

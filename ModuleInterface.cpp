@@ -73,9 +73,7 @@ update_status ModuleInterface::update()
 {
 	position_interface += app->scene->scroll_speed;
 	for (unsigned int i = 1; i <= app->player->lifes; i++)
-	{
 		app->renderer->blit(img_life, position_interface + (8 * SCALE_FACTOR * i), 241 * SCALE_FACTOR, NULL);
-	}
 	
 	app->renderer->blit(img_beam, position_interface + 90 * SCALE_FACTOR, 241 * SCALE_FACTOR, NULL);
 	app->renderer->blit(img_bar, position_interface + 136 * SCALE_FACTOR, 241 * SCALE_FACTOR, NULL);
@@ -87,45 +85,58 @@ update_status ModuleInterface::update()
 	{	
 		Uint32 now = SDL_GetTicks();
 		unsigned int max_beam = (now - app->player->start_charging) * 128 / 1200;
-		if (max_beam > 128) { max_beam = 128; }
+		if (max_beam > 128) { max_beam = 128;}
 		for (unsigned int i = 0; i < max_beam; i++)
 			app->renderer->blit(charge_beam, position_interface + (141 + i) * SCALE_FACTOR, 243 * SCALE_FACTOR, NULL);
 	}
 
+	print_score(position_interface);
+	
+	return UPDATE_CONTINUE;
+}
+
+void ModuleInterface::print_score(unsigned int pos)
+{
 	// Points visualization
+
+	// Printing tens_thousands..
 	if (app->player->player_points > 9999)
 	{
-		unsigned int tens_thousands = (app->player->player_points / 10000) % 10;
-		numbers_points.current_frame = tens_thousands;
-		app->renderer->blit(img_numbers_interface, position_interface + 78 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+		//unsigned int tens_thousands = (app->player->player_points / 10000) % 10;
+		numbers_points.current_frame = (app->player->player_points / 10000) % 10;
+		app->renderer->blit(img_numbers_interface, pos + 78 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
+
+	// Printing thousands...
 	if (app->player->player_points > 999)
 	{
 		unsigned int thousands = (app->player->player_points / 1000) % 10;
 		numbers_points.current_frame = thousands;
-		app->renderer->blit(img_numbers_interface, position_interface + 87 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+		app->renderer->blit(img_numbers_interface, pos + 87 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
-		
+
+	// Printing hundreds...
 	if (app->player->player_points > 99)
 	{
 		unsigned int hundreds = (app->player->player_points / 100) % 10;
 		numbers_points.current_frame = hundreds;
-		app->renderer->blit(img_numbers_interface, position_interface + 96 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+		app->renderer->blit(img_numbers_interface, pos + 96 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
-			
+
+	// Printing tens...
 	if (app->player->player_points > 9)
 	{
 		unsigned int tens = (app->player->player_points / 10) % 10;
 		numbers_points.current_frame = tens;
-		app->renderer->blit(img_numbers_interface, position_interface + 105 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+		app->renderer->blit(img_numbers_interface, pos + 105 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
-				
-	unsigned int units = app->player->player_points % 10;
-	numbers_points.current_frame = units;
-	app->renderer->blit(img_numbers_interface, position_interface + 114 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
-				
-	numbers_points.current_frame = 0;
-	app->renderer->blit(img_numbers_interface, position_interface + 230 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
-	
-	return UPDATE_CONTINUE;
+
+	// Printing ...Units
+	//unsigned int units = app->player->player_points % 10;
+	numbers_points.current_frame = app->player->player_points % 10;
+	app->renderer->blit(img_numbers_interface, pos + 114 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+
+	/*numbers_points.current_frame = 0;
+	app->renderer->blit(img_numbers_interface, pos + 230 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
+*/
 }

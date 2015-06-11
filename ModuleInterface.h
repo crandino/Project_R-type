@@ -25,11 +25,9 @@ public:
 	SDL_Texture *img_bar;
 	SDL_Texture *charge_beam;
 
-	unsigned int fx;
-
 	Animation numbers_points;
 
-	int position_interface;
+	unsigned int position_interface;
 
 	ModuleInterface(Application *app, bool start_enabled = true);
 	~ModuleInterface();
@@ -37,6 +35,8 @@ public:
 	bool start();
 	update_status update();
 	bool cleanUp();
+
+	void print_score(unsigned int pos);
 
 };
 
