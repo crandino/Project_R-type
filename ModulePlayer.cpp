@@ -162,7 +162,6 @@ void ModulePlayer::shoot()
 				charging = false;
 				if (end_charging - start_charging > 200)
 				{
-					//No suena casi nunca!!!!!!!
 					charged_shot = true;
 					first_sound_played = false;
 					app->audio->playFx(fx_big_shoot);
