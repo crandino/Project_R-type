@@ -47,7 +47,7 @@ bool ModuleSceneSpace::start()
 
 	// Changing origin we can go to an exact position
 	// along the level.
-	origin = 0 * SCALE_FACTOR;
+	origin = 400 * SCALE_FACTOR;
 	app->renderer->camera.x = origin * (-1);
 	app->renderer->camera.y = 0 * SCALE_FACTOR;
 

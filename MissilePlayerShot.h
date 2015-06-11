@@ -17,6 +17,7 @@ class MissilePlayerShot : public Weapons
 
 public:
 
+	Point2d<int> prop_position;
 	SDL_Texture *propulsion;
 	Animation prop_anim;
 	INT32 target_delay;
@@ -50,12 +51,11 @@ public:
 		anim.speed = 0.5f;
 		current_animation = &anim;
 
-		prop_anim.frames.pushBack({ 4, 3, 6, 6 });
-		prop_anim.frames.pushBack({ 16, 2, 10, 8 });
-		prop_anim.frames.pushBack({ 40, 10, 12, 10 });
+		prop_anim.frames.pushBack({ 0, 0, 14, 12 });
+		prop_anim.frames.pushBack({ 14, 0, 14, 12 });
+		prop_anim.frames.pushBack({ 28, 0, 12, 12 });
 		prop_anim.frames.pushBack ({ 42, 0, 14, 12 });
-		prop_anim.speed = 0.8f;
-		
+		prop_anim.speed = 0.8f;		
 
 		life = 10000;
 		target_delay = 1000;
@@ -63,6 +63,7 @@ public:
 		type = MISSILE_PLAYER_SHOT;
 		speed.x = 2 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
+		angle = 0.0f;
 	}
 
 	~MissilePlayerShot()
@@ -75,6 +76,7 @@ public:
 		float min_distance = 1000000;
 		float distance = min_distance;
 
+		// The missiles look for the closer enemy...ALWAYS!
 		while (item_enemy != NULL)
 		{
 			distance = position.distanceTo(item_enemy->data->position);
@@ -85,6 +87,7 @@ public:
 			}
 			item_enemy = item_enemy->next;
 		}
+
 
 		if (target_enemy != NULL)
 		{
@@ -113,6 +116,15 @@ public:
 	bool update()
 	{
 		bool ret = true;
+
+		// We calculate the correct position of the missile propulsion, 
+		// following the missile itself;
+		int radius = 6 * SCALE_FACTOR;
+
+		prop_position.x = (position.x) - (cos(angle) * radius);
+		prop_position.y = (position.y) - (sin(angle) * radius);
+		app->renderer->blit(propulsion, prop_position.x, prop_position.y, &(prop_anim.getCurrentFrame()));
+
 
 		if (life > 0)
 		{

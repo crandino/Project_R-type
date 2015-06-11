@@ -27,6 +27,8 @@ public:
 		anim.frames.pushBack({ 60, 0, 20, 18 });
 		anim.frames.pushBack({ 40, 0, 20, 18 });
 		anim.frames.pushBack({ 20, 0, 20, 18 });
+		anim.frames.pushBack({ 0, 0, 20, 18 });
+		anim.frames.pushBack({ 0, 0, 20, 18 });
 		anim.speed = 0.1f;
 		speed.x = 0 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;

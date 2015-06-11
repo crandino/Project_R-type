@@ -87,7 +87,7 @@ bool ModulePlayer::start()
 	app->input->keyboard_enabled = true;
 
 
-	position.x = 50 * SCALE_FACTOR;
+	position.x = 400 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = actual_charging = end_charging = 0;
