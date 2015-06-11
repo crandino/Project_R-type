@@ -1,73 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Log.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="ModuleAudio.cpp" />
-    <ClCompile Include="ModuleBoss.cpp" />
-    <ClCompile Include="ModuleCollision.cpp" />
-    <ClCompile Include="ModuleEnemy.cpp" />
-    <ClCompile Include="ModuleFadeToBlack.cpp" />
-    <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModuleInterface.cpp" />
-    <ClCompile Include="ModuleParticles.cpp" />
-    <ClCompile Include="ModulePlayer.cpp" />
-    <ClCompile Include="ModulePowerUp.cpp" />
-    <ClCompile Include="ModuleRender.cpp" />
-    <ClCompile Include="ModuleSceneGameOver.cpp" />
-    <ClCompile Include="ModuleSceneIntro.cpp" />
-    <ClCompile Include="ModuleSceneSpace.cpp" />
-    <ClCompile Include="ModuleSceneWin.cpp" />
-    <ClCompile Include="ModuleTextures.cpp" />
-    <ClCompile Include="ModuleWindow.cpp" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Enemies">
+      <UniqueIdentifier>{e44ac8ae-d58c-4d4e-9a7d-568828539df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tools">
+      <UniqueIdentifier>{bdcf6cd6-e5ed-4bd8-beb0-c4d304b1a583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Weapons">
+      <UniqueIdentifier>{75d16159-ee27-4e24-9aa4-9a78a5e8d434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Explosions">
+      <UniqueIdentifier>{f6c79d98-1d65-43a0-b9d4-b75828cce8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PowerUps">
+      <UniqueIdentifier>{b496bc2b-bc5f-4800-9485-a113039594b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="BasicPlayerShot.h" />
-    <ClInclude Include="BasicPowerUp.h" />
-    <ClInclude Include="BlasterEnemy.h" />
-    <ClInclude Include="BossWeapon.h" />
-    <ClInclude Include="BugEnemy.h" />
-    <ClInclude Include="CommonExplosion.h" />
-    <ClInclude Include="Contrail.h" />
-    <ClInclude Include="DList.h" />
-    <ClInclude Include="DynArray.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Explosions.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="HugeExplosion.h" />
-    <ClInclude Include="MissilePlayerShot.h" />
-    <ClInclude Include="MissilePowerUp.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="ModuleAudio.h" />
-    <ClInclude Include="ModuleBoss.h" />
-    <ClInclude Include="ModuleCollision.h" />
-    <ClInclude Include="ModuleEnemy.h" />
-    <ClInclude Include="ModuleFadeToBlack.h" />
-    <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleInterface.h" />
-    <ClInclude Include="ModuleParticles.h" />
-    <ClInclude Include="ModulePlayer.h" />
-    <ClInclude Include="ModulePowerUp.h" />
-    <ClInclude Include="ModuleRender.h" />
-    <ClInclude Include="ModuleSceneGameOver.h" />
-    <ClInclude Include="ModuleSceneIntro.h" />
-    <ClInclude Include="ModuleSceneSpace.h" />
-    <ClInclude Include="ModuleSceneWin.h" />
-    <ClInclude Include="ModuleTextures.h" />
-    <ClInclude Include="ModuleWindow.h" />
-    <ClInclude Include="PataEnemy.h" />
-    <ClInclude Include="BasicEnemyShot.h" />
-    <ClInclude Include="PlayerBasicShotCharged.h" />
-    <ClInclude Include="PlayerBasicShotExplosion.h" />
-    <ClInclude Include="PlayerExplosion.h" />
-    <ClInclude Include="Point2d.h" />
-    <ClInclude Include="PowerUp.h" />
-    <ClInclude Include="RibbonPowerUp.h" />
-    <ClInclude Include="RibbonShot.h" />
-    <ClInclude Include="Weapons.h" />
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -202,12 +164,73 @@
     </ClInclude>
     <ClInclude Include="BasicPowerUp.h">
       <Filter>Header Files\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMissileShotExplosion.h">
-      <Filter>Header Files\Explosions</Filter>
-    </ClInclude>
+     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="CodeStyle.txt" />
+    <Text Include="CodeStyle.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTextures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneSpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneIntro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneGameOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneWin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
