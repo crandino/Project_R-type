@@ -144,9 +144,6 @@
     <ClInclude Include="ModuleBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MissilePowerUp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BossWeapon.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
@@ -158,6 +155,12 @@
     </ClInclude>
     <ClInclude Include="Contrail.h">
       <Filter>Header Files\Explosions</Filter>
+    </ClInclude>
+    <ClInclude Include="MissilePowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicPowerUp.h">
+      <Filter>Header Files\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

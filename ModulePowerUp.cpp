@@ -8,6 +8,7 @@
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModuleSceneSpace.h"
+#include "BasicPowerUp.h"
 #include "RibbonPowerUp.h"
 #include "MissilePowerUp.h"
 //=================================
@@ -24,24 +25,27 @@ bool ModulePowerUp::start()
 {
 	LOG("Loading PowerUp textures");
 
-	fx_power_up = app->audio->loadFx("Sounds/PowerUP.aif");
+	fx_power_up = app->audio->loadFx("Sounds/PowerUP.wav");
 
+	basic_graphics = app->textures->load("Sprites/basic_powerup.png");
 	ribbon_graphics = app->textures->load("Sprites/ribbon_powerup.png");
 	missile_graphics = app->textures->load("Sprites/Missile_PowerUp.png");
 
 	LOG("Loading PowerUps...");
 
-	// Adding enemies
-	addPowerUp(RIBBON_POWERUP, ribbon_graphics, 1150, 110, COLLIDER_POWER_UP);
-	addPowerUp(MISSILE_POWERUP, missile_graphics, 650, 110, COLLIDER_POWER_UP);
+	// Adding powerups
+	addPowerUp(BASIC_POWERUP, 3000, 110, COLLIDER_POWER_UP);
+	addPowerUp(RIBBON_POWERUP, 1150, 110, COLLIDER_POWER_UP);
+	addPowerUp(MISSILE_POWERUP,  650, 110, COLLIDER_POWER_UP);
 
 	return true;
 }
 
 bool ModulePowerUp::cleanUp()
 {
-
+	app->textures->unload(basic_graphics);
 	app->textures->unload(ribbon_graphics);
+	app->textures->unload(missile_graphics);
 
 	doubleNode<PowerUp*> *item = active.getLast();
 
@@ -94,8 +98,8 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 
 		switch (item->data->type)
 		{
+			case(BASIC_POWERUP) : app->player->weapon_type = BASIC_PLAYER_SHOT; break;
 			case(RIBBON_POWERUP) : app->player->weapon_type = RIBBON_PLAYER_SHOT; break;
-
 			case(MISSILE_POWERUP) : app->player->weapon_type = MISSILE_PLAYER_SHOT; break;
 		}
 
@@ -105,15 +109,15 @@ void ModulePowerUp::onCollision(Collider *col1, Collider *col2)
 	
 }
 
-void ModulePowerUp::addPowerUp(POWERUP_TYPES type, SDL_Texture *texture, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModulePowerUp::addPowerUp(POWERUP_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	PowerUp *p = NULL;
 
 	switch (type)
 	{
-		case(RIBBON_POWERUP) : p = new RibbonPowerUp(app, texture); break;
-
-		case(MISSILE_POWERUP) : p = new MissilePowerUp(app, texture); break;
+	case(BASIC_POWERUP) : p = new BasicPowerUp(app, basic_graphics); break;
+	case(RIBBON_POWERUP) : p = new RibbonPowerUp(app, ribbon_graphics); break;
+	case(MISSILE_POWERUP) : p = new MissilePowerUp(app, missile_graphics); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;
