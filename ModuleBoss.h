@@ -26,6 +26,7 @@ struct Alien : Boss
 {
 	int life;
 	unsigned int dead_time;
+	unsigned int last_hit_time;
 
 	Alien() : Boss()
 	{
@@ -113,6 +114,8 @@ public:
 
 	SDL_Texture *dobkeratops_texture;
 	unsigned int fx_explosion;
+	unsigned int fx_hit;
+	unsigned int fx_explosion_antenna;
 
 	// Parts of Dobkeratops:
 	Alien *alien;

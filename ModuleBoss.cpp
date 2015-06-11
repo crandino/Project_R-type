@@ -30,6 +30,8 @@ bool ModuleBoss::start()
 	wait_to_shoot = false;
 
 	fx_explosion = app->audio->loadFx("Sounds/BossExplosion.wav");
+	fx_hit = app->audio->loadFx("Sounds/BossHit.wav");
+	fx_explosion_antenna = app->audio->loadFx("Sounds/ExplosionTabrok.wav");
 
 	// Breeding of Dobkeratops
 	alien = new Alien();
@@ -37,6 +39,7 @@ bool ModuleBoss::start()
 	alien->position.y = 112 * SCALE_FACTOR;
 	boss_parts.add(alien);
 	alien->points = 300;
+	alien->last_hit_time = 0;
 
 	alien->life = 30;
 	alien->dead_time = 0;
@@ -148,6 +151,7 @@ bool ModuleBoss::cleanUp()
 
 update_status ModuleBoss::update()
 { 
+	//Stop the scroll
 	if ((app->scene->origin + SCREEN_WIDTH * SCALE_FACTOR) > stop_scrolling_position)
 		app->scene->scroll_speed = 0;
 	
@@ -180,6 +184,7 @@ update_status ModuleBoss::update()
 		tmp = tmp->next;
 	}
 
+	//When player wins
 	if (app->boss->alien->life <= 0)
 	{
 		if(alien->dead_time == 0) app->boss->alien->dead_time = SDL_GetTicks();
@@ -208,18 +213,26 @@ void ModuleBoss::onCollision(Collider *col1, Collider *col2)
 	if (item != NULL)
 	{
 		if (item->data->col == alien->col){
+			//hit alien col
 			if (alien->life >= 1){
 				alien->life--;
+				if (alien->last_hit_time == 0 || alien->last_hit_time + 200 < SDL_GetTicks())
+				{
+					alien->last_hit_time = SDL_GetTicks();
+					app->audio->playFx(fx_hit);
+				}
 				app->particles->addExplosion(BOSS_HIT, stop_scrolling_position - (170 * SCALE_FACTOR), 18 * SCALE_FACTOR, 0);
 			}
 			if (alien->life == 0)
 			{
+				alien->life--;
 				app->player->player_points += alien->points;
 				app->player->player_points += dobkeratops->points;
 				app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
 				col1->to_delete = true;
 				app->audio->playFx(fx_explosion);
 
+				//BOSS EXPLOSION
 				//Start head
 				app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (132 * SCALE_FACTOR), (4 * SCALE_FACTOR), 0);
 				app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (162 * SCALE_FACTOR), (22 * SCALE_FACTOR), 300);
@@ -278,10 +291,13 @@ void ModuleBoss::onCollision(Collider *col1, Collider *col2)
 				app->particles->addExplosion(HUGE_EXPLOSION, stop_scrolling_position - (122 * SCALE_FACTOR), (174 * SCALE_FACTOR), 2600);
 			}
 		}
+		//hil antenna col
 		else
 		{
 			app->player->player_points += item->data->points;
+			app->audio->playFx(fx_explosion_antenna);
 			app->particles->addExplosion(COMMON_EXPLOSION, col1->rect.x, col1->rect.y);
+			col1->to_delete = true;
 			delete item->data;
 			boss_parts.del(item);
 		}
