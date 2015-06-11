@@ -16,6 +16,7 @@ class ModuleSceneSpace : public Module
 public:
 
 	SDL_Texture *level1;
+	SDL_Texture *background;
 
 	int scroll_speed;    // Velocity to move the scenario.
 	int right_limit;	 // Screen right limit for the screen.

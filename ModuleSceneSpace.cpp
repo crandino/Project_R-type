@@ -33,6 +33,7 @@ bool ModuleSceneSpace::start()
 	LOG("Loading space scene");
 
 	level1 = app->textures->load("Sprites/boundary_level.png");
+	background = app->textures->load("Sprites/BoundaryBackground.png");
 
 	app->player->enable();
 	app->game_interface->enable();
@@ -194,6 +195,7 @@ bool ModuleSceneSpace::cleanUp()
 	LOG("Unloading space scene");
 
 	app->textures->unload(level1);
+	app->textures->unload(background);
 	app->player->disable();
 	app->game_interface->disable();
 	app->enemy->disable();
@@ -217,6 +219,7 @@ update_status ModuleSceneSpace::update()
 	origin += scroll_speed;
 
 	// Draw everything
+	app->renderer->blit(background, 0, 0, NULL);
 	app->renderer->blit(level1, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
