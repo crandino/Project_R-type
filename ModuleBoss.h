@@ -19,12 +19,12 @@ struct Boss
 	Point2d<int> position;
 	Animation anim;
 	Collider *col;
+	unsigned int points;
 };
 
 struct Alien : Boss
 {
 	int life;
-	unsigned int points;
 	unsigned int dead_time;
 
 	Alien() : Boss()
