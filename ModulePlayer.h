@@ -51,8 +51,11 @@ public:
 	Uint32 actual_charging;
 	Uint32 end_charging;
 	Uint32 last_ribbon_shot;
+	Uint32 first_sound_moment;
+	Uint32 charging_sound_duration;
 	bool charged_shot;
 	bool charging;
+	bool first_sound_played;
 
 
 	ModulePlayer(Application *app, bool start_enabled = true);

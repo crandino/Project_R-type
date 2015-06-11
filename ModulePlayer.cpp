@@ -89,9 +89,11 @@ bool ModulePlayer::start()
 	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
-	start_charging = actual_charging = end_charging = 0;
+	start_charging = actual_charging = end_charging = first_sound_moment = 0;
+	charging_sound_duration = 836;
 	charged_shot = false;
 	charging = false;
+	first_sound_played = false;
 	last_ribbon_shot = 0;
 	lifes = 2;
 
@@ -162,12 +164,13 @@ void ModulePlayer::shoot()
 				if (end_charging - start_charging > 200)
 				{
 					//No suena casi nunca!!!!!!!
-					app->audio->playFx(fx_big_shoot);
 					charged_shot = true;
+					first_sound_played = false;
+					app->audio->playFx(fx_big_shoot);
 					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
 					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 				}
-				start_charging = actual_charging = end_charging = 0;
+				start_charging = actual_charging = end_charging = first_sound_moment= 0;
 				break;
 			}
 
@@ -211,7 +214,15 @@ void ModulePlayer::charge_basic_shot()
 			if (actual_charging - start_charging > 200)
 			{
 				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
-				app->audio->playFx(fx_charging);
+				if (first_sound_played != true)
+				{
+					app->audio->playFx(fx_charging);
+					first_sound_moment = SDL_GetTicks();
+					first_sound_played = true;
+				}
+
+				if ((actual_charging - first_sound_moment) % charging_sound_duration < 100)
+					app->audio->playFx(fx_charging);
 			}
 		}
 	}
