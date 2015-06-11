@@ -124,12 +124,16 @@ bool ModuleBoss::cleanUp()
 	LOG("Unloading boss");
 
 	app->textures->unload(dobkeratops_texture);
-	//delete antenna4;
-	//delete antenna3;
-	//delete antenna2;
-	//delete antenna1;
-	//delete dobkeratops;
-	//delete alien;
+
+	doubleNode<Boss*> *item = boss_parts.getFirst();
+	
+	while (item != NULL)
+	{
+		delete item->data;
+		item = item->next;
+	}
+
+	boss_parts.clear();
 
 	return true;
 }
