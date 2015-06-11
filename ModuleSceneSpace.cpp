@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInterface.h"
 #include "ModuleEnemy.h"
+#include "ModuleBoss.h"
 #include "ModulePowerUp.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
@@ -197,6 +198,7 @@ bool ModuleSceneSpace::cleanUp()
 	app->player->disable();
 	app->game_interface->disable();
 	app->enemy->disable();
+	app->boss->disable();
 	app->powerup->disable();
 	app->particles->disable();
 	app->collision->disable();

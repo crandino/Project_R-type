@@ -131,7 +131,7 @@ public:
 
 	bool start();
 	update_status update();
-	//bool cleanUp();
+	bool cleanUp();
 	void onCollision(Collider *col1, Collider *col2);
 
 };

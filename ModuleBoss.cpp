@@ -19,6 +19,14 @@ ModuleBoss::ModuleBoss(Application *app, bool start_enabled) :
 Module(app, start_enabled)
 { 
 	stop_scrolling_position = 3929 * SCALE_FACTOR;
+}
+
+ModuleBoss::~ModuleBoss()
+{ }
+
+bool ModuleBoss::start()
+{
+	faded = false;
 	wait_to_shoot = false;
 
 	// Breeding of Dobkeratops
@@ -28,6 +36,8 @@ Module(app, start_enabled)
 	boss_parts.add(alien);
 	alien->points = 5000;
 
+	alien->life = 5;
+	alien->dead_time = 0;
 	// Dobkeratops itself
 	dobkeratops = new Dobkeratops();
 	dobkeratops->position.x = stop_scrolling_position - (170 * SCALE_FACTOR);
@@ -61,17 +71,6 @@ Module(app, start_enabled)
 	antenna4->position.y = 192 * SCALE_FACTOR;
 
 	boss_parts.add(antenna4);
-}
-
-ModuleBoss::~ModuleBoss()
-{ }
-
-bool ModuleBoss::start()
-{
-	faded = false;
-	alien->life = 5;
-	alien->dead_time = 0;
-
 	// Adding texture of boss
 	dobkeratops_texture = app->textures->load("Sprites/Boss1_Dobkeratops.png");
 
@@ -119,10 +118,22 @@ bool ModuleBoss::start()
 
 	return true;
 }
-//
-//bool ModuleBoss::cleanUp()
-//{ }
-//
+
+bool ModuleBoss::cleanUp()
+{
+	LOG("Unloading boss");
+
+	app->textures->unload(dobkeratops_texture);
+	//delete antenna4;
+	//delete antenna3;
+	//delete antenna2;
+	//delete antenna1;
+	//delete dobkeratops;
+	//delete alien;
+
+	return true;
+}
+
 update_status ModuleBoss::update()
 { 
 	if ((app->scene->origin + SCREEN_WIDTH * SCALE_FACTOR) > stop_scrolling_position)

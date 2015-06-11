@@ -329,6 +329,7 @@ update_status ModuleEnemy::preUpdate()
 		if (last_wave != wave)
 		{
 			app->boss->enable();
+			last_wave = wave;
 		}
 		break;
 	}
