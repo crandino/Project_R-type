@@ -27,6 +27,7 @@ public:
 	DynArray<Point2d<int>> *path3;
 	DynArray<Point2d<int>> *path4;
 	DynArray<Point2d<int>> *path5;
+	DynArray<Point2d<int>> *path6;
 	unsigned int path_position;
 
 	DynArray<DynArray<Point2d<int>>*> path_set;
@@ -62,28 +63,54 @@ public:
 		path_set.pushBack(path1);
 
 		path2 = new DynArray<Point2d<int>>;
-		path2->pushBack({ 700 * SCALE_FACTOR, 110 * SCALE_FACTOR });
-		path2->pushBack({ 650 * SCALE_FACTOR, 140 * SCALE_FACTOR });
-		path2->pushBack({ 600 * SCALE_FACTOR, 110 * SCALE_FACTOR });
-		path2->pushBack({ 550 * SCALE_FACTOR, 140 * SCALE_FACTOR });
-		path2->pushBack({ 500 * SCALE_FACTOR, 110 * SCALE_FACTOR });
-		path2->pushBack({ 450 * SCALE_FACTOR, 140 * SCALE_FACTOR });
-		path2->pushBack({ 400 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 1050 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 1025 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 1000 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 975 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 950 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 925 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 900 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 875 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 850 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 825 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 800 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 775 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 750 * SCALE_FACTOR, 110 * SCALE_FACTOR });
+		path2->pushBack({ 725 * SCALE_FACTOR, 125 * SCALE_FACTOR });
+		path2->pushBack({ 700 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path2->pushBack({ 675 * SCALE_FACTOR, 125 * SCALE_FACTOR });
 		path_set.pushBack(path2);
 
 		path3 = new DynArray<Point2d<int>>;
-		path3->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
-		path3->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
-		path3->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
-		path3->pushBack({ 1500 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path3->pushBack({ 1500 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path3->pushBack({ 1450 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path3->pushBack({ 1100 * SCALE_FACTOR, 100 * SCALE_FACTOR });
 		path_set.pushBack(path3);
 
+		path4 = new DynArray<Point2d<int>>;
+		path4->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path4->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
+		path4->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path4->pushBack({ 1500 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path_set.pushBack(path4);
+
 		path5 = new DynArray<Point2d<int>>;
-		path5->pushBack({ 1960 * SCALE_FACTOR, 80 * SCALE_FACTOR });
-		path5->pushBack({ 1940 * SCALE_FACTOR, 90 * SCALE_FACTOR });
-		path5->pushBack({ 1920 * SCALE_FACTOR, 100 * SCALE_FACTOR });
-		path5->pushBack({ 1500 * SCALE_FACTOR, 100 * SCALE_FACTOR });
+		path5->pushBack({ 2275 * SCALE_FACTOR, 170 * SCALE_FACTOR });
+		path5->pushBack({ 2165 * SCALE_FACTOR, 120 * SCALE_FACTOR });
+		path5->pushBack({ 2120 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path5->pushBack({ 2165 * SCALE_FACTOR, 40 * SCALE_FACTOR });
+		path5->pushBack({ 2210 * SCALE_FACTOR, 80 * SCALE_FACTOR });
+		path5->pushBack({ 2080 * SCALE_FACTOR, 160 * SCALE_FACTOR });
+		path5->pushBack({ 1800 * SCALE_FACTOR, 160 * SCALE_FACTOR });
 		path_set.pushBack(path5);
+
+		path6 = new DynArray<Point2d<int>>;
+		path6->pushBack({ 3490 * SCALE_FACTOR, 70 * SCALE_FACTOR });
+		path6->pushBack({ 3410 * SCALE_FACTOR, 180 * SCALE_FACTOR });
+		path6->pushBack({ 3320 * SCALE_FACTOR, 180 * SCALE_FACTOR });
+		path6->pushBack({ 3240 * SCALE_FACTOR, 140 * SCALE_FACTOR });
+		path6->pushBack({ 3100 * SCALE_FACTOR, 30 * SCALE_FACTOR });
+		path_set.pushBack(path6);
 
 		path_found = false;
 		current_path = 0;

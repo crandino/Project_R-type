@@ -23,6 +23,7 @@
 #include "PlayerMissileShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
+#include "BossHit.h"
 #include "PlayerBasicShotChargedExplosion.h"
 //=================================
 // the actual code
@@ -54,8 +55,13 @@ bool ModuleParticles::start()
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 	contrail = app->textures->load("Sprites/Contrail.png");
 	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
+	boss_hit = app->textures->load("Sprites/Boss1_Dobkeratops_negative.png");
 
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
+
+	last_missile_shot = last_ribbon_shot = missile_counter = 0;
+	ribbon_delay = 600;
+	missile_delay = 1000;
 
 	return true;
 }
@@ -74,6 +80,7 @@ bool ModuleParticles::cleanUp()
 	app->textures->unload(huge_explosion);
 	app->textures->unload(ribbon_player_shot);
 	app->textures->unload(charged_explosion);
+	app->textures->unload(boss_hit);
 	
 
 	doubleNode<Weapons*> *item_weapon = active_weapons.getLast();
@@ -254,23 +261,40 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	switch (type)
 	{
 		case(BASIC_PLAYER_SHOT) : p = new BasicPlayerShot(app, basic_player_shot); break;
-		case(RIBBON_PLAYER_SHOT) : p = new RibbonShot(app, ribbon_player_shot); break;
-		case(MISSILE_PLAYER_SHOT) : p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion); break;
+		case(RIBBON_PLAYER_SHOT) : 
+		{
+			if ((last_ribbon_shot + ribbon_delay) < (SDL_GetTicks()))
+			{
+				last_ribbon_shot = SDL_GetTicks();
+				p = new RibbonShot(app, ribbon_player_shot);
+			}
+			break; 
+		}
+		case(MISSILE_PLAYER_SHOT) : 
+		{
+			if ((last_missile_shot + missile_delay) < (SDL_GetTicks()) || missile_counter % 2 != 0)
+			{
+				last_missile_shot = SDL_GetTicks();
+				p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion);
+				missile_counter++;
+			}
+			break;
+		}
 		case(BASIC_ENEMY_SHOT) : p = new BasicEnemyShot(app, basic_enemy_shot); break;
 		case(BOSS_WEAPON) : p = new BossWeapon(app, boss_weapon); break;
 	}
 
-	p->born = SDL_GetTicks() + delay;
-	p->position.x = x;
-	p->position.y = y;
-
-	if (collider_type != COLLIDER_NONE)
+	if (p != NULL)
 	{
+		p->born = SDL_GetTicks() + delay;
+		p->position.x = x;
+		p->position.y = y;
 
-		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
+		if (collider_type != COLLIDER_NONE)
+			p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
+
+		active_weapons.add(p);
 	}
-
-	active_weapons.add(p);
 }
 
 void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 delay)
@@ -286,6 +310,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
 	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
 	case(MISSILE_PLAYER_SHOT_EXPLOSION) : p = new PlayerMissileShotExplosion(app, missile_player_shot_explosion); break;
+	case(BOSS_HIT) : p = new BossHit(app, boss_hit); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;

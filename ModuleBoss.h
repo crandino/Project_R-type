@@ -19,13 +19,14 @@ struct Boss
 	Point2d<int> position;
 	Animation anim;
 	Collider *col;
+	unsigned int points;
 };
 
 struct Alien : Boss
 {
 	int life;
-	unsigned int points;
 	unsigned int dead_time;
+	unsigned int last_hit_time;
 
 	Alien() : Boss()
 	{
@@ -135,6 +136,9 @@ public:
 	bool wait_to_shoot;
 
 	SDL_Texture *dobkeratops_texture;
+	unsigned int fx_explosion;
+	unsigned int fx_hit;
+	unsigned int fx_explosion_antenna;
 
 	// Parts of Dobkeratops:
 	Alien *alien;

@@ -17,8 +17,6 @@ public:
 
 	SDL_Texture *graphics;
 
-	unsigned int fx;
-
 	ModuleSceneWin(Application *app, bool start_enabled = true);
 	~ModuleSceneWin();
 

@@ -21,13 +21,17 @@ public:
 	SDL_Texture *propulsion;
 	Animation prop_anim;
 	INT32 target_delay;
+	Enemy *target_enemy;
 	bool targeting;
+	bool target_fixed;
 	float angle;
 
 	MissilePlayerShot(Application *app, SDL_Texture *missile_texture, SDL_Texture *propulsion_texture) : Weapons(app)
 	{
 		graphics = missile_texture;
 		propulsion = propulsion_texture;
+
+		//Missile frames
 		anim.frames.pushBack({ 108, 12, 12, 12 });
 		anim.frames.pushBack({ 96, 12, 12, 12 });
 		anim.frames.pushBack({ 84, 12, 12, 12 });
@@ -51,6 +55,7 @@ public:
 		anim.speed = 0.5f;
 		current_animation = &anim;
 
+		//Propulsor frames
 		prop_anim.frames.pushBack({ 0, 0, 14, 12 });
 		prop_anim.frames.pushBack({ 14, 0, 14, 12 });
 		prop_anim.frames.pushBack({ 28, 0, 12, 12 });
@@ -60,6 +65,7 @@ public:
 		life = 10000;
 		target_delay = 1000;
 		targeting = false;
+		target_fixed = false;
 		type = MISSILE_PLAYER_SHOT;
 		power = 1;
 		speed.x = 2 * SCALE_FACTOR;
@@ -73,20 +79,24 @@ public:
 	void orientTo()
 	{
 		doubleNode<Enemy*> *item_enemy = app->enemy->active.getFirst();
-		Enemy *target_enemy = NULL;
+		target_enemy = NULL;
 		float min_distance = 1000000;
 		float distance = min_distance;
 
-		// The missiles look for the closer enemy...ALWAYS!
-		while (item_enemy != NULL)
+		// The missiles look for the closer enemy
+		if (target_fixed != true)
 		{
-			distance = position.distanceTo(item_enemy->data->position);
-			if (distance < min_distance)
+			while (item_enemy != NULL)
 			{
-				min_distance = distance;
-				target_enemy = item_enemy->data;
+				distance = position.distanceTo(item_enemy->data->position);
+				if (distance < min_distance) // && item_enemy->data != app->particles->active_missiles.getLast()->previous->data->target_enemy
+				{
+					min_distance = distance;
+					target_enemy = item_enemy->data;
+				}
+				item_enemy = item_enemy->next;
+				target_fixed = true;
 			}
-			item_enemy = item_enemy->next;
 		}
 
 

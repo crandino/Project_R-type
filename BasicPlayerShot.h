@@ -78,6 +78,7 @@ public:
 		unsigned int force_shot = 0;
 		Uint32 interval = (app->player->end_charging - app->player->start_charging);
 
+		//Interval to choose which power will have his shot
 		if (interval < 200)
 		{
 			current_animation = &anim;

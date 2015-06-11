@@ -16,6 +16,7 @@
     <ClInclude Include="BasicPlayerShot.h" />
     <ClInclude Include="BasicPowerUp.h" />
     <ClInclude Include="BlasterEnemy.h" />
+    <ClInclude Include="BossHit.h" />
     <ClInclude Include="BossWeapon.h" />
     <ClInclude Include="BugEnemy.h" />
     <ClInclude Include="CommonExplosion.h" />
