@@ -30,6 +30,8 @@ public:
 	{
 		graphics = missile_texture;
 		propulsion = propulsion_texture;
+
+		//Missile frames
 		anim.frames.pushBack({ 108, 12, 12, 12 });
 		anim.frames.pushBack({ 96, 12, 12, 12 });
 		anim.frames.pushBack({ 84, 12, 12, 12 });
@@ -53,6 +55,7 @@ public:
 		anim.speed = 0.5f;
 		current_animation = &anim;
 
+		//Propulsor frames
 		prop_anim.frames.pushBack({ 0, 0, 14, 12 });
 		prop_anim.frames.pushBack({ 14, 0, 14, 12 });
 		prop_anim.frames.pushBack({ 28, 0, 12, 12 });
@@ -80,7 +83,7 @@ public:
 		float min_distance = 1000000;
 		float distance = min_distance;
 
-		// The missiles look for the closer enemy...ALWAYS!
+		// The missiles look for the closer enemy
 		if (target_fixed != true)
 		{
 			while (item_enemy != NULL)
