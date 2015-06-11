@@ -23,6 +23,7 @@ public:
 	Point2d<int> position;
 	Point2d<int> speed;
 	Animation anim;
+	Animation *current_animation;
 	Uint32 born;
 	Uint32 life;
 	Collider *collider;

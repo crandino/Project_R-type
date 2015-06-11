@@ -28,6 +28,7 @@ public:
 		anim.frames.pushBack({ 233, 343, 32, 28 });
 		anim.speed = 0.4f;
 		anim.loop = false;
+		current_animation = &anim;
 		type = PLAYER_EXPLOSION;
 	}
 
@@ -52,7 +53,7 @@ public:
 
 		if (collider != NULL)
 		{
-			SDL_Rect r = anim.peekCurrentFrame();
+			SDL_Rect r = current_animation->peekCurrentFrame();
 			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 

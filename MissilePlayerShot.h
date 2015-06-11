@@ -44,8 +44,9 @@ public:
 		anim.frames.pushBack({ 84, 0, 12, 12 });
 		anim.frames.pushBack({ 96, 0, 12, 12 });
 		anim.frames.pushBack({ 108, 0, 12, 12 });
-
 		anim.speed = 0.5f;
+		current_animation = &anim;
+
 		life = 10000;
 		target_delay = 1000;
 		targeting = false;
@@ -121,11 +122,11 @@ public:
 		position.x += speed.x;
 		position.y += speed.y;
 
-		anim.current_frame = (int)(angle * (180.0f / M_PI) / (360.0f / anim.frames.getNumElements()));
+		current_animation->current_frame = (int)(angle * (180.0f / M_PI) / (360.0f / current_animation->frames.getNumElements()));
 
 		if (collider != NULL)
 		{
-			SDL_Rect r = anim.peekCurrentFrame();
+			SDL_Rect r = current_animation->peekCurrentFrame();
 			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 

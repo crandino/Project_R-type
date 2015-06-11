@@ -110,11 +110,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= w->born)
 		{
-			if (tmp_weapon->data->type == RIBBON_PLAYER_SHOT || tmp_weapon->data->type == BASIC_PLAYER_SHOT)
-				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));
-			else
-				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
-				
+			app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));				
 
 			if (w->fx_played == false)
 			{
@@ -141,7 +137,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= x->born)
 		{
-			app->renderer->blit(x->graphics, x->position.x, x->position.y, &(x->anim.getCurrentFrame()));
+			app->renderer->blit(x->graphics, x->position.x, x->position.y, &(x->current_animation->getCurrentFrame()));
 			if (x->fx_played == false)
 			{
 				x->fx_played = true;
