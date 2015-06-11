@@ -25,6 +25,7 @@ public:
 		anim.frames.pushBack({ 19, 1, 7, 6 });
 		anim.frames.pushBack({ 27, 1, 7, 6 });
 		anim.speed = 0.5f;
+		current_animation = &anim;
 		life = 8000;
 		type = BASIC_ENEMY_SHOT;
 		oriented = false;
@@ -80,7 +81,7 @@ public:
 
 		if (collider != NULL)
 		{
-			SDL_Rect r = anim.peekCurrentFrame();
+			SDL_Rect r = current_animation->peekCurrentFrame();
 			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 

@@ -27,6 +27,7 @@ public:
 		anim.frames.pushBack({ 170, 0, 34, 32 });
 		anim.speed = 0.4f;
 		anim.loop = false;
+		current_animation = &anim;
 		type = COMMON_EXPLOSION;
 	}
 
@@ -37,23 +38,8 @@ public:
 	{
 		bool ret = true;
 
-		if (life > 0)
-		{
-			if ((SDL_GetTicks() - born) > life)
-				ret = false;
-		}
-		else
-			if (anim.finished())
-				ret = false;
-
-		position.x += speed.x;
-		position.y += speed.y;
-
-		if (collider != NULL)
-		{
-			SDL_Rect r = anim.peekCurrentFrame();
-			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
-		}
+		if (anim.finished())
+			ret = false;
 
 		return ret;
 	}

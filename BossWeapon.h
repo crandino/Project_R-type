@@ -37,6 +37,7 @@ public:
 		anim.frames.pushBack({ 47, 0, 21, 20 });
 		anim.frames.pushBack({ 71, 0, 21, 20 });		
 		anim.speed = 0.2f;
+		current_animation = &anim;
 		speed.x = -3 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
 		life = 2000;
@@ -112,7 +113,7 @@ public:
 
 		if (collider != NULL)
 		{
-			SDL_Rect r = anim.peekCurrentFrame();
+			SDL_Rect r = current_animation->peekCurrentFrame();
 			collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
 		}
 

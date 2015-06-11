@@ -30,6 +30,8 @@ bool ModuleSceneWin::start()
 	LOG("Loading Win assets");
 	bool ret = true;
 
+	app->audio->playMusic("Music/Win_Music.wav", 1.0f);
+
 	graphics = app->textures->load("Images/Win.png");
 	//fx = app->audio->loadFx("Sounds/Coin.ogg");
 	app->renderer->camera.x = app->renderer->camera.y = 0;

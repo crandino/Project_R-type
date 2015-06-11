@@ -20,7 +20,6 @@ public:
 	RibbonShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
 		//Player ship shot with ribbon power-up
-		//shot.fx = app->audio->loadFx("LOQUESEA");
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 12, 56 });
 		anim.frames.pushBack({ 12, 0, 18, 56 });
@@ -52,8 +51,6 @@ public:
 		second_ribbon_shot.speed = 0.17f;
 		speed.x = 0.9 * SCALE_FACTOR;
 		speed.y = 0 * SCALE_FACTOR;
-		/*life = 1500;
-		second_ribbon_shot.life = 1500;*/
 		type = RIBBON_PLAYER_SHOT;
 		current_animation = &anim;
 	}
@@ -90,21 +87,3 @@ public:
 };
 
 #endif //!__RIBBONSHOT_H__
-
-/*if (life > 0)
-{
-if ((SDL_GetTicks() - born) > life)
-ret = false;
-}
-else
-if (anim.finished())
-ret = false;
-
-position.x += speed.x;
-position.y += speed.y;
-
-if (collider != NULL)
-{
-SDL_Rect r = anim.peekCurrentFrame();
-collider->rect = { position.x, position.y, r.w * SCALE_FACTOR, r.h * SCALE_FACTOR };
-}*/

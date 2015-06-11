@@ -217,7 +217,7 @@ update_status ModuleEnemy::preUpdate()
 		// BUG - Group 1 ( 5 units )
 		if (last_wave != wave)
 		{
-			addEnemy(BUG_ENEMY, bug_graphics, 600, 110, COLLIDER_ENEMY);
+			addEnemy(BUG_ENEMY, bug_graphics, 610, 110, COLLIDER_ENEMY);
 			addEnemy(BUG_ENEMY, bug_graphics, 640, 110, COLLIDER_ENEMY);
 			addEnemy(BUG_ENEMY, bug_graphics, 680, 110, COLLIDER_ENEMY);
 			addEnemy(BUG_ENEMY, bug_graphics, 720, 110, COLLIDER_ENEMY);
@@ -226,32 +226,32 @@ update_status ModuleEnemy::preUpdate()
 		}
 			   break;
 
-	case(650) :
-		// BUG - Group 2 ( 5 units )
-		if (last_wave != wave)
-		{
-			addEnemy(BUG_ENEMY, bug_graphics, 700, 80, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 760, 80, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 780, 80, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 800, 80, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 820, 80, COLLIDER_ENEMY);
-			last_wave = wave;
-		}
-			  break;
+	//case(650) :
+	//	// BUG - Group 2 ( 5 units )
+	//	if (last_wave != wave)
+	//	{
+	//		addEnemy(BUG_ENEMY, bug_graphics, 700, 110, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 760, 110, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 780, 110, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 800, 110, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 820, 110, COLLIDER_ENEMY);
+	//		last_wave = wave;
+	//	}
+	//		  break;
 
-	case(2000) :
-		// BUG - Group 5 ( 6 units )
-		if (last_wave != wave)
-		{
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -30, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -70, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -110, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -150, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -190, COLLIDER_ENEMY);
-			addEnemy(BUG_ENEMY, bug_graphics, 1960, -230, COLLIDER_ENEMY);
-			last_wave = wave;
-		}
-			  break;
+	//case(2000) :
+	//	// BUG - Group 5 ( 6 units )
+	//	if (last_wave != wave)
+	//	{
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -30, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -70, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -110, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -150, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -190, COLLIDER_ENEMY);
+	//		addEnemy(BUG_ENEMY, bug_graphics, 1960, -230, COLLIDER_ENEMY);
+	//		last_wave = wave;
+	//	}
+	//		  break;
 
 		//  ---------------------------------------------------------------
 		//  ----------------------  BLASTER -------------------------------

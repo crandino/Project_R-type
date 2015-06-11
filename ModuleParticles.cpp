@@ -110,11 +110,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= w->born)
 		{
-			if (tmp_weapon->data->type == RIBBON_PLAYER_SHOT || tmp_weapon->data->type == BASIC_PLAYER_SHOT)
-				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));
-			else
-				app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->anim.getCurrentFrame()));
-				
+			app->renderer->blit(w->graphics, w->position.x, w->position.y, &(w->current_animation->getCurrentFrame()));				
 
 			if (w->fx_played == false)
 			{
@@ -141,7 +137,7 @@ update_status ModuleParticles::update()
 		}
 		else if (SDL_GetTicks() >= x->born)
 		{
-			app->renderer->blit(x->graphics, x->position.x, x->position.y, &(x->anim.getCurrentFrame()));
+			app->renderer->blit(x->graphics, x->position.x, x->position.y, &(x->current_animation->getCurrentFrame()));
 			if (x->fx_played == false)
 			{
 				x->fx_played = true;
@@ -200,19 +196,19 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 		tmp_weapon = tmp_weapon->next;
 	}
 
-	doubleNode<Explosions*> *tmp_explosion = active_explosions.getFirst();
+	//doubleNode<Explosions*> *tmp_explosion = active_explosions.getFirst();
 
-	while (tmp_explosion != NULL)
-	{
-		if (tmp_explosion->data->collider == c1)
-		{
-			delete tmp_explosion->data;
-			active_explosions.del(tmp_explosion);
-			break;
-		}
+	//while (tmp_explosion != NULL)
+	//{
+	//	if (tmp_explosion->data->collider == c1)
+	//	{
+	//		delete tmp_explosion->data;
+	//		active_explosions.del(tmp_explosion);
+	//		break;
+	//	}
 
-		tmp_explosion = tmp_explosion->next;
-	}
+	//	tmp_explosion = tmp_explosion->next;
+	//}
 }
 
 void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
@@ -241,7 +237,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 	active_weapons.add(p);
 }
 
-void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 delay)
 {
 	Explosions *p = NULL;
 
@@ -257,11 +253,6 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, COLLIDER_
 	p->born = SDL_GetTicks() + delay;
 	p->position.x = x;
 	p->position.y = y;
-
-	if (collider_type != COLLIDER_NONE)
-	{
-		p->collider = app->collision->addCollider({ p->position.x, p->position.y, 0, 0 }, collider_type, true, this);
-	}
 
 	active_explosions.add(p);
 }
