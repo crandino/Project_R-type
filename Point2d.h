@@ -46,6 +46,13 @@ public:
 		return (*this);
 	}
 
+	const Point2d& operator*= (const Point2d &p)
+	{
+		x *= p.x;
+		y *= p.y;
+		return (*this);
+	}
+
 	bool operator== (const Point2d &p) const
 	{
 		return (x == p.x && y == p.y);

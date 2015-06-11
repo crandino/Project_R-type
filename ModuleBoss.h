@@ -104,6 +104,29 @@ struct Antenna4 : Boss
 	}
 };
 
+struct Tail : Boss
+{
+	DynArray<Point2d<int>> current_positions;
+	DynArray<Point2d<int>> top_positions;
+	DynArray<Point2d<int>> bottom_positions;
+	DynArray<Point2d<int>> speeds;
+	DynArray<Collider*> colliders;
+	unsigned int num_balls;
+	bool going_up;
+
+	Tail() : Boss()
+	{
+		//Animation frames Tail
+		anim.frames.pushBack({ 598, 2045, 16, 16 });
+		anim.frames.pushBack({ 544, 2000, 16, 16 });
+		anim.frames.pushBack({ 573, 2016, 16, 16 });
+		anim.frames.pushBack({ 598, 2030, 16, 15 });
+		anim.speed = 0.0f;
+
+		num_balls = 20;
+	}
+};
+
 class ModuleBoss : public Module
 {
 
@@ -120,6 +143,7 @@ public:
 	Antenna2 *antenna2;
 	Antenna3 *antenna3;
 	Antenna4 *antenna4;
+	Tail *tail;
 
 	DList<Boss*> boss_parts;
 

@@ -12,6 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInterface.h"
 #include "ModuleParticles.h"
+#include <math.h>
 //=================================
 // the actual code
 
@@ -71,6 +72,25 @@ bool ModuleBoss::start()
 	antenna4->position.y = 192 * SCALE_FACTOR;
 
 	boss_parts.add(antenna4);
+
+	// Tail
+	tail = new Tail();
+
+	float incr = 0.05f;
+	float incr_delta = 0.1f;
+	for (unsigned int i = 0; i < tail->num_balls; i++)
+	{
+
+		tail->current_positions.pushBack({ stop_scrolling_position - ((121 + (i * 7)) * SCALE_FACTOR), 195 * SCALE_FACTOR });
+		tail->top_positions.pushBack({ stop_scrolling_position - ((121 + (i * 6)) * SCALE_FACTOR), (195 - (i * 3 * incr)) * SCALE_FACTOR });
+		tail->bottom_positions.pushBack({ stop_scrolling_position - ((121 + (i * 7)) * SCALE_FACTOR), 195 * SCALE_FACTOR });
+		tail->speeds.pushBack({ 0 * SCALE_FACTOR, 0 * SCALE_FACTOR });
+
+		incr += incr_delta;
+	}
+	
+	tail->going_up = true;
+
 	// Adding texture of boss
 	dobkeratops_texture = app->textures->load("Sprites/Boss1_Dobkeratops.png");
 
@@ -111,6 +131,14 @@ bool ModuleBoss::start()
 	//ALIEN
 	SDL_Rect rect_alien = { stop_scrolling_position - (96 * SCALE_FACTOR), 116 * SCALE_FACTOR, 50, 24 };
 	alien->col = app->collision->addCollider(rect_alien, COLLIDER_ENEMY, true, this);
+
+	// Tail
+	SDL_Rect rect_tail;
+	for (unsigned int i = 0; i < tail->num_balls; i++)
+	{
+		rect_tail = { tail->current_positions[i].x, tail->current_positions[i].y, 16, 16 };
+		tail->colliders.pushBack(app->collision->addCollider(rect_tail, COLLIDER_WALL, true, this));
+	}
 
 	// Stopping music level and initiating boss music.
 	app->audio->stopAllMusic();
@@ -186,6 +214,93 @@ update_status ModuleBoss::update()
 			faded = true;
 			app->fade->fadeToBlack(app->scene, app->scene_win, 3.0f);
 		}
+	}
+
+	// ----------------------------
+	// --------- LA COLA ----------
+
+	float dx, dy;
+	unsigned int pos_reached = 0;
+	int speed_value = 0.4 * SCALE_FACTOR;
+	float incr_factor = 1.1f;
+
+	for (unsigned int i = 0; i < tail->current_positions.getNumElements(); i++)
+	{
+
+		if (tail->going_up == true)
+		{
+			dx = tail->top_positions[i].x - tail->current_positions[i].x;
+			dy = tail->top_positions[i].y - tail->current_positions[i].y;
+		}
+		else
+		{
+			dx = tail->bottom_positions[i].x - tail->current_positions[i].x;
+			dy = tail->bottom_positions[i].y - tail->current_positions[i].y;
+		}
+
+		float angle = atan(dy / dx);
+
+		if (dx >= 0)
+		{
+			if (dy < 0)
+				angle = 2.0f * M_PI + angle;
+		}
+		else
+		{
+			angle = M_PI + angle;
+		}
+
+		if (tail->going_up == true)
+		{
+			if (tail->current_positions[i].isClosedTo(tail->top_positions[i], 1.5 * SCALE_FACTOR))
+			{
+				tail->speeds[i].setZero();
+				pos_reached++;
+			}			
+			else
+			{
+				tail->speeds[i].x = (cos(angle) * speed_value);
+				tail->speeds[i].y = (sin(angle) * speed_value);
+				tail->current_positions[i] += tail->speeds[i];
+			}
+		}
+		else
+		{
+			if (tail->current_positions[i].isClosedTo(tail->bottom_positions[i], 1.5 * SCALE_FACTOR))
+			{
+				tail->speeds[i].setZero();
+				pos_reached++;
+			}
+			else
+			{
+				tail->speeds[i].x = (cos(angle) * speed_value);
+				tail->speeds[i].y = (sin(angle) * speed_value);
+				tail->current_positions[i] += tail->speeds[i];
+			}
+		}
+
+		speed_value *= incr_factor;
+	}	
+
+	if (pos_reached == tail->num_balls)
+	{
+		if (tail->going_up == true)
+			tail->going_up = false;
+		else
+			tail->going_up = true;
+	}	
+
+	for (unsigned int i = 0; i < tail->colliders.getNumElements(); i++)
+		tail->colliders[i]->setPos(tail->current_positions[i].x, tail->current_positions[i].y);
+
+	for (unsigned int i = 0; i < tail->num_balls; i++)
+	{
+		if (i < 8) { tail->anim.current_frame = 1; }
+		else if (i < 14) { tail->anim.current_frame = 2; }
+		else if (i < 19) { tail->anim.current_frame = 3; }
+		else { tail->anim.current_frame = 0; }
+
+		app->renderer->blit(dobkeratops_texture, tail->current_positions[i].x, tail->current_positions[i].y, &(tail->anim.getCurrentFrame()));
 	}
 
 	return UPDATE_CONTINUE;
