@@ -82,14 +82,15 @@ update_status ModuleInterface::update()
 	app->renderer->blit(img_p1, position_interface + 30 * SCALE_FACTOR, 250 * SCALE_FACTOR, NULL);
 	app->renderer->blit(img_hi, position_interface + 154 * SCALE_FACTOR, 249 * SCALE_FACTOR, NULL);
 
-	////Beam rectangle to charge
-	//if (app->player->charging == true)
-	//{	
-	//	for (float i = 0.0f; i < 128.0f; i += 0.001f)
-	//	{
-	//		app->renderer->blit(charge_beam, position_interface + (141 + (int)i) * SCALE_FACTOR, 243 * SCALE_FACTOR, NULL);
-	//	}
-	//}
+	//Beam rectangle to charge
+	if (app->player->charging == true)
+	{	
+		Uint32 now = SDL_GetTicks();
+		unsigned int max_beam = (now - app->player->start_charging) * 128 / 1200;
+		if (max_beam > 128) { max_beam = 128; }
+		for (unsigned int i = 0; i < max_beam; i++)
+			app->renderer->blit(charge_beam, position_interface + (141 + i) * SCALE_FACTOR, 243 * SCALE_FACTOR, NULL);
+	}
 
 	// Points visualization
 	if (app->player->player_points > 9999)
