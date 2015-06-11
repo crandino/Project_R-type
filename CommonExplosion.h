@@ -17,7 +17,7 @@ public:
 
 	CommonExplosion(Application *app, SDL_Texture *texture) : Explosions(app)
 	{
-		//Common explosion
+		//Explosion animation
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 34, 32 });
 		anim.frames.pushBack({ 34, 0, 34, 32 });

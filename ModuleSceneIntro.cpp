@@ -20,7 +20,7 @@ ModuleSceneIntro::ModuleSceneIntro(Application *app, bool start_enabled) : Modul
 	numbers = NULL;
 	fx = 0;
 
-	// from numbers_coins animation
+	// From numbers_coins animation
 	numbers_coins.frames.pushBack({ 0, 0, 8, 7 });
 	numbers_coins.frames.pushBack({ 8, 0, 8, 7 });
 	numbers_coins.frames.pushBack({ 16, 0, 8, 7 });

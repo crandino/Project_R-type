@@ -16,6 +16,7 @@ class ModuleSceneIntro : public Module
 {
 public:
 
+	//Intro textures
 	SDL_Texture *intro;
 	SDL_Texture *numbers;
 	SDL_Texture *press_space_to_start;

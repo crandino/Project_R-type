@@ -29,6 +29,7 @@ struct Alien : Boss
 
 	Alien() : Boss()
 	{
+		//Animation frames Alien
 		anim.frames.pushBack({ 636, 1964, 32, 32 });
 		anim.frames.pushBack({ 603, 1964, 32, 32 });
 		anim.frames.pushBack({ 570, 1964, 32, 32 });
@@ -51,6 +52,7 @@ struct Dobkeratops : Boss
 
 	Dobkeratops() : Boss()
 	{
+		//Animation frames Dobkeratops
 		anim.frames.pushBack({ 351, 2, 155, 204 });
 		anim.frames.pushBack({ 189, 2, 155, 204 });
 		anim.frames.pushBack({  27, 2, 155, 204 });
@@ -65,6 +67,7 @@ struct Dobkeratops : Boss
 	}
 };
 
+//Antenna frames
 struct Antenna1 : Boss
 {
 	Antenna1() : Boss()

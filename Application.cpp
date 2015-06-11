@@ -25,6 +25,7 @@
 
 Application::Application()
 {
+	// Create Modules
 	window = new ModuleWindow(this);
 	renderer = new ModuleRender(this);
 	textures = new ModuleTextures(this);
@@ -74,6 +75,7 @@ Application::Application()
 
 Application::~Application()
 {
+	// Delete Modules
 	delete window;
 	delete renderer;
 	delete textures;

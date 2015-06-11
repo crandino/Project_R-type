@@ -17,7 +17,7 @@ public:
 
 	PlayerMissileShotExplosion(Application *app, SDL_Texture *texture) : Explosions(app)
 	{
-		//Basic player shot explosion
+		//Explosion animation
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 18, 30 });
 		anim.frames.pushBack({ 18, 0, 27, 30 });

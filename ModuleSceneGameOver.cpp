@@ -21,7 +21,7 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 	sprite = NULL;
 	numbers = NULL;
 
-	// from countdown animation
+	// From countdown animation
 	countdown.frames.pushBack({ 0, 0, 48, 71 });
 	countdown.frames.pushBack({ 48, 0, 48, 71 });
 	countdown.frames.pushBack({ 96, 0, 48, 71 });
@@ -35,7 +35,7 @@ ModuleSceneGameOver::ModuleSceneGameOver(Application *app, bool start_enabled) :
 	countdown.speed = 0.014f;
 	countdown.loop = false;
 
-	// from numbers_coins animation
+	// From numbers_coins animation
 	numbers_coins.frames.pushBack({ 0, 0, 8, 7 });
 	numbers_coins.frames.pushBack({ 8, 0, 8, 7 });
 	numbers_coins.frames.pushBack({ 16, 0, 8, 7 });

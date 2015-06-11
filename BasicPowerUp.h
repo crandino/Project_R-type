@@ -18,7 +18,7 @@ public:
 
 	BasicPowerUp(Application *app, SDL_Texture *texture) : PowerUp(app)
 	{
-		//Ribbon frames
+		//Animation frames
 		anim.frames.pushBack({ 0, 0, 20, 18 });
 		anim.frames.pushBack({ 20, 0, 20, 18 });
 		anim.frames.pushBack({ 40, 0, 20, 18 });

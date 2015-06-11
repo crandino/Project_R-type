@@ -19,7 +19,7 @@ public:
 
 	RibbonShot(Application *app, SDL_Texture *texture) : Weapons(app)
 	{
-		//Player ship shot with ribbon power-up
+		//Animation frames
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 12, 56 });
 		anim.frames.pushBack({ 12, 0, 18, 56 });
@@ -71,7 +71,6 @@ public:
 
 		if (current_animation == &second_ribbon_shot)
 		{
-			//position.y += 12 * SCALE_FACTOR;
 			position.x += 5 * SCALE_FACTOR;
 		}
 

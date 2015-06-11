@@ -19,7 +19,7 @@ public:
 
 	Contrail(Application *app, SDL_Texture *texture) : Explosions(app)
 	{
-		// explosion animation
+		//Explosion animation
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 16, 16 });
 		anim.frames.pushBack({ 16, 0, 22, 16 });

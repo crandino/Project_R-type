@@ -16,6 +16,7 @@ class ModuleSceneGameOver : public Module
 {
 public:
 
+	//Game over textures
 	SDL_Texture *graphics;
 	SDL_Texture *sprite;
 	SDL_Texture *numbers;

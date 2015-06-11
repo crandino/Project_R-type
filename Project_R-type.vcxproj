@@ -48,7 +48,7 @@
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="PataEnemy.h" />
     <ClInclude Include="BasicEnemyShot.h" />
-    <ClInclude Include="PlayerBasicShotCharged.h" />
+    <ClInclude Include="PlayerBasicShotChargedExplosion.h" />
     <ClInclude Include="PlayerBasicShotExplosion.h" />
     <ClInclude Include="PlayerExplosion.h" />
     <ClInclude Include="PlayerMissileShotExplosion.h" />

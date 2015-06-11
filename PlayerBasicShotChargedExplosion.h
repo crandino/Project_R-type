@@ -10,14 +10,14 @@
 //=================================
 // the actual class
 
-class PlayerBasicShotCharged : public Explosions
+class PlayerBasicShotChargedExplosion : public Explosions
 {
 
 public:
 
-	PlayerBasicShotCharged(Application *app, SDL_Texture *texture) : Explosions(app)
+	PlayerBasicShotChargedExplosion(Application *app, SDL_Texture *texture) : Explosions(app)
 	{
-		//Basic player shot explosion
+		//Explosion animation
 		graphics = texture;
 		anim.frames.pushBack({ 2, 13, 24, 22 });
 		anim.frames.pushBack({ 27, 10, 34, 28 });
@@ -30,7 +30,7 @@ public:
 		type = CHARGED_EXPLOSION;
 	}
 
-	~PlayerBasicShotCharged()
+	~PlayerBasicShotChargedExplosion()
 	{ }
 
 	bool update()

@@ -15,7 +15,7 @@
 
 ModuleInterface::ModuleInterface(Application *app, bool start_enabled) : Module(app, start_enabled)
 {
-	// from numbers_points animation
+	// From numbers_points animation
 	numbers_points.frames.pushBack({ 0, 0, 8, 7 });
 	numbers_points.frames.pushBack({ 8, 0, 8, 7 });
 	numbers_points.frames.pushBack({ 16, 0, 8, 7 });

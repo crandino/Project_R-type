@@ -31,6 +31,7 @@ enum WEAPON_TYPES
 enum EXPLOSION_TYPES
 {
 	NONE_EXPLOSION,
+
 	CHARGED_EXPLOSION,
 	COMMON_EXPLOSION,
 	HUGE_EXPLOSION,
@@ -45,6 +46,7 @@ class ModuleParticles : public Module
 
 private:
 
+	//Texture shots
 	SDL_Texture *basic_player_shot;
 	SDL_Texture *missile_player_shot;
 	SDL_Texture *missile_propulsion;
@@ -52,6 +54,7 @@ private:
 	SDL_Texture *ribbon_player_shot;
 	SDL_Texture *boss_weapon;
 
+	//Texture explosions
 	SDL_Texture *basic_player_shot_explosion;
 	SDL_Texture *missile_player_shot_explosion;
 	SDL_Texture *player_explosion;

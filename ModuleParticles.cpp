@@ -23,7 +23,7 @@
 #include "PlayerMissileShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
-#include "PlayerBasicShotCharged.h"
+#include "PlayerBasicShotChargedExplosion.h"
 //=================================
 // the actual code
 
@@ -175,6 +175,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 					{
 						if (app->player->charged_shot == true)
 						{
+							//Print position from charged explosion with collider shot measures and explosion measures
 							addExplosion(CHARGED_EXPLOSION, c1->rect.x + (c1->rect.w - (28 * SCALE_FACTOR)), c1->rect.y - 13 *SCALE_FACTOR);
 							app->audio->playFx(fx_shot_explosion);
 						}
@@ -245,7 +246,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	switch (type)
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
-	case(CHARGED_EXPLOSION) : p = new PlayerBasicShotCharged(app, charged_explosion); break;
+	case(CHARGED_EXPLOSION) : p = new PlayerBasicShotChargedExplosion(app, charged_explosion); break;
 	case(HUGE_EXPLOSION) : p = new HugeExplosion(app, huge_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;

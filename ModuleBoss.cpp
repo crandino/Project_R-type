@@ -133,6 +133,7 @@ update_status ModuleBoss::update()
 
 	if (wait_to_shoot == false && (int)alien->anim.current_frame == 2 && alien->life > 0)
 	{
+		//Alien shot
 		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR , app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT);
 		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 80);
 		app->particles->addWeapon(BOSS_WEAPON, app->boss->alien->position.x - 5 * SCALE_FACTOR, app->boss->alien->position.y + 8 * SCALE_FACTOR, COLLIDER_ENEMY_SHOT, 160);

@@ -16,6 +16,7 @@ class ModuleInterface : public Module
 {
 public:
 
+	//Interface parts
 	SDL_Texture *img_life;
 	SDL_Texture *img_beam;
 	SDL_Texture *img_p1;

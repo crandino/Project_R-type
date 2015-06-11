@@ -36,8 +36,6 @@ public:
 	SDL_Texture *blaster_graphics;
 	unsigned int fx_pata_explosion;
 
-	// Level 2
-
 	ModuleEnemy(Application *app, bool start_enabled = true);
 	~ModuleEnemy();
 

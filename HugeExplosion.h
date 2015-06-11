@@ -17,7 +17,7 @@ public:
 
 	HugeExplosion(Application *app, SDL_Texture *texture) : Explosions(app)
 	{
-		//Common explosion
+		//Explosion animation
 		graphics = texture;
 		anim.frames.pushBack({ 0, 0, 64, 64 });
 		anim.frames.pushBack({ 64, 0, 64, 64 });

@@ -19,6 +19,7 @@ class PowerUp;
 enum POWERUP_TYPES
 {
 	NONE_POWERUP,
+
 	BASIC_POWERUP, 
 	RIBBON_POWERUP,
 	MISSILE_POWERUP
@@ -33,7 +34,7 @@ private:
 
 public:
 
-	// List of PowerUp textures
+	//List of PowerUp textures
 	SDL_Texture *basic_graphics;
 	SDL_Texture *ribbon_graphics;
 	SDL_Texture *missile_graphics;
