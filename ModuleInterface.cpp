@@ -97,12 +97,11 @@ update_status ModuleInterface::update()
 
 void ModuleInterface::print_score(unsigned int pos)
 {
-	// Points visualization
+	// Score calculation. The method calculates each number on the whole number: units, tens, hundreds, thousands and tens thousands.
 
 	// Printing tens_thousands..
 	if (app->player->player_points > 9999)
 	{
-		//unsigned int tens_thousands = (app->player->player_points / 10000) % 10;
 		numbers_points.current_frame = (app->player->player_points / 10000) % 10;
 		app->renderer->blit(img_numbers_interface, pos + 78 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
@@ -110,32 +109,29 @@ void ModuleInterface::print_score(unsigned int pos)
 	// Printing thousands...
 	if (app->player->player_points > 999)
 	{
-		unsigned int thousands = (app->player->player_points / 1000) % 10;
-		numbers_points.current_frame = thousands;
+		numbers_points.current_frame = (app->player->player_points / 1000) % 10;
 		app->renderer->blit(img_numbers_interface, pos + 87 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
 
 	// Printing hundreds...
 	if (app->player->player_points > 99)
 	{
-		unsigned int hundreds = (app->player->player_points / 100) % 10;
-		numbers_points.current_frame = hundreds;
+		numbers_points.current_frame = (app->player->player_points / 100) % 10;
 		app->renderer->blit(img_numbers_interface, pos + 96 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
 
 	// Printing tens...
 	if (app->player->player_points > 9)
 	{
-		unsigned int tens = (app->player->player_points / 10) % 10;
-		numbers_points.current_frame = tens;
+		numbers_points.current_frame = (app->player->player_points / 10) % 10;
 		app->renderer->blit(img_numbers_interface, pos + 105 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 	}
 
-	// Printing ...Units
-	//unsigned int units = app->player->player_points % 10;
+	// Printing units
 	numbers_points.current_frame = app->player->player_points % 10;
 	app->renderer->blit(img_numbers_interface, pos + 114 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 
+	// Code for high puntuation.
 	/*numbers_points.current_frame = 0;
 	app->renderer->blit(img_numbers_interface, pos + 230 * SCALE_FACTOR, 250 * SCALE_FACTOR, &(numbers_points.getCurrentFrame()));
 */
