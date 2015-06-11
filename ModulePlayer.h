@@ -55,7 +55,7 @@ public:
 	Uint32 charging_sound_duration;
 	bool charged_shot;
 	bool charging;
-	bool first_sound_played;
+	bool first_charging_sound_played;
 
 
 	ModulePlayer(Application *app, bool start_enabled = true);

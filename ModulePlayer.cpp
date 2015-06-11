@@ -93,7 +93,7 @@ bool ModulePlayer::start()
 	charging_sound_duration = 836;
 	charged_shot = false;
 	charging = false;
-	first_sound_played = false;
+	first_charging_sound_played = false;
 	last_ribbon_shot = 0;
 	lifes = 2;
 
@@ -160,10 +160,12 @@ void ModulePlayer::shoot()
 			{
 				end_charging = SDL_GetTicks();
 				charging = false;
+				//Only do the charge shot if the time of charge is enough big
 				if (end_charging - start_charging > 200)
 				{
 					charged_shot = true;
-					first_sound_played = false;
+					//Boolean that is used in charge_basic_shot() to indicate if the first charging sound is played 
+					first_charging_sound_played = false;
 					app->audio->playFx(fx_big_shoot);
 					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
 					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
@@ -190,12 +192,14 @@ void ModulePlayer::shoot()
 	}
 }
 
+//Method that create and update the charging of the basic weapon
 void ModulePlayer::charge_basic_shot()
 {
 	if (charging == false)
 	{
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
 		{
+			//In the original game when you charge the weapon, player shoots a single shot
 			app->audio->playFx(fx_shoot);
 			charged_shot = false;
 			app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
@@ -209,17 +213,20 @@ void ModulePlayer::charge_basic_shot()
 		if (weapon_type == BASIC_PLAYER_SHOT)
 		{
 			actual_charging = SDL_GetTicks();
+			//Only can render and play the animation of charging if the player push 0,2 sec CTRL
 			if (actual_charging - start_charging > 200)
 			{
 				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
-				if (first_sound_played != true)
+				//The sound of charge only sounds each time that finish last charging_sound. 
+				//We saved the moment that sounds the first sound and after we calcule the remainder to know if it's necessary play the next sound
+				if (first_charging_sound_played != true)
 				{
 					app->audio->playFx(fx_charging);
 					first_sound_moment = SDL_GetTicks();
-					first_sound_played = true;
+					first_charging_sound_played = true;
 				}
 
-				if ((actual_charging - first_sound_moment) % charging_sound_duration < 100)
+				if ((actual_charging - first_sound_moment) % charging_sound_duration < 100)//100 = margin of error of remainder
 					app->audio->playFx(fx_charging);
 			}
 		}
