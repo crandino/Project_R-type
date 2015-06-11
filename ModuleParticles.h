@@ -33,7 +33,6 @@ enum EXPLOSION_TYPES
 	NONE_EXPLOSION,
 
 	COMMON_EXPLOSION,
-	CHARGED_EXPLOSION,
 	HUGE_EXPLOSION,
 	PLAYER_EXPLOSION,
 	CONTRAIL,
@@ -47,6 +46,7 @@ private:
 
 	SDL_Texture *basic_player_shot;
 	SDL_Texture *missile_player_shot;
+	SDL_Texture *missile_propulsion;
 	SDL_Texture *basic_enemy_shot;
 	SDL_Texture *ribbon_player_shot;
 	SDL_Texture *boss_weapon;
@@ -56,7 +56,6 @@ private:
 	SDL_Texture *contrail;
 	SDL_Texture *common_explosion;
 	SDL_Texture *huge_explosion;
-	SDL_Texture *charged_explosion;
 
 	DList<Explosions*> active_explosions;
 
