@@ -213,12 +213,10 @@ update_status ModulePlayer::update()
 					{
 						//No suena casi nunca!!!!!!!
 						app->audio->playFx(fx_big_shoot);
-<<<<<<< HEAD
+
 						charged_shot = true;
 						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y, COLLIDER_NONE);
-=======
 						app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
->>>>>>> origin/master
 						app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 					}
 					start_charging = end_charging = 0;

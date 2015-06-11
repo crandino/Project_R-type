@@ -256,6 +256,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	switch (type)
 	{
 	case(COMMON_EXPLOSION) : p = new CommonExplosion(app, common_explosion); break;
+	case(CHARGED_EXPLOSION) : p = new PlayerBasicShotCharged(app, charged_explosion); break;
 	case(HUGE_EXPLOSION) : p = new HugeExplosion(app, huge_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
