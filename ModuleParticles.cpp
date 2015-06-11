@@ -20,6 +20,7 @@
 #include "PlayerExplosion.h"
 #include "Contrail.h"
 #include "PlayerBasicShotExplosion.h"
+#include "PlayerMissileShotExplosion.h"
 #include "CommonExplosion.h"
 #include "HugeExplosion.h"
 //=================================
@@ -46,6 +47,7 @@ bool ModuleParticles::start()
 	
 	// Explosions
 	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
+	missile_player_shot_explosion = app->textures->load("Sprites/missile_player_shot_explosion.png");
 	common_explosion = app->textures->load("Sprites/Common_explosion.png");
 	huge_explosion = app->textures->load("Sprites/huge_explosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
@@ -61,6 +63,7 @@ bool ModuleParticles::cleanUp()
 	LOG("Unloading particles");
 	app->textures->unload(basic_player_shot_explosion);
 	app->textures->unload(basic_player_shot);
+	app->textures->unload(missile_player_shot_explosion);
 	app->textures->unload(missile_player_shot);
 	app->textures->unload(basic_enemy_shot);
 	app->textures->unload(player_explosion);
@@ -177,7 +180,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 
 				case(MISSILE_PLAYER_SHOT) :
 				{
-					addExplosion(COMMON_EXPLOSION, c1->rect.x, c1->rect.y);
+					addExplosion(MISSILE_PLAYER_SHOT_EXPLOSION, c1->rect.x, c1->rect.y);
 					app->audio->playFx(app->enemy->fx_pata_explosion);
 					delete tmp_weapon->data;
 					active_weapons.del(tmp_weapon);
@@ -236,6 +239,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
 	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
+	case(MISSILE_PLAYER_SHOT_EXPLOSION) : p = new PlayerMissileShotExplosion(app, missile_player_shot_explosion); break;
 	}
 
 	p->born = SDL_GetTicks() + delay;

@@ -25,7 +25,7 @@ public:
 		anim.speed = 0.4f;
 		anim.loop = false;
 		current_animation = &anim;
-		type = COMMON_EXPLOSION;
+		type = BASIC_PLAYER_SHOT_EXPLOSION;
 	}
 
 	~PlayerBasicShotExplosion()
