@@ -25,6 +25,7 @@ struct Alien : Boss
 {
 	int life;
 	unsigned int points;
+	unsigned int dead_time;
 
 	Alien() : Boss()
 	{
@@ -120,6 +121,7 @@ public:
 	DList<Boss*> boss_parts;
 
 	unsigned int stop_scrolling_position;
+	bool faded;
 
 	ModuleBoss(Application *app, bool start_enabled = true);
 	~ModuleBoss();
