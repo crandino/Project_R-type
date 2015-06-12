@@ -330,7 +330,7 @@ void ModuleBoss::onCollision(Collider *col1, Collider *col2)
 			//hit alien col
 			if (alien->life >= 1){
 				alien->life--;
-				if (alien->last_hit_time == 0 || alien->last_hit_time + 200 < SDL_GetTicks())
+				if (alien->last_hit_time == 0 || alien->last_hit_time + 300 < SDL_GetTicks())
 				{
 					alien->last_hit_time = SDL_GetTicks();
 					app->audio->playFx(fx_hit);
