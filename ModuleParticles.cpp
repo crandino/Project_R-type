@@ -115,6 +115,7 @@ bool ModuleParticles::cleanUp()
 // Update: draw background
 update_status ModuleParticles::update()
 {
+	//Update each weapon (shot) in the game
 	doubleNode<Weapons*>* tmp_weapon = active_weapons.getFirst();
 	doubleNode<Weapons*>* tmp_weapon_next = active_weapons.getFirst();
 
@@ -142,6 +143,7 @@ update_status ModuleParticles::update()
 		tmp_weapon = tmp_weapon_next;
 	}
 
+	//Update each explosion in the game
 	doubleNode<Explosions*>* tmp_explosion = active_explosions.getFirst();
 	doubleNode<Explosions*>* tmp_explosion_next = active_explosions.getFirst();
 
@@ -173,6 +175,7 @@ update_status ModuleParticles::update()
 
 update_status ModuleParticles::postUpdate()
 {
+	//Eliminate all weapons (shots) that across the scree
 	doubleNode<Weapons*>* tmp_weapon = active_weapons.getFirst();
 	doubleNode<Weapons*>* tmp_weapon_next = active_weapons.getFirst();
 
@@ -194,7 +197,7 @@ update_status ModuleParticles::postUpdate()
 
 void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 {
-
+	//Do the explosion, if its necessary, of the weapon (shot) collided
 	doubleNode<Weapons*> *tmp_weapon = active_weapons.getFirst();
 
 	while (tmp_weapon != NULL)
@@ -262,6 +265,7 @@ void ModuleParticles::onCollision(Collider *c1, Collider *c2)
 
 void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
+	//Add a weapon (shot) and this is added in the list of active weapons (shots)
 	Weapons *p = NULL;
 
 	switch (type)
@@ -307,6 +311,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 
 void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 delay)
 {
+	//Add a explosion and this is added in the list of active explosions
 	Explosions *p = NULL;
 
 	switch (type)

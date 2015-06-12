@@ -78,7 +78,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::start()
 {
 	LOG("Loading player...");
-
+	//Initialize atributes
 	active = true;
 	app->input->keyboard_enabled = true;
 
@@ -96,6 +96,7 @@ bool ModulePlayer::start()
 	weapon_type = BASIC_PLAYER_SHOT;
 	player_points = 0;
 	
+	//Load images and sounds
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
@@ -124,8 +125,10 @@ update_status ModulePlayer::update()
 {
 	if (active)
 	{
+		//Method that manages the movement of the player
 		move();
 
+		//Method that manages the shot of the player
 		shoot();
 	}
 
@@ -141,14 +144,17 @@ update_status ModulePlayer::update()
 
 void ModulePlayer::shoot()
 {
+	//Method that manages the charging of the basic weapon 
 	charge_basic_shot();
 
 	if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_UP)
 	{
+		//A switch for each type of weapons
 		switch (weapon_type)
 		{
 			case BASIC_PLAYER_SHOT:
 			{
+				//Player finishes the charge.
 				end_charging = SDL_GetTicks();
 				charging = false;
 				//Only do the charge shot if the time of charge is enough big
@@ -184,11 +190,11 @@ void ModulePlayer::shoot()
 //Method that create and update the charging of the basic weapon
 void ModulePlayer::charge_basic_shot()
 {
+	//If player is not charging, starts to charge and shoots a basic shot.
 	if (charging == false)
 	{
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
 		{
-			//In the original game when you charge the weapon, player shoots a single shot
 			app->audio->playFx(app->particles->fx_shot);
 			charged_shot = false;
 			app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
@@ -207,7 +213,7 @@ void ModulePlayer::charge_basic_shot()
 			{
 				app->renderer->blit(graphics, position.x + 30 * SCALE_FACTOR, position.y - 6 * SCALE_FACTOR, &(charging_animation.getCurrentFrame()));
 				//The sound of charge only sounds each time that finish last charging_sound. 
-				//We saved the moment that sounds the first sound and after we calcule the remainder to know if it's necessary play the next sound
+				//We saved the moment that sounds the first sound and after we calcule the remainder to know if it's necessary play the next sound.
 				if (first_charging_sound_played != true)
 				{
 					app->audio->playFx(fx_charging);
@@ -276,7 +282,8 @@ void ModulePlayer::move()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
-	//If player collides with a powerup doesnt die, if collides with another entity it does.
+	//If player collides with a powerup doesnt die, if it does with another entity die.
+	//When player die scroll stops and inputs are not accepted. Then close SceneSpace and open GameOverSpace
 	if (col2->type != COLLIDER_POWER_UP && active == true)
 	{
 		speed = 0;
