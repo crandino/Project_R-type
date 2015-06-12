@@ -99,6 +99,8 @@ bool ModulePlayer::start()
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
+	fx_charging = app->audio->loadFx("Sounds/Charging_Sound.wav");
+
 	// Each animation of Player is reseted.
 	for (unsigned int i = 0; i < animation_set.getNumElements(); i++)
 		animation_set[i]->reset();
@@ -222,6 +224,7 @@ void ModulePlayer::charge_basic_shot()
 
 void ModulePlayer::move()
 {
+	//Upward movement
 	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_REPEAT  && position.y > 0)
 	{
 		position.y -= speed;
@@ -233,6 +236,7 @@ void ModulePlayer::move()
 		}
 	}
 
+	//Downward movement
 	if (app->input->getKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		position.y += speed;
@@ -244,14 +248,15 @@ void ModulePlayer::move()
 		}
 	}
 
-	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT &&
-		position.x > app->scene->left_limit)
+	//Left movement
+	if (app->input->getKey(SDL_SCANCODE_LEFT) == KEY_REPEAT && position.x > app->scene->left_limit)
 		position.x -= speed;
 
-	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT &&
-		position.x < app->scene->right_limit)
+	//Right movement
+	if (app->input->getKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT && position.x < app->scene->right_limit)
 		position.x += speed;
 
+	//Stabilize animation
 	if (app->input->getKey(SDL_SCANCODE_UP) == KEY_IDLE && app->input->getKey(SDL_SCANCODE_DOWN) == KEY_IDLE)
 	{
 		if (current_animation == &idle_to_upward)
@@ -271,6 +276,7 @@ void ModulePlayer::move()
 
 void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 {
+	//If player collides with a powerup doesnt die, if collides with another entity it does.
 	if (col2->type != COLLIDER_POWER_UP && active == true)
 	{
 		speed = 0;
