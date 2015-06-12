@@ -81,8 +81,8 @@ bool ModuleSceneGameOver::start()
 
 	graphics = app->textures->load("Images/GameOver.png");
 	sprite = app->textures->load("Sprites/Numbers.png");
-	numbers = app->textures->load("Sprites/numbers_blue2.png");
-	press_space_to_start = app->textures->load("Images/Press_space_to_start_black_GameOver.png");
+	numbers = app->textures->load("Sprites/NumbersBlue2.png");
+	press_space_to_start = app->textures->load("Images/PressSpaceToStartBlackGameOver.png");
 
 	app->audio->playMusic("Sounds/CountdownMusic.wav", 1.0f);
 

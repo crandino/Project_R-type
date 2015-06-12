@@ -41,29 +41,29 @@ bool ModuleParticles::start()
 
 	// Weapons
 	basic_player_shot = app->textures->load("Sprites/Arrowhead.png");
-	ribbon_player_shot = app->textures->load("Sprites/Ribbon_shot.png");
-	missile_player_shot = app->textures->load("Sprites/Player_missiles.png");
-	missile_propulsion = app->textures->load("Sprites/Missile_propulsion.png");
-	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
-	boss_weapon = app->textures->load("Sprites/Boss_weapon.png");
+	ribbon_player_shot = app->textures->load("Sprites/RibbonShot.png");
+	missile_player_shot = app->textures->load("Sprites/PlayerMissiles.png");
+	missile_propulsion = app->textures->load("Sprites/MissilePropulsion.png");
+	basic_enemy_shot = app->textures->load("Sprites/BasicShotPata.png");
+	boss_weapon = app->textures->load("Sprites/BossWeapon.png");
 
-	fx_shot = app->audio->loadFx("Sounds/DisparoNave.wav");
-	fx_big_shot = app->audio->loadFx("Sounds/DisparoPotenteNave.wav");
-	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
-	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
+	fx_shot = app->audio->loadFx("Sounds/BasicShot.wav");
+	fx_big_shot = app->audio->loadFx("Sounds/BigShot.wav");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/RibbonSound.wav");
+	fx_missile_shot = app->audio->loadFx("Sounds/MissileSound.wav");
 	
 	// Explosions
-	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
-	missile_player_shot_explosion = app->textures->load("Sprites/missile_player_shot_explosion.png");
-	common_explosion = app->textures->load("Sprites/Common_explosion.png");
-	huge_explosion = app->textures->load("Sprites/huge_explosion.png");
+	basic_player_shot_explosion = app->textures->load("Sprites/BasicPlayerShotExplosion.png");
+	missile_player_shot_explosion = app->textures->load("Sprites/MissilePlayerShotExplosion.png");
+	common_explosion = app->textures->load("Sprites/CommonExplosion.png");
+	huge_explosion = app->textures->load("Sprites/HugeExplosion.png");
 	player_explosion = app->textures->load("Sprites/Arrowhead.png");
 	contrail = app->textures->load("Sprites/Contrail.png");
-	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
-	boss_hit = app->textures->load("Sprites/Boss1_Dobkeratops_negative.png");
+	charged_explosion = app->textures->load("Sprites/ChargedExplosion.png");
+	boss_hit = app->textures->load("Sprites/BossDobkeratopsNegative.png");
 
-	fx_spaceship_explosion = app->audio->loadFx("Sounds/ExplosionNave.wav");
-	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
+	fx_spaceship_explosion = app->audio->loadFx("Sounds/SpaceshipExplosion.wav");
+	fx_shot_explosion = app->audio->loadFx("Sounds/ShotCollision.wav");
 
 	last_missile_shot = last_ribbon_shot = missile_counter = 0;
 	ribbon_delay = 600;

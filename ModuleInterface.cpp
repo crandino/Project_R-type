@@ -40,12 +40,12 @@ bool ModuleInterface::start()
 	LOG("Loading Interface");
 
 	img_life = app->textures->load("Sprites/Life.png");
-	img_beam = app->textures->load("Sprites/BEAM.png");
+	img_beam = app->textures->load("Sprites/Beam.png");
 	img_p1 = app->textures->load("Sprites/P1.png");
-	img_hi = app->textures->load("Sprites/Hi-.png");
-	img_numbers_interface = app->textures->load("Sprites/numbers_interface.png");
-	img_bar = app->textures->load("Sprites/Shot_Bar.png");
-	charge_beam = app->textures->load("Sprites/beam_fill.png");
+	img_hi = app->textures->load("Sprites/HighScore.png");
+	img_numbers_interface = app->textures->load("Sprites/NumbersInterface.png");
+	img_bar = app->textures->load("Sprites/ShotBar.png");
+	charge_beam = app->textures->load("Sprites/BeamFill.png");
 
 	position_interface = 2 * SCALE_FACTOR;
 

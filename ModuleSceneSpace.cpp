@@ -32,7 +32,7 @@ bool ModuleSceneSpace::start()
 {
 	LOG("Loading space scene");
 
-	level1 = app->textures->load("Sprites/boundary_level.png");
+	level1 = app->textures->load("Sprites/BoundaryLevel.png");
 	background = app->textures->load("Sprites/BoundaryBackground.png");
 
 	app->player->enable();

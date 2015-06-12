@@ -77,7 +77,7 @@ ModuleCollision::~ModuleCollision()
 
 bool ModuleCollision::start()
 {
-	god = app->textures->load("Images/god.png");
+	god = app->textures->load("Images/God.png");
 	return true;
 }
 

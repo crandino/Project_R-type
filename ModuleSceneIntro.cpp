@@ -63,9 +63,9 @@ bool ModuleSceneIntro::start()
 
 	app->input->keyboard_enabled = true;
 
-	intro = app->textures->load("Images/Intro_tuned2.png");
-	numbers = app->textures->load("Sprites/numbers_blue.png");
-	press_space_to_start = app->textures->load("Images/Press_space_to_start_black.png");
+	intro = app->textures->load("Images/IntroTuned2.png");
+	numbers = app->textures->load("Sprites/NumbersBlue.png");
+	press_space_to_start = app->textures->load("Images/PressSpaceToStartBlack.png");
 
 	app->audio->playMusic("Music/Intro.ogg", 0.0f);
 	fx = app->audio->loadFx("Sounds/Coin.ogg");
@@ -92,7 +92,7 @@ bool ModuleSceneIntro::start()
 
 	//rects[0] = { 0, 0, 0, 0 }; //
 
-	title = app->textures->load("Images/rtype_logo.png");
+	title = app->textures->load("Images/RtypeLogo.png");
 
 	return ret;
 }

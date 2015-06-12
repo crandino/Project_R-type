@@ -27,9 +27,9 @@ bool ModulePowerUp::start()
 
 	fx_power_up = app->audio->loadFx("Sounds/PowerUP.wav");
 
-	basic_graphics = app->textures->load("Sprites/basic_powerup.png");
-	ribbon_graphics = app->textures->load("Sprites/ribbon_powerup.png");
-	missile_graphics = app->textures->load("Sprites/Missile_PowerUp.png");
+	basic_graphics = app->textures->load("Sprites/BasicPowerUp.png");
+	ribbon_graphics = app->textures->load("Sprites/RibbonPowerUp.png");
+	missile_graphics = app->textures->load("Sprites/MissilePowerUp.png");
 
 	LOG("Loading PowerUps...");
 

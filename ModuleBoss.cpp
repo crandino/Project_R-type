@@ -102,7 +102,7 @@ bool ModuleBoss::start()
 	tail->going_up = true;
 
 	// Adding texture of boss
-	dobkeratops_texture = app->textures->load("Sprites/Boss1_Dobkeratops.png");
+	dobkeratops_texture = app->textures->load("Sprites/BossDobkeratops.png");
 
 	// Adding colliders...
 	// Antenna1 
@@ -170,6 +170,8 @@ bool ModuleBoss::cleanUp()
 		delete item->data;
 		item = item->next;
 	}
+
+	delete tail;
 
 	boss_parts.clear();
 

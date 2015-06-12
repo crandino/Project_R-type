@@ -10,6 +10,7 @@ Roger Olasz
 Variables: snake_case
 Classes: PascalCase
 Methods: camelCase
+Files : PascalCase
 
 **************Headers*****************
 Each header file must include the following lines 
