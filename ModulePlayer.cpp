@@ -100,7 +100,7 @@ bool ModulePlayer::start()
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
 
-	fx_charging = app->audio->loadFx("Sounds/Charging_Sound.wav");
+	fx_charging = app->audio->loadFx("Sounds/ChargingSound.wav");
 
 	// Each animation of Player is reseted.
 	for (unsigned int i = 0; i < animation_set.getNumElements(); i++)

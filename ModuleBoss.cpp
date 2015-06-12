@@ -32,7 +32,7 @@ bool ModuleBoss::start()
 
 	fx_explosion = app->audio->loadFx("Sounds/BossExplosion.wav");
 	fx_hit = app->audio->loadFx("Sounds/BossHit.wav");
-	fx_explosion_antenna = app->audio->loadFx("Sounds/ExplosionTabrok.wav");
+	fx_explosion_antenna = app->audio->loadFx("Sounds/AntennaExplosion.wav");
 
 	// Breeding of Dobkeratops
 	alien = new Alien();
@@ -90,7 +90,6 @@ bool ModuleBoss::start()
 	float incr_delta = 0.1f;
 	for (unsigned int i = 0; i < tail->num_balls; i++)
 	{
-
 		tail->current_positions.pushBack({ stop_scrolling_position - ((121 + (i * 7)) * SCALE_FACTOR), 195 * SCALE_FACTOR });
 		tail->top_positions.pushBack({ stop_scrolling_position - ((121 + (i * 6)) * SCALE_FACTOR), (195 - (i * 3 * incr)) * SCALE_FACTOR });
 		tail->bottom_positions.pushBack({ stop_scrolling_position - ((121 + (i * 7)) * SCALE_FACTOR), 195 * SCALE_FACTOR });
@@ -171,7 +170,12 @@ bool ModuleBoss::cleanUp()
 		item = item->next;
 	}
 
-	delete tail;
+	/*for (unsigned int i = 0; i < tail->colliders.getNumElements(); i++)
+	{
+		delete tail->colliders[i];
+	}
+
+	delete tail;*/
 
 	boss_parts.clear();
 

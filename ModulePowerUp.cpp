@@ -35,8 +35,8 @@ bool ModulePowerUp::start()
 
 	// Adding powerups
 	addPowerUp(BASIC_POWERUP, 3000, 110, COLLIDER_POWER_UP);
-	addPowerUp(RIBBON_POWERUP, 1150, 110, COLLIDER_POWER_UP);
-	addPowerUp(MISSILE_POWERUP, 200, 110, COLLIDER_POWER_UP);
+	addPowerUp(RIBBON_POWERUP, 650, 110, COLLIDER_POWER_UP);
+	addPowerUp(MISSILE_POWERUP, 1400, 110, COLLIDER_POWER_UP);
 
 	return true;
 }

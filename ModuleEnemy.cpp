@@ -29,11 +29,11 @@ bool ModuleEnemy::start()
 {
 	LOG("Loading enemy textures");
 
-	pata_graphics = app->textures->load("Sprites/Pata_pata.png");
+	pata_graphics = app->textures->load("Sprites/PataPata.png");
 	bug_graphics = app->textures->load("Sprites/Bug.png");
 	blaster_graphics = app->textures->load("Sprites/Blaster.png");
 
-	fx_pata_explosion = app->audio->loadFx("Sounds/ExplosionPataPata.wav");
+	fx_pata_explosion = app->audio->loadFx("Sounds/PataPataExplosion.wav");
 	
 	LOG("Loading enemies...");
 
@@ -187,6 +187,24 @@ update_status ModuleEnemy::preUpdate()
 			last_wave = wave;
 		}
 		break;
+	//This isn't original from R-Type (PATA FOR FUN!)
+	case(1200) :
+		// PATA-PATA - Group 10 ( 2 units )
+		if (last_wave != wave)
+		{
+			addEnemy(PATA_ENEMY, pata_graphics, 1200, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1230, 90, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1270, 150, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1300, 100, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1320, 85, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1330, 145, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1350, 100, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1360, 60, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1380, 125, COLLIDER_ENEMY);
+			addEnemy(PATA_ENEMY, pata_graphics, 1410, 130, COLLIDER_ENEMY);
+			last_wave = wave;
+		}
+			   break;
 
 	// Inside the mothership ------------------------------------------------------
 
