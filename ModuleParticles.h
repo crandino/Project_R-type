@@ -77,6 +77,12 @@ public:
 	Uint32 missile_delay;
 	UINT32 missile_counter;
 
+	unsigned int fx_shot;
+	unsigned int fx_ribbon_shoot;
+	unsigned int fx_missile_shot;
+	unsigned int fx_big_shot;
+	unsigned int fx_spaceship_explosion;
+
 
 	ModuleParticles(Application *app, bool start_enabled = true);
 	~ModuleParticles();

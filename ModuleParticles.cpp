@@ -46,6 +46,11 @@ bool ModuleParticles::start()
 	missile_propulsion = app->textures->load("Sprites/Missile_propulsion.png");
 	basic_enemy_shot = app->textures->load("Sprites/Basic_shot_pata_pata.png");
 	boss_weapon = app->textures->load("Sprites/Boss_weapon.png");
+
+	fx_shot = app->audio->loadFx("Sounds/DisparoNave.wav");
+	fx_big_shot = app->audio->loadFx("Sounds/DisparoPotenteNave.wav");
+	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
+	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
 	
 	// Explosions
 	basic_player_shot_explosion = app->textures->load("Sprites/basic_player_shot_explosion.png");
@@ -57,6 +62,7 @@ bool ModuleParticles::start()
 	charged_explosion = app->textures->load("Sprites/Charged_Explosion.png");
 	boss_hit = app->textures->load("Sprites/Boss1_Dobkeratops_negative.png");
 
+	fx_spaceship_explosion = app->audio->loadFx("Sounds/ExplosionNave.wav");
 	fx_shot_explosion = app->audio->loadFx("Sounds/ColisionDisparo.wav");
 
 	last_missile_shot = last_ribbon_shot = missile_counter = 0;
@@ -265,6 +271,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 		{
 			if ((last_ribbon_shot + ribbon_delay) < (SDL_GetTicks()))
 			{
+				app->audio->playFx(fx_ribbon_shoot);
 				last_ribbon_shot = SDL_GetTicks();
 				p = new RibbonShot(app, ribbon_player_shot);
 			}
@@ -274,6 +281,7 @@ void ModuleParticles::addWeapon(WEAPON_TYPES type, int x, int y, COLLIDER_TYPE c
 		{
 			if ((last_missile_shot + missile_delay) < (SDL_GetTicks()) || missile_counter % 2 != 0)
 			{
+				app->audio->playFx(fx_missile_shot);
 				last_missile_shot = SDL_GetTicks();
 				p = new MissilePlayerShot(app, missile_player_shot, missile_propulsion);
 				missile_counter++;
@@ -308,7 +316,7 @@ void ModuleParticles::addExplosion(EXPLOSION_TYPES type, int x, int y, Uint32 de
 	case(HUGE_EXPLOSION) : p = new HugeExplosion(app, huge_explosion); break;
 	case(PLAYER_EXPLOSION) : p = new PlayerExplosion(app, player_explosion); break;
 	case(CONTRAIL) : p = new Contrail(app, contrail); break;
-	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); break;
+	case(BASIC_PLAYER_SHOT_EXPLOSION) : p = new PlayerBasicShotExplosion(app, basic_player_shot_explosion); app->audio->playFx(fx_spaceship_explosion); break;
 	case(MISSILE_PLAYER_SHOT_EXPLOSION) : p = new PlayerMissileShotExplosion(app, missile_player_shot_explosion); break;
 	case(BOSS_HIT) : p = new BossHit(app, boss_hit); break;
 	}

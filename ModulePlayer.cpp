@@ -25,11 +25,7 @@ Module(app, start_enabled)
 	graphics = NULL;
 	collider = NULL;
 
-	fx_shoot = 0;
-	fx_big_shoot = 0;
-	fx_ribbon_shoot = 0;	
 	fx_charging = 0;
-	fx_spaceship_explosion = 0;
 	
 	// idle animation (there is no animation here, just the ship)
 	idle.frames.pushBack({ 167, 3, 31, 13 });
@@ -86,7 +82,7 @@ bool ModulePlayer::start()
 	active = true;
 	app->input->keyboard_enabled = true;
 
-	position.x = 3200 * SCALE_FACTOR;
+	position.x = 50 * SCALE_FACTOR;
 	position.y = 100 * SCALE_FACTOR;
 	speed = 2 * SCALE_FACTOR;
 	start_charging = actual_charging = end_charging = first_sound_moment = 0;
@@ -99,13 +95,6 @@ bool ModulePlayer::start()
 
 	weapon_type = BASIC_PLAYER_SHOT;
 	player_points = 0;
-
-	fx_shoot = app->audio->loadFx("Sounds/DisparoNave.wav");
-	fx_big_shoot = app->audio->loadFx("Sounds/DisparoPotenteNave.wav");
-	fx_ribbon_shoot = app->audio->loadFx("Sounds/Ribbon_Sound.wav");
-	fx_missile_shot = app->audio->loadFx("Sounds/Missile_Sound.wav");
-	fx_spaceship_explosion = app->audio->loadFx("Sounds/ExplosionNave.wav");
-	fx_charging = app->audio->loadFx("Sounds/Charging_Sound.wav");
 	
 	graphics = app->textures->load("Sprites/Arrowhead.png");
 	current_animation = &idle;
@@ -166,7 +155,7 @@ void ModulePlayer::shoot()
 					charged_shot = true;
 					//Boolean that is used in charge_basic_shot() to indicate if the first charging sound is played 
 					first_charging_sound_played = false;
-					app->audio->playFx(fx_big_shoot);
+					app->audio->playFx(app->particles->fx_big_shot);
 					app->particles->addExplosion(CONTRAIL, position.x + 34 * SCALE_FACTOR, position.y);
 					app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y, COLLIDER_PLAYER_SHOT);
 				}
@@ -176,7 +165,6 @@ void ModulePlayer::shoot()
 
 			case MISSILE_PLAYER_SHOT:
 			{
-				app->audio->playFx(fx_missile_shot);
 				app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y - 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				app->particles->addWeapon(MISSILE_PLAYER_SHOT, position.x + 10 * SCALE_FACTOR, position.y + 8 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 				break;
@@ -184,7 +172,6 @@ void ModulePlayer::shoot()
 
 			case RIBBON_PLAYER_SHOT:
 			{
-				app->audio->playFx(fx_ribbon_shoot);
 				app->particles->addWeapon(RIBBON_PLAYER_SHOT, position.x + 11 * SCALE_FACTOR, position.y - 22 * SCALE_FACTOR, COLLIDER_RIBBON_SHOT);
 				break;
 			}
@@ -200,7 +187,7 @@ void ModulePlayer::charge_basic_shot()
 		if (app->input->getKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && weapon_type == BASIC_PLAYER_SHOT)
 		{
 			//In the original game when you charge the weapon, player shoots a single shot
-			app->audio->playFx(fx_shoot);
+			app->audio->playFx(app->particles->fx_shot);
 			charged_shot = false;
 			app->particles->addWeapon(BASIC_PLAYER_SHOT, position.x + 22 * SCALE_FACTOR, position.y + 3 * SCALE_FACTOR, COLLIDER_PLAYER_SHOT);
 			start_charging = SDL_GetTicks();
@@ -288,7 +275,6 @@ void ModulePlayer::onCollision(Collider *col1, Collider *col2)
 	{
 		speed = 0;
 		app->particles->addExplosion(PLAYER_EXPLOSION, position.x, position.y);
-		app->audio->playFx(fx_spaceship_explosion);
 		app->input->keyboard_enabled = false;
 
 		app->scene->scroll_speed = 0;

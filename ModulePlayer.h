@@ -30,11 +30,6 @@ public:
 	DynArray<Animation*> animation_set;
 
 	// Sounds
-	unsigned int fx_shoot;
-	unsigned int fx_ribbon_shoot;
-	unsigned int fx_spaceship_explosion;
-	unsigned int fx_missile_shot;
-	unsigned int fx_big_shoot;
 	unsigned int fx_charging;
 
 	//Properties
